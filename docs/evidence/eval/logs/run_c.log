@@ -1,0 +1,69 @@
+VS items with 3 views: 2024, with GT: 300
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 1.4002575099425485e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -5.495098065466664e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -7.682275793285953e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 2.145180033608085e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -3.6252858492957785e-09 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 6.898292070900425e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 2.7159471893689613e-10 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -2.328845916110822e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -3.877733689705565e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 1.9617887758727193e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -5.051400009392637e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 2.858040026865183e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -9.27217840285266e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 5.362355892657433e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -4.242930629061448e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 3.3014600830938434e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -3.0297211850438543e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -8.513019622569118e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 1.1877049566066944e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -3.4456144604178007e-09 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 3.6351252674649004e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -4.576730816552299e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 7.203347252016101e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 4.413211129872252e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -2.8553521769225654e-09 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -5.2477979295417754e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 9.456242455740949e-10 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -2.3751407951522197e-08 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 1.0389248350506364e-09 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -3.2084352952210793e-09 will be truncated to -1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:52: UserWarning: the float32 number 1.438247654306224e-08 will be truncated to 1e-07
+  warnings.warn(
+/home/ubuntu/eval/venv/lib/python3.12/site-packages/onnxconverter_common/float16.py:70: UserWarning: the float32 number -4.773592721107889e-08 will be truncated to -1e-07
+  warnings.warn(
+  int8_dynamic: 0/300
+  int8_dynamic: 200/300
+[int8_dynamic] size=13.8MB MAE L/W/H=11.45/8.22/7.72 ±3cm(3축)=6.7% ±2cm=4.3% latency p50=1828 p95=1871ms
+saved /home/ubuntu/eval/results_c/summary.json

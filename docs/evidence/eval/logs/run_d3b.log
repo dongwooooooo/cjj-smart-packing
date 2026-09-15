@@ -1,0 +1,3 @@
+VS items with 3 views: 2024, with GT: 2024
+calibration batches: 24 from /home/ubuntu/data/TS_calib
+static quant: method=entropy exclude=4 nodes reduce_range=False

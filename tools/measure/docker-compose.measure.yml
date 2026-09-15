@@ -1,0 +1,69 @@
+# 로컬 측정용 compose 오버레이 — 팀 저장소 파일은 건드리지 않는다.
+# 반드시 별도 프로젝트명으로: docker compose -p cjj-measure -f docker-compose.yml -f docker-compose.override.yml -f <이 파일> up -d --build
+# (WMS 세션 compose 가 프로젝트명 `backend`·포트 8000 을 쓰고 있어 격리 필수)
+services:
+  backend:
+    image: cjj-measure-backend:local
+    # 로컬에서 ./gradlew bootJar 로 만든 jar 를 그대로 싣는다 (컨테이너 안 Gradle 빌드는 Maven 다운로드 실패로 우회)
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM eclipse-temurin:25.0.3_9-jre
+        WORKDIR /app
+        COPY build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
+        COPY demo ./demo
+        EXPOSE 8000
+        ENTRYPOINT ["java", "-jar", "app.jar"]
+    ports: !override
+      - "8010:8000"
+    environment:
+      INFERENCE_LAMBDA_FUNCTION: function            # RIE 는 함수 이름을 검사하지 않는다
+      INFERENCE_ENDPOINT_OVERRIDE: http://host.docker.internal:9000
+      INFERENCE_API_KEY: test                        # RIE 컨테이너의 API_KEY 와 맞춘다
+      INFERENCE_TIMEOUT_SECONDS: 30
+      DEMO_WARMUP_INFERENCE: "true"
+      # 측정은 S3 경로로 한다 — MinIO 를 S3 자리에 놓고 S3ImageStore 를 그대로 쓴다
+      STORAGE_BUCKET: measure-images
+      STORAGE_ENDPOINT_OVERRIDE: http://minio:9000
+      STORAGE_ACCESS_KEY: measure
+      STORAGE_SECRET_KEY: measure-secret
+    volumes:
+      - ${MEASURE_IMAGES_DIR}:/app/demo/data/images:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      minio-init:
+        condition: service_completed_successfully
+  db:
+    ports: !override
+      - "5433:5432"
+
+  # 9000 은 추론 RIE 가 쓰고 있어 바깥 포트는 9100 으로 뺀다. 콘솔은 쓰지 않는다.
+  minio:
+    image: quay.io/minio/minio:latest   # Docker Hub 의 minio/minio 는 pull 이 막혀 있어 quay 미러를 쓴다
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: measure
+      MINIO_ROOT_PASSWORD: measure-secret
+    ports:
+      - "9100:9000"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  # 버킷을 만들고 데모 사진을 그 안에 넣는다. S3 모드에서는 촬영 입력 사진도 보관소에서 읽는다.
+  minio-init:
+    image: quay.io/minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    volumes:
+      - ${MEASURE_IMAGES_DIR}:/seed/images:ro
+    entrypoint: >
+      sh -c "
+      mc alias set local http://minio:9000 measure measure-secret &&
+      mc mb --ignore-existing local/measure-images &&
+      mc mirror --overwrite /seed/images local/measure-images/images &&
+      echo minio-init done"

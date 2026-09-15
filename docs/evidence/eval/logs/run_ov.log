@@ -1,0 +1,11 @@
+[0;93m2026-09-14 16:30:33.589891862 [W:onnxruntime:Default, device_discovery.cc:211 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:91 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+providers: ['OpenVINOExecutionProvider', 'CPUExecutionProvider']
+  cpu_ep: 0/500
+  cpu_ep: 200/500
+  cpu_ep: 400/500
+[cpu_ep] MAE=[2.245764110056621, 2.1283148028109222, 2.0172485489951053] ±3cm=61.2% p50=306 p95=312ms
+  openvino_cpu: 0/500
+  openvino_cpu: 200/500
+  openvino_cpu: 400/500
+[openvino_cpu] MAE=[2.2457651248738104, 2.1283155117500714, 2.017248618522061] ±3cm=61.2% p50=244 p95=253ms
+saved

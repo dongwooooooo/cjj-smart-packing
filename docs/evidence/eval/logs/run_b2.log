@@ -1,0 +1,15 @@
+VS items with 3 views: 2024, with GT: 2024
+calibration batches: 100 from /home/ubuntu/data/TS_calib
+  int8_static: 0/2024
+  int8_static: 200/2024
+  int8_static: 400/2024
+  int8_static: 600/2024
+  int8_static: 800/2024
+  int8_static: 1000/2024
+  int8_static: 1200/2024
+  int8_static: 1400/2024
+  int8_static: 1600/2024
+  int8_static: 1800/2024
+  int8_static: 2000/2024
+[int8_static] size=14.8MB MAE L/W/H=3.57/3.24/2.89 ±3cm(3축)=22.6% ±2cm=4.6% latency p50=164 p95=167ms
+saved /home/ubuntu/eval/results_b2/summary.json

@@ -1,0 +1,3 @@
+VS items with 3 views: 2024, with GT: 2024
+calibration batches: 100 from /home/ubuntu/data/TS_calib
+static quant: method=percentile exclude=0 nodes reduce_range=False

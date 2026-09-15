@@ -1,0 +1,16 @@
+VS items with 3 views: 2024, with GT: 2024
+calibration batches: 100 from /home/ubuntu/data/TS_calib
+static quant: method=minmax exclude=4 nodes reduce_range=True
+  int8_static: 0/2024
+  int8_static: 200/2024
+  int8_static: 400/2024
+  int8_static: 600/2024
+  int8_static: 800/2024
+  int8_static: 1000/2024
+  int8_static: 1200/2024
+  int8_static: 1400/2024
+  int8_static: 1600/2024
+  int8_static: 1800/2024
+  int8_static: 2000/2024
+[int8_static] size=22.3MB MAE L/W/H=3.71/3.42/2.66 ±3cm(3축)=20.5% ±2cm=4.3% latency p50=167 p95=171ms
+saved /home/ubuntu/eval/results_d2/summary.json

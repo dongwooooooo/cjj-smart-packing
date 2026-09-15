@@ -1,0 +1,1 @@
+/home/ubuntu/eval/run_bc.sh: line 4:  9233 Killed                  python eval_variants.py --vs ~/data/VS --items ~/data/index/items.csv --calib ~/data/TS_calib --calib-n 200 --model-dir ~/inference --out ~/eval/results_b --threads 2 --variants int8_static > ~/eval/run_b.log 2>&1
