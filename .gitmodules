@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/dongwooooooo/cjj-smart-packing-backend.git
+[submodule "ai"]
+	path = ai
+	url = https://github.com/dongwooooooo/cjj-smart-packing-ai.git
