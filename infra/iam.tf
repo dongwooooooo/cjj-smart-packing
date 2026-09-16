@@ -62,6 +62,17 @@ data "aws_iam_policy_document" "github_permissions" {
     resources = [local.lambda_arn, "${local.lambda_arn}:*"]
   }
   statement {
+    sid       = "EvalDataRead"
+    actions   = ["s3:GetObject", "s3:ListBucket"]
+    resources = [aws_s3_bucket.eval.arn, "${aws_s3_bucket.eval.arn}/*"]
+  }
+  # 게이트 결과와 승격 후 기준선만 쓴다. 평가 데이터 자체는 CI 가 쓰지 않는다.
+  statement {
+    sid       = "EvalResultWrite"
+    actions   = ["s3:PutObject"]
+    resources = ["${aws_s3_bucket.eval.arn}/results/*", "${aws_s3_bucket.eval.arn}/baselines/*"]
+  }
+  statement {
     sid     = "SsmSendCommand"
     actions = ["ssm:SendCommand"]
     resources = [
@@ -131,6 +142,12 @@ data "aws_iam_policy_document" "backend_ec2" {
     sid       = "ImagesBucketList"
     actions   = ["s3:ListBucket"]
     resources = [aws_s3_bucket.images.arn]
+  }
+  # 평가 데이터를 드라이브에서 S3 로 옮길 때 EC2 에서 rclone 을 돌린다.
+  statement {
+    sid       = "EvalDataWrite"
+    actions   = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject", "s3:ListBucket"]
+    resources = [aws_s3_bucket.eval.arn, "${aws_s3_bucket.eval.arn}/*"]
   }
 }
 
