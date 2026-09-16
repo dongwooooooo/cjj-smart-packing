@@ -1,0 +1,6 @@
+my_ip = "58.151.41.67"   # curl https://checkip.amazonaws.com
+# instance_type      = "c7i-flex.large"
+# existing_eip       = "13.124.19.3"   # 없으면 null
+# rds_engine_version = "18"
+# lambda_enabled     = false            # 이미지 push 후 true
+# lambda_image_tag   = "latest"
