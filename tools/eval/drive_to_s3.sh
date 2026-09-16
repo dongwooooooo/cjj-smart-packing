@@ -23,7 +23,9 @@ type = s3
 provider = AWS
 env_auth = true
 region = ap-northeast-2
+no_check_bucket = true
 CONF
+# no_check_bucket: 인스턴스 역할은 버킷 생성 권한이 없다. 확인 단계가 실패하면 rclone 이 CreateBucket 을 시도해 400 으로 죽는다(2026-09-16 실측).
 # 공용 client_id 라 드라이브 API 쿼터가 낮다. tps 4 를 넘기면 403 rateLimitExceeded 가 난다(2026-09-15 실측).
 COMMON=(--fast-list --tpslimit 4 --transfers 8 --checkers 8 --stats 60s --stats-one-line)
 rclone copy gd:index/items.csv "s3:${BUCKET}/${PREFIX}/index/" "${COMMON[@]}"
