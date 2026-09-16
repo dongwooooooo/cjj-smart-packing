@@ -1,6 +1,6 @@
 # cjj-portfolio — VisionAI 기반 물류 스마트 패킹 고도화
 
-CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 판단 시스템을 포트폴리오용으로 고도화한 작업본이다. 팀 저장소(`cj-ai-sw` 조직)는 수정하지 않고, 팀 저장소의 develop 시점 코드를 복제한 뒤 이 디렉터리 안에서만 작업했다. 원격 저장소는 아직 연결하지 않았다.
+CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 판단 시스템을 포트폴리오용으로 고도화한 작업본이다. 팀 저장소(`cj-ai-sw` 조직)는 수정하지 않고, 팀 저장소의 develop 시점 코드를 복제한 뒤 이 디렉터리 안에서만 작업했다. 공개 저장소: https://github.com/dongwooooooo/cjj-smart-packing (backend·ai는 서브모듈).
 
 ## 구성
 
@@ -9,7 +9,8 @@ CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 �
 | `backend/` | Spring Boot 4.1 백엔드. `main` = 팀 develop(2026-08-31) + 무게·요금 목적함수 편성 + 촬영 사진 업로드 비동기화 | 팀 저장소 develop 복제 후 두 브랜치 병합 |
 | `ai/` | 추론 API·Lambda 배포·고정셋 평가 하네스·정확도 게이트. `main` = 팀 main + `eval/` | 팀 저장소 main 복제 |
 | `docs/stories/` | 설계 문서 3건(사내 기술문서 7절 양식) | 2026-09-15 작성 |
-| `docs/portfolio/` | 포트폴리오 절 본문 3건(교열 완료)과 절 초안 v1 | Google Doc에 옮길 원고 |
+| `docs/portfolio/` | Google Doc 절 완성본 `section-full.md`(소개·요구사항·아키텍처 + 문제 1~3). 분할 원고 4건은 같은 내용 | Google Doc에 옮길 원고 |
+| `docs/figures/` | 그림 4장(SVG·PNG)과 생성 스크립트 `gen_figures.py` | 2026-09-16 작성 |
 | `docs/evidence/` | 측정·평가·벤치마크 원본(JSON, 로그, 표) | 2026-09-14~15 실측 |
 | `docs/briefs/` | 구현을 맡길 때 쓴 브리프 2건 | 결정 사항의 원문 |
 | `tools/measure/` | 촬영 응답 구간 측정: compose 오버레이(RIE·MinIO), 측정 스크립트, 드라이브 복사 스크립트 | |

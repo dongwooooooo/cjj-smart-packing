@@ -1,0 +1,90 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='720' viewBox='0 0 1400 720'>
+<defs><marker id='ah' markerWidth='10' markerHeight='10' refX='9' refY='5' orient='auto' markerUnits='userSpaceOnUse'><path d='M0,0 L10,5 L0,10 z' fill='#4A5568'/></marker></defs>
+<rect width='1400' height='720' fill='white'/>
+<rect x='40' y='110' width='150' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='115.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>작업자</text>
+<text x='115.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>입고 등록 / 출고 포장</text>
+<text x='115.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>바코드·토트 스캔</text>
+<rect x='250' y='100' width='190' height='110' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='345.0' y='124' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>프론트엔드</text>
+<text x='345.0' y='143' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Next.js 16 (Vercel)</text>
+<text x='345.0' y='162' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>route handler 프록시</text>
+<text x='345.0' y='181' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>백엔드 키 서버측 부착</text>
+<rect x='510' y='90' width='230' height='130' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='625.0' y='114' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>API 서버</text>
+<text x='625.0' y='133' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Spring Boot 4.1 · EC2 (compose)</text>
+<text x='625.0' y='152' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>입고·출고·주문·재고 API</text>
+<text x='625.0' y='171' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>출고지시 배치 엔진</text>
+<text x='625.0' y='190' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>편성 · 박스 추천 · 요금 계산</text>
+<rect x='820' y='40' width='200' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='920.0' y='64' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>PostgreSQL 18 (RDS)</text>
+<text x='920.0' y='83' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Flyway 스키마 이력</text>
+<text x='920.0' y='102' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>상품 치수·무게 마스터</text>
+<rect x='820' y='160' width='200' height='100' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='920.0' y='184' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>S3</text>
+<text x='920.0' y='203' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>촬영 사진 (커밋 후 비동기 업로드)</text>
+<text x='920.0' y='222' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>30분 임시 주소 조회</text>
+<rect x='1090' y='90' width='270' height='130' rx='8' fill='#EBF4FF' stroke='#2B6CB0' stroke-width='1.5'/>
+<text x='1225.0' y='114' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>추론 Lambda 컨테이너</text>
+<text x='1225.0' y='133' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>FastAPI + ONNX Runtime</text>
+<text x='1225.0' y='152' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>EfficientNet-B3 3뷰 회귀 (13.3M)</text>
+<text x='1225.0' y='171' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>사진 3장 → 가로·세로·높이</text>
+<text x='1225.0' y='190' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>VS 2,024 MAE 2.06 / 2.17 / 1.62cm</text>
+<line x1='190' y1='155' x2='250' y2='155' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<line x1='440' y1='155' x2='510' y2='155' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<text x='475.0' y='147.0' text-anchor='middle' font-size='11.5' fill='#4A5568' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>HTTPS</text>
+<line x1='740' y1='120' x2='820' y2='90' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<text x='780.0' y='97.0' text-anchor='middle' font-size='11.5' fill='#4A5568' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>JDBC</text>
+<line x1='740' y1='190' x2='820' y2='205' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<text x='780.0' y='189.5' text-anchor='middle' font-size='11.5' fill='#4A5568' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>put (비동기)</text>
+<line x1='740' y1='150' x2='1090' y2='150' stroke='#2B6CB0' stroke-width='1.6' marker-end='url(#ah)'/>
+<text x='915.0' y='142.0' text-anchor='middle' font-size='11.5' fill='#2B6CB0' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>SDK Invoke · 인스턴스 프로파일 (공개 URL 없음)</text>
+<rect x='40' y='320' width='1320' height='170' rx='10' fill='none' stroke='#718096' stroke-width='1' stroke-dasharray='4 4'/><text x='52' y='338' text-anchor='start' font-size='12' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>모델 승격 파이프라인 (ai 저장소)</text>
+<rect x='60' y='355' width='190' height='110' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='155.0' y='379' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Hugging Face</text>
+<text x='155.0' y='398' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>비공개 저장소</text>
+<text x='155.0' y='417' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>safetensors (AI 담당 업로드)</text>
+<rect x='300' y='355' width='230' height='110' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='415.0' y='379' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>2단계 Docker 빌드</text>
+<text x='415.0' y='398' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>변환: safetensors → ONNX</text>
+<text x='415.0' y='417' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>torch 대조 max diff ≤ 1e-4</text>
+<text x='415.0' y='436' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>런타임: model.onnx + config만</text>
+<rect x='580' y='355' width='150' height='110' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='655.0' y='379' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>ECR</text>
+<text x='655.0' y='398' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>이미지 저장</text>
+<rect x='780' y='355' width='260' height='110' rx='8' fill='#FFF5EB' stroke='#C05621' stroke-width='1.5'/>
+<text x='910.0' y='379' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>고정셋 평가 게이트</text>
+<text x='910.0' y='398' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>VS 2,024품목 × 3장, 서빙 전처리</text>
+<text x='910.0' y='417' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>비열화 + 절대 상한 판정</text>
+<text x='910.0' y='436' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>하네스 구현 · 연결은 미결</text>
+<rect x='1090' y='355' width='250' height='110' rx='8' fill='#EBF4FF' stroke='#2B6CB0' stroke-width='1.5'/>
+<text x='1215.0' y='379' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda 배포</text>
+<text x='1215.0' y='398' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>버전 발행</text>
+<text x='1215.0' y='417' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>live 별칭 이동</text>
+<line x1='250' y1='410' x2='300' y2='410' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<line x1='530' y1='410' x2='580' y2='410' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<line x1='730' y1='410' x2='780' y2='410' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)' stroke-dasharray='6 5'/>
+<line x1='1040' y1='410' x2='1090' y2='410' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)' stroke-dasharray='6 5'/>
+<text x='1065.0' y='402.0' text-anchor='middle' font-size='11.5' fill='#4A5568' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>통과 시</text>
+<path d='M 1215 355 L 1215 290 L 1225 290 L 1225 220' fill='none' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<rect x='40' y='520' width='1320' height='150' rx='10' fill='none' stroke='#718096' stroke-width='1' stroke-dasharray='4 4'/><text x='52' y='538' text-anchor='start' font-size='12' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>CI/CD (GitHub Actions, OIDC로 AWS 역할 위임)</text>
+<rect x='60' y='555' width='230' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='175.0' y='579' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>backend 트랙</text>
+<text x='175.0' y='598' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>이미지 빌드 → ECR push</text>
+<text x='175.0' y='617' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>SSM Run Command로 EC2 교체</text>
+<rect x='340' y='555' width='230' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='455.0' y='579' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>헬스 확인 · 롤백</text>
+<text x='455.0' y='598' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>/health 실패 시 이전 이미지 복귀</text>
+<rect x='640' y='555' width='230' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='755.0' y='579' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>ai 트랙</text>
+<text x='755.0' y='598' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>이미지 빌드 → ECR push</text>
+<text x='755.0' y='617' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda 코드 갱신 → live 별칭</text>
+<rect x='940' y='555' width='400' height='90' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='1140.0' y='579' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>명세 (docs 저장소)</text>
+<text x='1140.0' y='598' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>MVP · API 계약 · ERD · 결정 이력 D-01~D-25</text>
+<text x='1140.0' y='617' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>코드와 어긋나면 문서를 먼저 고침</text>
+<line x1='290' y1='600' x2='340' y2='600' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<text x='40' y='40' text-anchor='start' font-size='18' font-weight='700' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>그림 1. 시스템 아키텍처</text>
+<text x='40' y='64' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>작업자 요청 경로(위), 모델 승격 파이프라인(중간), 배포 트랙(아래). 점선은 게이트가 파이프라인에 아직 연결되지 않은 구간.</text>
+<text x='700.0' y='706' text-anchor='middle' font-size='12' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>cjj-smart-packing · 2026-09</text>
+</svg>

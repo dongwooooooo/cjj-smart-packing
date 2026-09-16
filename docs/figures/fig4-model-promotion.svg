@@ -1,0 +1,72 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='560' viewBox='0 0 1400 560'>
+<defs><marker id='ah' markerWidth='10' markerHeight='10' refX='9' refY='5' orient='auto' markerUnits='userSpaceOnUse'><path d='M0,0 L10,5 L0,10 z' fill='#4A5568'/></marker></defs>
+<rect width='1400' height='560' fill='white'/>
+<text x='40' y='40' text-anchor='start' font-size='18' font-weight='700' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>그림 4. 모델 승격 파이프라인과 정확도 게이트</text>
+<text x='40' y='64' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>변환 게이트는 변환의 정확성만 검사한다. 정확도 게이트는 모델 자체를 고정 프로토콜로 평가해 승격 여부를 판정한다. 점선 구간은 파이프라인 연결 미결.</text>
+<rect x='40' y='110' width='180' height='150' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='130.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Hugging Face</text>
+<text x='130.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>safetensors</text>
+<text x='130.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>AI 담당 업로드</text>
+<rect x='270' y='110' width='230' height='150' rx='8' fill='#F4F6F8' stroke='#4A5568' stroke-width='1.5'/>
+<text x='385.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>변환 게이트 (빌드 시)</text>
+<text x='385.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>safetensors → ONNX</text>
+<text x='385.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>torch 출력 대조</text>
+<text x='385.0' y='191' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>max diff &gt; 1e-4 → 빌드 실패</text>
+<text x='385.0' y='210' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>런타임 이미지: onnx + config</text>
+<rect x='550' y='110' width='260' height='150' rx='8' fill='#EBF4FF' stroke='#2B6CB0' stroke-width='1.5'/>
+<text x='680.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>고정셋 평가</text>
+<text x='680.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>VS 2,024품목 × shot1 cam1~3</text>
+<text x='680.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>정답: items.csv 실측</text>
+<text x='680.0' y='191' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>전처리: 서빙 코드 dimension.py</text>
+<text x='680.0' y='210' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>x86 ONNX Runtime CPU</text>
+<rect x='860' y='110' width='260' height='150' rx='8' fill='#EBF4FF' stroke='#2B6CB0' stroke-width='1.5'/>
+<text x='990.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>정확도 판정</text>
+<text x='990.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>비열화: 축별 MAE 악화 ≤ 0.2cm</text>
+<text x='990.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>          3축 ±3cm 하락 ≤ 2%p</text>
+<text x='990.0' y='191' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>절대 상한: 축별 MAE ≤ 3cm</text>
+<text x='990.0' y='210' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>속도는 기록만 (판정 제외)</text>
+<rect x='1170' y='110' width='190' height='150' rx='8' fill='#F0FFF4' stroke='#2F855A' stroke-width='1.5'/>
+<text x='1265.0' y='134' text-anchor='middle' font-size='15' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda live 승격</text>
+<text x='1265.0' y='153' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>버전 발행</text>
+<text x='1265.0' y='172' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>별칭 이동</text>
+<text x='1265.0' y='191' text-anchor='middle' font-size='12.5' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>EC2 백엔드가 Invoke</text>
+<line x1='220' y1='185' x2='270' y2='185' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<line x1='500' y1='185' x2='550' y2='185' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)' stroke-dasharray='6 5'/>
+<line x1='810' y1='185' x2='860' y2='185' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)'/>
+<line x1='1120' y1='185' x2='1170' y2='185' stroke='#4A5568' stroke-width='1.6' marker-end='url(#ah)' stroke-dasharray='6 5'/>
+<text x='1145.0' y='177.0' text-anchor='middle' font-size='11.5' fill='#4A5568' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>통과</text>
+<text x='40' y='310' text-anchor='start' font-size='13' font-weight='600' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>2026-09-15 평가 결과 (기준선 FP32: MAE 2.06 / 2.17 / 1.62cm, 3축 ±3cm 62.5%, p50 243ms)</text>
+<text x='40' y='338' text-anchor='start' font-size='12.5' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>변형</text>
+<text x='420' y='338' text-anchor='start' font-size='12.5' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>MAE L/W/H (cm)</text>
+<text x='700' y='338' text-anchor='start' font-size='12.5' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>3축 ±3cm</text>
+<text x='860' y='338' text-anchor='start' font-size='12.5' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>p50</text>
+<text x='1000' y='338' text-anchor='start' font-size='12.5' font-weight='600' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>판정</text>
+<line x1='40' y1='346' x2='1360' y2='346' stroke='#718096' stroke-width='1'/>
+<text x='40' y='364' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>FP16</text>
+<text x='420' y='364' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>2.06 / 2.17 / 1.62</text>
+<text x='700' y='364' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>62.5%</text>
+<text x='860' y='364' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>243ms</text>
+<text x='1000' y='364' text-anchor='start' font-size='12.5' font-weight='600' fill='#2F855A' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>통과 · 속도 이득 없음</text>
+<text x='40' y='390' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>INT8 정적 PTQ (MinMax, 보정 100)</text>
+<text x='420' y='390' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>3.57 / 3.24 / 2.89</text>
+<text x='700' y='390' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>22.6%</text>
+<text x='860' y='390' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>164ms</text>
+<text x='1000' y='390' text-anchor='start' font-size='12.5' font-weight='600' fill='#C05621' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>차단 · ±3cm 기준 위반</text>
+<text x='40' y='416' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>INT8 정적 PTQ (첫 conv·헤드 FP32)</text>
+<text x='420' y='416' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>3.71 / 3.42 / 2.66</text>
+<text x='700' y='416' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>20.5%</text>
+<text x='860' y='416' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>167ms</text>
+<text x='1000' y='416' text-anchor='start' font-size='12.5' font-weight='600' fill='#C05621' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>차단</text>
+<text x='40' y='442' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>INT8 동적</text>
+<text x='420' y='442' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>11.45 / 8.22 / 7.72</text>
+<text x='700' y='442' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>6.7%</text>
+<text x='860' y='442' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>1,828ms</text>
+<text x='1000' y='442' text-anchor='start' font-size='12.5' font-weight='600' fill='#C05621' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>차단</text>
+<text x='40' y='468' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>FP32 OpenVINO EP</text>
+<text x='420' y='468' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>현행과 동일</text>
+<text x='700' y='468' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>61.2%</text>
+<text x='860' y='468' text-anchor='start' font-size='12.5' font-weight='400' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>244ms</text>
+<text x='1000' y='468' text-anchor='start' font-size='12.5' font-weight='600' fill='#2F855A' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>통과 · 속도 이득 없음</text>
+<text x='40' y='508' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>판정 기준을 두 단계로 둔 효과: INT8 정적은 MAE 악화가 1.5cm에 그치지만 ±3cm 안에 드는 비율이 62.5%에서 22.6%로 떨어져 차단된다.</text>
+<text x='700.0' y='546' text-anchor='middle' font-size='12' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>cjj-smart-packing · ai/eval · 2026-09</text>
+</svg>
