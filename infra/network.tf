@@ -75,3 +75,22 @@ resource "aws_security_group" "rds" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# 기본 VPC 의 서브넷 4개가 IGW 경로 없는 라우트 테이블에 명시 연결돼 있었다(2026-09-16 확인).
+# 인스턴스가 밖으로도 안으로도 통하지 않아 docker 설치·SSM 등록·SSH 가 전부 막혔다. 기본 경로를 추가한다.
+data "aws_internet_gateway" "default" {
+  filter {
+    name   = "attachment.vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+}
+
+data "aws_route_table" "backend_subnet" {
+  subnet_id = local.backend_subnet_id
+}
+
+resource "aws_route" "backend_subnet_igw" {
+  route_table_id         = data.aws_route_table.backend_subnet.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = data.aws_internet_gateway.default.id
+}

@@ -62,6 +62,9 @@ resource "aws_instance" "backend" {
 
   tags = { Name = "cjj-backend" }
 
+  # 부팅 스크립트가 인터넷 없이 돌면 docker 가 없다. 경로가 먼저 있어야 한다.
+  depends_on = [aws_route.backend_subnet_igw]
+
   lifecycle {
     ignore_changes = [ami]
   }
