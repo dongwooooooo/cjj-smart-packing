@@ -15,7 +15,9 @@ CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 �
 | `docs/briefs/` | 구현을 맡길 때 쓴 브리프 2건 | 결정 사항의 원문 |
 | `tools/measure/` | 촬영 응답 구간 측정: compose 오버레이(RIE·MinIO), 측정 스크립트, 드라이브 복사 스크립트 | |
 | `tools/eval/` | EC2에서 돌린 모델 변형 평가·OpenVINO 비교 스크립트 | |
-| `tools/infra/` | 평가용 EC2 Terraform(1대, 사용 후 destroy) | |
+| `tools/infra/` | 평가용 EC2 Terraform(사용 후 destroy), 운영 EC2·RDS 중지·재개 스크립트 | |
+| `infra/` | 개인 계정 운영 인프라 Terraform(EC2·RDS·S3·ECR·Lambda·IAM). 2026-09-16 apply, 절차는 `infra/README.md` | |
+| `docs/blog/` | 블로그 소재 지도 | |
 
 ## 문제 3건 요약
 
@@ -37,6 +39,12 @@ CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 �
 - 벤치마크 수치는 2026-09-14 23:36 실행(`docs/evidence/benchmark/bench2.log`)을 정본으로 한다.
 - 원격 저장소는 `backend`·`ai`·상위 저장소 3개를 공개로 만들고 상위에서 서브모듈로 묶는다.
 
+## 운영 (2026-09-16)
+
+- 백엔드 `http://13.124.19.3:8000` (EC2, SSM 배포), 추론 Lambda `logistics-dimension-api:live`, 프론트 https://cjj-smart-packing-frontend.vercel.app (basic auth).
+- 정확도 게이트는 ai 워크플로 `eval-gate` 잡으로 연결됐다. 고정셋은 S3 `cjj-eval-data` 의 `EVAL_PREFIX`(기본 `smoke`, 시연 11종). 검증셋 2,024품목은 `tools/eval/drive_to_s3.sh` 로 옮긴 뒤 저장소 변수로 교체한다.
+- 작업 없는 날은 `bash tools/infra/pause.sh`.
+
 ## 미결
 
-- 게이트의 파이프라인 연결(평가 데이터 저장소 결정 선행).
+- 검증셋 2,024품목의 S3 이관(드라이브 인증 필요). 이관 전까지 게이트는 시연 11종으로만 판정한다.
