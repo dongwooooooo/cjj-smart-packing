@@ -1,0 +1,9 @@
+{
+ "pass": true,
+ "reasons": [],
+ "latency_ms": {
+  "baseline_p50": 89.11039599996684,
+  "candidate_p50": 118.14185399998678
+ },
+ "speedup": 0.75
+}
