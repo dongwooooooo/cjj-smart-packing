@@ -66,6 +66,15 @@ curl -s http://$(terraform output -raw backend_public_ip):8000/actuator/health
 
 프론트(Vercel)에는 `terraform output -raw demo_api_key` 값과 백엔드 주소를 환경변수로 넣는다.
 
+## 작업 없는 날
+
+```bash
+bash tools/infra/pause.sh    # EC2 중지 + RDS 중지 (RDS 는 7일 뒤 자동 재시작)
+bash tools/infra/resume.sh   # RDS 시작 → EC2 시작 → 헬스 확인
+```
+
+중지 중에도 EIP(연결 상태)·EBS·RDS 스토리지는 과금된다. 이전 IAM 역할 4개는 그대로 둔다(2026-09-16 결정).
+
 ## 내릴 때
 
 ```bash
