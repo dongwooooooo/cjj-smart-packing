@@ -1,0 +1,398 @@
+{
+ "summary": {
+  "n": 55,
+  "failed": 0,
+  "p50": 524.3,
+  "p95": 610.8,
+  "p99": 2621.7,
+  "max": 2621.7,
+  "mean": 562.4
+ },
+ "samples": [
+  {
+   "round": 0,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 2621.7,
+   "sessionId": 63
+  },
+  {
+   "round": 0,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 637.4,
+   "sessionId": 64
+  },
+  {
+   "round": 0,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 444.6,
+   "sessionId": 65
+  },
+  {
+   "round": 0,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 604.8,
+   "sessionId": 66
+  },
+  {
+   "round": 0,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 480.3,
+   "sessionId": 67
+  },
+  {
+   "round": 0,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 484.0,
+   "sessionId": 68
+  },
+  {
+   "round": 0,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 498.5,
+   "sessionId": 69
+  },
+  {
+   "round": 0,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 520.5,
+   "sessionId": 70
+  },
+  {
+   "round": 0,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 526.1,
+   "sessionId": 71
+  },
+  {
+   "round": 0,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 526.4,
+   "sessionId": 72
+  },
+  {
+   "round": 0,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 521.3,
+   "sessionId": 73
+  },
+  {
+   "round": 1,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 522.6,
+   "sessionId": 74
+  },
+  {
+   "round": 1,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 526.6,
+   "sessionId": 75
+  },
+  {
+   "round": 1,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 520.9,
+   "sessionId": 76
+  },
+  {
+   "round": 1,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 526.2,
+   "sessionId": 77
+  },
+  {
+   "round": 1,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 522.5,
+   "sessionId": 78
+  },
+  {
+   "round": 1,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 526.5,
+   "sessionId": 79
+  },
+  {
+   "round": 1,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 524.3,
+   "sessionId": 80
+  },
+  {
+   "round": 1,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 524.8,
+   "sessionId": 81
+  },
+  {
+   "round": 1,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 522.5,
+   "sessionId": 82
+  },
+  {
+   "round": 1,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 525.1,
+   "sessionId": 83
+  },
+  {
+   "round": 1,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 524.1,
+   "sessionId": 84
+  },
+  {
+   "round": 2,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 525.7,
+   "sessionId": 85
+  },
+  {
+   "round": 2,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 602.3,
+   "sessionId": 86
+  },
+  {
+   "round": 2,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 448.9,
+   "sessionId": 87
+  },
+  {
+   "round": 2,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 520.4,
+   "sessionId": 88
+  },
+  {
+   "round": 2,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 437.2,
+   "sessionId": 89
+  },
+  {
+   "round": 2,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 610.7,
+   "sessionId": 90
+  },
+  {
+   "round": 2,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 525.6,
+   "sessionId": 91
+  },
+  {
+   "round": 2,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 523.9,
+   "sessionId": 92
+  },
+  {
+   "round": 2,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 521.9,
+   "sessionId": 93
+  },
+  {
+   "round": 2,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 434.6,
+   "sessionId": 94
+  },
+  {
+   "round": 2,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 519.8,
+   "sessionId": 95
+  },
+  {
+   "round": 3,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 531.2,
+   "sessionId": 96
+  },
+  {
+   "round": 3,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 519.0,
+   "sessionId": 97
+  },
+  {
+   "round": 3,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 530.6,
+   "sessionId": 98
+  },
+  {
+   "round": 3,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 525.1,
+   "sessionId": 99
+  },
+  {
+   "round": 3,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 610.8,
+   "sessionId": 100
+  },
+  {
+   "round": 3,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 523.9,
+   "sessionId": 101
+  },
+  {
+   "round": 3,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 524.9,
+   "sessionId": 102
+  },
+  {
+   "round": 3,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 599.8,
+   "sessionId": 103
+  },
+  {
+   "round": 3,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 448.3,
+   "sessionId": 104
+  },
+  {
+   "round": 3,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 575.9,
+   "sessionId": 105
+  },
+  {
+   "round": 3,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 474.3,
+   "sessionId": 106
+  },
+  {
+   "round": 4,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 549.6,
+   "sessionId": 107
+  },
+  {
+   "round": 4,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 496.9,
+   "sessionId": 108
+  },
+  {
+   "round": 4,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 535.1,
+   "sessionId": 109
+  },
+  {
+   "round": 4,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 608.4,
+   "sessionId": 110
+  },
+  {
+   "round": 4,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 448.9,
+   "sessionId": 111
+  },
+  {
+   "round": 4,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 572.7,
+   "sessionId": 112
+  },
+  {
+   "round": 4,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 462.2,
+   "sessionId": 113
+  },
+  {
+   "round": 4,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 533.4,
+   "sessionId": 114
+  },
+  {
+   "round": 4,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 516.3,
+   "sessionId": 115
+  },
+  {
+   "round": 4,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 517.3,
+   "sessionId": 116
+  },
+  {
+   "round": 4,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 525.6,
+   "sessionId": 117
+  }
+ ]
+}

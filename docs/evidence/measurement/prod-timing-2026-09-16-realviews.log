@@ -1,0 +1,168 @@
+2026-09-16T13:36:53.021Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=7 jpegBytes=26241 eventBytes=36247 buildMs=0 invokeMs=2405 parseMs=0
+2026-09-16T13:36:53.061Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=7 images=3 status=INFERRED loadMs=107 inferMs=2405 saveMs=40 totalMs=2553
+2026-09-16T13:36:53.181Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=63 images=3 failed=0 uploadMs=117
+2026-09-16T13:36:53.713Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=8 jpegBytes=19600 eventBytes=27391 buildMs=0 invokeMs=483 parseMs=0
+2026-09-16T13:36:53.741Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=8 images=3 status=INFERRED loadMs=99 inferMs=484 saveMs=27 totalMs=611
+2026-09-16T13:36:53.864Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=64 images=3 failed=0 uploadMs=122
+2026-09-16T13:36:54.157Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=314 parseMs=0
+2026-09-16T13:36:54.186Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=75 inferMs=314 saveMs=28 totalMs=419
+2026-09-16T13:36:54.307Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=65 images=3 failed=0 uploadMs=120
+2026-09-16T13:36:54.763Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=10 jpegBytes=21986 eventBytes=30575 buildMs=0 invokeMs=343 parseMs=0
+2026-09-16T13:36:54.792Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=10 images=3 status=INFERRED loadMs=202 inferMs=343 saveMs=28 totalMs=574
+2026-09-16T13:36:54.903Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=66 images=3 failed=0 uploadMs=110
+2026-09-16T13:36:55.244Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=11 jpegBytes=22289 eventBytes=30979 buildMs=0 invokeMs=300 parseMs=0
+2026-09-16T13:36:55.271Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=11 images=3 status=INFERRED loadMs=126 inferMs=301 saveMs=27 totalMs=455
+2026-09-16T13:36:55.387Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=67 images=3 failed=0 uploadMs=115
+2026-09-16T13:36:55.699Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=12 jpegBytes=23021 eventBytes=31955 buildMs=0 invokeMs=316 parseMs=0
+2026-09-16T13:36:55.728Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=12 images=3 status=INFERRED loadMs=87 inferMs=316 saveMs=28 totalMs=432
+2026-09-16T13:36:55.838Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=68 images=3 failed=0 uploadMs=110
+2026-09-16T13:36:56.185Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=13 jpegBytes=21657 eventBytes=30135 buildMs=0 invokeMs=319 parseMs=0
+2026-09-16T13:36:56.214Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.MeasurementService       : measure.timing productId=13 images=3 status=INFERRED loadMs=76 inferMs=319 saveMs=29 totalMs=425
+2026-09-16T13:36:56.325Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=69 images=3 failed=0 uploadMs=110
+2026-09-16T13:36:56.701Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=14 jpegBytes=20760 eventBytes=28939 buildMs=0 invokeMs=323 parseMs=0
+2026-09-16T13:36:56.727Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.MeasurementService       : measure.timing productId=14 images=3 status=INFERRED loadMs=85 inferMs=324 saveMs=25 totalMs=435
+2026-09-16T13:36:56.832Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=70 images=3 failed=0 uploadMs=104
+2026-09-16T13:36:57.207Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=15 jpegBytes=21312 eventBytes=29675 buildMs=0 invokeMs=323 parseMs=0
+2026-09-16T13:36:57.231Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.MeasurementService       : measure.timing productId=15 images=3 status=INFERRED loadMs=82 inferMs=324 saveMs=24 totalMs=431
+2026-09-16T13:36:57.335Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=71 images=3 failed=0 uploadMs=103
+2026-09-16T13:36:57.722Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=16 jpegBytes=21407 eventBytes=29803 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:36:57.749Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.MeasurementService       : measure.timing productId=16 images=3 status=INFERRED loadMs=74 inferMs=319 saveMs=26 totalMs=420
+2026-09-16T13:36:57.854Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=72 images=3 failed=0 uploadMs=105
+2026-09-16T13:36:58.259Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=17 jpegBytes=21019 eventBytes=29283 buildMs=0 invokeMs=317 parseMs=0
+2026-09-16T13:36:58.288Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=17 images=3 status=INFERRED loadMs=82 inferMs=317 saveMs=29 totalMs=429
+2026-09-16T13:36:58.399Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=73 images=3 failed=0 uploadMs=111
+2026-09-16T13:36:58.775Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=7 jpegBytes=26241 eventBytes=36247 buildMs=0 invokeMs=323 parseMs=0
+2026-09-16T13:36:58.803Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=7 images=3 status=INFERRED loadMs=76 inferMs=323 saveMs=28 totalMs=428
+2026-09-16T13:36:58.916Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=74 images=3 failed=0 uploadMs=113
+2026-09-16T13:36:59.304Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=8 jpegBytes=19600 eventBytes=27391 buildMs=0 invokeMs=328 parseMs=0
+2026-09-16T13:36:59.331Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=8 images=3 status=INFERRED loadMs=80 inferMs=329 saveMs=26 totalMs=436
+2026-09-16T13:36:59.444Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=75 images=3 failed=0 uploadMs=112
+2026-09-16T13:36:59.820Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:36:59.847Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=78 inferMs=319 saveMs=26 totalMs=425
+2026-09-16T13:36:59.972Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=76 images=3 failed=0 uploadMs=125
+2026-09-16T13:37:00.337Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=10 jpegBytes=21986 eventBytes=30575 buildMs=0 invokeMs=317 parseMs=0
+2026-09-16T13:37:00.369Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=10 images=3 status=INFERRED loadMs=76 inferMs=318 saveMs=32 totalMs=427
+2026-09-16T13:37:00.503Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=77 images=3 failed=0 uploadMs=132
+2026-09-16T13:37:00.867Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=11 jpegBytes=22289 eventBytes=30979 buildMs=0 invokeMs=317 parseMs=0
+2026-09-16T13:37:00.897Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=11 images=3 status=INFERRED loadMs=78 inferMs=318 saveMs=29 totalMs=426
+2026-09-16T13:37:01.002Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=78 images=3 failed=0 uploadMs=105
+2026-09-16T13:37:01.416Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=12 jpegBytes=23021 eventBytes=31955 buildMs=0 invokeMs=336 parseMs=0
+2026-09-16T13:37:01.444Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.MeasurementService       : measure.timing productId=12 images=3 status=INFERRED loadMs=84 inferMs=337 saveMs=27 totalMs=450
+2026-09-16T13:37:01.581Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=79 images=3 failed=0 uploadMs=137
+2026-09-16T13:37:01.956Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=13 jpegBytes=21657 eventBytes=30135 buildMs=0 invokeMs=326 parseMs=0
+2026-09-16T13:37:01.991Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.MeasurementService       : measure.timing productId=13 images=3 status=INFERRED loadMs=108 inferMs=328 saveMs=34 totalMs=471
+2026-09-16T13:37:02.117Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=80 images=3 failed=0 uploadMs=125
+2026-09-16T13:37:02.444Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=14 jpegBytes=20760 eventBytes=28939 buildMs=0 invokeMs=308 parseMs=0
+2026-09-16T13:37:02.474Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.MeasurementService       : measure.timing productId=14 images=3 status=INFERRED loadMs=83 inferMs=309 saveMs=30 totalMs=422
+2026-09-16T13:37:02.586Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=81 images=3 failed=0 uploadMs=111
+2026-09-16T13:37:02.978Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=15 jpegBytes=21312 eventBytes=29675 buildMs=0 invokeMs=319 parseMs=0
+2026-09-16T13:37:03.007Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.MeasurementService       : measure.timing productId=15 images=3 status=INFERRED loadMs=85 inferMs=320 saveMs=29 totalMs=435
+2026-09-16T13:37:03.123Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=82 images=3 failed=0 uploadMs=115
+2026-09-16T13:37:03.504Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=16 jpegBytes=21407 eventBytes=29803 buildMs=0 invokeMs=329 parseMs=0
+2026-09-16T13:37:03.532Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=16 images=3 status=INFERRED loadMs=81 inferMs=330 saveMs=28 totalMs=440
+2026-09-16T13:37:03.650Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=83 images=3 failed=0 uploadMs=117
+2026-09-16T13:37:04.027Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=17 jpegBytes=21019 eventBytes=29283 buildMs=0 invokeMs=329 parseMs=0
+2026-09-16T13:37:04.055Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=17 images=3 status=INFERRED loadMs=79 inferMs=330 saveMs=28 totalMs=438
+2026-09-16T13:37:04.165Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=84 images=3 failed=0 uploadMs=108
+2026-09-16T13:37:04.542Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=7 jpegBytes=26241 eventBytes=36247 buildMs=0 invokeMs=325 parseMs=0
+2026-09-16T13:37:04.570Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=7 images=3 status=INFERRED loadMs=75 inferMs=326 saveMs=27 totalMs=429
+2026-09-16T13:37:04.675Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=85 images=3 failed=0 uploadMs=105
+2026-09-16T13:37:05.065Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=8 jpegBytes=19600 eventBytes=27391 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:37:05.091Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=8 images=3 status=INFERRED loadMs=80 inferMs=319 saveMs=26 totalMs=426
+2026-09-16T13:37:05.199Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=86 images=3 failed=0 uploadMs=108
+2026-09-16T13:37:05.668Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=321 parseMs=0
+2026-09-16T13:37:05.694Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=80 inferMs=322 saveMs=25 totalMs=428
+2026-09-16T13:37:05.805Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=87 images=3 failed=0 uploadMs=109
+2026-09-16T13:37:06.107Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=10 jpegBytes=21986 eventBytes=30575 buildMs=0 invokeMs=317 parseMs=1
+2026-09-16T13:37:06.135Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=10 images=3 status=INFERRED loadMs=73 inferMs=319 saveMs=27 totalMs=420
+2026-09-16T13:37:06.239Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=88 images=3 failed=0 uploadMs=104
+2026-09-16T13:37:06.623Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=11 jpegBytes=22289 eventBytes=30979 buildMs=0 invokeMs=308 parseMs=0
+2026-09-16T13:37:06.649Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.MeasurementService       : measure.timing productId=11 images=3 status=INFERRED loadMs=76 inferMs=309 saveMs=25 totalMs=411
+2026-09-16T13:37:06.752Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=89 images=3 failed=0 uploadMs=103
+2026-09-16T13:37:07.162Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=12 jpegBytes=23021 eventBytes=31955 buildMs=0 invokeMs=319 parseMs=0
+2026-09-16T13:37:07.190Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.MeasurementService       : measure.timing productId=12 images=3 status=INFERRED loadMs=79 inferMs=320 saveMs=27 totalMs=427
+2026-09-16T13:37:07.299Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=90 images=3 failed=0 uploadMs=109
+2026-09-16T13:37:07.698Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=13 jpegBytes=21657 eventBytes=30135 buildMs=0 invokeMs=331 parseMs=0
+2026-09-16T13:37:07.728Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.MeasurementService       : measure.timing productId=13 images=3 status=INFERRED loadMs=80 inferMs=332 saveMs=29 totalMs=442
+2026-09-16T13:37:07.829Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=91 images=3 failed=0 uploadMs=101
+2026-09-16T13:37:08.206Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=14 jpegBytes=20760 eventBytes=28939 buildMs=0 invokeMs=309 parseMs=0
+2026-09-16T13:37:08.232Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.MeasurementService       : measure.timing productId=14 images=3 status=INFERRED loadMs=81 inferMs=310 saveMs=26 totalMs=418
+2026-09-16T13:37:08.343Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=92 images=3 failed=0 uploadMs=110
+2026-09-16T13:37:08.733Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=15 jpegBytes=21312 eventBytes=29675 buildMs=0 invokeMs=315 parseMs=0
+2026-09-16T13:37:08.760Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=15 images=3 status=INFERRED loadMs=81 inferMs=316 saveMs=26 totalMs=424
+2026-09-16T13:37:08.865Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=93 images=3 failed=0 uploadMs=105
+2026-09-16T13:37:09.240Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=16 jpegBytes=21407 eventBytes=29803 buildMs=0 invokeMs=304 parseMs=0
+2026-09-16T13:37:09.267Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=16 images=3 status=INFERRED loadMs=79 inferMs=304 saveMs=27 totalMs=412
+2026-09-16T13:37:09.383Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=94 images=3 failed=0 uploadMs=115
+2026-09-16T13:37:09.761Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=17 jpegBytes=21019 eventBytes=29283 buildMs=0 invokeMs=310 parseMs=0
+2026-09-16T13:37:09.787Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=17 images=3 status=INFERRED loadMs=75 inferMs=311 saveMs=25 totalMs=412
+2026-09-16T13:37:09.893Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=95 images=3 failed=0 uploadMs=105
+2026-09-16T13:37:10.293Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=7 jpegBytes=26241 eventBytes=36247 buildMs=0 invokeMs=314 parseMs=0
+2026-09-16T13:37:10.318Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=7 images=3 status=INFERRED loadMs=80 inferMs=315 saveMs=24 totalMs=421
+2026-09-16T13:37:10.424Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=96 images=3 failed=0 uploadMs=105
+2026-09-16T13:37:10.813Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=8 jpegBytes=19600 eventBytes=27391 buildMs=0 invokeMs=313 parseMs=0
+2026-09-16T13:37:10.837Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=8 images=3 status=INFERRED loadMs=74 inferMs=314 saveMs=23 totalMs=412
+2026-09-16T13:37:10.936Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=97 images=3 failed=0 uploadMs=99
+2026-09-16T13:37:11.340Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=314 parseMs=0
+2026-09-16T13:37:11.367Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=76 inferMs=314 saveMs=26 totalMs=417
+2026-09-16T13:37:11.470Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=98 images=3 failed=0 uploadMs=102
+2026-09-16T13:37:11.864Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=10 jpegBytes=21986 eventBytes=30575 buildMs=0 invokeMs=311 parseMs=0
+2026-09-16T13:37:11.889Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.MeasurementService       : measure.timing productId=10 images=3 status=INFERRED loadMs=77 inferMs=312 saveMs=24 totalMs=414
+2026-09-16T13:37:11.994Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=99 images=3 failed=0 uploadMs=104
+2026-09-16T13:37:12.397Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=11 jpegBytes=22289 eventBytes=30979 buildMs=0 invokeMs=319 parseMs=0
+2026-09-16T13:37:12.424Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.MeasurementService       : measure.timing productId=11 images=3 status=INFERRED loadMs=79 inferMs=320 saveMs=26 totalMs=426
+2026-09-16T13:37:12.536Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=100 images=3 failed=0 uploadMs=110
+2026-09-16T13:37:12.924Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=12 jpegBytes=23021 eventBytes=31955 buildMs=0 invokeMs=320 parseMs=0
+2026-09-16T13:37:12.950Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.MeasurementService       : measure.timing productId=12 images=3 status=INFERRED loadMs=76 inferMs=321 saveMs=26 totalMs=423
+2026-09-16T13:37:13.091Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=101 images=3 failed=0 uploadMs=141
+2026-09-16T13:37:13.440Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=13 jpegBytes=21657 eventBytes=30135 buildMs=0 invokeMs=308 parseMs=0
+2026-09-16T13:37:13.466Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.MeasurementService       : measure.timing productId=13 images=3 status=INFERRED loadMs=74 inferMs=309 saveMs=26 totalMs=409
+2026-09-16T13:37:13.570Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=102 images=3 failed=0 uploadMs=103
+2026-09-16T13:37:13.974Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=14 jpegBytes=20760 eventBytes=28939 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:37:14.001Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=14 images=3 status=INFERRED loadMs=79 inferMs=319 saveMs=26 totalMs=425
+2026-09-16T13:37:14.106Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=103 images=3 failed=0 uploadMs=104
+2026-09-16T13:37:14.565Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=15 jpegBytes=21312 eventBytes=29675 buildMs=0 invokeMs=313 parseMs=0
+2026-09-16T13:37:14.593Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=15 images=3 status=INFERRED loadMs=76 inferMs=313 saveMs=28 totalMs=418
+2026-09-16T13:37:14.717Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=104 images=3 failed=0 uploadMs=123
+2026-09-16T13:37:15.034Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=16 jpegBytes=21407 eventBytes=29803 buildMs=0 invokeMs=330 parseMs=0
+2026-09-16T13:37:15.068Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=16 images=3 status=INFERRED loadMs=76 inferMs=331 saveMs=34 totalMs=441
+2026-09-16T13:37:15.177Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=105 images=3 failed=0 uploadMs=108
+2026-09-16T13:37:15.604Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=17 jpegBytes=21019 eventBytes=29283 buildMs=0 invokeMs=323 parseMs=0
+2026-09-16T13:37:15.630Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=17 images=3 status=INFERRED loadMs=78 inferMs=323 saveMs=25 totalMs=428
+2026-09-16T13:37:15.742Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=106 images=3 failed=0 uploadMs=112
+2026-09-16T13:37:16.073Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=7 jpegBytes=26241 eventBytes=36247 buildMs=0 invokeMs=315 parseMs=0
+2026-09-16T13:37:16.099Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=7 images=3 status=INFERRED loadMs=81 inferMs=316 saveMs=25 totalMs=423
+2026-09-16T13:37:16.208Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=107 images=3 failed=0 uploadMs=109
+2026-09-16T13:37:16.624Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=8 jpegBytes=19600 eventBytes=27391 buildMs=0 invokeMs=314 parseMs=0
+2026-09-16T13:37:16.651Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=8 images=3 status=INFERRED loadMs=82 inferMs=315 saveMs=27 totalMs=424
+2026-09-16T13:37:16.753Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=108 images=3 failed=0 uploadMs=101
+2026-09-16T13:37:17.123Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:37:17.149Z  INFO 1 --- [backend] [nio-8000-exec-4] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=80 inferMs=319 saveMs=26 totalMs=425
+2026-09-16T13:37:17.253Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=109 images=3 failed=0 uploadMs=104
+2026-09-16T13:37:17.643Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=10 jpegBytes=21986 eventBytes=30575 buildMs=0 invokeMs=304 parseMs=0
+2026-09-16T13:37:17.671Z  INFO 1 --- [backend] [nio-8000-exec-5] c.a.b.i.service.MeasurementService       : measure.timing productId=10 images=3 status=INFERRED loadMs=79 inferMs=304 saveMs=27 totalMs=411
+2026-09-16T13:37:17.781Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=110 images=3 failed=0 uploadMs=109
+2026-09-16T13:37:18.262Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=11 jpegBytes=22289 eventBytes=30979 buildMs=0 invokeMs=317 parseMs=0
+2026-09-16T13:37:18.290Z  INFO 1 --- [backend] [nio-8000-exec-6] c.a.b.i.service.MeasurementService       : measure.timing productId=11 images=3 status=INFERRED loadMs=77 inferMs=318 saveMs=28 totalMs=424
+2026-09-16T13:37:18.392Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=111 images=3 failed=0 uploadMs=101
+2026-09-16T13:37:18.726Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=12 jpegBytes=23021 eventBytes=31955 buildMs=0 invokeMs=314 parseMs=0
+2026-09-16T13:37:18.753Z  INFO 1 --- [backend] [nio-8000-exec-7] c.a.b.i.service.MeasurementService       : measure.timing productId=12 images=3 status=INFERRED loadMs=94 inferMs=314 saveMs=26 totalMs=436
+2026-09-16T13:37:18.867Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=112 images=3 failed=0 uploadMs=114
+2026-09-16T13:37:19.281Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=13 jpegBytes=21657 eventBytes=30135 buildMs=0 invokeMs=309 parseMs=0
+2026-09-16T13:37:19.310Z  INFO 1 --- [backend] [nio-8000-exec-8] c.a.b.i.service.MeasurementService       : measure.timing productId=13 images=3 status=INFERRED loadMs=82 inferMs=310 saveMs=28 totalMs=421
+2026-09-16T13:37:19.418Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=113 images=3 failed=0 uploadMs=108
+2026-09-16T13:37:19.754Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=14 jpegBytes=20760 eventBytes=28939 buildMs=0 invokeMs=316 parseMs=0
+2026-09-16T13:37:19.782Z  INFO 1 --- [backend] [nio-8000-exec-9] c.a.b.i.service.MeasurementService       : measure.timing productId=14 images=3 status=INFERRED loadMs=84 inferMs=316 saveMs=27 totalMs=428
+2026-09-16T13:37:19.885Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=114 images=3 failed=0 uploadMs=103
+2026-09-16T13:37:20.283Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=15 jpegBytes=21312 eventBytes=29675 buildMs=0 invokeMs=318 parseMs=0
+2026-09-16T13:37:20.310Z  INFO 1 --- [backend] [io-8000-exec-10] c.a.b.i.service.MeasurementService       : measure.timing productId=15 images=3 status=INFERRED loadMs=80 inferMs=318 saveMs=27 totalMs=427
+2026-09-16T13:37:20.419Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=115 images=3 failed=0 uploadMs=107
+2026-09-16T13:37:20.806Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=16 jpegBytes=21407 eventBytes=29803 buildMs=0 invokeMs=320 parseMs=0
+2026-09-16T13:37:20.835Z  INFO 1 --- [backend] [nio-8000-exec-1] c.a.b.i.service.MeasurementService       : measure.timing productId=16 images=3 status=INFERRED loadMs=84 inferMs=321 saveMs=28 totalMs=434
+2026-09-16T13:37:20.948Z  INFO 1 --- [backend] [ image-upload-3] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=116 images=3 failed=0 uploadMs=113
+2026-09-16T13:37:21.304Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=17 jpegBytes=21019 eventBytes=29283 buildMs=0 invokeMs=308 parseMs=0
+2026-09-16T13:37:21.330Z  INFO 1 --- [backend] [nio-8000-exec-2] c.a.b.i.service.MeasurementService       : measure.timing productId=17 images=3 status=INFERRED loadMs=79 inferMs=309 saveMs=26 totalMs=414
+2026-09-16T13:37:21.435Z  INFO 1 --- [backend] [ image-upload-1] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=117 images=3 failed=0 uploadMs=103
+2026-09-16T13:37:21.920Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.LambdaInferenceClient    : inference.timing productId=9 jpegBytes=19935 eventBytes=27839 buildMs=0 invokeMs=315 parseMs=0
+2026-09-16T13:37:21.954Z  INFO 1 --- [backend] [nio-8000-exec-3] c.a.b.i.service.MeasurementService       : measure.timing productId=9 images=3 status=INFERRED loadMs=85 inferMs=316 saveMs=33 totalMs=435
+2026-09-16T13:37:22.060Z  INFO 1 --- [backend] [ image-upload-2] c.a.b.i.s.MeasurementImageUploader       : upload.timing sessionId=118 images=3 failed=0 uploadMs=104
