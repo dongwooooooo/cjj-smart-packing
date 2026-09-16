@@ -109,9 +109,9 @@
 
 | 종류 | 위치 | 비고 |
 | --- | --- | --- |
-| 팀 저장소 git 로그 | `team/backend`(develop 63 PR), `team/ai`(10 PR), `team/docs`, `team/frontend`(161 커밋) | PR 본문·리뷰 코멘트는 `gh pr list --repo cj-ai-sw/backend --state merged` 로 수집 가능. 조직 비공개 여부 확인 필요 |
+| 팀 저장소 git 로그·PR 본문 | `team/backend`(develop, 병합 PR 60), `team/ai`(10), `team/docs`(1), `team/frontend`(45). PR 본문 덤프 `pf/local/prs/{backend,ai,docs,frontend}.md`(git 제외) | 조직 저장소는 비공개(PRIVATE). 인용은 공개 저장소의 동일 코드로 한다 |
 | 고도화 git 로그 | `pf/backend` 943e02a..7b91fa0(17 커밋), `pf/ai` 931882e | 공개 저장소 |
-| 세션 기록(대화·결정 과정) | `sess/*.jsonl` — 08.25 e828661e·0598f167(백엔드 실연동), 08.26 d1e12cc0(문제 정의·DWS), 08.30 f01211db(Lambda 실연동 에이전트, 25MB), 09.14 cd2b0852(서빙 아키텍처 Q&A), 09.14 b0523626(데이터셋 위치), 09.15 d20b1044(평가·측정, 21MB), 09.16 0c3bfd62(포폴 구조·이번 세션) | 결정 당시 대화 원문. 발췌 스크립트 필요(`jq`로 user/assistant 텍스트만 추출) |
+| 세션 기록(대화·결정 과정) | 발췌본 `pf/local/sessions/*.md`(git 제외) — 08.25 e828661e·0598f167(백엔드 실연동), 08.26 d1e12cc0(문제 정의·DWS), 08.30 f01211db(Lambda 실연동 에이전트), 09.14 cd2b0852(서빙 아키텍처 Q&A), 09.14 b0523626(데이터셋 위치), 09.15 d20b1044(평가·측정). 원본 `sess/*.jsonl`. 이번 세션 0c3bfd62는 종료 후 추출 | 추출 스크립트 `pf/tools/blog/extract_session.py`. 자격증명 노출 이력이 있어 발췌본은 공개 저장소에 넣지 않는다(`local/` gitignore) |
 | 실측 원본 | `pf/docs/evidence/{measurement,eval,benchmark}` | JSON·로그·표 |
 | 발표 자료 | `team/도입부초안.pdf`(08.27), `team/발표 시나리오.pdf`(08.21), `team/docs/final_presentation/` | 슬라이드 재사용 |
 | 지식 카드 | `~/d/knowledge/concepts/cartonization.md` | 출처 URL 포함 |
@@ -125,7 +125,7 @@
 | 화면 캡처(입고·포장·대시보드) | `team/` 루트 PNG는 다른 프로젝트(WMS) 것. cjj 화면 캡처 없음 | 프론트를 로컬 기동해 캡처, 또는 발표 PDF 슬라이드 재사용 |
 | AWS 콘솔 캡처(Lambda 설정, provisioned concurrency 예약) | 자원 삭제됨(09.14 확인). CloudWatch 로그 그룹만 잔존 | 로그 기반 표로 대체 |
 | 심사단 질문 원문 | 기록 없음, 사용자 기억 | 발표 당일 메모 확인 |
-| 팀 저장소 코드 인용 | 조직 비공개 가능성 | 공개 저장소(`dongwooooooo/cjj-smart-packing-*`)의 동일 코드로 인용 |
+| 팀 저장소 코드 인용 | 조직 저장소 비공개 확인(2026-09-16) | 공개 저장소(`dongwooooooo/cjj-smart-packing-*`)의 동일 코드로 인용 |
 | AI-Hub 데이터 이용 조건 | 미확인 | 데이터 관련 사진·수치 공개 범위 확인 |
 | depthwise conv 양자화 민감성 근거 | 미확인 | 출처 확보 후 글 E에 반영 |
 | 프론트엔드 작업 기여 | 역할이 플랫폼·배치라 프론트 커밋은 타 팀원 | 글에서 다루지 않음 |
@@ -133,6 +133,7 @@
 ## 5. 다음 단계
 
 1. 글 순서 결정. 후보: B(카토나이제이션) → C(서빙) → D(1초) → E(게이트) → A(팀 운영). F는 보류.
-2. 세션 기록 발췌 스크립트 작성: 세션 ID·날짜 범위를 받아 user/assistant 텍스트를 마크다운으로 추출.
-3. `gh`로 팀 저장소 PR 본문·리뷰 수집(권한 확인 선행).
-4. 화면 캡처 확보 방법 결정(로컬 기동 vs 발표 PDF).
+2. 화면 캡처 확보 방법 결정(로컬 기동 vs 발표 PDF).
+3. 글 B부터 초안 착수. 세션 발췌본에서 결정 대화를 인용할 때는 자격증명·개인 식별 정보를 제거한 뒤 쓴다.
+
+완료(2026-09-16): 세션 발췌 스크립트와 발췌본 7건, 팀 저장소 PR 본문 116건 수집(`local/`).
