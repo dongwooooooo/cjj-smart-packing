@@ -13,6 +13,8 @@
 | Lambda | `logistics-dimension-api` + 별칭 `live` | 컨테이너 이미지, 3,008MB, 60초, `N_THREADS=2`. 이미지 push 뒤 2차 apply 에서 생성 |
 | IAM | `cjj-github-actions`(OIDC), `cjj-backend-ec2`(인스턴스 프로파일), `cjj-dimension-lambda-exec` | 이전 역할(`github-actions-logistics-dimension`, `ec2-invoke-dimension-lambda*`, `logistics-dimension-lambda-exec`)은 건드리지 않는다. 확인 후 손으로 삭제 |
 
+기본 VPC 의 서브넷 4개는 IGW 경로가 없는 라우트 테이블에 명시 연결돼 있다(계정 상태, 2026-09-16 확인). `network.tf` 가 그 테이블에 `0.0.0.0/0 → IGW` 경로를 추가한다. 이 경로 없이는 인스턴스가 apt·SSM·SSH 전부 불통이다.
+
 CloudWatch 로그 그룹 `/aws/lambda/logistics-dimension-api` 는 시연 기간 호출 기록이 남아 있어 terraform 으로 관리하지 않는다. 삭제 금지.
 
 ## 절차
@@ -48,14 +50,14 @@ cd ../ai && AWS_ACCOUNT_ID=300390308149 bash deploy/lambda/build_push.sh
 terraform apply -var lambda_enabled=true -var lambda_image_tag=<push 한 태그>
 ```
 
-### 4. GitHub Actions 연결
+### 4. GitHub Actions 연결 (2026-09-16 완료)
 
 `terraform output github_setup` 이 출력하는 `gh secret set` / `gh variable set` 명령을 실행한다. 이어서 공개 저장소 워크플로를 고친다.
 
 - backend `build-push.yml`·`deploy-ec2.yml`: 트리거 브랜치 `develop` → `main`, `DEFAULT_INSTANCE_ID` 는 저장소 변수 `EC2_INSTANCE_ID` 로 대체
 - ai `build-deploy.yml`: 변경 없음 (main 트리거)
 
-### 5. 확인
+### 5. 확인 (2026-09-16: 헬스 UP, 리셋→스캔→측정 E2E 통과)
 
 ```bash
 aws ssm describe-instance-information --query 'InstanceInformationList[].[InstanceId,PingStatus]' --output text
