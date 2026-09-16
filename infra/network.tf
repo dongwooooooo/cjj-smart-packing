@@ -9,6 +9,27 @@ data "aws_subnets" "default" {
   }
 }
 
+# 인스턴스 유형이 제공되는 AZ 의 서브넷만 고른다 (c7i-flex.large 는 ap-northeast-2a 에서 거부됨, 2026-09-16).
+data "aws_ec2_instance_type_offerings" "backend" {
+  filter {
+    name   = "instance-type"
+    values = [var.instance_type]
+  }
+  location_type = "availability-zone"
+}
+
+data "aws_subnet" "default" {
+  for_each = toset(data.aws_subnets.default.ids)
+  id       = each.value
+}
+
+locals {
+  backend_subnet_id = [
+    for s in data.aws_subnet.default : s.id
+    if contains(data.aws_ec2_instance_type_offerings.backend.locations, s.availability_zone)
+  ][0]
+}
+
 resource "aws_security_group" "backend" {
   name        = "cjj-backend"
   description = "backend api: 8000 public (DEMO_API_KEY guarded), ssh from my ip"

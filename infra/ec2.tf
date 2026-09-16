@@ -39,7 +39,7 @@ locals {
 resource "aws_instance" "backend" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
-  subnet_id              = data.aws_subnets.default.ids[0]
+  subnet_id              = local.backend_subnet_id
   vpc_security_group_ids = [aws_security_group.backend.id]
   key_name               = var.key_name
   iam_instance_profile   = aws_iam_instance_profile.backend_ec2.name

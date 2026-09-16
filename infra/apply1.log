@@ -1,0 +1,1032 @@
+data.aws_iam_policy_document.lambda_trust: Reading...
+data.aws_caller_identity.me: Reading...
+data.aws_vpc.default: Reading...
+data.aws_iam_policy_document.ec2_trust: Reading...
+data.aws_iam_openid_connect_provider.github: Reading...
+data.aws_ami.ubuntu: Reading...
+data.aws_region.current: Reading...
+data.aws_eip.existing[0]: Reading...
+data.aws_region.current: Read complete after 0s [id=ap-northeast-2]
+data.aws_iam_policy_document.ec2_trust: Read complete after 0s [id=2851119427]
+data.aws_iam_policy_document.lambda_trust: Read complete after 0s [id=2690255455]
+data.aws_caller_identity.me: Read complete after 0s [id=300390308149]
+data.aws_eip.existing[0]: Read complete after 0s [id=eipalloc-045944e1c0005e984]
+data.aws_ami.ubuntu: Read complete after 0s [id=ami-086a43496cb46286c]
+data.aws_vpc.default: Read complete after 1s [id=vpc-0b59291cc6cfc7244]
+data.aws_subnets.default: Reading...
+data.aws_subnets.default: Read complete after 0s [id=ap-northeast-2]
+data.aws_iam_openid_connect_provider.github: Read complete after 1s [id=arn:aws:iam::300390308149:oidc-provider/token.actions.githubusercontent.com]
+data.aws_iam_policy_document.github_trust: Reading...
+data.aws_iam_policy_document.github_trust: Read complete after 0s [id=3340482160]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # data.aws_iam_policy_document.backend_ec2 will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "backend_ec2" {
+      + id            = (known after apply)
+      + json          = (known after apply)
+      + minified_json = (known after apply)
+
+      + statement {
+          + actions   = [
+              + "ecr:GetAuthorizationToken",
+            ]
+          + resources = [
+              + "*",
+            ]
+          + sid       = "EcrPullAuth"
+        }
+      + statement {
+          + actions   = [
+              + "ecr:BatchCheckLayerAvailability",
+              + "ecr:BatchGetImage",
+              + "ecr:GetDownloadUrlForLayer",
+            ]
+          + resources = [
+              + (known after apply),
+            ]
+          + sid       = "EcrPull"
+        }
+      + statement {
+          + actions   = [
+              + "lambda:InvokeFunction",
+            ]
+          + resources = [
+              + "arn:aws:lambda:ap-northeast-2:300390308149:function:logistics-dimension-api",
+              + "arn:aws:lambda:ap-northeast-2:300390308149:function:logistics-dimension-api:*",
+            ]
+          + sid       = "InvokeDimensionApi"
+        }
+      + statement {
+          + actions   = [
+              + "s3:DeleteObject",
+              + "s3:GetObject",
+              + "s3:PutObject",
+            ]
+          + resources = [
+              + (known after apply),
+            ]
+          + sid       = "ImagesBucket"
+        }
+      + statement {
+          + actions   = [
+              + "s3:ListBucket",
+            ]
+          + resources = [
+              + (known after apply),
+            ]
+          + sid       = "ImagesBucketList"
+        }
+    }
+
+  # data.aws_iam_policy_document.github_permissions will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "github_permissions" {
+      + id            = (known after apply)
+      + json          = (known after apply)
+      + minified_json = (known after apply)
+
+      + statement {
+          + actions   = [
+              + "ecr:GetAuthorizationToken",
+            ]
+          + resources = [
+              + "*",
+            ]
+          + sid       = "EcrAuth"
+        }
+      + statement {
+          + actions   = [
+              + "ecr:BatchCheckLayerAvailability",
+              + "ecr:BatchGetImage",
+              + "ecr:CompleteLayerUpload",
+              + "ecr:DescribeRepositories",
+              + "ecr:GetDownloadUrlForLayer",
+              + "ecr:InitiateLayerUpload",
+              + "ecr:PutImage",
+              + "ecr:UploadLayerPart",
+            ]
+          + resources = [
+              + (known after apply),
+              + (known after apply),
+            ]
+          + sid       = "EcrPush"
+        }
+      + statement {
+          + actions   = [
+              + "lambda:CreateAlias",
+              + "lambda:GetAlias",
+              + "lambda:GetFunction",
+              + "lambda:GetFunctionConfiguration",
+              + "lambda:PublishVersion",
+              + "lambda:UpdateAlias",
+              + "lambda:UpdateFunctionCode",
+            ]
+          + resources = [
+              + "arn:aws:lambda:ap-northeast-2:300390308149:function:logistics-dimension-api",
+              + "arn:aws:lambda:ap-northeast-2:300390308149:function:logistics-dimension-api:*",
+            ]
+          + sid       = "LambdaUpdate"
+        }
+      + statement {
+          + actions   = [
+              + "ssm:SendCommand",
+            ]
+          + resources = [
+              + "arn:aws:ssm:ap-northeast-2::document/AWS-RunShellScript",
+              + (known after apply),
+            ]
+          + sid       = "SsmSendCommand"
+        }
+      + statement {
+          + actions   = [
+              + "ssm:DescribeInstanceInformation",
+              + "ssm:GetCommandInvocation",
+              + "ssm:ListCommandInvocations",
+              + "ssm:ListCommands",
+            ]
+          + resources = [
+              + "*",
+            ]
+          + sid       = "SsmReadResult"
+        }
+    }
+
+  # aws_db_instance.postgres will be created
+  + resource "aws_db_instance" "postgres" {
+      + address                               = (known after apply)
+      + allocated_storage                     = 20
+      + apply_immediately                     = true
+      + arn                                   = (known after apply)
+      + auto_minor_version_upgrade            = true
+      + availability_zone                     = (known after apply)
+      + backup_retention_period               = 1
+      + backup_target                         = (known after apply)
+      + backup_window                         = (known after apply)
+      + ca_cert_identifier                    = (known after apply)
+      + character_set_name                    = (known after apply)
+      + copy_tags_to_snapshot                 = false
+      + database_insights_mode                = (known after apply)
+      + db_name                               = "app"
+      + db_subnet_group_name                  = "cjj-default-vpc"
+      + dedicated_log_volume                  = false
+      + delete_automated_backups              = true
+      + deletion_protection                   = false
+      + domain_fqdn                           = (known after apply)
+      + endpoint                              = (known after apply)
+      + engine                                = "postgres"
+      + engine_lifecycle_support              = (known after apply)
+      + engine_version                        = "18"
+      + engine_version_actual                 = (known after apply)
+      + hosted_zone_id                        = (known after apply)
+      + id                                    = (known after apply)
+      + identifier                            = "cjj-postgres"
+      + identifier_prefix                     = (known after apply)
+      + instance_class                        = "db.t4g.micro"
+      + iops                                  = (known after apply)
+      + kms_key_id                            = (known after apply)
+      + latest_restorable_time                = (known after apply)
+      + license_model                         = (known after apply)
+      + listener_endpoint                     = (known after apply)
+      + maintenance_window                    = (known after apply)
+      + master_user_secret                    = (known after apply)
+      + master_user_secret_kms_key_id         = (known after apply)
+      + monitoring_interval                   = 0
+      + monitoring_role_arn                   = (known after apply)
+      + multi_az                              = false
+      + nchar_character_set_name              = (known after apply)
+      + network_type                          = (known after apply)
+      + option_group_name                     = (known after apply)
+      + parameter_group_name                  = (known after apply)
+      + password                              = (sensitive value)
+      + password_wo                           = (write-only attribute)
+      + performance_insights_enabled          = false
+      + performance_insights_kms_key_id       = (known after apply)
+      + performance_insights_retention_period = (known after apply)
+      + port                                  = (known after apply)
+      + publicly_accessible                   = false
+      + region                                = "ap-northeast-2"
+      + replica_mode                          = (known after apply)
+      + replicas                              = (known after apply)
+      + resource_id                           = (known after apply)
+      + skip_final_snapshot                   = true
+      + snapshot_identifier                   = (known after apply)
+      + status                                = (known after apply)
+      + storage_throughput                    = (known after apply)
+      + storage_type                          = "gp3"
+      + tags_all                              = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + timezone                              = (known after apply)
+      + upgrade_rollout_order                 = (known after apply)
+      + username                              = "postgres"
+      + vpc_security_group_ids                = (known after apply)
+    }
+
+  # aws_db_subnet_group.default will be created
+  + resource "aws_db_subnet_group" "default" {
+      + arn                     = (known after apply)
+      + description             = "Managed by Terraform"
+      + id                      = (known after apply)
+      + name                    = "cjj-default-vpc"
+      + name_prefix             = (known after apply)
+      + region                  = "ap-northeast-2"
+      + subnet_ids              = [
+          + "subnet-035425b06e5720395",
+          + "subnet-0407a585f80893cad",
+          + "subnet-043c8ac79a5894ca9",
+          + "subnet-07c5c01a641b446af",
+          + "subnet-0c94234386859a4af",
+          + "subnet-0caf8bf4f9923e33f",
+          + "subnet-0dc0e1fe1b28c041e",
+          + "subnet-0e800089e8bbcc266",
+        ]
+      + supported_network_types = (known after apply)
+      + tags_all                = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + vpc_id                  = (known after apply)
+    }
+
+  # aws_ecr_lifecycle_policy.keep_recent["cj-ai-backend"] will be created
+  + resource "aws_ecr_lifecycle_policy" "keep_recent" {
+      + id          = (known after apply)
+      + policy      = jsonencode(
+            {
+              + rules = [
+                  + {
+                      + action       = {
+                          + type = "expire"
+                        }
+                      + description  = "keep last 10 images"
+                      + rulePriority = 1
+                      + selection    = {
+                          + countNumber = 10
+                          + countType   = "imageCountMoreThan"
+                          + tagStatus   = "any"
+                        }
+                    },
+                ]
+            }
+        )
+      + region      = "ap-northeast-2"
+      + registry_id = (known after apply)
+      + repository  = "cj-ai-backend"
+    }
+
+  # aws_ecr_lifecycle_policy.keep_recent["logistics-dimension-api"] will be created
+  + resource "aws_ecr_lifecycle_policy" "keep_recent" {
+      + id          = (known after apply)
+      + policy      = jsonencode(
+            {
+              + rules = [
+                  + {
+                      + action       = {
+                          + type = "expire"
+                        }
+                      + description  = "keep last 10 images"
+                      + rulePriority = 1
+                      + selection    = {
+                          + countNumber = 10
+                          + countType   = "imageCountMoreThan"
+                          + tagStatus   = "any"
+                        }
+                    },
+                ]
+            }
+        )
+      + region      = "ap-northeast-2"
+      + registry_id = (known after apply)
+      + repository  = "logistics-dimension-api"
+    }
+
+  # aws_ecr_repository.repos["cj-ai-backend"] will be created
+  + resource "aws_ecr_repository" "repos" {
+      + arn                  = (known after apply)
+      + force_delete         = true
+      + id                   = (known after apply)
+      + image_tag_mutability = "MUTABLE"
+      + name                 = "cj-ai-backend"
+      + region               = "ap-northeast-2"
+      + registry_id          = (known after apply)
+      + repository_url       = (known after apply)
+      + tags_all             = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+
+      + image_scanning_configuration {
+          + scan_on_push = true
+        }
+    }
+
+  # aws_ecr_repository.repos["logistics-dimension-api"] will be created
+  + resource "aws_ecr_repository" "repos" {
+      + arn                  = (known after apply)
+      + force_delete         = true
+      + id                   = (known after apply)
+      + image_tag_mutability = "MUTABLE"
+      + name                 = "logistics-dimension-api"
+      + region               = "ap-northeast-2"
+      + registry_id          = (known after apply)
+      + repository_url       = (known after apply)
+      + tags_all             = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+
+      + image_scanning_configuration {
+          + scan_on_push = true
+        }
+    }
+
+  # aws_eip_association.backend[0] will be created
+  + resource "aws_eip_association" "backend" {
+      + allocation_id        = "eipalloc-045944e1c0005e984"
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip_address   = (known after apply)
+      + public_ip            = (known after apply)
+      + region               = "ap-northeast-2"
+    }
+
+  # aws_iam_instance_profile.backend_ec2 will be created
+  + resource "aws_iam_instance_profile" "backend_ec2" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "cjj-backend-ec2"
+      + name_prefix = (known after apply)
+      + path        = "/"
+      + role        = "cjj-backend-ec2"
+      + tags_all    = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_role.backend_ec2 will be created
+  + resource "aws_iam_role" "backend_ec2" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "cjj-backend-ec2"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # aws_iam_role.github_actions will be created
+  + resource "aws_iam_role" "github_actions" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRoleWithWebIdentity"
+                      + Condition = {
+                          + StringEquals = {
+                              + "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+                            }
+                          + StringLike   = {
+                              + "token.actions.githubusercontent.com:sub" = [
+                                  + "repo:dongwooooooo/cjj-smart-packing-ai:*",
+                                  + "repo:dongwooooooo@137749703/cjj-smart-packing-ai@1372630494:*",
+                                  + "repo:dongwooooooo/cjj-smart-packing-backend:*",
+                                  + "repo:dongwooooooo@137749703/cjj-smart-packing-backend@1372630340:*",
+                                ]
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Federated = "arn:aws:iam::300390308149:oidc-provider/token.actions.githubusercontent.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "cjj-github-actions"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # aws_iam_role.lambda_exec will be created
+  + resource "aws_iam_role" "lambda_exec" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "cjj-dimension-lambda-exec"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # aws_iam_role_policy.backend_ec2 will be created
+  + resource "aws_iam_role_policy" "backend_ec2" {
+      + id          = (known after apply)
+      + name        = "ecr-pull-invoke-lambda-images"
+      + name_prefix = (known after apply)
+      + policy      = (known after apply)
+      + role        = (known after apply)
+    }
+
+  # aws_iam_role_policy.github_actions will be created
+  + resource "aws_iam_role_policy" "github_actions" {
+      + id          = (known after apply)
+      + name        = "ecr-push-lambda-update-ssm"
+      + name_prefix = (known after apply)
+      + policy      = (known after apply)
+      + role        = (known after apply)
+    }
+
+  # aws_iam_role_policy_attachment.lambda_basic will be created
+  + resource "aws_iam_role_policy_attachment" "lambda_basic" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      + role       = "cjj-dimension-lambda-exec"
+    }
+
+  # aws_iam_role_policy_attachment.ssm_core will be created
+  + resource "aws_iam_role_policy_attachment" "ssm_core" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+      + role       = "cjj-backend-ec2"
+    }
+
+  # aws_instance.backend will be created
+  + resource "aws_instance" "backend" {
+      + ami                                  = "ami-086a43496cb46286c"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + enable_primary_ipv6                  = (known after apply)
+      + force_destroy                        = false
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = "cjj-backend-ec2"
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "c7i-flex.large"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "key"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_group_id                   = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + region                               = "ap-northeast-2"
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = "subnet-0dc0e1fe1b28c041e"
+      + tags                                 = {
+          + "Name" = "cjj-backend"
+        }
+      + tags_all                             = {
+          + "ManagedBy" = "terraform"
+          + "Name"      = "cjj-backend"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (sensitive value)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification (known after apply)
+
+      + cpu_options (known after apply)
+
+      + ebs_block_device (known after apply)
+
+      + enclave_options (known after apply)
+
+      + ephemeral_block_device (known after apply)
+
+      + instance_market_options (known after apply)
+
+      + maintenance_options (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = "disabled"
+          + http_put_response_hop_limit = 2
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface (known after apply)
+
+      + primary_network_interface (known after apply)
+
+      + private_dns_name_options (known after apply)
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags_all              = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 30
+          + volume_type           = "gp3"
+        }
+
+      + secondary_network_interface (known after apply)
+    }
+
+  # aws_s3_bucket.eval will be created
+  + resource "aws_s3_bucket" "eval" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "cjj-eval-data-300390308149"
+      + bucket_domain_name          = (known after apply)
+      + bucket_namespace            = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = true
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = "ap-northeast-2"
+      + request_payer               = (known after apply)
+      + tags_all                    = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule (known after apply)
+
+      + grant (known after apply)
+
+      + lifecycle_rule (known after apply)
+
+      + logging (known after apply)
+
+      + object_lock_configuration (known after apply)
+
+      + replication_configuration (known after apply)
+
+      + server_side_encryption_configuration (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+  # aws_s3_bucket.images will be created
+  + resource "aws_s3_bucket" "images" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "cjj-images-300390308149"
+      + bucket_domain_name          = (known after apply)
+      + bucket_namespace            = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = true
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = "ap-northeast-2"
+      + request_payer               = (known after apply)
+      + tags_all                    = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule (known after apply)
+
+      + grant (known after apply)
+
+      + lifecycle_rule (known after apply)
+
+      + logging (known after apply)
+
+      + object_lock_configuration (known after apply)
+
+      + replication_configuration (known after apply)
+
+      + server_side_encryption_configuration (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+  # aws_s3_bucket_public_access_block.all["eval"] will be created
+  + resource "aws_s3_bucket_public_access_block" "all" {
+      + block_public_acls       = true
+      + block_public_policy     = true
+      + bucket                  = (known after apply)
+      + id                      = (known after apply)
+      + ignore_public_acls      = true
+      + region                  = "ap-northeast-2"
+      + restrict_public_buckets = true
+    }
+
+  # aws_s3_bucket_public_access_block.all["images"] will be created
+  + resource "aws_s3_bucket_public_access_block" "all" {
+      + block_public_acls       = true
+      + block_public_policy     = true
+      + bucket                  = (known after apply)
+      + id                      = (known after apply)
+      + ignore_public_acls      = true
+      + region                  = "ap-northeast-2"
+      + restrict_public_buckets = true
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.all["eval"] will be created
+  + resource "aws_s3_bucket_server_side_encryption_configuration" "all" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = "ap-northeast-2"
+
+      + rule {
+          + blocked_encryption_types = (known after apply)
+          + bucket_key_enabled       = (known after apply)
+
+          + apply_server_side_encryption_by_default {
+              + kms_master_key_id = (known after apply)
+              + sse_algorithm     = "AES256"
+            }
+        }
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.all["images"] will be created
+  + resource "aws_s3_bucket_server_side_encryption_configuration" "all" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = "ap-northeast-2"
+
+      + rule {
+          + blocked_encryption_types = (known after apply)
+          + bucket_key_enabled       = (known after apply)
+
+          + apply_server_side_encryption_by_default {
+              + kms_master_key_id = (known after apply)
+              + sse_algorithm     = "AES256"
+            }
+        }
+    }
+
+  # aws_security_group.backend will be created
+  + resource "aws_security_group" "backend" {
+      + arn                    = (known after apply)
+      + description            = "backend api: 8000 public (DEMO_API_KEY guarded), ssh from my ip"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "api"
+              + from_port        = 8000
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 8000
+            },
+          + {
+              + cidr_blocks      = [
+                  + "58.151.41.67/32",
+                ]
+              + description      = "ssh"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "cjj-backend"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + region                 = "ap-northeast-2"
+      + revoke_rules_on_delete = false
+      + tags_all               = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + vpc_id                 = "vpc-0b59291cc6cfc7244"
+    }
+
+  # aws_security_group.rds will be created
+  + resource "aws_security_group" "rds" {
+      + arn                    = (known after apply)
+      + description            = "postgres from backend sg only"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + from_port        = 5432
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 5432
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + name                   = "cjj-rds"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + region                 = "ap-northeast-2"
+      + revoke_rules_on_delete = false
+      + tags_all               = {
+          + "ManagedBy" = "terraform"
+          + "Project"   = "cjj-smart-packing"
+        }
+      + vpc_id                 = "vpc-0b59291cc6cfc7244"
+    }
+
+  # random_password.db will be created
+  + resource "random_password" "db" {
+      + bcrypt_hash = (sensitive value)
+      + id          = (known after apply)
+      + length      = 32
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (sensitive value)
+      + special     = false
+      + upper       = true
+    }
+
+  # random_password.demo_api_key will be created
+  + resource "random_password" "demo_api_key" {
+      + bcrypt_hash = (sensitive value)
+      + id          = (known after apply)
+      + length      = 40
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (sensitive value)
+      + special     = false
+      + upper       = true
+    }
+
+  # random_password.inference_api_key will be created
+  + resource "random_password" "inference_api_key" {
+      + bcrypt_hash = (sensitive value)
+      + id          = (known after apply)
+      + length      = 40
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (sensitive value)
+      + special     = false
+      + upper       = true
+    }
+
+Plan: 27 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + backend_instance_id     = (known after apply)
+  + backend_public_ip       = "13.124.19.3"
+  + db_password             = (sensitive value)
+  + demo_api_key            = (sensitive value)
+  + ecr_repository_urls     = {
+      + cj-ai-backend           = (known after apply)
+      + logistics-dimension-api = (known after apply)
+    }
+  + eval_bucket             = "cjj-eval-data-300390308149"
+  + github_actions_role_arn = (known after apply)
+  + github_setup            = (known after apply)
+  + images_bucket           = "cjj-images-300390308149"
+  + inference_api_key       = (sensitive value)
+  + rds_endpoint            = (known after apply)
+random_password.inference_api_key: Creating...
+random_password.db: Creating...
+random_password.demo_api_key: Creating...
+random_password.db: Creation complete after 0s [id=none]
+random_password.inference_api_key: Creation complete after 0s [id=none]
+random_password.demo_api_key: Creation complete after 0s [id=none]
+aws_iam_role.backend_ec2: Creating...
+aws_ecr_repository.repos["logistics-dimension-api"]: Creating...
+aws_iam_role.github_actions: Creating...
+aws_db_subnet_group.default: Creating...
+aws_s3_bucket.images: Creating...
+aws_ecr_repository.repos["cj-ai-backend"]: Creating...
+aws_iam_role.lambda_exec: Creating...
+aws_security_group.backend: Creating...
+aws_s3_bucket.eval: Creating...
+aws_ecr_repository.repos["logistics-dimension-api"]: Creation complete after 1s [id=logistics-dimension-api]
+aws_ecr_repository.repos["cj-ai-backend"]: Creation complete after 1s [id=cj-ai-backend]
+aws_ecr_lifecycle_policy.keep_recent["cj-ai-backend"]: Creating...
+aws_ecr_lifecycle_policy.keep_recent["logistics-dimension-api"]: Creating...
+aws_ecr_lifecycle_policy.keep_recent["logistics-dimension-api"]: Creation complete after 0s [id=logistics-dimension-api]
+aws_ecr_lifecycle_policy.keep_recent["cj-ai-backend"]: Creation complete after 0s [id=cj-ai-backend]
+aws_db_subnet_group.default: Creation complete after 1s [id=cjj-default-vpc]
+aws_s3_bucket.images: Creation complete after 2s [id=cjj-images-300390308149]
+aws_s3_bucket.eval: Creation complete after 2s [id=cjj-eval-data-300390308149]
+data.aws_iam_policy_document.backend_ec2: Reading...
+aws_s3_bucket_public_access_block.all["images"]: Creating...
+aws_s3_bucket_public_access_block.all["eval"]: Creating...
+aws_s3_bucket_server_side_encryption_configuration.all["images"]: Creating...
+aws_s3_bucket_server_side_encryption_configuration.all["eval"]: Creating...
+data.aws_iam_policy_document.backend_ec2: Read complete after 0s [id=2089148595]
+aws_s3_bucket_public_access_block.all["images"]: Creation complete after 0s [id=cjj-images-300390308149]
+aws_s3_bucket_public_access_block.all["eval"]: Creation complete after 0s [id=cjj-eval-data-300390308149]
+aws_iam_role.github_actions: Creation complete after 2s [id=cjj-github-actions]
+aws_iam_role.backend_ec2: Creation complete after 2s [id=cjj-backend-ec2]
+aws_iam_role.lambda_exec: Creation complete after 2s [id=cjj-dimension-lambda-exec]
+aws_iam_role_policy_attachment.ssm_core: Creating...
+aws_iam_role_policy_attachment.lambda_basic: Creating...
+aws_iam_instance_profile.backend_ec2: Creating...
+aws_s3_bucket_server_side_encryption_configuration.all["eval"]: Creation complete after 0s [id=cjj-eval-data-300390308149]
+aws_s3_bucket_server_side_encryption_configuration.all["images"]: Creation complete after 0s [id=cjj-images-300390308149]
+aws_iam_role_policy.backend_ec2: Creating...
+aws_iam_role_policy_attachment.ssm_core: Creation complete after 1s [id=cjj-backend-ec2/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+aws_iam_role_policy_attachment.lambda_basic: Creation complete after 1s [id=cjj-dimension-lambda-exec/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]
+aws_security_group.backend: Creation complete after 3s [id=sg-0bd42015382b8c4aa]
+aws_security_group.rds: Creating...
+aws_iam_role_policy.backend_ec2: Creation complete after 1s [id=cjj-backend-ec2:ecr-pull-invoke-lambda-images]
+aws_security_group.rds: Creation complete after 2s [id=sg-009cafb335b8a2b5e]
+aws_db_instance.postgres: Creating...
+aws_iam_instance_profile.backend_ec2: Creation complete after 8s [id=cjj-backend-ec2]
+aws_db_instance.postgres: Still creating... [00m11s elapsed]
+aws_db_instance.postgres: Still creating... [00m21s elapsed]
+aws_db_instance.postgres: Still creating... [00m31s elapsed]
+aws_db_instance.postgres: Still creating... [00m41s elapsed]
+aws_db_instance.postgres: Still creating... [00m51s elapsed]
+aws_db_instance.postgres: Still creating... [01m01s elapsed]
+aws_db_instance.postgres: Still creating... [01m11s elapsed]
+aws_db_instance.postgres: Still creating... [01m21s elapsed]
+aws_db_instance.postgres: Still creating... [01m31s elapsed]
+aws_db_instance.postgres: Still creating... [01m41s elapsed]
+aws_db_instance.postgres: Still creating... [01m51s elapsed]
+aws_db_instance.postgres: Still creating... [02m01s elapsed]
+aws_db_instance.postgres: Still creating... [02m11s elapsed]
+aws_db_instance.postgres: Still creating... [02m21s elapsed]
+aws_db_instance.postgres: Still creating... [02m31s elapsed]
+aws_db_instance.postgres: Still creating... [02m41s elapsed]
+aws_db_instance.postgres: Still creating... [02m51s elapsed]
+aws_db_instance.postgres: Still creating... [03m01s elapsed]
+aws_db_instance.postgres: Still creating... [03m11s elapsed]
+aws_db_instance.postgres: Still creating... [03m21s elapsed]
+aws_db_instance.postgres: Still creating... [03m31s elapsed]
+aws_db_instance.postgres: Still creating... [03m41s elapsed]
+aws_db_instance.postgres: Still creating... [03m51s elapsed]
+aws_db_instance.postgres: Still creating... [04m01s elapsed]
+aws_db_instance.postgres: Still creating... [04m11s elapsed]
+aws_db_instance.postgres: Still creating... [04m21s elapsed]
+aws_db_instance.postgres: Still creating... [04m31s elapsed]
+aws_db_instance.postgres: Still creating... [04m41s elapsed]
+aws_db_instance.postgres: Still creating... [04m51s elapsed]
+aws_db_instance.postgres: Still creating... [05m01s elapsed]
+aws_db_instance.postgres: Still creating... [05m11s elapsed]
+aws_db_instance.postgres: Still creating... [05m21s elapsed]
+aws_db_instance.postgres: Still creating... [05m31s elapsed]
+aws_db_instance.postgres: Still creating... [05m41s elapsed]
+aws_db_instance.postgres: Still creating... [05m51s elapsed]
+aws_db_instance.postgres: Creation complete after 5m59s [id=db-PFI3FDNEDHABWQOS3GVDUWILRU]
+aws_instance.backend: Creating...
+
+Error: creating EC2 Instance: operation error EC2: RunInstances, https response error StatusCode: 400, RequestID: 878cef31-9c0a-46d4-aa4f-ab967583a8db, api error Unsupported: Your requested instance type (c7i-flex.large) is not supported in your requested Availability Zone (ap-northeast-2a). Please retry your request by not specifying an Availability Zone or choosing ap-northeast-2b, ap-northeast-2d.
+
+  with aws_instance.backend,
+  on ec2.tf line 39, in resource "aws_instance" "backend":
+  39: resource "aws_instance" "backend" {
+
