@@ -58,6 +58,7 @@ data "aws_iam_policy_document" "github_permissions" {
     actions = [
       "lambda:GetFunction", "lambda:GetFunctionConfiguration", "lambda:UpdateFunctionCode",
       "lambda:PublishVersion", "lambda:GetAlias", "lambda:CreateAlias", "lambda:UpdateAlias",
+      "lambda:InvokeFunction", # 별칭 이동 직후 워밍 호출
     ]
     resources = [local.lambda_arn, "${local.lambda_arn}:*"]
   }
