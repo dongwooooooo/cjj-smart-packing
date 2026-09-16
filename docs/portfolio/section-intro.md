@@ -51,7 +51,7 @@ MVP 문서 초안에 있던 기능 중 세 가지를 개발 중에 제거했습�
 | 저장소 | PostgreSQL 18(RDS), Flyway, S3 | 주 저장소와 스키마 이력. 촬영 사진은 커밋 뒤 비동기로 S3에 업로드하고 30분 임시 주소로 조회 |
 | 추론 서빙 | AWS Lambda 컨테이너, FastAPI, ONNX Runtime | 사진 3장을 받아 치수를 반환. 공개 URL 없이 EC2 인스턴스 프로파일로 SDK Invoke |
 | Vision AI 모델 | EfficientNet-B3 3뷰 회귀, 13.3M 파라미터 | 사진 3장을 각각 백본에 통과시켜 특징을 결합한 뒤 세 변을 회귀. AI 담당이 학습, 아래 성능 문단 참조 |
-| 모델 승격 파이프라인 | Hugging Face 비공개 저장소, 2단계 Docker 빌드, 고정셋 평가 게이트 | safetensors를 빌드 시 ONNX로 변환해 torch 출력과 대조(max diff 1e-4)하고, 검증셋 2,024품목 고정셋 평가로 정확도 기준을 판정한 뒤 `live` 별칭으로 승격. 평가 하네스와 판정 기준은 구현했고 파이프라인 연결은 미결(문제 3) |
+| 모델 승격 파이프라인 | Hugging Face 비공개 저장소, 2단계 Docker 빌드, 고정셋 평가 게이트 | safetensors를 빌드 시 ONNX로 변환해 torch 출력과 대조(max diff 1e-4)하고, 검증셋 2,024품목 고정셋 평가로 정확도 기준을 판정한 뒤 통과한 후보만 `live` 별칭으로 승격(문제 3) |
 | CI/CD | GitHub Actions, OIDC, ECR, SSM Run Command | backend: 이미지 빌드, ECR push, SSM으로 EC2 교체·헬스 확인·롤백. ai: 이미지 빌드, Lambda 갱신, `live` 별칭 이동 |
 | 명세 | docs 저장소 | MVP·API 계약·ERD·결정 이력의 단일 출처. 코드와 어긋나면 문서를 먼저 고침 |
 

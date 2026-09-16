@@ -45,7 +45,7 @@
 | 상용 정적 치수 측정기 | 0.5cm 단위. Mettler Toledo, MID ±5×5×2mm | Mason Technology 정적 소포 측정기 페이지 https://www.masontechnology.ie/products/industrial/pallet-and-parcel-dimensioning/static-parcel-dimensioning/ (접속 403, 검색 요약 기준) |
 | 법정 계량 | OIML R129의 최대 허용 오차를 따름 | NMi OIML R129 인증 안내 https://nmi.nl/understanding-oiml-r129-multidimensional-weighing-systems/ (원문 규격은 미확인) |
 | 변환 검증 | torch 출력과 ONNX 출력의 `max diff` 1e-4 초과 시 빌드 중단 | 배포 파이프라인 현행 코드 |
-| 평가 데이터 | 검증셋 2,024품목. AI-Hub 배포본이라 공개 저장 불가 | 미확인 — 데이터셋 이용 조건 |
+| 평가 데이터 | 검증셋 2,024품목. AI-Hub 배포본이라 비공개 S3(`cjj-eval-data`)에만 둔다 | 미확인 — 데이터셋 이용 조건 |
 
 프로젝트가 관행과 다른 지점은 기준의 성격이다. 이 모델의 MAE는 약 2cm이고, 상용 계량 등급에 못 미치는 내부 측정 용도다. 상용 0.5cm 기준은 통과 임계가 아니라 한계로 문서에 둔다.
 
@@ -109,7 +109,6 @@
 
 | 항목 | 담당 |
 | --- | --- |
-| 평가 결과로 Lambda 별칭을 승격하는 파이프라인 연결. 평가 데이터를 파이프라인이 접근할 수 있는 저장소에 두는 결정이 선행 | 미정 |
 | 절대 상한 MAE 3cm. 박스 추천 마진 3cm에서 가져온 잠정값 | 미정 |
 | 상용 계량 등급 0.5cm와의 격차 | 모델 과제 |
 | 백분위·엔트로피 보정 시도. 4GB 평가 환경에서 메모리 초과 | 미정 |

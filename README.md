@@ -42,9 +42,9 @@ CJ Campus AI SW 프로젝트(2026-08)에서 만든 풀필먼트 검수·포장 �
 ## 운영 (2026-09-16)
 
 - 백엔드 `http://13.124.19.3:8000` (EC2, SSM 배포), 추론 Lambda `logistics-dimension-api:live`, 프론트 https://cjj-smart-packing-frontend.vercel.app (basic auth).
-- 정확도 게이트는 ai 워크플로 `eval-gate` 잡으로 연결됐다. 고정셋은 S3 `cjj-eval-data` 의 `EVAL_PREFIX`(기본 `smoke`, 시연 11종). 검증셋 2,024품목은 `tools/eval/drive_to_s3.sh` 로 옮긴 뒤 저장소 변수로 교체한다.
+- 정확도 게이트는 ai 워크플로 `eval-gate` 잡으로 연결됐고 검증셋 2,024품목(`cjj-eval-data/vs2024`)으로 판정한다. 2026-09-16 첫 실행 통과(MAE 2.06 / 2.17 / 1.62cm, ±3cm 62.5%). 시연 11종 `smoke` 는 파이프라인 동작 확인용.
 - 작업 없는 날은 `bash tools/infra/pause.sh`.
 
 ## 미결
 
-- 검증셋 2,024품목의 S3 이관(드라이브 인증 필요). 이관 전까지 게이트는 시연 11종으로만 판정한다.
+- 게이트 절대 상한 3cm 는 잠정값. AI-Hub 데이터 이용 조건 확인.
