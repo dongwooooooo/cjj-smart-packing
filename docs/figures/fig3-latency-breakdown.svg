@@ -2,16 +2,16 @@
 <defs><marker id='ah' markerWidth='10' markerHeight='10' refX='9' refY='5' orient='auto' markerUnits='userSpaceOnUse'><path d='M0,0 L10,5 L0,10 z' fill='#4A5568'/></marker></defs>
 <rect width='1400' height='432' fill='white'/>
 <text x='40' y='40' text-anchor='start' font-size='18' font-weight='700' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>그림 3. 촬영 1회의 응답 시간 분해와 저장 구간 변경 효과</text>
-<text x='40' y='64' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>핸들러 시간은 CloudWatch 332건(2026-08-25~31, 웜) 정본. 백엔드 구간은 로컬 RIE·MinIO 실측(사진 490KB, 11상품 × 5회). SLO는 p95 1초.</text>
+<text x='40' y='64' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>핸들러 시간은 CloudWatch 웜 호출 246건(2026-08-26~31) 정본. 백엔드 구간은 로컬 RIE·MinIO 실측(사진 490KB, 11상품 × 5회). SLO는 p95 1초.</text>
 <text x='248' y='127' text-anchor='end' font-size='13' font-weight='500' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda 핸들러 p50</text>
 <rect x='260' y='110' width='325.0' height='24' fill='#2B6CB0' rx='3'/>
 <text x='593.0' y='127' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>325ms</text>
 <text x='248' y='161' text-anchor='end' font-size='13' font-weight='500' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda 핸들러 p95</text>
-<rect x='260' y='144' width='611.0' height='24' fill='#2B6CB0' rx='3'/>
-<text x='879.0' y='161' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>611ms</text>
+<rect x='260' y='144' width='609.0' height='24' fill='#2B6CB0' rx='3'/>
+<text x='877.0' y='161' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>609ms</text>
 <text x='248' y='195' text-anchor='end' font-size='13' font-weight='500' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>Lambda 핸들러 p99</text>
-<rect x='260' y='178' width='654.0' height='24' fill='#2B6CB0' rx='3'/>
-<text x='922.0' y='195' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>654ms</text>
+<rect x='260' y='178' width='652.0' height='24' fill='#2B6CB0' rx='3'/>
+<text x='920.0' y='195' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>652ms</text>
 <text x='248' y='245' text-anchor='end' font-size='13' font-weight='500' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>백엔드 경로 p95 (변경 전)</text>
 <rect x='260' y='228' width='243.0' height='24' fill='#4A5568' rx='3'/>
 <text x='511.0' y='245' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>243ms  ·  저장 구간 36ms 포함</text>
@@ -19,8 +19,8 @@
 <rect x='260' y='262' width='192.0' height='24' fill='#2F855A' rx='3'/>
 <text x='460.0' y='279' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>192ms  ·  저장 구간 12ms, 업로드는 응답 밖 32ms</text>
 <text x='248' y='329' text-anchor='end' font-size='13' font-weight='500' fill='#1A202C' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>운영 E2E p95 추정</text>
-<rect x='260' y='312' width='803.0' height='24' fill='#C05621' rx='3'/>
-<text x='1071.0' y='329' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>803ms</text>
+<rect x='260' y='312' width='801.0' height='24' fill='#C05621' rx='3'/>
+<text x='1069.0' y='329' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>801ms</text>
 <line x1='1260.0' y1='100' x2='1260.0' y2='352' stroke='#C05621' stroke-width='1.5' stroke-dasharray='6 5'/>
 <text x='1260.0' y='92' text-anchor='middle' font-size='12' font-weight='600' fill='#C05621' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>SLO p95 1,000ms</text>
 <text x='40' y='382' text-anchor='start' font-size='12.5' font-weight='500' fill='#718096' font-family='Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, sans-serif'>저장 구간: 세션 커밋과 사진 3장 동기 업로드를 한 트랜잭션에서 처리하던 것을, 사진 키만 저장해 커밋한 뒤 AFTER_COMMIT 이벤트로 비동기 업로드하도록 바꿨다. 저장 구간 p95 36ms에서 12ms. 운영 E2E 추정은 핸들러 p95와 백엔드 p95의 합이다.</text>

@@ -45,7 +45,7 @@ E2E 표본은 2026-08-26 한 건뿐이었다. 2.6초였고 초기화 1.2초를 �
 | 응답 시간 한계 | Nielsen의 1초. 사고 흐름이 끊기지 않는 한계 | Nielsen Norman Group, Response Times: The 3 Important Limits https://www.nngroup.com/articles/response-times-3-important-limits/ |
 | 상용 정적 치수 측정기 | Cubiscan 100은 1~2초 | EXDS 제품 페이지 https://www.exds.co.uk/cubiscan/product-range/cubiscan-100 (검색 요약 기준. 페이지 인용문이 CS30 문장이라 재확인 필요) |
 | 상용 정적 치수 측정기 | Mettler Toledo는 3초 이내 | Mason Technology 정적 소포 측정기 페이지 https://www.masontechnology.ie/products/industrial/pallet-and-parcel-dimensioning/static-parcel-dimensioning/ (접속 403, 검색 요약 기준) |
-| 핸들러 시간 정본 | 시연 기간 CloudWatch Lambda 호출 332건. 웜 p50 325ms, p95 611ms | 프로젝트 CloudWatch 로그 |
+| 핸들러 시간 정본 | 시연 기간 CloudWatch Lambda 호출 319건. 배포 검증일 제외 웜 246건 p50 325ms, p95 609ms | 프로젝트 CloudWatch 로그 |
 
 목표 응답 시간은 상용 정적 치수 측정기와 같은 급으로 잡았다. 실패 판정 기준인 타임아웃은 이 목표와 분리해 별도로 둔다.
 

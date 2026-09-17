@@ -133,7 +133,7 @@ open("fig4-model-promotion.svg","w").write(svg(1400,560,"\n".join(b),"cjj-smart-
 # ---------- 그림 4. 촬영 1회 시간 분해 ----------
 b=[]
 b.append(label(40,40,"그림 3. 촬영 1회의 응답 시간 분해와 저장 구간 변경 효과",18,weight="700"))
-b.append(label(40,64,"핸들러 시간은 CloudWatch 332건(2026-08-25~31, 웜) 정본. 백엔드 구간은 로컬 RIE·MinIO 실측(사진 490KB, 11상품 × 5회). SLO는 p95 1초.",12.5,C["muted"]))
+b.append(label(40,64,"핸들러 시간은 CloudWatch 웜 호출 246건(2026-08-26~31) 정본. 백엔드 구간은 로컬 RIE·MinIO 실측(사진 490KB, 11상품 × 5회). SLO는 p95 1초.",12.5,C["muted"]))
 scale=1.0  # px per ms
 x0=260; y=110
 def bar(y,name,val,color,note=""):
@@ -142,11 +142,11 @@ def bar(y,name,val,color,note=""):
        label(x0+val*scale+8,y+17,f"{val}ms"+(f"  ·  {note}" if note else ""),12.5,C["muted"])]
     return "\n".join(o)
 b.append(bar(y,"Lambda 핸들러 p50",325,C["accent"])); y+=34
-b.append(bar(y,"Lambda 핸들러 p95",611,C["accent"])); y+=34
-b.append(bar(y,"Lambda 핸들러 p99",654,C["accent"])); y+=50
+b.append(bar(y,"Lambda 핸들러 p95",609,C["accent"])); y+=34
+b.append(bar(y,"Lambda 핸들러 p99",652,C["accent"])); y+=50
 b.append(bar(y,"백엔드 경로 p95 (변경 전)",243,C["edge"],"저장 구간 36ms 포함")); y+=34
 b.append(bar(y,"백엔드 경로 p95 (변경 후)",192,C["ok"],"저장 구간 12ms, 업로드는 응답 밖 32ms")); y+=50
-b.append(bar(y,"운영 E2E p95 추정",611+192,C["warn"])); y+=40
+b.append(bar(y,"운영 E2E p95 추정",609+192,C["warn"])); y+=40
 # SLO line
 sx=x0+1000*scale
 b.append(f"<line x1='{sx}' y1='100' x2='{sx}' y2='{y}' stroke='{C['warn']}' stroke-width='1.5' stroke-dasharray='6 5'/>")
