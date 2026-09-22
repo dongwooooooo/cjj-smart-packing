@@ -30,7 +30,8 @@ export const options = {
 function nextBarcode() {
   if (TOTES) {
     const vus = parseInt(__ENV.VUS || "5", 10);
-    const idx = __VU - 1 + __ITER * vus; // 작업자별로 겹치지 않는 토트
+    const offset = parseInt(__ENV.OFFSET || "0", 10); // 앞 실행이 쓴 토트를 건너뛴다
+    const idx = offset + (__VU - 1) + __ITER * vus; // 작업자별로 겹치지 않는 토트
     return idx < TOTES.length ? TOTES[idx].barcode : null;
   }
   const lineId = 1 + ((__VU - 1) % 3);

@@ -1,6 +1,6 @@
 """시험 구간의 Prometheus 시계열을 뽑아 판독용 표를 만든다. 백엔드 EC2 의 9090 에 내 IP 에서 접근한다.
 
-사용: python3 analyze.py --prom http://<backend-ip>:9090 --start '2026-09-22T09:00:00+09:00' --end '2026-09-22T09:08:00+09:00' [--step 30s] [--profile capture|import]
+사용: python3 analyze.py --prom http://<backend-ip>:9090 --start '2026-09-22T09:00:00+09:00' --end '2026-09-22T09:08:00+09:00' [--step 30s] [--profile capture|import|packing]
 출력: 시각별 표(마크다운). k6 지연·실패율, 서버 p95, 촬영 구간 p95, Invoke p95, Hikari pending, executor queue, CPU, RDS 락 대기.
 """
 import argparse, json, urllib.request, urllib.parse
@@ -51,7 +51,31 @@ SERIES_IMPORT = [
     ("tote 인덱스 행/s", "sum(rate(pg_stat_user_tables_idx_tup_fetch{relname='tote'}[1m]))", "{:.0f}"),
     ("tote 조회/s", "sum(rate(pg_stat_user_tables_idx_scan{relname='tote'}[1m]))", "{:.1f}"),
 ]
-PROFILES = {"capture": SERIES_CAPTURE, "import": SERIES_IMPORT}
+
+# 동시 포장 완료(packing) 판독용. 완료 p95 500ms 기준, 박스 재고 행 락 대기.
+SERIES_PACKING = [
+    ("VUs", "k6_vus", "{:.0f}"),
+    ("k6 req/s", "sum(rate(k6_http_reqs_total[30s]))", "{:.1f}"),
+    ("완료 p50(s)", "max(k6_complete_duration_p50)", "{:.3f}"),
+    ("완료 p95(s)", "max(k6_complete_duration_p95)", "{:.3f}"),
+    ("완료 max(s)", "max(k6_complete_duration_max)", "{:.3f}"),
+    ("스캔 p95(s)", "max(k6_http_req_duration_p95{name='tote-scan'})", "{:.3f}"),
+    ("상세 p95(s)", "max(k6_http_req_duration_p95{name='shipment-detail'})", "{:.3f}"),
+    ("k6 실패율", "max(k6_http_req_failed_rate)", "{:.3f}"),
+    ("서버 완료 p95(s)", "histogram_quantile(0.95, sum by (le) (rate(http_server_requests_seconds_bucket{uri='/api/v1/shipments/{shipmentId}/complete'}[30s])))", "{:.3f}"),
+    ("서버 완료 max(s)", "max(http_server_requests_seconds_max{uri='/api/v1/shipments/{shipmentId}/complete'})", "{:.3f}"),
+    ("완료 5xx/s", "sum(rate(http_server_requests_seconds_count{uri='/api/v1/shipments/{shipmentId}/complete',status=~'5..'}[30s]))", "{:.2f}"),
+    ("완료 4xx/s", "sum(rate(http_server_requests_seconds_count{uri='/api/v1/shipments/{shipmentId}/complete',status=~'4..'}[30s]))", "{:.2f}"),
+    ("Tomcat busy", "tomcat_threads_busy_threads", "{:.0f}"),
+    ("Hikari active", "hikaricp_connections_active", "{:.0f}"),
+    ("Hikari pending", "hikaricp_connections_pending", "{:.0f}"),
+    ("CPU", "1 - avg(rate(node_cpu_seconds_total{mode='idle'}[30s]))", "{:.2f}"),
+    ("RDS 연결", "sum(pg_stat_activity_count{datname='app'})", "{:.0f}"),
+    ("RDS 락대기", "sum(pg_stat_activity_count{datname='app',wait_event_type='Lock'})", "{:.0f}"),
+    ("RDS 커밋/s", "sum(rate(pg_stat_database_xact_commit{datname='app'}[30s]))", "{:.1f}"),
+    ("RDS 롤백/s", "sum(rate(pg_stat_database_xact_rollback{datname='app'}[30s]))", "{:.1f}"),
+]
+PROFILES = {"capture": SERIES_CAPTURE, "import": SERIES_IMPORT, "packing": SERIES_PACKING}
 
 def query_range(prom, expr, start, end, step):
     q = urllib.parse.urlencode({"query": expr, "start": start, "end": end, "step": step})
