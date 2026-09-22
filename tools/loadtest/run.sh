@@ -14,7 +14,7 @@ annotate() {  # $1=text $2=time_ms [$3=timeEnd_ms]
   local body
   if [ -n "${3:-}" ]; then body=$(printf '{"tags":["loadtest","%s"],"text":"%s","time":%s,"timeEnd":%s}' "$SCENARIO" "$1" "$2" "$3")
   else body=$(printf '{"tags":["loadtest","%s"],"text":"%s","time":%s}' "$SCENARIO" "$1" "$2"); fi
-  curl -s -u "$GRAFANA_AUTH" -H 'Content-Type: application/json' -d "$body" "$GRAFANA/api/annotations" >/dev/null || true
+  curl -s --max-time 10 -u "$GRAFANA_AUTH" -H 'Content-Type: application/json' -d "$body" "$GRAFANA/api/annotations" >/dev/null || true
 }
 
 START=$(date +%s%3N)

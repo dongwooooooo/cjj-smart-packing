@@ -1,0 +1,42 @@
+{
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {}
+    },
+    "metrics": {
+        "http_req_failed{name:import}": {
+            "passes": 0,
+            "fails": 0,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 0,
+            "value": 0
+        },
+        "vus": {
+            "min": 1,
+            "max": 2,
+            "value": 2
+        },
+        "vus_max": {
+            "value": 4,
+            "min": 4,
+            "max": 4
+        },
+        "data_sent": {
+            "count": 2071436,
+            "rate": 23015.739850507296
+        },
+        "data_received": {
+            "rate": 0,
+            "count": 0
+        }
+    }
+}

@@ -1,12 +1,12 @@
 """시험 구간의 Prometheus 시계열을 뽑아 판독용 표를 만든다. 백엔드 EC2 의 9090 에 내 IP 에서 접근한다.
 
-사용: python3 analyze.py --prom http://<backend-ip>:9090 --start '2026-09-22T09:00:00+09:00' --end '2026-09-22T09:08:00+09:00' [--step 30s]
+사용: python3 analyze.py --prom http://<backend-ip>:9090 --start '2026-09-22T09:00:00+09:00' --end '2026-09-22T09:08:00+09:00' [--step 30s] [--profile capture|import]
 출력: 시각별 표(마크다운). k6 지연·실패율, 서버 p95, 촬영 구간 p95, Invoke p95, Hikari pending, executor queue, CPU, RDS 락 대기.
 """
 import argparse, json, urllib.request, urllib.parse
 from datetime import datetime
 
-SERIES = [
+SERIES_CAPTURE = [
     ("VUs", "k6_vus", "{:.0f}"),
     ("k6 req/s", "sum(rate(k6_http_reqs_total[30s]))", "{:.1f}"),
     ("k6 p95(s)", "max(k6_http_req_duration_p95{name='measure'})", "{:.3f}"),
@@ -29,6 +29,30 @@ SERIES = [
     ("RDS 락대기", "sum(pg_stat_activity_count{datname='app',wait_event_type='Lock'})", "{:.0f}"),
 ]
 
+# 배치 접수(orders_import) 판독용. k6 import_duration 은 초 단위, orders 라벨은 배치 크기.
+SERIES_IMPORT = [
+    ("k6 batch/min", "sum(increase(k6_http_reqs_total{name='import'}[1m]))", "{:.1f}"),
+    ("k6 p50(s)", "max(k6_import_duration_p50)", "{:.3f}"),
+    ("k6 p95(s)", "max(k6_import_duration_p95)", "{:.3f}"),
+    ("k6 max(s)", "max(k6_import_duration_max)", "{:.3f}"),
+    ("주문당 p50(ms)", "max(k6_import_per_order_ms_p50) * 1000", "{:.2f}"),
+    ("k6 실패율", "max(k6_http_req_failed_rate{name='import'})", "{:.3f}"),
+    ("서버 p95(s)", "histogram_quantile(0.95, sum by (le) (rate(http_server_requests_seconds_bucket{uri='/api/v1/admin/orders/import'}[1m])))", "{:.3f}"),
+    ("서버 max(s)", "max(http_server_requests_seconds_max{uri='/api/v1/admin/orders/import'})", "{:.3f}"),
+    ("Hikari active", "hikaricp_connections_active", "{:.0f}"),
+    ("Hikari pending", "hikaricp_connections_pending", "{:.0f}"),
+    ("CPU", "1 - avg(rate(node_cpu_seconds_total{mode='idle'}[1m]))", "{:.2f}"),
+    ("heap", "sum(jvm_memory_used_bytes{area='heap'}) / sum(jvm_memory_max_bytes{area='heap'})", "{:.2f}"),
+    ("RDS 연결", "sum(pg_stat_activity_count{datname='app'})", "{:.0f}"),
+    ("RDS 락대기", "sum(pg_stat_activity_count{datname='app',wait_event_type='Lock'})", "{:.0f}"),
+    ("RDS 활성", "sum(pg_stat_activity_count{datname='app',state='active'})", "{:.0f}"),
+    ("DB 행 읽기/s", "sum(rate(pg_stat_database_tup_returned{datname='app'}[1m]))", "{:.0f}"),
+    ("DB 행 삽입/s", "sum(rate(pg_stat_database_tup_inserted{datname='app'}[1m]))", "{:.0f}"),
+    ("tote 인덱스 행/s", "sum(rate(pg_stat_user_tables_idx_tup_fetch{relname='tote'}[1m]))", "{:.0f}"),
+    ("tote 조회/s", "sum(rate(pg_stat_user_tables_idx_scan{relname='tote'}[1m]))", "{:.1f}"),
+]
+PROFILES = {"capture": SERIES_CAPTURE, "import": SERIES_IMPORT}
+
 def query_range(prom, expr, start, end, step):
     q = urllib.parse.urlencode({"query": expr, "start": start, "end": end, "step": step})
     with urllib.request.urlopen(f"{prom}/api/v1/query_range?{q}", timeout=60) as r:
@@ -38,10 +62,10 @@ def query_range(prom, expr, start, end, step):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--prom", required=True); ap.add_argument("--start", required=True); ap.add_argument("--end", required=True)
-    ap.add_argument("--step", default="30s")
+    ap.add_argument("--step", default="30s"); ap.add_argument("--profile", default="capture", choices=sorted(PROFILES))
     a = ap.parse_args()
     start = datetime.fromisoformat(a.start).timestamp(); end = datetime.fromisoformat(a.end).timestamp()
-    cols = [(name, query_range(a.prom, expr, start, end, a.step), fmt) for name, expr, fmt in SERIES]
+    cols = [(name, query_range(a.prom, expr, start, end, a.step), fmt) for name, expr, fmt in PROFILES[a.profile]]
     ts = sorted(set(t for _, s, _ in cols for t in s))
     print("| 시각 | " + " | ".join(n for n, _, _ in cols) + " |")
     print("| --- | " + " | ".join("---:" for _ in cols) + " |")

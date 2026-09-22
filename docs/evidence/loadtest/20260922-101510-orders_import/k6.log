@@ -1,0 +1,313 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: /home/ubuntu/loadtest/k6/orders_import.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 8 max VUs, 1m30s max duration (incl. graceful stop):
+              * batches: 0.02 iterations/s for 1m0s (maxVUs: 4-8, gracefulStop: 30s)
+
+
+running (0m01.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [   2% ] 1/4 VUs  0m01.0s/1m0s  0.02 iters/s
+
+running (0m02.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [   3% ] 1/4 VUs  0m02.0s/1m0s  0.02 iters/s
+
+running (0m03.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [   5% ] 1/4 VUs  0m03.0s/1m0s  0.02 iters/s
+
+running (0m04.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [   7% ] 1/4 VUs  0m04.0s/1m0s  0.02 iters/s
+
+running (0m05.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [   8% ] 1/4 VUs  0m05.0s/1m0s  0.02 iters/s
+
+running (0m06.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  10% ] 1/4 VUs  0m06.0s/1m0s  0.02 iters/s
+
+running (0m07.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  12% ] 1/4 VUs  0m07.0s/1m0s  0.02 iters/s
+
+running (0m08.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  13% ] 1/4 VUs  0m08.0s/1m0s  0.02 iters/s
+
+running (0m09.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  15% ] 1/4 VUs  0m09.0s/1m0s  0.02 iters/s
+
+running (0m10.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  17% ] 1/4 VUs  0m10.0s/1m0s  0.02 iters/s
+
+running (0m11.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  18% ] 1/4 VUs  0m11.0s/1m0s  0.02 iters/s
+
+running (0m12.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  20% ] 1/4 VUs  0m12.0s/1m0s  0.02 iters/s
+
+running (0m13.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  22% ] 1/4 VUs  0m13.0s/1m0s  0.02 iters/s
+
+running (0m14.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  23% ] 1/4 VUs  0m14.0s/1m0s  0.02 iters/s
+
+running (0m15.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  25% ] 1/4 VUs  0m15.0s/1m0s  0.02 iters/s
+
+running (0m16.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  27% ] 1/4 VUs  0m16.0s/1m0s  0.02 iters/s
+
+running (0m17.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  28% ] 1/4 VUs  0m17.0s/1m0s  0.02 iters/s
+
+running (0m18.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  30% ] 1/4 VUs  0m18.0s/1m0s  0.02 iters/s
+
+running (0m19.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  32% ] 1/4 VUs  0m19.0s/1m0s  0.02 iters/s
+
+running (0m20.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  33% ] 1/4 VUs  0m20.0s/1m0s  0.02 iters/s
+
+running (0m21.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  35% ] 1/4 VUs  0m21.0s/1m0s  0.02 iters/s
+
+running (0m22.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  37% ] 1/4 VUs  0m22.0s/1m0s  0.02 iters/s
+
+running (0m23.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  38% ] 1/4 VUs  0m23.0s/1m0s  0.02 iters/s
+
+running (0m24.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  40% ] 1/4 VUs  0m24.0s/1m0s  0.02 iters/s
+
+running (0m25.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  42% ] 1/4 VUs  0m25.0s/1m0s  0.02 iters/s
+
+running (0m26.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  43% ] 1/4 VUs  0m26.0s/1m0s  0.02 iters/s
+
+running (0m27.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  45% ] 1/4 VUs  0m27.0s/1m0s  0.02 iters/s
+
+running (0m28.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  47% ] 1/4 VUs  0m28.0s/1m0s  0.02 iters/s
+
+running (0m29.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  48% ] 1/4 VUs  0m29.0s/1m0s  0.02 iters/s
+
+running (0m30.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  50% ] 1/4 VUs  0m30.0s/1m0s  0.02 iters/s
+
+running (0m31.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  52% ] 1/4 VUs  0m31.0s/1m0s  0.02 iters/s
+
+running (0m32.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  53% ] 1/4 VUs  0m32.0s/1m0s  0.02 iters/s
+
+running (0m33.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  55% ] 1/4 VUs  0m33.0s/1m0s  0.02 iters/s
+
+running (0m34.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  57% ] 1/4 VUs  0m34.0s/1m0s  0.02 iters/s
+
+running (0m35.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  58% ] 1/4 VUs  0m35.0s/1m0s  0.02 iters/s
+
+running (0m36.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  60% ] 1/4 VUs  0m36.0s/1m0s  0.02 iters/s
+
+running (0m37.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  62% ] 1/4 VUs  0m37.0s/1m0s  0.02 iters/s
+
+running (0m38.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  63% ] 1/4 VUs  0m38.0s/1m0s  0.02 iters/s
+
+running (0m39.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  65% ] 1/4 VUs  0m39.0s/1m0s  0.02 iters/s
+
+running (0m40.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  67% ] 1/4 VUs  0m40.0s/1m0s  0.02 iters/s
+
+running (0m41.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  68% ] 1/4 VUs  0m41.0s/1m0s  0.02 iters/s
+
+running (0m42.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  70% ] 1/4 VUs  0m42.0s/1m0s  0.02 iters/s
+
+running (0m43.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  72% ] 1/4 VUs  0m43.0s/1m0s  0.02 iters/s
+
+running (0m44.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  73% ] 1/4 VUs  0m44.0s/1m0s  0.02 iters/s
+
+running (0m45.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  75% ] 1/4 VUs  0m45.0s/1m0s  0.02 iters/s
+
+running (0m46.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  77% ] 1/4 VUs  0m46.0s/1m0s  0.02 iters/s
+
+running (0m47.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  78% ] 1/4 VUs  0m47.0s/1m0s  0.02 iters/s
+
+running (0m48.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  80% ] 1/4 VUs  0m48.0s/1m0s  0.02 iters/s
+
+running (0m49.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  82% ] 1/4 VUs  0m49.0s/1m0s  0.02 iters/s
+
+running (0m50.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  83% ] 1/4 VUs  0m50.0s/1m0s  0.02 iters/s
+
+running (0m51.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  85% ] 1/4 VUs  0m51.0s/1m0s  0.02 iters/s
+
+running (0m52.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  87% ] 1/4 VUs  0m52.0s/1m0s  0.02 iters/s
+
+running (0m53.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  88% ] 1/4 VUs  0m53.0s/1m0s  0.02 iters/s
+
+running (0m54.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  90% ] 1/4 VUs  0m54.0s/1m0s  0.02 iters/s
+
+running (0m55.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  92% ] 1/4 VUs  0m55.0s/1m0s  0.02 iters/s
+
+running (0m56.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  93% ] 1/4 VUs  0m56.0s/1m0s  0.02 iters/s
+
+running (0m57.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  95% ] 1/4 VUs  0m57.0s/1m0s  0.02 iters/s
+
+running (0m58.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  97% ] 1/4 VUs  0m58.0s/1m0s  0.02 iters/s
+
+running (0m59.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [  98% ] 1/4 VUs  0m59.0s/1m0s  0.02 iters/s
+
+running (1m00.0s), 1/4 VUs, 0 complete and 0 interrupted iterations
+batches   [ 100% ] 1/4 VUs  1m00.0s/1m0s  0.02 iters/s
+
+running (1m01.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m02.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m03.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m04.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m05.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m06.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m07.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m08.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m09.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m10.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m11.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m12.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m13.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m14.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m15.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m16.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m17.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m18.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m19.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m20.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m21.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m22.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m23.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m24.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m25.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m26.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m27.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m28.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m29.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+
+running (1m30.0s), 2/4 VUs, 0 complete and 0 interrupted iterations
+batches ↓ [ 100% ] 1/4 VUs  1m0s  0.02 iters/s
+time="2026-09-22T10:18:54Z" level=warning msg="No script iterations fully finished, consider making the test duration longer"
+
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:import}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    HTTP
+    http_req_failed.....: 0.00%  0 out of 0
+      { name:import }...: 0.00%  0 out of 0
+
+    EXECUTION
+    vus.................: 2      min=1      max=2
+    vus_max.............: 4      min=4      max=4
+
+    NETWORK
+    data_received.......: 0 B    0 B/s
+    data_sent...........: 2.1 MB 23 kB/s
+
+
+
+
+running (1m30.0s), 0/4 VUs, 0 complete and 2 interrupted iterations
+batches ✓ [ 100% ] 2/4 VUs  1m0s  0.02 iters/s
