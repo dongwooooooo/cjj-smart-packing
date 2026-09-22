@@ -30,31 +30,41 @@ locals {
   ][0]
 }
 
+# 인라인 ingress/egress 블록과 aws_security_group_rule 을 섞으면 apply 때마다 인라인 쪽이 독립 규칙을 지운다
+# (2026-09-22 실측: 모니터링 포트 규칙이 다음 apply 에서 사라짐). 그래서 이 SG 의 규칙은 전부 독립 리소스로 둔다.
 resource "aws_security_group" "backend" {
   name        = "cjj-backend"
   description = "backend api: 8000 public (DEMO_API_KEY guarded), ssh from my ip"
   vpc_id      = data.aws_vpc.default.id
+}
 
-  ingress {
-    description = "api"
-    from_port   = 8000
-    to_port     = 8000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    description = "ssh"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["${var.my_ip}/32"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group_rule" "backend_api_public" {
+  type              = "ingress"
+  security_group_id = aws_security_group.backend.id
+  from_port         = 8000
+  to_port           = 8000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "api"
+}
+
+resource "aws_security_group_rule" "backend_ssh_me" {
+  type              = "ingress"
+  security_group_id = aws_security_group.backend.id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["${var.my_ip}/32"]
+  description       = "ssh from my ip"
+}
+
+resource "aws_security_group_rule" "backend_egress_all" {
+  type              = "egress"
+  security_group_id = aws_security_group.backend.id
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group" "rds" {
