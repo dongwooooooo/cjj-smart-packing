@@ -40,6 +40,7 @@ services:
     image: prom/node-exporter:v1.10.2
     restart: unless-stopped
     pid: host
+    network_mode: host   # 호스트 NIC(ens5) 지표를 보려면 호스트 네트워크 네임스페이스가 필요하다
     command:
       - --path.rootfs=/host
       - --collector.disable-defaults
@@ -51,7 +52,6 @@ services:
       - --collector.filesystem
     volumes:
       - /:/host:ro,rslave
-    networks: [monitoring]
 
   postgres-exporter:
     image: prometheuscommunity/postgres-exporter:v0.18.1

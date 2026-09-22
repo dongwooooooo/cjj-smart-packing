@@ -14,7 +14,7 @@ scrape_configs:
         labels: { service: backend }
   - job_name: node
     static_configs:
-      - targets: ["node-exporter:9100"]
+      - targets: ["172.17.0.1:9100"]   # node-exporter 는 host 네트워크. docker0 게이트웨이로 접근
         labels: { service: ec2 }
   - job_name: postgres
     static_configs:

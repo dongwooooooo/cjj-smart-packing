@@ -958,12 +958,12 @@
    "targets": [
     {
      "refId": "A",
-     "expr": "sum(rate(node_network_receive_bytes_total{device!~'lo|docker.*|veth.*'}[30s]))",
+     "expr": "sum(rate(node_network_receive_bytes_total{device!~'lo|docker.*|veth.*|br-.*'}[30s]))",
      "legendFormat": "rx"
     },
     {
      "refId": "B",
-     "expr": "sum(rate(node_network_transmit_bytes_total{device!~'lo|docker.*|veth.*'}[30s]))",
+     "expr": "sum(rate(node_network_transmit_bytes_total{device!~'lo|docker.*|veth.*|br-.*'}[30s]))",
      "legendFormat": "tx"
     }
    ]
