@@ -1,0 +1,69 @@
+# 백엔드 EC2 에서 별도 compose 프로젝트(-p monitoring)로 띄운다. 백엔드 compose 의 네트워크(backend_default)에
+# 붙어 backend:8000 의 /actuator/prometheus 를 긁는다. 배포 워크플로가 백엔드를 갈아끼워도 이 스택은 그대로다.
+#   docker compose -p monitoring up -d
+services:
+  prometheus:
+    image: prom/prometheus:v3.9.1
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=30d
+      - --web.enable-remote-write-receiver   # k6 가 여기로 remote write
+      - --web.enable-lifecycle
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/demo_key:/etc/prometheus/demo_key:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"   # SG 가 내 IP·부하 발생기만 허용
+    networks: [monitoring, backend]
+
+  grafana:
+    image: grafana/grafana:12.3.1
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"   # SG 가 내 IP 만 허용
+    networks: [monitoring]
+
+  node-exporter:
+    image: prom/node-exporter:v1.10.2
+    restart: unless-stopped
+    pid: host
+    command:
+      - --path.rootfs=/host
+      - --collector.disable-defaults
+      - --collector.cpu
+      - --collector.meminfo
+      - --collector.loadavg
+      - --collector.netdev
+      - --collector.diskstats
+      - --collector.filesystem
+    volumes:
+      - /:/host:ro,rslave
+    networks: [monitoring]
+
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:v0.18.1
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: ${POSTGRES_EXPORTER_DSN:?postgresql://user:pass@host:5432/db?sslmode=require}
+    networks: [monitoring]
+
+networks:
+  monitoring:
+  backend:
+    external: true
+    name: backend_default
+
+volumes:
+  prometheus-data:
+  grafana-data:

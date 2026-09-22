@@ -90,3 +90,14 @@ variable "backend_image_tag" {
   type    = string
   default = "latest"
 }
+
+variable "loadgen_enabled" {
+  description = "부하 발생기 EC2(k6) 생성 여부. 부하 테스트 기간에만 true."
+  type        = bool
+  default     = false
+}
+
+variable "loadgen_instance_type" {
+  type    = string
+  default = "c7i-flex.large"
+}

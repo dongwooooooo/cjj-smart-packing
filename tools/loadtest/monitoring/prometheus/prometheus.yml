@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 5s      # 부하 테스트는 분 단위가 아니라 초 단위로 본다
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: backend
+    metrics_path: /actuator/prometheus
+    # 백엔드는 헬스 외 모든 경로에 X-Demo-Key 를 요구한다 (D-26).
+    http_headers:
+      X-Demo-Key:
+        files: ["/etc/prometheus/demo_key"]
+    static_configs:
+      - targets: ["backend:8000"]
+        labels: { service: backend }
+  - job_name: node
+    static_configs:
+      - targets: ["node-exporter:9100"]
+        labels: { service: ec2 }
+  - job_name: postgres
+    static_configs:
+      - targets: ["postgres-exporter:9187"]
+        labels: { service: rds }
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
