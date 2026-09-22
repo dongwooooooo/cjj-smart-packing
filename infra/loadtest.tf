@@ -34,7 +34,7 @@ resource "aws_security_group" "loadgen" {
 
 # 부하 발생기는 백엔드 API(8000)와 Prometheus remote write(9090)에 접근한다.
 resource "aws_security_group_rule" "backend_from_loadgen" {
-  for_each                 = var.loadgen_enabled ? { api = 8000, prometheus = 9090 } : {}
+  for_each                 = var.loadgen_enabled ? { api = 8000, prometheus = 9090, grafana = 3000 } : {}
   type                     = "ingress"
   security_group_id        = aws_security_group.backend.id
   from_port                = each.value
