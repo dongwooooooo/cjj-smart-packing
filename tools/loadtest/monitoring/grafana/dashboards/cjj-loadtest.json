@@ -94,7 +94,7 @@
    },
    "fieldConfig": {
     "defaults": {
-     "unit": "ms",
+     "unit": "s",
      "custom": {
       "lineWidth": 1,
       "fillOpacity": 8
@@ -230,10 +230,26 @@
    },
    "fieldConfig": {
     "defaults": {
-     "unit": "ms",
+     "unit": "s",
      "custom": {
       "lineWidth": 1,
-      "fillOpacity": 8
+      "fillOpacity": 8,
+      "thresholdsStyle": {
+       "mode": "line"
+      }
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 1
+       }
+      ]
      }
     },
     "overrides": []
@@ -277,7 +293,7 @@
    },
    "fieldConfig": {
     "defaults": {
-     "unit": "ms",
+     "unit": "s",
      "custom": {
       "lineWidth": 1,
       "fillOpacity": 8

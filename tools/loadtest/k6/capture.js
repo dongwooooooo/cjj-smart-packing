@@ -5,6 +5,7 @@ import { sleep } from 'k6';
 import { Trend, Rate } from 'k6/metrics';
 import { post, ok } from './lib.js';
 
+const MAX = parseInt(__ENV.MAX || '20', 10);
 const measureMs = new Trend('measure_duration', true);
 const inferred = new Rate('measure_inferred');
 
@@ -13,11 +14,12 @@ export const options = {
     capture: {
       executor: 'ramping-vus',
       startVUs: 1,
+      // MAX 로 최대 동시 작업자 수를 바꾼다(기본 20). 단계는 MAX 의 10/25/50/100% 로 같은 비율로 올린다.
       stages: [
-        { duration: '1m', target: 2 },
-        { duration: '2m', target: 5 },
-        { duration: '2m', target: 10 },
-        { duration: '2m', target: 20 },
+        { duration: '1m', target: Math.max(1, Math.round(MAX * 0.10)) },
+        { duration: '2m', target: Math.max(1, Math.round(MAX * 0.25)) },
+        { duration: '2m', target: Math.max(1, Math.round(MAX * 0.50)) },
+        { duration: '2m', target: MAX },
         { duration: '1m', target: 0 },
       ],
       gracefulRampDown: '30s',
