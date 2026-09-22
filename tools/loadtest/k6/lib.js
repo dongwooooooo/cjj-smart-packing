@@ -8,11 +8,11 @@ export const HEADERS = { 'Content-Type': 'application/json', 'X-Demo-Key': __ENV
 
 export function post(path, body, tags) {
   return http.post(`${BASE}${path}`, body === undefined ? null : JSON.stringify(body),
-    { headers: HEADERS, tags, timeout: '60s' });
+    { headers: HEADERS, tags, timeout: __ENV.TIMEOUT || '60s' });
 }
 
 export function get(path, tags) {
-  return http.get(`${BASE}${path}`, { headers: HEADERS, tags, timeout: '60s' });
+  return http.get(`${BASE}${path}`, { headers: HEADERS, tags, timeout: __ENV.TIMEOUT || '60s' });
 }
 
 export function ok(res, name) {
