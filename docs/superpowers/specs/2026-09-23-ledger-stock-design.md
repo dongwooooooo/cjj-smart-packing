@@ -1,6 +1,6 @@
 # 원장 기반 재고 설계 — 포장 완료 락 제거와 정합성 검사
 
-작성 2026-09-23. 대상 저장소 `backend`(cjj-portfolio 서브모듈). 상태: 검토 대기.
+작성 2026-09-23. 대상 저장소 `backend`(cjj-portfolio 서브모듈). 상태: 승인(2026-09-23). 창고 1개, 화주·채널 구분 없음이 전제다.
 
 ## 1. 배경과 목표
 
@@ -95,6 +95,13 @@ CREATE INDEX ix_inventory_tx_product_id ON inventory_tx (product_id, id);
 
 ALTER TABLE inventory_tx ADD COLUMN idempotency_key VARCHAR(80);
 CREATE UNIQUE INDEX ux_inventory_tx_idem ON inventory_tx (idempotency_key) WHERE idempotency_key IS NOT NULL;
+
+CREATE VIEW v_stock_on_hand AS
+SELECT b.product_id,
+       b.qty + COALESCE((SELECT SUM(t.qty_delta) FROM inventory_tx t
+                         WHERE t.product_id = b.product_id AND t.id > b.last_tx_id), 0) AS on_hand_qty,
+       b.last_tx_id, b.computed_at
+FROM stock_balance b;
 ```
 
 상품이 새로 생기면 `stock_balance` 행은 첫 집계 때 `qty 0, last_tx_id 0`으로 만든다(집계기가 없는 행을 INSERT).
@@ -106,6 +113,8 @@ CREATE UNIQUE INDEX ux_inventory_tx_idem ON inventory_tx (idempotency_key) WHERE
 | `InventoryService` (수정) | `recordInbound`·`recordOutboundPacked`·`adjust`는 원장 INSERT만. `onHandQty`·`availableQty`는 D-L2 계산 | `InventoryTxRepository`, `StockBalanceRepository`, `ShipmentItemRepository` |
 | `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 갱신 조건 `WHERE last_tx_id = :이전값`으로 이중 반영 방지 | `StockBalanceRepository`, `InventoryTxRepository` |
 | `StockReconciler` (신규) | 60초마다 상품별 원장 전체 합과 (스냅샷 + 차분)을 대조. 불일치는 스냅샷 재작성, 게이지 `inventory.reconcile.mismatch`(건수)·`inventory.balance.negative`(음수 잔고 상품 수) | `StockBalanceRepository`, `InventoryTxRepository`, `MeterRegistry` |
+| 집계 지연 지표 (신규, `StockBalanceCollector` 안) | 집계 직후 게이지 `inventory.collector.lag_rows`(미집계 원장 행 수)·`inventory.collector.lag_seconds`(가장 오래된 미집계 행의 나이). 집계기가 멈추면 값이 계속 오른다. 알람 기준 초기값 60초 | `MeterRegistry` |
+| 뷰 `v_stock_on_hand` (신규, V21) | 상품별 `스냅샷 + 미집계 원장 합`. 외부·BI가 잔고를 읽을 때는 이 뷰만 쓴다. `stock_balance` 직접 읽기는 금지 원칙 | — |
 | `InventoryAdjustmentController` (신규) | `POST /api/v1/admin/inventory/adjustments` `{gtin, delta, idempotencyKey, reason}` → `{txId, gtin, delta, onHandQty, duplicated}` | `InventoryService` |
 | `ShipmentCompleteService` (수정) | 상품 조회·락·부족 검사 제거. 품목마다 `recordOutboundPacked` 호출만 | 기존 |
 | `DemoStateResetter`·`DemoProductProvisioner` (수정) | 리셋 시 `stock_balance` 비움. 직접 SQL 대신 조정 경로 | 기존 |
@@ -144,9 +153,12 @@ CREATE UNIQUE INDEX ux_inventory_tx_idem ON inventory_tx (idempotency_key) WHERE
 
 ## 10. 범위 밖
 
-`product.stock_qty` 컬럼 삭제, 박스 재고의 원장화, 위치별 재고, 주문 취소, 토트 배정 방식 변경(실행 3 과제), 배치 접수 비동기화.
+`product.stock_qty` 컬럼 삭제, 박스 재고의 원장화, 위치별 재고, 주문 취소, 토트 배정 방식 변경(실행 3 과제), 배치 접수 비동기화, 화주·채널 모델.
+
+접수 간 재고 경합(두 배치가 같은 가용 재고를 읽고 둘 다 수용)은 현재 코드와 동일하게 남는다. 이 설계는 그 문제를 만들지도 풀지도 않는다. 배치 접수 순서 처리 과제(창고당 단일 결정자)에서 다룬다. 채널 간 순서 보장 요구는 없고, 재고 부족 시 배정 우선순위만 정책으로 둔다(기본 접수 시각 순).
 
 ## 11. 미확정
 
-- 집계 주기 5초·대조 주기 60초는 초기값. 운영 데이터로 조정.
+- 집계 주기 5초·대조 주기 60초·집계 지연 알람 60초는 초기값. 운영 데이터로 조정.
+- 5초 지연은 정확도에 영향이 없다. 모든 조회가 미집계 원장을 더해 답하기 때문이다. 영향은 차분 쿼리 범위와, `stock_balance`를 직접 읽는 외부 경로가 있을 때뿐이다(뷰로 막는다).
 - 조정 API의 권한 분리. 현재 인증이 단일 API 키라 관리자 구분이 없다. 이 설계에서는 다루지 않는다.
