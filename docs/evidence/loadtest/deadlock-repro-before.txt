@@ -1,0 +1,14 @@
+$ cd backend && ./gradlew test --tests "com.awesome.backend.outbound.service.ShipmentCompleteDeadlockIT"
+(주: 콘솔 요약에는 예외 메시지가 빠져 있어 build/test-results/test/TEST-...xml의
+testcase failure message를 그대로 덧붙였다. grep 대상 원본 커맨드는 브리프 그대로이며,
+콘솔 출력만으로는 데드락 근거가 없어 XML 리포트의 실패 메시지를 함께 남긴다.)
+
+ShipmentCompleteDeadlockIT > 반대_순서_품목을_동시에_완료해도_둘_다_성공한다() FAILED
+> Task :test FAILED
+BUILD FAILED in 28s
+
+--- build/test-results/test/TEST-com.awesome.backend.outbound.service.ShipmentCompleteDeadlockIT.xml failure message ---
+org.opentest4j.AssertionFailedError: [실패 목록: [CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected, CannotAcquireLockException: JDBC exception executing SQL [ERROR: deadlock detected]]
+expected: 0
+ but was: 20
+	at com.awesome.backend.outbound.service.ShipmentCompleteDeadlockIT.반대_순서_품목을_동시에_완료해도_둘_다_성공한다(ShipmentCompleteDeadlockIT.java:91)
