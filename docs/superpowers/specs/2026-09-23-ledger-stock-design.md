@@ -115,9 +115,9 @@ FROM stock_balance b;
 | 컴포넌트 | 역할 | 의존 |
 | --- | --- | --- |
 | `InventoryService` (수정) | `recordInbound`·`recordOutboundPacked`·`adjust`는 원장 INSERT만. `onHandQty`·`availableQty`는 D-L2 계산 | `InventoryTxRepository`, `StockBalanceRepository`, `ShipmentItemRepository` |
-| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 상관 서브쿼리 UPDATE 한 문장으로 정착 창을 지난 행까지 접는다(D-L5 구현 확정). 동시 집계 시 행 락을 얻은 뒤 `b.last_tx_id`를 참조하는 서브쿼리가 최신 값으로 재평가되어 이중 반영이 없다(CTE 방식의 결함을 발견해 교체, 동시성 IT·커밋 순서 역전 IT로 검증) | `JdbcTemplate`, `MeterRegistry` |
+| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 상관 서브쿼리 UPDATE 한 문장으로 정착 창을 지난 행까지 접는다(D-L5 구현 확정). 동시 집계 시 뒤에 온 문장은 행 락을 얻은 뒤 재검사에서 파생 테이블의 `new_last`는 원래 값으로 고정되고 `WHERE b.last_tx_id < s.new_last`와 SET 범위 `(b.last_tx_id, new_last]`가 최신 커서로 재평가되어 겹치는 구간이 없다 — 이중 반영 없음(CTE 방식의 결함을 발견해 교체, 동시성 IT·커밋 순서 역전 IT·수동 재현으로 검증). `created_at`은 시간대 없는 TIMESTAMP 라 모든 쓰기가 같은 세션 시간대를 쓴다는 전제가 있다(직접 SQL 금지, D-L7) | `JdbcTemplate`, `MeterRegistry` |
 | `StockReconciler` (신규) | 60초마다 상품별 원장 전체 합과 (스냅샷 + 차분)을 대조. 불일치는 상품마다 별도 트랜잭션으로 스냅샷 재작성(한 상품의 실패가 다른 상품을 막지 않음). 게이지 `inventory.reconcile.mismatch`(마지막 대조에서 **발견한** 불일치 상품 수 — 복구 실패분도 포함해 남은 문제가 보이게 한다)·`inventory.balance.negative`(음수 잔고 상품 수). 복구 실패는 WARN 로그 | `JdbcTemplate`, `TransactionTemplate`, `MeterRegistry` |
-| 집계 지연 지표 (신규, `StockBalanceCollector` 안) | 집계 직후 게이지 `inventory.collector.lag_rows`(미집계 원장 행 수)·`inventory.collector.lag_seconds`(가장 오래된 미집계 행의 나이). 집계기가 멈추면 값이 계속 오른다. 알람 기준 초기값 60초 | `MeterRegistry` |
+| 집계 지연 지표 (신규, `StockBalanceCollector` 안) | 집계 직후 게이지 `inventory.collector.lag_rows`(미집계 원장 행 수)·`inventory.collector.lag_seconds`(가장 오래된 미집계 행의 나이). 집계기가 멈추면 값이 계속 오른다. 정착 창(60초) 때문에 정상 상태에서도 `lag_seconds`는 창 근처에 머무르므로 알람 기준 초기값은 창 + 집계 주기 몇 번 = 75초 | `MeterRegistry` |
 | 뷰 `v_stock_on_hand` (신규, V21) | 상품별 `스냅샷 + 미집계 원장 합`. 외부·BI가 잔고를 읽을 때는 이 뷰만 쓴다. `stock_balance` 직접 읽기는 금지 원칙 | — |
 | `InventoryAdjustmentController` (신규) | `POST /api/v1/admin/inventory/adjustments` `{gtin, delta, idempotencyKey, reason}` → `{txId, gtin, delta, onHandQty, duplicated}` | `InventoryService` |
 | `ShipmentCompleteService` (수정) | 상품 조회·락·부족 검사 제거. 품목마다 `recordOutboundPacked` 호출만 | 기존 |
