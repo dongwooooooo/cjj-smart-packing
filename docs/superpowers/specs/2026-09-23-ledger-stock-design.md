@@ -77,6 +77,8 @@
 
 `POST /api/v1/admin/inventory/adjustments`. 오늘의 사고("원장만 넣고 잔고를 안 바꿈")는 조정 경로가 하나뿐이면 구조적으로 불가능하다. 시연 프로비저너의 직접 SQL도 이 경로로 바꾼다.
 
+구현 중 확정(2026-09-24): 창구 `StockMovementRecorder`에 두 메서드를 둔다. `adjust(gtin, delta, idempotencyKey, reason)`는 관리자 API 전용으로 트랜잭션 밖(`NOT_SUPPORTED`)에서 돌아 같은 키의 동시 요청을 유니크 인덱스로 하나만 통과시키고 진 쪽은 이긴 기록을 다시 읽어 `duplicated`로 답한다. `adjustInternal(gtin, delta, reason)`은 재전송이 없는 내부 호출자(시연 프로비저너, 테스트 헬퍼)용으로 호출자의 트랜잭션에 참여한다 — 리셋 트랜잭션 안에서 방금 만든 상품 행을 봐야 하기 때문이다. 두 메서드 모두 원장 INSERT 한 줄이며, 컨트롤러는 `adjust`만 호출한다.
+
 ## 5. 데이터 모델 (V21 마이그레이션)
 
 ```sql
