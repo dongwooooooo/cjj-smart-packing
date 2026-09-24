@@ -55,7 +55,7 @@
 
 ### D-L2. 가용 재고 = 스냅샷 + 미집계 원장 차분 − 미포장 배정
 
-집계 주기와 무관하게 항상 정확하다. 원장 전체 합계 방식은 상품별 원장이 수만 행이 되면 접수마다 집계 비용이 커서 기각. 스냅샷만 쓰는 방식은 집계 지연 동안 방금 입고된 수량이 가용에 안 보이고 방금 포장된 수량이 가용에 남아 기각.
+집계 주기와 무관하게 정확하다. 단, 원장 행의 id 순서와 커밋 순서가 어긋날 수 있으므로(포장 완료가 원장 행을 넣은 뒤 박스 행 락을 기다린다) 집계기는 `id`만으로 접지 않고 정착 창(D-L5 참고)을 지난 행까지만 접는다. 원장을 쓰는 트랜잭션이 정착 창(기본 60초) 안에 끝난다는 전제 위에서 정확하다. 원장 전체 합계 방식은 상품별 원장이 수만 행이 되면 접수마다 집계 비용이 커서 기각. 스냅샷만 쓰는 방식은 집계 지연 동안 방금 입고된 수량이 가용에 안 보이고 방금 포장된 수량이 가용에 남아 기각.
 
 ### D-L3. `product.stock_qty` 컬럼은 남기되 읽기·쓰기 모두 중단
 
@@ -69,9 +69,11 @@
 
 집계를 쓰기 트랜잭션 뒤 이벤트로 거는 방식은 이벤트 유실 시 집계가 멈추고, 스케줄러가 있으면 이벤트는 불필요해 기각. 5초는 시연 화면 새로고침 주기와 같은 값이다. 60초는 대조 쿼리(상품별 원장 전체 합)의 비용을 고려한 값이며 운영에서 조정한다.
 
+구현 확정(2026-09-25, 최종 검토 C1): 집계 커서는 정착 창을 쓴다. `inventory_tx.created_at`은 DB가 `clock_timestamp()`로 기록하고, 집계기는 `created_at < statement_timestamp() − settle_seconds`인 행 가운데 첫 번째 "젊은" 행보다 작은 id까지만 `last_tx_id`를 올린다. 이렇게 하면 id를 먼저 받고 늦게 커밋한 행을 건너뛰지 않는다. `inventory.collector.settle-seconds` 기본 60. 전제: 원장을 쓰는 트랜잭션은 행을 넣은 뒤 60초 안에 커밋한다(포장 완료 약 1초). 이 전제가 깨지면 그 행은 대조기가 다음 주기에 복구할 때까지 조회값에서 빠진다.
+
 ### D-L6. 정합성 불일치는 원장 기준으로 자동 복구
 
-스냅샷은 원장에서 유도한 값이라 어긋남의 원인은 코드 버그나 직접 SQL뿐이다. 원장을 진실로 두고 스냅샷을 다시 만드는 것이 안전하다. 복구 사실은 지표와 로그로 남긴다. 원장 자체를 고치지는 않는다.
+스냅샷은 원장에서 유도한 값이라 어긋남의 원인은 코드 버그, 직접 SQL, 그리고 정착 창(D-L5)보다 오래 열린 원장 쓰기 트랜잭션뿐이다. 원장을 진실로 두고 스냅샷을 다시 만드는 것이 안전하다. 복구 사실은 지표와 로그로 남긴다. 원장 자체를 고치지는 않는다.
 
 ### D-L7. 조정은 API 한 곳, 멱등 키 필수
 
@@ -113,13 +115,13 @@ FROM stock_balance b;
 | 컴포넌트 | 역할 | 의존 |
 | --- | --- | --- |
 | `InventoryService` (수정) | `recordInbound`·`recordOutboundPacked`·`adjust`는 원장 INSERT만. `onHandQty`·`availableQty`는 D-L2 계산 | `InventoryTxRepository`, `StockBalanceRepository`, `ShipmentItemRepository` |
-| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 상관 서브쿼리 UPDATE(`SET qty = qty + (SELECT SUM … WHERE id > b.last_tx_id)`)라 동시 집계 시 행 락을 얻은 뒤 서브쿼리가 최신 `last_tx_id`로 재평가되어 이중 반영이 없다(구현 중 CTE 방식의 결함을 발견해 교체, 동시성 IT로 검증) | `JdbcTemplate`, `MeterRegistry` |
+| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 상관 서브쿼리 UPDATE 한 문장으로 정착 창을 지난 행까지 접는다(D-L5 구현 확정). 동시 집계 시 행 락을 얻은 뒤 `b.last_tx_id`를 참조하는 서브쿼리가 최신 값으로 재평가되어 이중 반영이 없다(CTE 방식의 결함을 발견해 교체, 동시성 IT·커밋 순서 역전 IT로 검증) | `JdbcTemplate`, `MeterRegistry` |
 | `StockReconciler` (신규) | 60초마다 상품별 원장 전체 합과 (스냅샷 + 차분)을 대조. 불일치는 상품마다 별도 트랜잭션으로 스냅샷 재작성(한 상품의 실패가 다른 상품을 막지 않음). 게이지 `inventory.reconcile.mismatch`(마지막 대조에서 **발견한** 불일치 상품 수 — 복구 실패분도 포함해 남은 문제가 보이게 한다)·`inventory.balance.negative`(음수 잔고 상품 수). 복구 실패는 WARN 로그 | `JdbcTemplate`, `TransactionTemplate`, `MeterRegistry` |
 | 집계 지연 지표 (신규, `StockBalanceCollector` 안) | 집계 직후 게이지 `inventory.collector.lag_rows`(미집계 원장 행 수)·`inventory.collector.lag_seconds`(가장 오래된 미집계 행의 나이). 집계기가 멈추면 값이 계속 오른다. 알람 기준 초기값 60초 | `MeterRegistry` |
 | 뷰 `v_stock_on_hand` (신규, V21) | 상품별 `스냅샷 + 미집계 원장 합`. 외부·BI가 잔고를 읽을 때는 이 뷰만 쓴다. `stock_balance` 직접 읽기는 금지 원칙 | — |
 | `InventoryAdjustmentController` (신규) | `POST /api/v1/admin/inventory/adjustments` `{gtin, delta, idempotencyKey, reason}` → `{txId, gtin, delta, onHandQty, duplicated}` | `InventoryService` |
 | `ShipmentCompleteService` (수정) | 상품 조회·락·부족 검사 제거. 품목마다 `recordOutboundPacked` 호출만 | 기존 |
-| `DemoStateResetter`·`DemoProductProvisioner` (수정) | 리셋 시 `stock_balance` 비움. 직접 SQL 대신 조정 경로 | 기존 |
+| `DemoStateResetter`·`DemoProductProvisioner` (수정) | 리셋 시 `stock_balance` 행을 삭제(0 으로 갱신하면 동시에 도는 집계가 삭제 전 원장을 다시 더할 수 있다 — 최종 검토 I1). 다음 집계 때 `INSERT_MISSING`이 `(0,0)`을 만든다. 직접 SQL 대신 조정 경로 | 기존 |
 | `ProductSummary`·`StockInResponse`·시연 상태 응답 (수정) | `stockQty`를 `onHandQty` 계산으로 채움 | `AvailableStockQuery` |
 
 `StockMovementRecorder`의 `recordOutboundPacked` 계약 주석("부족 시 OUT_OF_STOCK")을 "잔고가 음수가 될 수 있고 정합성 검사가 보고한다"로 바꾼다.
@@ -162,5 +164,5 @@ FROM stock_balance b;
 ## 11. 미확정
 
 - 집계 주기 5초·대조 주기 60초·집계 지연 알람 60초는 초기값. 운영 데이터로 조정.
-- 5초 지연은 정확도에 영향이 없다. 모든 조회가 미집계 원장을 더해 답하기 때문이다. 영향은 차분 쿼리 범위와, `stock_balance`를 직접 읽는 외부 경로가 있을 때뿐이다(뷰로 막는다).
+- 집계 지연은 정확도에 영향이 없다. 모든 조회가 미집계 원장을 더해 답하기 때문이다. 영향은 차분 쿼리 범위(정착 창 60초 + 집계 주기만큼의 행)와, `stock_balance`를 직접 읽는 외부 경로가 있을 때뿐이다(뷰로 막는다).
 - 조정 API의 권한 분리. 현재 인증이 단일 API 키라 관리자 구분이 없다. 이 설계에서는 다루지 않는다.
