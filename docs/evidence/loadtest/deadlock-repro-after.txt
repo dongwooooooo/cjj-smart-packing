@@ -1,0 +1,2 @@
+BUILD SUCCESSFUL in 7s
+<testsuite name="com.awesome.backend.outbound.service.ShipmentCompleteDeadlockIT" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-24T10:10:33.783Z" hostname="idong-uui-MacBookPro.local" time="6.203">
