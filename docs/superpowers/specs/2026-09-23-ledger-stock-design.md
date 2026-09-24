@@ -111,8 +111,8 @@ FROM stock_balance b;
 | 컴포넌트 | 역할 | 의존 |
 | --- | --- | --- |
 | `InventoryService` (수정) | `recordInbound`·`recordOutboundPacked`·`adjust`는 원장 INSERT만. `onHandQty`·`availableQty`는 D-L2 계산 | `InventoryTxRepository`, `StockBalanceRepository`, `ShipmentItemRepository` |
-| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 갱신 조건 `WHERE last_tx_id = :이전값`으로 이중 반영 방지 | `StockBalanceRepository`, `InventoryTxRepository` |
-| `StockReconciler` (신규) | 60초마다 상품별 원장 전체 합과 (스냅샷 + 차분)을 대조. 불일치는 스냅샷 재작성, 게이지 `inventory.reconcile.mismatch`(건수)·`inventory.balance.negative`(음수 잔고 상품 수) | `StockBalanceRepository`, `InventoryTxRepository`, `MeterRegistry` |
+| `StockBalanceCollector` (신규) | 5초마다 `id > last_tx_id` 원장을 상품별로 합쳐 스냅샷 갱신. 상관 서브쿼리 UPDATE(`SET qty = qty + (SELECT SUM … WHERE id > b.last_tx_id)`)라 동시 집계 시 행 락을 얻은 뒤 서브쿼리가 최신 `last_tx_id`로 재평가되어 이중 반영이 없다(구현 중 CTE 방식의 결함을 발견해 교체, 동시성 IT로 검증) | `JdbcTemplate`, `MeterRegistry` |
+| `StockReconciler` (신규) | 60초마다 상품별 원장 전체 합과 (스냅샷 + 차분)을 대조. 불일치는 상품마다 별도 트랜잭션으로 스냅샷 재작성(한 상품의 실패가 다른 상품을 막지 않음). 게이지 `inventory.reconcile.mismatch`(마지막 대조에서 **발견한** 불일치 상품 수 — 복구 실패분도 포함해 남은 문제가 보이게 한다)·`inventory.balance.negative`(음수 잔고 상품 수). 복구 실패는 WARN 로그 | `JdbcTemplate`, `TransactionTemplate`, `MeterRegistry` |
 | 집계 지연 지표 (신규, `StockBalanceCollector` 안) | 집계 직후 게이지 `inventory.collector.lag_rows`(미집계 원장 행 수)·`inventory.collector.lag_seconds`(가장 오래된 미집계 행의 나이). 집계기가 멈추면 값이 계속 오른다. 알람 기준 초기값 60초 | `MeterRegistry` |
 | 뷰 `v_stock_on_hand` (신규, V21) | 상품별 `스냅샷 + 미집계 원장 합`. 외부·BI가 잔고를 읽을 때는 이 뷰만 쓴다. `stock_balance` 직접 읽기는 금지 원칙 | — |
 | `InventoryAdjustmentController` (신규) | `POST /api/v1/admin/inventory/adjustments` `{gtin, delta, idempotencyKey, reason}` → `{txId, gtin, delta, onHandQty, duplicated}` | `InventoryService` |
