@@ -1,0 +1,10 @@
+    k    | shipments 
+---------+-----------
+ fixture |      2000
+(1 row)
+
+    status     | count 
+---------------+-------
+ TOTE_ASSIGNED |  2000
+(1 row)
+

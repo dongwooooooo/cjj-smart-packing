@@ -1,7 +1,12 @@
 // 시나리오 3 — 동시 포장 완료. 포장 작업자 N 명이 토트를 스캔하고 포장 완료를 누른다.
 // 서버: /admin/demo/outbound/next-tote → /totes/scan → /shipments/{id}/complete (재고 차감·박스 재고 락·토트 해제, 한 트랜잭션).
 // 판정: 완료 p95, 실패율(OUT_OF_STOCK·INVALID_STATE 는 데이터 소진이지 결함이 아님 — 별도 집계), 박스 재고 행 락 대기.
+//
+// 작업자 한 사이클 = 스캔 → 상세 → (포장 작업 THINK_MS) → 완료 → (SLEEP_AFTER_MS). PACING_MS 가 있으면
+// 사이클 길이를 그 값에 맞춘다(모자라면 끝에서 기다림). 풀 크기 실험(pool-sweep.sh)은 WARMUP_S 이후의
+// 요청만 measured_* 지표에 넣어, k6 요약이 곧 워밍업을 뺀 판독 구간의 값이 되게 한다.
 import { sleep } from "k6";
+import exec from "k6/execution";
 import { SharedArray } from "k6/data";
 import { Trend, Counter } from "k6/metrics";
 import { post, get, ok } from "./lib.js";
@@ -15,6 +20,31 @@ const TOTES = __ENV.TOTES_FILE
 
 const completeMs = new Trend("complete_duration", true);
 const exhausted = new Counter("packing_exhausted");
+// 판독 구간(WARMUP_S 이후)만 담는 지표
+const mComplete = new Trend("measured_complete", true);
+const mScan = new Trend("measured_scan", true);
+const mDetail = new Trend("measured_detail", true);
+const mOk = new Counter("measured_complete_ok");
+const mFail = new Counter("measured_req_fail");
+const mReqs = new Counter("measured_reqs");
+
+const THINK_MS = parseInt(__ENV.THINK_MS || "0", 10);
+const SLEEP_AFTER_MS = parseInt(__ENV.SLEEP_AFTER_MS || "1000", 10);
+const PACING_MS = parseInt(__ENV.PACING_MS || "0", 10);
+const WARMUP_MS = parseInt(__ENV.WARMUP_S || "0", 10) * 1000;
+
+function inWindow() {
+  return exec.instance.currentTestRunDuration >= WARMUP_MS;
+}
+
+// 판독 구간이면 요청 하나를 기록한다. 실패는 상태 코드 기준(2xx 아님, 타임아웃은 status 0).
+function record(trend, res) {
+  if (!inWindow()) return;
+  trend.add(res.timings.duration);
+  mReqs.add(1);
+  if (res.status < 200 || res.status >= 300)
+    mFail.add(1, { status: String(res.status) });
+}
 
 export const options = {
   scenarios: {
@@ -25,6 +55,7 @@ export const options = {
     },
   },
   thresholds: { complete_duration: ["p(95)<500"] },
+  summaryTrendStats: ["avg", "p(50)", "p(95)", "p(99)", "max", "count"],
 };
 
 function nextBarcode() {
@@ -44,6 +75,9 @@ function nextBarcode() {
 }
 
 export default function () {
+  const cycleStart = Date.now();
+  // 사이클을 맞출 때 모든 작업자가 같은 순간에 누르지 않도록 첫 사이클만 시작을 흩는다.
+  if (PACING_MS > 0 && __ITER === 0) sleep((Math.random() * PACING_MS) / 1000);
   const barcode = nextBarcode();
   if (!barcode) {
     exhausted.add(1);
@@ -51,6 +85,7 @@ export default function () {
     return;
   }
   const scan = post("/api/v1/totes/scan", { barcode }, { name: "tote-scan" });
+  record(mScan, scan);
   if (!ok(scan, "tote-scan")) {
     sleep(1);
     return;
@@ -60,14 +95,23 @@ export default function () {
   const detail = get(`/api/v1/shipments/${shipmentId}`, {
     name: "shipment-detail",
   });
+  record(mDetail, detail);
   const expected =
-    detail.json("expectedWeightKg") || detail.json("weight.expectedKg") || 1.0;
+    (detail.status === 200 &&
+      (detail.json("expectedWeightKg") || detail.json("weight.expectedKg"))) ||
+    1.0;
+  if (THINK_MS > 0) sleep(THINK_MS / 1000);
   const done = post(
     `/api/v1/shipments/${shipmentId}/complete`,
     { measuredWeightKg: expected },
     { name: "complete" },
   );
-  ok(done, "complete");
+  if (ok(done, "complete") && inWindow()) mOk.add(1);
   completeMs.add(done.timings.duration);
-  sleep(1);
+  record(mComplete, done);
+  if (SLEEP_AFTER_MS > 0) sleep(SLEEP_AFTER_MS / 1000);
+  if (PACING_MS > 0) {
+    const left = PACING_MS - (Date.now() - cycleStart);
+    if (left > 0) sleep(left / 1000);
+  }
 }
