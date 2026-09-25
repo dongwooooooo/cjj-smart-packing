@@ -94,31 +94,31 @@
   "rds_rollbacks_per_s": 0.0,
   "pg_deadlocks": 0.0,
   "wait_samples_s": 177,
-  "db_busy_avg": 19.8135593220339,
+  "db_busy_avg": 19.375690607734807,
   "wait_top": [
    {
     "event": "IdleInTx:app",
-    "avg_sessions": 9.23728813559322,
+    "avg_sessions": 9.033149171270718,
     "samples": 1635
    },
    {
     "event": "Lock:tuple",
-    "avg_sessions": 6.073446327683616,
+    "avg_sessions": 5.939226519337017,
     "samples": 1075
    },
    {
     "event": "Lock:transactionid",
-    "avg_sessions": 2.440677966101695,
+    "avg_sessions": 2.386740331491713,
     "samples": 432
    },
    {
     "event": "CPU",
-    "avg_sessions": 0.847457627118644,
+    "avg_sessions": 0.8287292817679558,
     "samples": 150
    },
    {
     "event": "Client:ClientRead",
-    "avg_sessions": 0.8248587570621468,
+    "avg_sessions": 0.8066298342541437,
     "samples": 146
    }
   ],
@@ -138,6 +138,7 @@
   "db_idle_max": 4,
   "rds_cpuutilization_average": 72.14062779024881,
   "rds_cpuutilization_maximum": 84.54919877941005,
-  "rds_databaseconnections_maximum": 23.0
+  "rds_databaseconnections_maximum": 23.0,
+  "wait_samples": 181
  }
 }

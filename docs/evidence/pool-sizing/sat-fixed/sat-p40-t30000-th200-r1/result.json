@@ -106,31 +106,31 @@
    "/api/v1/totes/scan 200 none": 23818
   },
   "wait_samples_s": 144,
-  "db_busy_avg": 49.38194444444444,
+  "db_busy_avg": 37.62433862433863,
   "wait_top": [
    {
     "event": "Lock:tuple",
-    "avg_sessions": 31.743055555555557,
+    "avg_sessions": 24.185185185185187,
     "samples": 4571
    },
    {
     "event": "IdleInTx:app",
-    "avg_sessions": 11.625,
+    "avg_sessions": 8.857142857142858,
     "samples": 1674
    },
    {
     "event": "Lock:transactionid",
-    "avg_sessions": 3.1805555555555554,
+    "avg_sessions": 2.4232804232804233,
     "samples": 458
    },
    {
     "event": "Client:ClientRead",
-    "avg_sessions": 1.7847222222222223,
+    "avg_sessions": 1.3597883597883598,
     "samples": 257
    },
    {
     "event": "CPU",
-    "avg_sessions": 0.75,
+    "avg_sessions": 0.5714285714285714,
     "samples": 108
    }
   ],
@@ -147,12 +147,13 @@
    "LWLock:MultiXactGen": 1,
    "LWLock:LockManager": 1
   },
-  "db_idle_max": 5,
+  "db_idle_max": 4,
   "rds_cpuutilization_average": 53.828982245969875,
   "rds_cpuutilization_maximum": 82.52224925835806,
   "rds_cpucreditbalance_minimum": 3.10637695,
   "rds_databaseconnections_maximum": 42.0,
   "rds_cpusurpluscreditbalance_maximum": 0.0,
-  "rds_cpusurpluscreditscharged_sum": 0.0
+  "rds_cpusurpluscreditscharged_sum": 0.0,
+  "wait_samples": 189
  }
 }

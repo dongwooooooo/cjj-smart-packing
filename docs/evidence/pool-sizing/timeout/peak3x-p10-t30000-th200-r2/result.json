@@ -118,31 +118,31 @@
    "/api/v1/totes/scan 200 none": 1250
   },
   "wait_samples_s": 240,
-  "db_busy_avg": 1.7958333333333334,
+  "db_busy_avg": 1.7883817427385893,
   "wait_top": [
    {
     "event": "CPU",
-    "avg_sessions": 0.575,
+    "avg_sessions": 0.5726141078838174,
     "samples": 138
    },
    {
     "event": "Lock:tuple",
-    "avg_sessions": 0.425,
+    "avg_sessions": 0.42323651452282157,
     "samples": 102
    },
    {
     "event": "IdleInTx:app",
-    "avg_sessions": 0.3875,
+    "avg_sessions": 0.38589211618257263,
     "samples": 93
    },
    {
     "event": "Lock:transactionid",
-    "avg_sessions": 0.30833333333333335,
+    "avg_sessions": 0.3070539419087137,
     "samples": 74
    },
    {
     "event": "Client:ClientRead",
-    "avg_sessions": 0.07083333333333333,
+    "avg_sessions": 0.07053941908713693,
     "samples": 17
    }
   ],
@@ -156,10 +156,11 @@
    "IPC:BgworkerShutdown": 4,
    "IO:WalSync": 1
   },
-  "db_idle_max": 17,
+  "db_idle_max": 10,
   "rds_cpuutilization_average": 34.25226435353946,
   "rds_cpuutilization_maximum": 35.835125089587805,
   "rds_cpucreditbalance_minimum": 97.09802665,
-  "rds_databaseconnections_maximum": 13.0
+  "rds_databaseconnections_maximum": 13.0,
+  "wait_samples": 241
  }
 }

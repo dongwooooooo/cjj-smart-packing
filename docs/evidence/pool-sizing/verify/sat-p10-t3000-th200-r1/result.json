@@ -110,31 +110,31 @@
    "/api/v1/shipments/{shipmentId}/complete 409 none": 27
   },
   "wait_samples_s": 180,
-  "db_busy_avg": 9.53888888888889,
+  "db_busy_avg": 9.382513661202186,
   "wait_top": [
    {
     "event": "IdleInTx:app",
-    "avg_sessions": 5.8277777777777775,
+    "avg_sessions": 5.73224043715847,
     "samples": 1049
    },
    {
     "event": "CPU",
-    "avg_sessions": 1.6666666666666667,
+    "avg_sessions": 1.639344262295082,
     "samples": 300
    },
    {
     "event": "Lock:transactionid",
-    "avg_sessions": 0.7611111111111111,
+    "avg_sessions": 0.7486338797814208,
     "samples": 137
    },
    {
     "event": "Client:ClientRead",
-    "avg_sessions": 0.7444444444444445,
+    "avg_sessions": 0.73224043715847,
     "samples": 134
    },
    {
     "event": "Lock:tuple",
-    "avg_sessions": 0.34444444444444444,
+    "avg_sessions": 0.33879781420765026,
     "samples": 62
    }
   ],
@@ -156,6 +156,7 @@
   "rds_cpuutilization_average": 74.0879984113816,
   "rds_cpuutilization_maximum": 80.59437938329808,
   "rds_cpucreditbalance_minimum": 79.59720548333334,
-  "rds_databaseconnections_maximum": 12.0
+  "rds_databaseconnections_maximum": 12.0,
+  "wait_samples": 183
  }
 }

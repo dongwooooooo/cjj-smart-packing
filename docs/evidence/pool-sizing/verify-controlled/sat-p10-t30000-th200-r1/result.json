@@ -146,6 +146,7 @@
   "db_idle_max": 3,
   "rds_cpuutilization_average": 52.486230597001324,
   "rds_cpuutilization_maximum": 67.62322417127992,
-  "rds_databaseconnections_maximum": 12.0
+  "rds_databaseconnections_maximum": 12.0,
+  "wait_samples": 181
  }
 }

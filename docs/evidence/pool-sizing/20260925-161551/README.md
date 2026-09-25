@@ -1,26 +1,11 @@
 # 풀 크기 스윕 결과 — 20260925-161551
 
-생성: 2026-09-25 16:17. 도구 `tools/loadtest/pool-sweep.sh`. 수치는 판독 구간(워밍업 제외)만.
+생성: 2026-09-26 02:30. 도구 `tools/loadtest/pool-sweep.sh`. 수치는 판독 구간(워밍업 제외)만.
 
-## 실행 조건
+## 실행 조건 (호출별)
 
 ```json
-{
- "started": "20260925-161551",
- "pool_sizes": "10",
- "conn_timeouts_ms": "30000",
- "tomcat_threads": "200",
- "loads": "smoke:20:0:0:1000",
- "repeat": 1,
- "warmup_s": 10,
- "measure_s": 40,
- "scenario": "packing",
- "client_timeout": "60s",
- "lock_inject": "",
- "image": "cd6222eefbf2",
- "rds_max_connections": "79",
- "portfolio_sha": "3f02882"
-}
+{"started": "20260925-161551", "pool_sizes": "10", "conn_timeouts_ms": "30000", "tomcat_threads": "200", "loads": "smoke:20:0:0:1000", "repeat": 1, "warmup_s": 10, "measure_s": 40, "scenario": "packing", "client_timeout": "60s", "lock_inject": "", "image": "cd6222eefbf2", "rds_max_connections": "79", "portfolio_sha": "3f02882"}
 ```
 
 ## 조건별 비교표

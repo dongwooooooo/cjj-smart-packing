@@ -136,6 +136,7 @@
   "rds_cpuutilization_average": 50.22747237492365,
   "rds_cpuutilization_maximum": 54.69166666666667,
   "rds_cpucreditbalance_minimum": 225.07797066666666,
-  "rds_databaseconnections_maximum": 7.0
+  "rds_databaseconnections_maximum": 7.0,
+  "wait_samples": 181
  }
 }

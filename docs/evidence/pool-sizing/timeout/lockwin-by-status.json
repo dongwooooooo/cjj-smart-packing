@@ -1,0 +1,63 @@
+{
+ "peak3x-p10-t1000-th200-r1": {
+  "window_start_epoch": 1790341731,
+  "window_end_epoch": 1790341763,
+  "query": "sum by (name,status) (increase(k6_http_reqs_total{run=\"peak3x-p10-t1000-th200-r1\"}[32s]))",
+  "counts": {
+   "complete 0": 2,
+   "complete 500": 92,
+   "tote-scan 500": 487,
+   "shipment-detail 200": 150,
+   "complete 200": 60,
+   "tote-scan 200": 153
+  }
+ },
+ "peak3x-p10-t1000-th200-r2": {
+  "window_start_epoch": 1790344522,
+  "window_end_epoch": 1790344554,
+  "query": "sum by (name,status) (increase(k6_http_reqs_total{run=\"peak3x-p10-t1000-th200-r2\"}[32s]))",
+  "counts": {
+   "complete 500": 100,
+   "tote-scan 500": 496,
+   "shipment-detail 200": 149,
+   "complete 200": 58,
+   "tote-scan 200": 149
+  }
+ },
+ "peak3x-p10-t3000-th200-r1": {
+  "window_start_epoch": 1790341220,
+  "window_end_epoch": 1790341252,
+  "query": "sum by (name,status) (increase(k6_http_reqs_total{run=\"peak3x-p10-t3000-th200-r1\"}[32s]))",
+  "counts": {
+   "complete 500": 78,
+   "tote-scan 500": 201,
+   "shipment-detail 200": 149,
+   "complete 200": 53,
+   "tote-scan 200": 151
+  }
+ },
+ "peak3x-p10-t30000-th200-r1": {
+  "window_start_epoch": 1790340700,
+  "window_end_epoch": 1790340732,
+  "query": "sum by (name,status) (increase(k6_http_reqs_total{run=\"peak3x-p10-t30000-th200-r1\"}[32s]))",
+  "counts": {
+   "complete 0": 68,
+   "tote-scan 0": 46,
+   "shipment-detail 200": 155,
+   "complete 200": 114,
+   "tote-scan 200": 155
+  }
+ },
+ "peak3x-p10-t30000-th200-r2": {
+  "window_start_epoch": 1790345042,
+  "window_end_epoch": 1790345074,
+  "query": "sum by (name,status) (increase(k6_http_reqs_total{run=\"peak3x-p10-t30000-th200-r2\"}[32s]))",
+  "counts": {
+   "complete 0": 55,
+   "tote-scan 0": 59,
+   "shipment-detail 200": 164,
+   "complete 200": 91,
+   "tote-scan 200": 164
+  }
+ }
+}

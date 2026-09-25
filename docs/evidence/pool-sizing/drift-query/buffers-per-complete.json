@@ -1,0 +1,299 @@
+[
+ {
+  "dir": "sat/sat-p10-t30000-th200-r1",
+  "start": "09-25 20:40",
+  "tps": 113.38333333333334,
+  "blks_hit_per_s": 707625.7428571427,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 6241.003170869993,
+  "completes_whole_run": 23028
+ },
+ {
+  "dir": "sat/sat-p10-t30000-th200-r2",
+  "start": "09-25 21:14",
+  "tps": 106.67777777777778,
+  "blks_hit_per_s": 900217.257142857,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 8438.657758864403,
+  "completes_whole_run": 21722
+ },
+ {
+  "dir": "sat/sat-p2-t30000-th200-r1",
+  "start": "09-25 20:27",
+  "tps": 29.344444444444445,
+  "blks_hit_per_s": 416865.7142857142,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 14205.950127116348,
+  "completes_whole_run": 6153
+ },
+ {
+  "dir": "sat/sat-p2-t30000-th200-r2",
+  "start": "09-25 21:27",
+  "tps": 25.43888888888889,
+  "blks_hit_per_s": 829920.777142857,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 32624.096939444036,
+  "completes_whole_run": 5309
+ },
+ {
+  "dir": "sat/sat-p20-t30000-th200-r1",
+  "start": "09-25 20:46",
+  "tps": 121.98333333333333,
+  "blks_hit_per_s": 741590.457142857,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 6079.4408291530835,
+  "completes_whole_run": 24484
+ },
+ {
+  "dir": "sat/sat-p20-t30000-th200-r2",
+  "start": "09-25 21:07",
+  "tps": 119.34444444444445,
+  "blks_hit_per_s": 824090.8514285713,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 6905.146320507533,
+  "completes_whole_run": 24061
+ },
+ {
+  "dir": "sat/sat-p30-t30000-th200-r1",
+  "start": "09-25 21:42",
+  "tps": 56.7,
+  "blks_hit_per_s": 677667.5485714285,
+  "blks_read_per_s": 0.039999999999999994,
+  "blocks_per_complete": 11951.808616780043,
+  "completes_whole_run": 10945
+ },
+ {
+  "dir": "sat/sat-p40-t30000-th200-r1",
+  "start": "09-25 20:53",
+  "tps": 39.333333333333336,
+  "blks_hit_per_s": 533642.9657142856,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 13567.194043583531,
+  "completes_whole_run": 7663
+ },
+ {
+  "dir": "sat/sat-p40-t30000-th200-r2",
+  "start": "09-25 21:01",
+  "tps": 45.227777777777774,
+  "blks_hit_per_s": 598363.1885714285,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 13229.993114219033,
+  "completes_whole_run": 8765
+ },
+ {
+  "dir": "sat/sat-p5-t30000-th200-r1",
+  "start": "09-25 20:33",
+  "tps": 71.02777777777777,
+  "blks_hit_per_s": 536890.3828571428,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 7558.879070339125,
+  "completes_whole_run": 14647
+ },
+ {
+  "dir": "sat/sat-p5-t30000-th200-r2",
+  "start": "09-25 21:21",
+  "tps": 67.08333333333333,
+  "blks_hit_per_s": 956424.2228571427,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 14257.255496007097,
+  "completes_whole_run": 13795
+ },
+ {
+  "dir": "verify-1s-candidate/sat-p10-t1000-th200-r1",
+  "start": "09-25 22:25",
+  "tps": 106.13333333333334,
+  "blks_hit_per_s": 1072093.6285714284,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 10101.38469131371,
+  "completes_whole_run": 21521
+ },
+ {
+  "dir": "verify-1s-candidate/sat-p10-t1000-th200-r2",
+  "start": "09-25 22:45",
+  "tps": 84.14444444444445,
+  "blks_hit_per_s": 989329.4857142855,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 11757.514025390954,
+  "completes_whole_run": 17836
+ },
+ {
+  "dir": "verify-1s-candidate/sat-p10-t30000-th200-r1",
+  "start": "09-25 22:32",
+  "tps": 103.53333333333333,
+  "blks_hit_per_s": 1089382.577142857,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 10522.046785024375,
+  "completes_whole_run": 21155
+ },
+ {
+  "dir": "verify-1s-candidate/sat-p10-t30000-th200-r2",
+  "start": "09-25 22:38",
+  "tps": 95.07777777777778,
+  "blks_hit_per_s": 1083104.4171428569,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 11391.772530426213,
+  "completes_whole_run": 19506
+ },
+ {
+  "dir": "verify-controlled/sat-p10-t3000-th200-r1",
+  "start": "09-26 00:13",
+  "tps": 120.35555555555555,
+  "blks_hit_per_s": 225781.35428571425,
+  "blks_read_per_s": 18.548571428571424,
+  "blocks_per_complete": 1875.9529067313777,
+  "completes_whole_run": 24347
+ },
+ {
+  "dir": "verify-controlled/sat-p10-t3000-th200-r2",
+  "start": "09-26 00:37",
+  "tps": 124.93888888888888,
+  "blks_hit_per_s": 222613.6514285714,
+  "blks_read_per_s": 15.34285714285714,
+  "blocks_per_complete": 1781.7803040216486,
+  "completes_whole_run": 25267
+ },
+ {
+  "dir": "verify-controlled/sat-p10-t30000-th200-r1",
+  "start": "09-26 00:22",
+  "tps": 125.37222222222222,
+  "blks_hit_per_s": 230956.00571428568,
+  "blks_read_per_s": 17.62285714285714,
+  "blocks_per_complete": 1842.1624951731033,
+  "completes_whole_run": 25120
+ },
+ {
+  "dir": "verify-controlled/sat-p10-t30000-th200-r2",
+  "start": "09-26 00:29",
+  "tps": 122.66666666666667,
+  "blks_hit_per_s": 222693.64571428567,
+  "blks_read_per_s": 17.79428571428571,
+  "blocks_per_complete": 1815.437329192546,
+  "completes_whole_run": 24833
+ },
+ {
+  "dir": "verify/sat-p10-t3000-th200-r1",
+  "start": "09-25 23:39",
+  "tps": 82.47222222222223,
+  "blks_hit_per_s": 965250.0914285713,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 11703.941829379779,
+  "completes_whole_run": 16745
+ },
+ {
+  "dir": "verify/sat-p10-t3000-th200-r2",
+  "start": "09-25 23:59",
+  "tps": 55.15,
+  "blks_hit_per_s": 878267.6551724139,
+  "blks_read_per_s": 1.0000000000000002,
+  "blocks_per_complete": 15925.070810016572,
+  "completes_whole_run": 11657
+ },
+ {
+  "dir": "verify/sat-p10-t30000-th200-r1",
+  "start": "09-25 23:46",
+  "tps": 77.43888888888888,
+  "blks_hit_per_s": 1071362.057142857,
+  "blks_read_per_s": 0.0,
+  "blocks_per_complete": 13834.93581216115,
+  "completes_whole_run": 14941
+ },
+ {
+  "dir": "verify/sat-p10-t30000-th200-r2",
+  "start": "09-25 23:53",
+  "tps": 66.35555555555555,
+  "blks_hit_per_s": 944954.1677998106,
+  "blks_read_per_s": 0.48767140151515154,
+  "blocks_per_complete": 14240.769441055418,
+  "completes_whole_run": 13507
+ },
+ {
+  "dir": "sat-fixed/sat-p10-t30000-th200-r1",
+  "start": "09-26 01:01",
+  "tps": 125.18888888888888,
+  "blks_hit_per_s": 215143.71428571426,
+  "blks_read_per_s": 18.039999999999996,
+  "blocks_per_complete": 1718.552790069609,
+  "completes_whole_run": 25198
+ },
+ {
+  "dir": "sat-fixed/sat-p10-t30000-th200-r2",
+  "start": "09-26 02:02",
+  "tps": 122.28888888888889,
+  "blks_hit_per_s": 222730.81142857138,
+  "blks_read_per_s": 17.817142857142855,
+  "blocks_per_complete": 1821.3495392123773,
+  "completes_whole_run": 24377
+ },
+ {
+  "dir": "sat-fixed/sat-p20-t30000-th200-r1",
+  "start": "09-26 01:09",
+  "tps": 136.58333333333334,
+  "blks_hit_per_s": 255121.98857142852,
+  "blks_read_per_s": 17.76571428571428,
+  "blocks_per_complete": 1867.8852122374265,
+  "completes_whole_run": 26925
+ },
+ {
+  "dir": "sat-fixed/sat-p20-t30000-th200-r2",
+  "start": "09-26 01:54",
+  "tps": 138.32222222222222,
+  "blks_hit_per_s": 256731.5714285714,
+  "blks_read_per_s": 17.805714285714284,
+  "blocks_per_complete": 1856.039957311545,
+  "completes_whole_run": 27205
+ },
+ {
+  "dir": "sat-fixed/sat-p30-t30000-th200-r1",
+  "start": "09-26 01:17",
+  "tps": 137.55555555555554,
+  "blks_hit_per_s": 256188.9828571428,
+  "blks_read_per_s": 17.028571428571425,
+  "blocks_per_complete": 1862.4401015462727,
+  "completes_whole_run": 27044
+ },
+ {
+  "dir": "sat-fixed/sat-p30-t30000-th200-r2",
+  "start": "09-26 01:46",
+  "tps": 139.42777777777778,
+  "blks_hit_per_s": 260612.22857142854,
+  "blks_read_per_s": 17.348571428571425,
+  "blocks_per_complete": 1869.155721514808,
+  "completes_whole_run": 27512
+ },
+ {
+  "dir": "sat-fixed/sat-p40-t30000-th200-r1",
+  "start": "09-26 01:30",
+  "tps": 132.11666666666667,
+  "blks_hit_per_s": 250643.8571428571,
+  "blks_read_per_s": 21.068571428571424,
+  "blocks_per_complete": 1897.1403341202756,
+  "completes_whole_run": 26137
+ },
+ {
+  "dir": "sat-fixed/sat-p40-t30000-th200-r2",
+  "start": "09-26 01:38",
+  "tps": 131.86111111111111,
+  "blks_hit_per_s": 246115.3314285714,
+  "blks_read_per_s": 20.005714285714284,
+  "blocks_per_complete": 1866.4739691233558,
+  "completes_whole_run": 26178
+ },
+ {
+  "dir": "sat-fixed/sat-p5-t30000-th200-r1",
+  "start": "09-26 00:53",
+  "tps": 78.4,
+  "blks_hit_per_s": 138458.6057142857,
+  "blks_read_per_s": 13.039999999999997,
+  "blocks_per_complete": 1766.0536443148683,
+  "completes_whole_run": 16087
+ },
+ {
+  "dir": "sat-fixed/sat-p5-t30000-th200-r2",
+  "start": "09-26 02:10",
+  "tps": 74.96666666666667,
+  "blks_hit_per_s": 132963.74285714285,
+  "blks_read_per_s": 13.102857142857141,
+  "blocks_per_complete": 1773.638188401194,
+  "completes_whole_run": 15307
+ }
+]

@@ -152,6 +152,7 @@
   "rds_cpucreditbalance_minimum": 0.0,
   "rds_databaseconnections_maximum": 42.0,
   "rds_cpusurpluscreditbalance_maximum": 6.279041383333333,
-  "rds_cpusurpluscreditscharged_sum": 0.0
+  "rds_cpusurpluscreditscharged_sum": 0.0,
+  "wait_samples": 181
  }
 }
