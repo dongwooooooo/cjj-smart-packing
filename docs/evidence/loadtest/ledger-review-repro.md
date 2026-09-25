@@ -353,7 +353,9 @@ select id, qty_delta, (id > (select last_tx_id from stock_balance)) as visible_t
 ```
 
 ### 결과
-원장 진실은 100 − 1 − 2 − 4 − 1 − 2 = 90인데 조회값은 91이다. 05:52:21 집계 1회차는 보이는 행이 id5뿐이라 `last_tx_id`를 5로 올렸다. 05:52:24 A가 커밋한 id4는 5보다 작아 미집계 조회(`id > last_tx_id`)에 잡히지 않고(0 rows), 집계 2회차는 `UPDATE 0`이다. id4의 −1은 스냅샷에도 차분에도 영원히 들어가지 않는다. 대조기의 REBUILD도 같은 커서 규칙이라 복구하지 못한다.
+원장 진실은 100 − 1 − 2 − 4 − 1 − 2 = 90인데 조회값은 91이다. 05:52:21 집계 1회차는 보이는 행이 id5뿐이라 `last_tx_id`를 5로 올렸다. 05:52:24 A가 커밋한 id4는 5보다 작아 미집계 조회(`id > last_tx_id`)에 잡히지 않고(0 rows), 집계 2회차는 `UPDATE 0`이다. 집계기만 보면 id4의 −1은 스냅샷에도 차분에도 다시 들어가지 않는다. 원장 진실 90은 초기값 100(이 재현에서는 원장 행 없이 스냅샷에만 둔 값) + 원장 합이다. 마지막 쿼리의 `visible_to_reads`는 정상 집계된 id5도 f라서 이 열만으로는 누락을 판별할 수 없다.
+
+(2026-09-25 정정) 이전 판에는 "대조기의 REBUILD도 같은 커서 규칙이라 복구하지 못한다"고 적었으나 틀렸다. 수정 전 대조기(`83dcf67`)의 REBUILD는 `qty = 원장 전체 합`, `last_tx_id = 전체 MAX(id)`로 다시 쓰므로, 미커밋 원장 행이 없는 시점의 대조에서 누락을 복구한다. 다만 REBUILD 실행 순간에 더 작은 id의 미커밋 행이 있으면 그 행을 다시 건너뛴다. 재측정: `docs/evidence/ledger-cursor/README.md` R1, 로그 `docs/evidence/ledger-cursor/logs/r1-prefix-collector-reconciler.log`.
 
 ### 수정
-`created_at`을 DB가 `clock_timestamp()`로 기록하고, 집계는 `created_at < statement_timestamp() − 60초`인 행 가운데 첫 "젊은" 행보다 작은 id까지만 접는다. 전제: 원장 쓰기 트랜잭션은 행을 넣은 뒤 60초 안에 커밋(포장 완료 약 1초). IT `StockBalanceCollectorSettleIT.커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다`를 정착 창 0으로 돌리면 `Expecting actual: 2L to be less than: 1L`로 같은 결함이 재현되고, 창 5초에서 통과한다.
+`created_at`을 DB가 `clock_timestamp()`로 기록하고, 집계는 `created_at < statement_timestamp() − 60초`인 행 가운데 첫 "젊은" 행보다 작은 id까지만 접는다. 전제: 원장 쓰기 트랜잭션은 행을 넣은 뒤 60초 안에 커밋(포장 완료 요청 k6 소요 p50 35ms·p95 73ms·max 999ms, 실행 5). IT `StockBalanceCollectorSettleIT.커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다`를 정착 창 0으로 돌리면 `Expecting actual: 2L to be less than: 1L`로 같은 결함이 재현되고, 창 5초에서 통과한다.

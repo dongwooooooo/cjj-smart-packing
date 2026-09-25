@@ -1,0 +1,8 @@
+33c33
+<         "inventory.collector.settle-seconds=5"})
+---
+>         "inventory.collector.settle-seconds=0"})
+35c35
+< class StockBalanceCollectorSettleIT {
+---
+> class StockBalanceCollectorSettleProbeIT {

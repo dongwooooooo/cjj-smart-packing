@@ -1,0 +1,23 @@
+=== 실행 2026-09-25T07:12:56Z backend f87a37e
+$ ./gradlew cleanTest test --tests com.awesome.backend.inventory.service.StockBalanceCollectorSettleIT --console=plain
+> Task :cleanTest
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-09-25T16:13:14.193+09:00  INFO 89461 --- [backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-25T16:13:14.196+09:00  INFO 89461 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-25T16:13:14.197+09:00  INFO 89461 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+> Task :test
+
+BUILD SUCCESSFUL in 17s
+5 actionable tasks: 2 executed, 3 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
+gradle exit=0
+
+=== 테스트 결과 XML (build/test-results/test/TEST-com.awesome.backend.inventory.service.StockBalanceCollectorSettleIT.xml) 요약
+<testsuite name="com.awesome.backend.inventory.service.StockBalanceCollectorSettleIT" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-25T07:12:59.810Z" hostname="(생략)" time="14.147">
+  <testcase name="커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다()" classname="com.awesome.backend.inventory.service.StockBalanceCollectorSettleIT" time="6.07"/>

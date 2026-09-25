@@ -1,0 +1,52 @@
+=== 실행 2026-09-25T07:13:33Z backend f87a37e + 임시 사본 StockBalanceCollectorSettleProbeIT (변경점: r3-probe-diff.txt)
+$ ./gradlew test --tests com.awesome.backend.inventory.service.StockBalanceCollectorSettleProbeIT --console=plain
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+
+> Task :compileTestJava
+Note: <repo>/backend/src/test/java/com/awesome/backend/inventory/service/StockBalanceCollectorSettleProbeIT.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :test
+
+StockBalanceCollectorSettleProbeIT > 커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다() FAILED
+    java.lang.AssertionError at StockBalanceCollectorSettleProbeIT.java:82
+
+2026-09-25T16:13:48.267+09:00  INFO 90485 --- [backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-25T16:13:48.268+09:00  INFO 90485 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-25T16:13:48.273+09:00  INFO 90485 --- [backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+> Task :test FAILED
+
+1 test completed, 1 failed
+
+[Incubating] Problems report is available at: file://<repo>/backend/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file://<repo>/backend/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 14s
+4 actionable tasks: 2 executed, 2 up-to-date
+gradle exit=1
+
+=== 테스트 결과 XML 요약
+<testsuite name="com.awesome.backend.inventory.service.StockBalanceCollectorSettleProbeIT" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-09-25T07:13:36.755Z" hostname="(생략)" time="11.217">
+  <testcase name="커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다()" classname="com.awesome.backend.inventory.service.StockBalanceCollectorSettleProbeIT" time="0.616">
+    <failure message="java.lang.AssertionError: &#10;Expecting actual:&#10;  2L&#10;to be less than:&#10;  1L " type="java.lang.AssertionError">java.lang.AssertionError: 
+Expecting actual:
+  2L
+to be less than:
+  1L 
+	at com.awesome.backend.inventory.service.StockBalanceCollectorSettleProbeIT.커밋_순서가_뒤바뀐_원장_행도_빠지지_않는다(StockBalanceCollectorSettleProbeIT.java:82)
+</failure>
