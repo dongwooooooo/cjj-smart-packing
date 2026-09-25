@@ -1,0 +1,23 @@
+Time: 1.364 ms
+Time: 344.498 ms
+Time: 22.470 ms
+Time: 106452.303 ms (01:46.452)
+Time: 29.455 ms
+Time: 27.692 ms
+Time: 38.275 ms
+Time: 1.802 ms
+    k    | shipments 
+---------+-----------
+ fixture |     35092
+(1 row)
+
+Time: 3.600 ms
+Time: 9.129 ms
+Time: 336.071 ms
+    status     | count 
+---------------+-------
+ PACKED        |   908
+ TOTE_ASSIGNED | 35092
+(2 rows)
+
+Time: 30.797 ms

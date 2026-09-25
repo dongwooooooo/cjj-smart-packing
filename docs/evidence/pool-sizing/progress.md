@@ -23,3 +23,46 @@
 - 09-25 17:46 2-1 포화 탐색 `20260925-173653`(풀 40, think 0): VU 50 → 완료 135.8건/s, VU 100 → 131.8건/s. 50명에서 이미 포화. 두 조건 모두 DB 일하는 세션 평균 39, 상위 대기 `Lock:tuple` 평균 24세션(박스 행), RDS CPU 45~47%, EC2 CPU 71~76%. 실험 묶음 원복이 조건마다 약 3분 걸림(상관 서브쿼리) → 집계 조인 + `ANALYZE fx` 로 0.8초로 줄임. 원복 대상 19,092건(smoke 가 포장한 908건은 토트 재배정으로 제외).
 - 09-25 17:5x 포화 부하는 초당 약 135건을 소비해 묶음 19,092건으로는 판독 4분이 안 된다. IDLE 토트 23,000개 안에서 묶음을 20,000건 더 접수(배치 40~79).
 - 09-25 17:57 묶음 확장: 배치 40~71 접수(배치당 약 14~16초), 배치 73 에서 IDLE 토트 소진으로 500(해당 배치 전체 롤백). 묶음 36,000건. PLAN 변경 기록 2건(sat=VU 100, 포화 판독 180초). 도구에 SWEEP_DIR·REP_START 추가(나눠 부르기).
+- 09-25 17:58 스윕 시작 `peak` pools=[2] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:06 `peak1x-p2-t30000-th200-r1` pool   2 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95   134.8 | Run-ms p95    53.5 | http p95   185.1 | pending max    0 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 18:06 스윕 종료 `20260925-175759`, 백엔드 기준 설정으로 복원
+- 09-25 18:06 스윕 시작 `peak` pools=[5] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:14 `peak1x-p5-t30000-th200-r1` pool   5 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95    25.8 | Run-ms p95    54.2 | http p95    72.5 | pending max    9 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 18:15 스윕 종료 `20260925-180637`, 백엔드 기준 설정으로 복원
+- 09-25 18:1x peak1x 풀 2(Queue-ms p95 134.8), 풀 5(25.8, pending max 9)는 **무효**. pending 이 매분 같은 초(xx:58)에 9 로 찍혀 원인을 추적: 그 순간 Tomcat busy 15, DB 세션은 한가했다. k6 로그에서 반복 완료 수가 매분 1초 만에 14건씩 뛰었다. `packing.js` 가 사이클 시작 시각을 첫 사이클의 흩기(sleep) 전에 재서, 흩은 시간이 약 10초 미만인 작업자(약 1/6)가 모두 정확히 60초에 첫 사이클을 끝내고 이후 같은 순간에 누르는 버그였다. 시작 시각을 흩기 뒤로 옮겨 고치고, 두 결과는 `invalid/peak-pacing-bug/` 로 옮김.
+- 09-25 18:16 스윕 시작 `peak` pools=[2] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:24 `peak1x-p2-t30000-th200-r1` pool   2 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95     1.7 | Run-ms p95    50.4 | http p95    53.6 | pending max    0 | top wait IdleInTx:app(0.2) (rc=0)
+- 09-25 18:24 스윕 종료 `20260925-181624`, 백엔드 기준 설정으로 복원
+- 09-25 18:25 peak1x 풀 2 재실행 결과(Queue-ms p95 1.7, pending 0)는 k6 판독 건수가 gracefulStop 동안 끝난 반복까지 세어 454건(예상 약 400)으로 부풀었다. 판독 구간 끝(MEASURE_S)을 k6 에 넘겨 구간 밖 요청을 빼고, 처리량 분모를 판독 초로 고침. 결과는 `invalid/peak-graceful-count/` 로 옮기고 다시 잰다(서버 쪽 지표는 구간이 맞아 참고용으로 남김).
+- 09-25 18:25 스윕 시작 `peak` pools=[2] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:33 `peak1x-p2-t30000-th200-r1` pool   2 | VU  100 | pacing  60000 | TPS     1.7 | Queue-ms p95     1.7 | Run-ms p95    60.8 | http p95    54.8 | pending max    0 | top wait IdleInTx:app(0.2) (rc=0)
+- 09-25 18:33 스윕 종료 `20260925-182532`, 백엔드 기준 설정으로 복원
+- 09-25 18:34 스윕 시작 `peak` pools=[5] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:42 `peak1x-p5-t30000-th200-r1` pool   5 | VU  100 | pacing  60000 | TPS     1.7 | Queue-ms p95     1.7 | Run-ms p95    52.2 | http p95    53.8 | pending max    0 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 18:42 스윕 종료 `20260925-183408`, 백엔드 기준 설정으로 복원
+- 09-25 18:42 스윕 시작 `peak` pools=[10] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:50 `peak1x-p10-t30000-th200-r1` pool  10 | VU  100 | pacing  60000 | TPS     1.7 | Queue-ms p95     1.7 | Run-ms p95    50.4 | http p95    53.5 | pending max    0 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 18:51 스윕 종료 `20260925-184235`, 백엔드 기준 설정으로 복원
+- 09-25 18:51 스윕 시작 `peak` pools=[20] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 18:59 `peak1x-p20-t30000-th200-r1` pool  20 | VU  100 | pacing  60000 | TPS     1.7 | Queue-ms p95     1.7 | Run-ms p95    51.9 | http p95    53.7 | pending max    0 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 18:59 스윕 종료 `20260925-185104`, 백엔드 기준 설정으로 복원
+- 09-25 18:59 스윕 시작 `peak` pools=[40] timeouts=[30000] threads=[200] loads=[peak1x:100:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:07 `peak1x-p40-t30000-th200-r1` pool  40 | VU  100 | pacing  60000 | TPS     1.7 | Queue-ms p95     1.7 | Run-ms p95    64.0 | http p95    60.9 | pending max    0 | top wait IdleInTx:app(0.1) (rc=0)
+- 09-25 19:08 스윕 종료 `20260925-185931`, 백엔드 기준 설정으로 복원
+- 09-25 19:08 peak1x 풀 2·5·10·20·40 완료(`peak/`). 처리량 모두 1.7건/s, Queue-ms p95 모두 1.7ms, pending max 0, 서버 완료 p95 53.5~60.9ms. Queue-ms p95 가 풀 크기와 무관하게 1.7ms 로 같아 원인 확인 필요 — HikariCP 가 500ms 넘게 놀던 커넥션을 내줄 때 생존 확인(isValid) 왕복을 하는 시간으로 추정(검증은 포화 부하와 비교).
+- 09-25 19:08 스윕 시작 `peak` pools=[2] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:16 `peak3x-p2-t30000-th200-r1` pool   2 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95    15.4 | Run-ms p95    45.8 | http p95    61.7 | pending max    1 | top wait IdleInTx:app(0.3) (rc=0)
+- 09-25 19:16 스윕 종료 `20260925-190821`, 백엔드 기준 설정으로 복원
+- 09-25 19:16 스윕 시작 `peak` pools=[5] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:24 `peak3x-p5-t30000-th200-r1` pool   5 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     1.6 | Run-ms p95    44.8 | http p95    49.7 | pending max    0 | top wait IdleInTx:app(0.3) (rc=0)
+- 09-25 19:25 스윕 종료 `20260925-191647`, 백엔드 기준 설정으로 복원
+- 09-25 19:25 스윕 시작 `peak` pools=[10] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:33 `peak3x-p10-t30000-th200-r1` pool  10 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     1.6 | Run-ms p95    45.3 | http p95    50.1 | pending max    0 | top wait IdleInTx:app(0.3) (rc=0)
+- 09-25 19:33 스윕 종료 `20260925-192514`, 백엔드 기준 설정으로 복원
+- 09-25 19:33 스윕 시작 `peak` pools=[20] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:41 `peak3x-p20-t30000-th200-r1` pool  20 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     1.6 | Run-ms p95    45.9 | http p95    52.2 | pending max    0 | top wait IdleInTx:app(0.4) (rc=0)
+- 09-25 19:42 스윕 종료 `20260925-193344`, 백엔드 기준 설정으로 복원
+- 09-25 19:42 스윕 시작 `peak` pools=[40] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 19:50 `peak3x-p40-t30000-th200-r1` pool  40 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     1.6 | Run-ms p95    45.3 | http p95    50.2 | pending max    0 | top wait IdleInTx:app(0.2) (rc=0)
+- 09-25 19:50 스윕 종료 `20260925-194211`, 백엔드 기준 설정으로 복원
+- 09-25 19:50 peak3x 풀 2·5·10·20·40 완료. 처리량 모두 5.0건/s. 풀 2 만 Queue-ms p95 15.4ms·pending max 1, 풀 5 이상은 1.6ms·pending 0. 예측 A(처리량 동일)·B(풀 5 이상이면 줄 서지 않음) 모두 맞음. 다음: 포화(sat, VU 100, 판독 180초) 풀 5종 × 2회.

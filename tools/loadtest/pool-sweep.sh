@@ -139,7 +139,7 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
     ( sleep $((warm + at + 2)); psql_file lock-inject.sql "-At --set=hold=$hold" ) > "$d/lock-inject.log" 2>&1 & lock_pid=$!
   fi
   local rdir="pool-sweep/runs/$(basename "$dir")/$id" t0 k6args
-  k6args="-e WARMUP_S=$warm -e TIMEOUT=$CLIENT_TIMEOUT"
+  k6args="-e WARMUP_S=$warm -e MEASURE_S=$MEASURE_S -e TIMEOUT=$CLIENT_TIMEOUT"
   if [ "$SCENARIO" = packing ]; then
     k6args="$k6args -e VUS=$vus -e DURATION=$((warm + MEASURE_S))s -e PACING_MS=$pacing -e THINK_MS=$think -e SLEEP_AFTER_MS=$after -e TOTES_FILE=/home/$SSH_USER/pool-sweep/totes.json"
   else
@@ -159,7 +159,7 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   on_backend "sudo docker logs pool-sweep-waits 2>/dev/null; sudo docker rm -f pool-sweep-waits >/dev/null 2>&1" > "$d/waits.csv" || true
   scp -q "${SSH_OPTS[@]}" "$SSH_USER@$LOADGEN_HOST:$rdir/summary.json" "$SSH_USER@$LOADGEN_HOST:$rdir/k6.log" "$d/" || log "k6 결과 회수 실패"
   local k6start; k6start=$(grep -m1 '^K6START=' "$d/k6.log" | cut -d= -f2)
-  local ws=$((k6start + warm + 1)) we=$((k6start + warm + MEASURE_S))
+  local ws=$((k6start + warm)) we=$((k6start + warm + MEASURE_S))
   sleep 12  # 마지막 스크레이프(5초 주기)가 Prometheus 에 들어올 때까지
   local row; row=$("$PY" "$HERE/sweep/collect.py" --dir "$d" --prom "$PROM_PUBLIC" --start "$ws" --end "$we" --rds-id "$RDS_ID" --region "$AWS_REGION")
   echo "$row" | tee -a "$dir/console.txt"

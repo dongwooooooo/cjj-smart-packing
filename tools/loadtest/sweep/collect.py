@@ -178,7 +178,7 @@ def main() -> None:
     d = Path(a.dir)
     meta = json.loads((d / "meta.json").read_text())
     r = {"window": {"start": a.start, "end": a.end}}
-    r.update(k6_metrics(d / "summary.json", a.end - a.start))
+    r.update(k6_metrics(d / "summary.json", meta.get("measure_s") or (a.end - a.start)))
     r.update(server_metrics(a.prom, a.start, a.end))
     r.update(wait_metrics(d / "waits.csv", a.start, a.end))
     r.update(rds_cpu(a.rds_id, a.region, a.start, a.end))

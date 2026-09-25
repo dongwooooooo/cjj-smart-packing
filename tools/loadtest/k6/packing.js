@@ -32,9 +32,13 @@ const THINK_MS = parseInt(__ENV.THINK_MS || "0", 10);
 const SLEEP_AFTER_MS = parseInt(__ENV.SLEEP_AFTER_MS || "1000", 10);
 const PACING_MS = parseInt(__ENV.PACING_MS || "0", 10);
 const WARMUP_MS = parseInt(__ENV.WARMUP_S || "0", 10) * 1000;
+// 판독 구간 끝. 비우면 끝까지. 지속 시간이 끝난 뒤 gracefulStop 동안 마무리되는 반복은 빼야
+// 처리량(건수 / 판독 초)이 부풀지 않는다.
+const WINDOW_END_MS = __ENV.MEASURE_S ? WARMUP_MS + parseInt(__ENV.MEASURE_S, 10) * 1000 : Infinity;
 
 function inWindow() {
-  return exec.instance.currentTestRunDuration >= WARMUP_MS;
+  const t = exec.instance.currentTestRunDuration;
+  return t >= WARMUP_MS && t < WINDOW_END_MS;
 }
 
 // 판독 구간이면 요청 하나를 기록한다. 실패는 상태 코드 기준(2xx 아님, 타임아웃은 status 0).
@@ -75,9 +79,11 @@ function nextBarcode() {
 }
 
 export default function () {
-  const cycleStart = Date.now();
   // 사이클을 맞출 때 모든 작업자가 같은 순간에 누르지 않도록 첫 사이클만 시작을 흩는다.
+  // 사이클 시작 시각은 흩은 뒤에 잰다. 앞에서 재면 흩은 시간이 첫 사이클에 포함돼, 흩은 시간이 짧은
+  // 작업자들이 모두 정확히 PACING_MS 에 첫 사이클을 끝내고 그 뒤로 같은 순간에 누른다(2026-09-25 발견).
   if (PACING_MS > 0 && __ITER === 0) sleep((Math.random() * PACING_MS) / 1000);
+  const cycleStart = Date.now();
   const barcode = nextBarcode();
   if (!barcode) {
     exhausted.add(1);

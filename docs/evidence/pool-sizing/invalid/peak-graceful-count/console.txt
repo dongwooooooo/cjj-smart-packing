@@ -1,0 +1,3 @@
+pool   2 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95   134.8 | Run-ms p95    53.5 | http p95   185.1 | pending max    0 | top wait IdleInTx:app(0.1)
+pool   5 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95    25.8 | Run-ms p95    54.2 | http p95    72.5 | pending max    9 | top wait IdleInTx:app(0.1)
+pool   2 | VU  100 | pacing  60000 | TPS     1.9 | Queue-ms p95     1.7 | Run-ms p95    50.4 | http p95    53.6 | pending max    0 | top wait IdleInTx:app(0.2)
