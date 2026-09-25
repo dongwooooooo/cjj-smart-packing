@@ -1,0 +1,2 @@
+pool  40 | VU   50 | pacing      0 | TPS   135.8 | Queue-ms p95    56.9 | Run-ms p95   504.4 | http p95  1081.1 | pending max   11 | top wait Lock:tuple(24.2)
+pool  40 | VU  100 | pacing      0 | TPS   131.8 | Queue-ms p95   346.6 | Run-ms p95   543.5 | http p95  1282.6 | pending max   61 | top wait Lock:tuple(24.5)

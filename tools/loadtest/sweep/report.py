@@ -35,10 +35,19 @@ def tops(r, n=3):
     return ", ".join(f"{x['event']} {x['avg_sessions']:.1f}" for x in t[:n]) or "-"
 
 
-def load_rows(root: Path):
+def load_rows(root: Path, rds_id: str, region: str):
+    """CloudWatch 1분 지표는 수집 직후 비어 있을 수 있다. 비어 있으면 여기서 다시 채워 result.json 에 쓴다."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from collect import rds_cpu
     rows = []
     for p in sorted(root.glob("*/result.json")):
         r = json.loads(p.read_text())
+        x = r["result"]
+        if x.get("rds_cpuutilization_average") is None:
+            x.pop("rds_cloudwatch_error", None)
+            x.update(rds_cpu(rds_id, region, x["window"]["start"], x["window"]["end"]))
+            p.write_text(json.dumps(r, ensure_ascii=False, indent=1))
         r["dir"] = p.parent.name
         rows.append(r)
     return rows
@@ -127,16 +136,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
     ap.add_argument("--grafana", default="http://13.124.19.3:3000")
+    ap.add_argument("--rds-id", default="cjj-postgres")
+    ap.add_argument("--region", default="ap-northeast-2")
     a = ap.parse_args()
     root = Path(a.dir)
-    rows = load_rows(root)
+    rows = load_rows(root, a.rds_id, a.region)
     if not rows:
         raise SystemExit("result.json 이 없습니다")
-    sweep = json.loads((root / "sweep.json").read_text()) if (root / "sweep.json").exists() else {}
+    sweep = [json.loads(p.read_text()) for p in sorted(root.glob("sweep*.json"))]
     md = [f"# 풀 크기 스윕 결과 — {root.name}", "",
           f"생성: {datetime.now():%Y-%m-%d %H:%M}. 도구 `tools/loadtest/pool-sweep.sh`. 수치는 판독 구간(워밍업 제외)만.", ""]
     if sweep:
-        md += ["## 실행 조건", "", "```json", json.dumps(sweep, ensure_ascii=False, indent=1), "```", ""]
+        md += ["## 실행 조건 (호출별)", "", "```json"] + [json.dumps(x, ensure_ascii=False) for x in sweep] + ["```", ""]
     md += ["## 조건별 비교표", "",
            "Queue-ms = HikariCP 커넥션 획득 시간(`hikaricp_connections_acquire`), Run-ms = 커넥션 점유 시간"
            "(`hikaricp_connections_usage`). 둘 다 서버 히스토그램 버킷에서 계산했다. 상위 대기는 1초 간격 "

@@ -1,0 +1,1 @@
+{"id":"probe100-p40-t30000-th200-r1","load":"probe100","vus":100,"pacing_ms":0,"think_ms":0,"sleep_after_ms":0,"pool":40,"conn_timeout_ms":30000,"tomcat_threads":200,"rep":1,"warmup_s":15,"measure_s":45,"scenario":"packing","client_timeout":"60s","lock_inject":""}

@@ -13,3 +13,13 @@
 - 09-25 16:1x~16:4x 실험 묶음(주문번호 `PSFIX-`) 출고지시 20,000건 접수(500건 × 40배치, 배치당 19~29초, 거절 0). 배송단위 20,000건, 전부 TOTE_ASSIGNED.
 - 09-25 17:30 `pool-sweep.sh check` 실패: `ssh: connect to host 13.124.19.3 port 22: Operation timed out`, Prometheus :9090 curl exit 28. 맥 공인 IP 가 58.233.240.191 로 다시 바뀌어 보안 그룹(58.151.41.67 허용)과 어긋남. :8000 API 는 200. 사용자에게 SG 갱신 요청, 그동안 접속 없이 가능한 작업(도구 커밋, PLAN.md, 백엔드 브랜치) 진행.
 - 09-25 17:33 backend 브랜치 feat/hikari-pool-sizing f9f956e 커밋(히스토그램 설정 + HikariMetricsHistogramIT, 설정 제거 시 실패 확인). 실험 중 EC2 에는 같은 키를 SPRING_APPLICATION_JSON 으로 넣는다(배포 이미지는 main f87a37e 그대로). PLAN.md 작성.
+- 09-25 17:34 도구·PLAN 커밋 3cc3651. 2-1 포화 수준 탐색 시작(풀 40, VU 50·100 먼저).
+- 09-25 17:34 스윕 시작 `20260925-173414` pools=[40] timeouts=[30000] threads=[200] loads=[probe50:50:0:0:0 probe100:100:0:0:0] repeat=1 lock=[]
+- 09-25 17:36 `20260925-173414` 실패: fixture-reset 에서 `duplicate key ... ux_tote_assignment_active_tote (tote_id)=(1045)`. smoke 가 포장한 앞 배치 배송단위의 토트가 뒤 배치에 재배정된 것. 같은 토트를 나중에 받은 배송단위가 있으면 앞 배송단위를 묶음에서 빼도록 SQL 수정. trap 복원 확인.
+- 09-25 17:36 스윕 시작 `20260925-173653` pools=[40] timeouts=[30000] threads=[200] loads=[probe50:50:0:0:0 probe100:100:0:0:0] repeat=1 lock=[]
+- 09-25 17:41 `probe50-p40-t30000-th200-r1` pool  40 | VU   50 | pacing      0 | TPS   135.8 | Queue-ms p95    56.9 | Run-ms p95   504.4 | http p95  1081.1 | pending max   11 | top wait Lock:tuple(24.2) (rc=99)
+- 09-25 17:46 `probe100-p40-t30000-th200-r1` pool  40 | VU  100 | pacing      0 | TPS   131.8 | Queue-ms p95   346.6 | Run-ms p95   543.5 | http p95  1282.6 | pending max   61 | top wait Lock:tuple(24.5) (rc=99)
+- 09-25 17:46 스윕 종료 `20260925-173653`, 백엔드 기준 설정으로 복원
+- 09-25 17:46 2-1 포화 탐색 `20260925-173653`(풀 40, think 0): VU 50 → 완료 135.8건/s, VU 100 → 131.8건/s. 50명에서 이미 포화. 두 조건 모두 DB 일하는 세션 평균 39, 상위 대기 `Lock:tuple` 평균 24세션(박스 행), RDS CPU 45~47%, EC2 CPU 71~76%. 실험 묶음 원복이 조건마다 약 3분 걸림(상관 서브쿼리) → 집계 조인 + `ANALYZE fx` 로 0.8초로 줄임. 원복 대상 19,092건(smoke 가 포장한 908건은 토트 재배정으로 제외).
+- 09-25 17:5x 포화 부하는 초당 약 135건을 소비해 묶음 19,092건으로는 판독 4분이 안 된다. IDLE 토트 23,000개 안에서 묶음을 20,000건 더 접수(배치 40~79).
+- 09-25 17:57 묶음 확장: 배치 40~71 접수(배치당 약 14~16초), 배치 73 에서 IDLE 토트 소진으로 500(해당 배치 전체 롤백). 묶음 36,000건. PLAN 변경 기록 2건(sat=VU 100, 포화 판독 180초). 도구에 SWEEP_DIR·REP_START 추가(나눠 부르기).

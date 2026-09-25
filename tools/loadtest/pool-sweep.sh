@@ -171,7 +171,8 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
 }
 
 cmd_sweep() {
-  local ts dir; ts=$(date +%Y%m%d-%H%M%S); dir="$OUT_ROOT/$ts"; mkdir -p "$dir"
+  # SWEEP_DIR 를 주면 그 디렉터리에 조건을 이어 붙인다(긴 스윕을 여러 번 나눠 부를 때 비교표를 하나로)
+  local ts dir; ts=$(date +%Y%m%d-%H%M%S); dir="${SWEEP_DIR:-$OUT_ROOT/$ts}"; mkdir -p "$dir"
   MODIFIED=0
   trap 'rc=$?; [ "${MODIFIED:-0}" = 1 ] && restore_backend; exit $rc' EXIT
   trap 'log "중단 신호 — 복원 후 종료"; exit 130' INT TERM
@@ -188,10 +189,10 @@ cmd_sweep() {
   source "$BASELINE"
   printf '{"started":"%s","pool_sizes":"%s","conn_timeouts_ms":"%s","tomcat_threads":"%s","loads":"%s","repeat":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","image":"%s","rds_max_connections":"%s","portfolio_sha":"%s"}\n' \
     "$ts" "$POOL_SIZES" "$CONN_TIMEOUTS_MS" "$TOMCAT_THREADS" "$LOADS" "$REPEAT" "$WARMUP_S" "$MEASURE_S" "$SCENARIO" \
-    "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${BASE_IMAGE_ID:7:12}" "$(psql_cmd 'show max_connections')" "$(git -C "$REPO_ROOT" rev-parse --short HEAD)" > "$dir/sweep.json"
-  echo "- $(date '+%m-%d %H:%M') 스윕 시작 \`$ts\` pools=[$POOL_SIZES] timeouts=[$CONN_TIMEOUTS_MS] threads=[$TOMCAT_THREADS] loads=[$LOADS] repeat=$REPEAT lock=[$LOCK_INJECT]" >> "$OUT_ROOT/progress.md"
+    "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${BASE_IMAGE_ID:7:12}" "$(psql_cmd 'show max_connections')" "$(git -C "$REPO_ROOT" rev-parse --short HEAD)" > "$dir/sweep-$ts.json"
+  echo "- $(date '+%m-%d %H:%M') 스윕 시작 \`$(basename "$dir")\` pools=[$POOL_SIZES] timeouts=[$CONN_TIMEOUTS_MS] threads=[$TOMCAT_THREADS] loads=[$LOADS] repeat=$REPEAT lock=[$LOCK_INJECT]" >> "$OUT_ROOT/progress.md"
   local load pool to th rep
-  for rep in $(seq 1 "$REPEAT"); do
+  for rep in $(seq "${REP_START:-1}" $(( ${REP_START:-1} + REPEAT - 1 ))); do
     for load in $LOADS; do for to in $CONN_TIMEOUTS_MS; do for th in $TOMCAT_THREADS; do for pool in $POOL_SIZES; do
       run_condition "$dir" "$load" "$pool" "$to" "$th" "$rep"
     done; done; done; done

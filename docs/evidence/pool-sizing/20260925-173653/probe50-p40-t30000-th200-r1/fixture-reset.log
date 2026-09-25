@@ -1,0 +1,11 @@
+    k    | shipments 
+---------+-----------
+ fixture |     19092
+(1 row)
+
+    status     | count 
+---------------+-------
+ PACKED        |   908
+ TOTE_ASSIGNED | 19092
+(2 rows)
+
