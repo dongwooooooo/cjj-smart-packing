@@ -115,34 +115,51 @@ def k6_metrics(summary_path: Path, measure_s: float) -> dict:
     return m
 
 
-def wait_metrics(csv_path: Path, start: float, end: float) -> dict:
-    """앱 세션 중 일하는 세션(active, idle in transaction)의 대기 이벤트 표본 수. 1초 1표본."""
-    if not csv_path.exists():
-        return {}
-    busy = Counter()
-    seconds = set()
-    idle_max = Counter()
+def read_samples(csv_path: Path) -> list[tuple[int, list[tuple]]]:
+    """waits.csv 를 \\watch 반복(표본) 단위로 나눈다. 같은 초에 표본이 두 번 찍히기도 해서 초로 묶으면 안 된다.
+    한 표본 안에서 (앱, 상태, 대기 유형, 대기 이벤트) 조합은 한 번만 나오므로, 조합이 다시 나오거나 초가 바뀌면 새 표본이다."""
+    samples: list[tuple[int, list[tuple]]] = []
+    seen: set = set()
     for row in csv.reader(csv_path.open()):
         if len(row) != 6 or not row[0].isdigit():
             continue
-        ts, app, state, wtype, wevent, n = int(row[0]), row[1], row[2], row[3], row[4], int(row[5])
-        if not (start <= ts <= end) or app != APP:
-            continue
-        seconds.add(ts)
-        if state == "active":
-            busy[f"{wtype}:{wevent}" if wtype != "CPU" else "CPU"] += n
-        elif state == "idle in transaction":
-            busy["IdleInTx:app"] += n
-        elif state == "idle":
-            idle_max[ts] += n
-    secs = max(len(seconds), 1)
+        ts, key = int(row[0]), tuple(row[1:5])
+        if not samples or samples[-1][0] != ts or key in seen:
+            samples.append((ts, []))
+            seen = set()
+        seen.add(key)
+        samples[-1][1].append((row[1], row[2], row[3], row[4], int(row[5])))
+    return samples
+
+
+def wait_metrics(csv_path: Path, start: float, end: float) -> dict:
+    """앱 세션 중 일하는 세션(active, idle in transaction)의 대기 이벤트별 평균 세션 수. 분모는 표본 수."""
+    if not csv_path.exists():
+        return {}
+    busy = Counter()
+    idle_per_sample = []
+    samples = [x for x in read_samples(csv_path) if start <= x[0] <= end]
+    for _, rows in samples:
+        idle = 0
+        for app, state, wtype, wevent, n in rows:
+            if app != APP:
+                continue
+            if state == "active":
+                busy[f"{wtype}:{wevent}" if wtype != "CPU" else "CPU"] += n
+            elif state == "idle in transaction":
+                busy["IdleInTx:app"] += n
+            elif state == "idle":
+                idle += n
+        idle_per_sample.append(idle)
+    count = max(len(samples), 1)
     top = busy.most_common(5)
     return {
-        "wait_samples_s": len(seconds),
-        "db_busy_avg": sum(busy.values()) / secs,  # 평균 일하는 세션 수(AAS 에 해당)
-        "wait_top": [{"event": e, "avg_sessions": c / secs, "samples": c} for e, c in top],
+        "wait_samples": len(samples),
+        "wait_samples_s": len({ts for ts, _ in samples}),
+        "db_busy_avg": sum(busy.values()) / count,  # 평균 일하는 세션 수(AAS 에 해당)
+        "wait_top": [{"event": e, "avg_sessions": c / count, "samples": c} for e, c in top],
         "wait_all": {e: c for e, c in busy.items()},
-        "db_idle_max": max(idle_max.values()) if idle_max else None,
+        "db_idle_max": max(idle_per_sample) if idle_per_sample else None,
     }
 
 
@@ -186,13 +203,21 @@ def console_row(meta: dict, r: dict) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
-    ap.add_argument("--prom", required=True)
-    ap.add_argument("--start", type=float, required=True)
-    ap.add_argument("--end", type=float, required=True)
+    ap.add_argument("--prom")
+    ap.add_argument("--start", type=float)
+    ap.add_argument("--end", type=float)
     ap.add_argument("--rds-id", default="cjj-postgres")
     ap.add_argument("--region", default="ap-northeast-2")
+    ap.add_argument("--waits-only", action="store_true", help="result.json 의 대기 이벤트 지표만 waits.csv 로 다시 계산")
     a = ap.parse_args()
     d = Path(a.dir)
+    if a.waits_only:
+        doc = json.loads((d / "result.json").read_text())
+        w = doc["result"]["window"]
+        doc["result"].update(wait_metrics(d / "waits.csv", w["start"], w["end"]))
+        (d / "result.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
+        print(console_row(doc["meta"], doc["result"]))
+        return
     meta = json.loads((d / "meta.json").read_text())
     r = {"window": {"start": a.start, "end": a.end}}
     r.update(k6_metrics(d / "summary.json", meta.get("measure_s") or (a.end - a.start)))
