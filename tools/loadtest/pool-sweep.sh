@@ -85,7 +85,9 @@ apply_config() {  # $1 pool $2 conn_timeout_ms $3 tomcat_threads
   local json
   json=$(printf '{"spring":{"datasource":{"hikari":{"maximum-pool-size":%s,"connection-timeout":%s}}},"server":{"tomcat":{"threads":{"max":%s}}},"management":{"metrics":{"distribution":{"percentiles-histogram":{"hikaricp.connections":true},"minimum-expected-value":{"hikaricp.connections":"100us"}}}}}' "$1" "$2" "$3")
   MODIFIED=1  # 파일을 쓰기 전에 표시해야 중간 실패에도 복원이 돈다
-  printf "services:\n  backend:\n    environment:\n      SPRING_APPLICATION_JSON: '%s'\n" "$json" \
+  # JVM_OPTS_EXTRA: 가설 확인용 JVM 시스템 속성(예: -Dcom.zaxxer.hikari.aliveBypassWindowMs=600000). 비우면 넣지 않는다.
+  { printf "services:\n  backend:\n    environment:\n      SPRING_APPLICATION_JSON: '%s'\n" "$json"
+    [ -n "${JVM_OPTS_EXTRA:-}" ] && printf "      JAVA_TOOL_OPTIONS: '%s'\n" "$JVM_OPTS_EXTRA"; true; } \
     | on_backend "cat > $BACKEND_DIR/$OVERRIDE"
   on_backend "cd $BACKEND_DIR && sudo env BACKEND_IMAGE='$BASE_IMAGE_REF' COMPOSE_FILE=docker-compose.yml:$OVERRIDE \
     docker compose up -d --no-build --force-recreate backend >/dev/null 2>&1"
@@ -123,8 +125,8 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   local warm=$WARMUP_S
   if [ "$pacing" -gt 0 ] && [ $((pacing / 1000)) -gt "$warm" ]; then warm=$((pacing / 1000)); fi  # 흩어진 첫 사이클이 다 돈 뒤부터 판독
   local id="${name}-p$3-t$4-th$5-r$6" d="$dir/${name}-p$3-t$4-th$5-r$6"; mkdir -p "$d"
-  printf '{"id":"%s","load":"%s","vus":%s,"pacing_ms":%s,"think_ms":%s,"sleep_after_ms":%s,"pool":%s,"conn_timeout_ms":%s,"tomcat_threads":%s,"rep":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s"}\n' \
-    "$id" "$name" "$vus" "$pacing" "$think" "$after" "$3" "$4" "$5" "$6" "$warm" "$MEASURE_S" "$SCENARIO" "$CLIENT_TIMEOUT" "$LOCK_INJECT" > "$d/meta.json"
+  printf '{"id":"%s","load":"%s","vus":%s,"pacing_ms":%s,"think_ms":%s,"sleep_after_ms":%s,"pool":%s,"conn_timeout_ms":%s,"tomcat_threads":%s,"rep":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","jvm_opts_extra":"%s"}\n' \
+    "$id" "$name" "$vus" "$pacing" "$think" "$after" "$3" "$4" "$5" "$6" "$warm" "$MEASURE_S" "$SCENARIO" "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${JVM_OPTS_EXTRA:-}" > "$d/meta.json"
   log "── 조건 $id"
   apply_config "$3" "$4" "$5"
   if [ "$SCENARIO" = packing ]; then

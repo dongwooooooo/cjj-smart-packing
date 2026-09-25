@@ -1,0 +1,1 @@
+pool  10 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     0.1 | Run-ms p95    50.2 | http p95    58.1 | pending max    0 | top wait CPU(0.5)

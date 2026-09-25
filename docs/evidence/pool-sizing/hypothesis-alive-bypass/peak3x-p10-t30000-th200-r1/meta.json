@@ -1,0 +1,1 @@
+{"id":"peak3x-p10-t30000-th200-r1","load":"peak3x","vus":300,"pacing_ms":60000,"think_ms":50000,"sleep_after_ms":0,"pool":10,"conn_timeout_ms":30000,"tomcat_threads":200,"rep":1,"warmup_s":60,"measure_s":240,"scenario":"packing","client_timeout":"60s","lock_inject":"","jvm_opts_extra":"-Dcom.zaxxer.hikari.aliveBypassWindowMs=600000"}

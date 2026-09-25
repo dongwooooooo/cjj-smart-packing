@@ -122,3 +122,39 @@
 - 09-25 21:46 `sat-p30-t30000-th200-r1` pool  30 | VU  100 | pacing      0 | TPS    56.7 | Queue-ms p95  1420.9 | Run-ms p95   783.9 | http p95  3379.1 | pending max   71 | top wait Lock:tuple(24.5) (rc=99)
 - 09-25 21:46 스윕 종료 `20260925-213958`, 백엔드 기준 설정으로 복원
 - 09-25 21:47 풀 30 탐색: 56.7건/s, Lock:tuple 24.5세션. 20(120)과 30 사이에서 무너짐. 2단계 결정: 풀 10(PLAN 변경 기록의 보완 규칙). 다음: connectionTimeout 30000·3000·1000, 풀 10, peak3x, 판독 60초 뒤 박스 행 20초 잠금, 클라이언트 10초.
+- 09-25 21:47 스윕 시작 `timeout` pools=[10] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[60:20]
+- 09-25 21:55 `peak3x-p10-t30000-th200-r1` pool  10 | VU  300 | pacing  60000 | TPS     4.7 | Queue-ms p95  2931.9 | Run-ms p95    57.3 | http p95  9917.5 | pending max  174 | top wait Lock:tuple(0.5) (rc=99)
+- 09-25 21:55 스윕 종료 `20260925-214713`, 백엔드 기준 설정으로 복원
+- 09-25 21:56 스윕 시작 `timeout` pools=[10] timeouts=[3000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[60:20]
+- 09-25 22:04 `peak3x-p10-t3000-th200-r1` pool  10 | VU  300 | pacing  60000 | TPS     4.6 | Queue-ms p95  2949.2 | Run-ms p95    66.4 | http p95  2955.6 | pending max   65 | top wait CPU(0.5) (rc=99)
+- 09-25 22:04 스윕 종료 `20260925-215556`, 백엔드 기준 설정으로 복원
+- 09-25 22:04 스윕 시작 `timeout` pools=[10] timeouts=[1000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[60:20]
+- 09-25 22:12 `peak3x-p10-t1000-th200-r1` pool  10 | VU  300 | pacing  60000 | TPS     4.5 | Queue-ms p95  1039.1 | Run-ms p95    56.3 | http p95  1018.3 | pending max   51 | top wait Lock:tuple(0.5) (rc=99)
+- 09-25 22:12 스윕 종료 `20260925-220427`, 백엔드 기준 설정으로 복원
+- 09-25 22:14 3단계 connectionTimeout(풀 10, peak3x, 판독 60초 뒤 박스 행 20초 잠금, 클라이언트 10초) 완료(`timeout/`). 30000: 락 구간 스캔 p50 6.7초·p95 10.0초(클라이언트 타임아웃 95건), 서버 5xx 0, pending max 174, Tomcat busy 184. 서버는 클라이언트가 포기한 스캔을 최대 18초, 완료를 최대 20초 뒤 200 으로 끝냄. 3000: 락 구간 스캔이 3.0초에 500(172건), 1000: 1.0초에 500(411건). 두 값 모두 락 구간 밖 획득 타임아웃 0. 사전 규칙(클라이언트보다 먼저 서버가 실패로 끝내고 평시 타임아웃 0 인 가장 작은 값) → 1000. 포화 부하에서 풀 10 획득 max 가 2.3~2.4초라 1000 은 과부하 때 일부 요청을 실패로 끝낼 것으로 예상 — 재검증에서 잰다.
+- 09-25 22:14 가설 확인: 피크 부하 Queue-ms p95 1.6~1.7ms 가 생존 확인 왕복이라면, 확인을 건너뛰는 창(aliveBypassWindowMs)을 500ms → 600초로 늘리면 p95 가 0.2ms 아래로 떨어져야 한다. peak3x·풀 10·JVM 옵션 `-Dcom.zaxxer.hikari.aliveBypassWindowMs=600000` 로 1회.
+- 09-25 22:14 스윕 시작 `hypothesis-alive-bypass` pools=[10] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[]
+- 09-25 22:22 `peak3x-p10-t30000-th200-r1` pool  10 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     0.1 | Run-ms p95    50.2 | http p95    58.1 | pending max    0 | top wait CPU(0.5) (rc=0)
+- 09-25 22:22 스윕 종료 `20260925-221412`, 백엔드 기준 설정으로 복원
+- 09-25 22:22 가설 확인 결과: Queue-ms p95 1.6ms → 0.1ms, pending 0, 처리량 5.0 그대로(`hypothesis-alive-bypass/`). 피크 부하의 획득 시간 바닥값은 줄 선 시간이 아니라 생존 확인 왕복이다. 복원 뒤 컨테이너에 JAVA_TOOL_OPTIONS·SPRING_APPLICATION_JSON 없음 확인. 다음: 5단계 재검증(기본 10/30000 vs 결정 10/1000, sat·peak3x 각 2회).
+- 09-25 22:23 스윕 시작 `verify` pools=[10] timeouts=[1000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 22:29 `sat-p10-t1000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   106.1 | Queue-ms p95   454.2 | Run-ms p95    73.5 | http p95   523.3 | pending max   91 | top wait IdleInTx:app(6.9) (rc=99)
+- 09-25 22:29 스윕 종료 `20260925-222257`, 백엔드 기준 설정으로 복원
+- 09-25 22:29 스윕 시작 `verify` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 22:35 `sat-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   103.5 | Queue-ms p95   499.5 | Run-ms p95    77.5 | http p95   571.9 | pending max   91 | top wait IdleInTx:app(7.4) (rc=99)
+- 09-25 22:36 스윕 종료 `20260925-222929`, 백엔드 기준 설정으로 복원
+- 09-25 22:36 스윕 시작 `verify` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 22:42 `sat-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    95.1 | Queue-ms p95   612.4 | Run-ms p95    81.6 | http p95   738.5 | pending max   91 | top wait IdleInTx:app(6.6) (rc=99)
+- 09-25 22:42 스윕 종료 `20260925-223605`, 백엔드 기준 설정으로 복원
+- 09-25 22:42 스윕 시작 `verify` pools=[10] timeouts=[1000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 22:48 `sat-p10-t1000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    84.1 | Queue-ms p95   793.8 | Run-ms p95    86.4 | http p95   936.7 | pending max   91 | top wait IdleInTx:app(6.3) (rc=99)
+- 09-25 22:49 스윕 종료 `20260925-224242`, 백엔드 기준 설정으로 복원
+- 09-25 22:50 5단계 재검증 sat(ABBA 순서: 결정 → 기본 → 기본 → 결정): 결정(10/1000) 106.1·84.1, 기본(10/30000) 103.5·95.1 건/s. 결정값은 과부하에서 획득 1초 초과 요청을 500 으로 끝냄(12건·1,056건), 기본값은 5xx 0 에 획득 max 2.6초. 네 번 모두 시간 순으로 처리량이 내려감(106 → 104 → 95 → 84). 같은 풀 10 의 sat 가 20:40 113.4 에서 22:45 84.1 로 표류. 완료 1건당 DB 버퍼 접근이 약 6.2천 블록(20:40)에서 11.8천 블록(22:45)으로 늘었고 캐시 적중률은 100%, 재고 원장은 47만 행(72MB) → 90만 행(137MB). 원인 미확인 — 원장 증가와 관련된 쿼리를 pg_stat_statements 없이 특정하지 못함. RDS CPU 크레딧 204(20:49) → 112(22:39).
+- 09-25 22:50 PLAN 과 다르게, peak3x 평시 재검증(풀이 같아 차이가 없을 것이 3단계에서 이미 보임) 대신 락 주입 조건을 한 번 더(1000 → 30000 순) 돈다.
+- 09-25 22:50 스윕 시작 `timeout` pools=[10] timeouts=[1000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[60:20]
+- 09-25 22:59 `peak3x-p10-t1000-th200-r2` pool  10 | VU  300 | pacing  60000 | TPS     4.5 | Queue-ms p95  1040.0 | Run-ms p95   116.4 | http p95  1027.1 | pending max   55 | top wait CPU(0.6) (rc=99)
+- 09-25 22:59 스윕 종료 `20260925-225052`, 백엔드 기준 설정으로 복원
+- 09-25 22:59 스윕 시작 `timeout` pools=[10] timeouts=[30000] threads=[200] loads=[peak3x:300:60000:50000:0] repeat=1 lock=[60:20]
+- 09-25 23:07 `peak3x-p10-t30000-th200-r2` pool  10 | VU  300 | pacing  60000 | TPS     4.7 | Queue-ms p95  3372.3 | Run-ms p95    88.9 | http p95  8117.5 | pending max  190 | top wait CPU(0.6) (rc=99)
+- 09-25 23:08 스윕 종료 `20260925-225932`, 백엔드 기준 설정으로 복원
+- 09-25 23:13 락 주입 2회차: 1000 → 스캔 1.0초에 500(530건), 30000 → 스캔 p95 10.0초·클라이언트 타임아웃 95건·Tomcat busy 200. 1회차와 같은 결과. 결정값(풀 10, connectionTimeout 1000)을 backend 브랜치 4a1b10c 로 커밋(전체 테스트 55개 클래스 실패 0). 마지막 check: SPRING_APPLICATION_JSON 0, hikari max 10, tomcat max 200. 실험 종료. README.md(전 조건 비교·판독) 작성.
