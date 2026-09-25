@@ -61,7 +61,7 @@ def main_table(rows, grafana):
     for r in rows:
         m, x = r["meta"], r["result"]
         out.append("| " + " | ".join([
-            m["load"], str(m["pool"]), str(m["conn_timeout_ms"]), str(m["tomcat_threads"]), str(m["rep"]),
+            m["load"] + (" **무효(묶음 소진)**" if x.get("k6_exhausted") else ""), str(m["pool"]), str(m["conn_timeout_ms"]), str(m["tomcat_threads"]), str(m["rep"]),
             num(x.get("tps"), "{:.1f}"),
             f"{ms(x.get('acquire_p95'), 2)} / {ms(x.get('acquire_mean'), 2)}",
             f"{ms(x.get('usage_p95'))} / {ms(x.get('usage_mean'))}",

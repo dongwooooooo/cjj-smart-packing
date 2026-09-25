@@ -1,0 +1,1 @@
+{"id":"sat-p20-t30000-th200-r1","load":"sat","vus":100,"pacing_ms":0,"think_ms":0,"sleep_after_ms":0,"pool":20,"conn_timeout_ms":30000,"tomcat_threads":200,"rep":1,"warmup_s":30,"measure_s":180,"scenario":"packing","client_timeout":"60s","lock_inject":""}

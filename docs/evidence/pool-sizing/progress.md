@@ -66,3 +66,59 @@
 - 09-25 19:50 `peak3x-p40-t30000-th200-r1` pool  40 | VU  300 | pacing  60000 | TPS     5.0 | Queue-ms p95     1.6 | Run-ms p95    45.3 | http p95    50.2 | pending max    0 | top wait IdleInTx:app(0.2) (rc=0)
 - 09-25 19:50 스윕 종료 `20260925-194211`, 백엔드 기준 설정으로 복원
 - 09-25 19:50 peak3x 풀 2·5·10·20·40 완료. 처리량 모두 5.0건/s. 풀 2 만 Queue-ms p95 15.4ms·pending max 1, 풀 5 이상은 1.6ms·pending 0. 예측 A(처리량 동일)·B(풀 5 이상이면 줄 서지 않음) 모두 맞음. 다음: 포화(sat, VU 100, 판독 180초) 풀 5종 × 2회.
+- 09-25 19:50 스윕 시작 `sat` pools=[2] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 19:56 `sat-p2-t30000-th200-r1` pool   2 | VU  100 | pacing      0 | TPS    31.4 | Queue-ms p95  1401.1 | Run-ms p95    39.1 | http p95  1412.7 | pending max   99 | top wait IdleInTx:app(1.6) (rc=99)
+- 09-25 19:57 스윕 종료 `20260925-195053`, 백엔드 기준 설정으로 복원
+- 09-25 19:57 스윕 시작 `sat` pools=[5] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:03 `sat-p5-t30000-th200-r1` pool   5 | VU  100 | pacing      0 | TPS    75.5 | Queue-ms p95   610.7 | Run-ms p95    44.0 | http p95   656.0 | pending max   96 | top wait IdleInTx:app(4.0) (rc=99)
+- 09-25 20:03 스윕 종료 `20260925-195725`, 백엔드 기준 설정으로 복원
+- 09-25 20:03 스윕 시작 `sat` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:10 `sat-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    95.3 | Queue-ms p95   385.8 | Run-ms p95    63.9 | http p95   445.8 | pending max   91 | top wait IdleInTx:app(5.6) (rc=99)
+- 09-25 20:10 스윕 종료 `20260925-200355`, 백엔드 기준 설정으로 복원
+- 09-25 20:10 스윕 시작 `sat` pools=[20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:16 `sat-p20-t30000-th200-r1` pool  20 | VU  100 | pacing      0 | TPS    71.6 | Queue-ms p95   358.9 | Run-ms p95   184.6 | http p95   555.5 | pending max   81 | top wait IdleInTx:app(5.6) (rc=99)
+- 09-25 20:16 스윕 종료 `20260925-201027`, 백엔드 기준 설정으로 복원
+- 09-25 20:17 스윕 시작 `sat` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:23 `sat-p40-t30000-th200-r1` pool  40 | VU  100 | pacing      0 | TPS    96.0 | Queue-ms p95   467.5 | Run-ms p95   721.7 | http p95  1973.6 | pending max   62 | top wait Lock:tuple(27.1) (rc=99)
+- 09-25 20:23 스윕 종료 `20260925-201659`, 백엔드 기준 설정으로 복원
+- 09-25 20:24 sat r1 풀 2·5·10·20·40 **무효**. 풀 10·20·40 에서 k6 묶음 소진(2,100·4,404·51회). 원인: 토트 목록을 스윕 호출 시작 때(원복 전) 뽑아, 앞 호출이 포장한 배송단위가 목록에서 빠졌다. 목록을 조건마다 원복 뒤에 뽑도록 수정. 소진이 없던 풀 2·5 도 목록이 달라 함께 다시 잰다. 결과는 `invalid/sat-short-tote-list/`.
+- 09-25 20:24 스윕 시작 `sat` pools=[2] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:30 `sat-p2-t30000-th200-r1` pool   2 | VU  100 | pacing      0 | TPS    29.3 | Queue-ms p95  1808.9 | Run-ms p95    39.6 | http p95  1827.2 | pending max   99 | top wait IdleInTx:app(1.5) (rc=99)
+- 09-25 20:30 스윕 종료 `20260925-202417`, 백엔드 기준 설정으로 복원
+- 09-25 20:30 스윕 시작 `sat` pools=[5] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:36 `sat-p5-t30000-th200-r1` pool   5 | VU  100 | pacing      0 | TPS    71.0 | Queue-ms p95   640.6 | Run-ms p95    46.4 | http p95   703.5 | pending max   96 | top wait IdleInTx:app(3.7) (rc=99)
+- 09-25 20:37 스윕 종료 `20260925-203054`, 백엔드 기준 설정으로 복원
+- 09-25 20:37 스윕 시작 `sat` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:43 `sat-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   113.4 | Queue-ms p95   428.6 | Run-ms p95    68.9 | http p95   491.4 | pending max   91 | top wait IdleInTx:app(7.0) (rc=99)
+- 09-25 20:43 스윕 종료 `20260925-203723`, 백엔드 기준 설정으로 복원
+- 09-25 20:43 스윕 시작 `sat` pools=[20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:49 `sat-p20-t30000-th200-r1` pool  20 | VU  100 | pacing      0 | TPS   122.0 | Queue-ms p95   392.4 | Run-ms p95   204.5 | http p95   647.1 | pending max   81 | top wait IdleInTx:app(9.2) (rc=99)
+- 09-25 20:50 스윕 종료 `20260925-204351`, 백엔드 기준 설정으로 복원
+- 09-25 20:50 스윕 시작 `sat` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 20:56 `sat-p40-t30000-th200-r1` pool  40 | VU  100 | pacing      0 | TPS    39.3 | Queue-ms p95  1614.0 | Run-ms p95  2001.3 | http p95  6323.0 | pending max   61 | top wait Lock:tuple(33.2) (rc=99)
+- 09-25 20:56 스윕 종료 `20260925-205019`, 백엔드 기준 설정으로 복원
+- 09-25 20:58 sat r1(목록 수정 후): 풀 2 29.3 / 5 71.0 / 10 113.4 / 20 122.0 / 40 39.3 건/s. 풀 40 은 탐색 때(132)와 크게 달라 원인 확인: RDS CPU 크레딧 204 남음(스로틀 아님), 대조기 쿼리 172ms/60초(무시 가능), 풀 40 에서 `Lock:tuple` 평균 33세션·완료 p95 약 10초. 완료 트랜잭션이 박스 행 락을 쥔 채 라인별 PACKED 건수(`countByLineIdAndStatus`, 5,466건에서 2.7ms)를 세므로 판독 중 PACKED 가 늘수록 락 보유 시간이 길어진다. 재현성은 r2 로 확인.
+- 09-25 20:58 스윕 시작 `sat` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:04 `sat-p40-t30000-th200-r2` pool  40 | VU  100 | pacing      0 | TPS    45.2 | Queue-ms p95  1394.5 | Run-ms p95  1536.7 | http p95  5211.5 | pending max   61 | top wait Lock:tuple(32.6) (rc=99)
+- 09-25 21:05 스윕 종료 `20260925-205818`, 백엔드 기준 설정으로 복원
+- 09-25 21:05 스윕 시작 `sat` pools=[20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:11 `sat-p20-t30000-th200-r2` pool  20 | VU  100 | pacing      0 | TPS   119.3 | Queue-ms p95   405.5 | Run-ms p95   208.8 | http p95   639.7 | pending max   81 | top wait IdleInTx:app(8.9) (rc=99)
+- 09-25 21:11 스윕 종료 `20260925-210507`, 백엔드 기준 설정으로 복원
+- 09-25 21:11 스윕 시작 `sat` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:17 `sat-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   106.7 | Queue-ms p95   466.6 | Run-ms p95    75.1 | http p95   542.0 | pending max   91 | top wait IdleInTx:app(7.0) (rc=99)
+- 09-25 21:18 스윕 종료 `20260925-211140`, 백엔드 기준 설정으로 복원
+- 09-25 21:18 스윕 시작 `sat` pools=[5] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:24 `sat-p5-t30000-th200-r2` pool   5 | VU  100 | pacing      0 | TPS    67.1 | Queue-ms p95   736.1 | Run-ms p95    47.4 | http p95   788.5 | pending max   96 | top wait IdleInTx:app(3.7) (rc=99)
+- 09-25 21:24 스윕 종료 `20260925-211816`, 백엔드 기준 설정으로 복원
+- 09-25 21:24 스윕 시작 `sat` pools=[2] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:30 `sat-p2-t30000-th200-r2` pool   2 | VU  100 | pacing      0 | TPS    25.4 | Queue-ms p95  2390.3 | Run-ms p95    42.1 | http p95  2418.4 | pending max   99 | top wait IdleInTx:app(1.4) (rc=99)
+- 09-25 21:31 스윕 종료 `20260925-212447`, 백엔드 기준 설정으로 복원
+- 09-25 21:32 sat r2(풀 40→2 역순, 시간에 따른 표류 상쇄): 40 45.2 / 20 119.3 / 10 106.7 / 5 67.1 / 2 25.4 건/s. r1 과 순위 같음. 풀 40 붕괴 재현(Lock:tuple 32.6세션). 추가 탐색: 20과 40 사이 어디서 무너지는지 보려고 풀 30 1회(판정에는 쓰지 않음). k6 에 락 구간 요청 분리 지표(lockwin_*)와 실패 유형 카운터 추가.
+- 09-25 21:32 스윕 시작 `sat` pools=[30] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:38 `sat-p30-t30000-th200-r1` pool  30 | VU  100 | pacing      0 | TPS     0.0 | Queue-ms p95     2.0 | Run-ms p95  4101.1 | http p95       - | pending max    0 | top wait CPU(0.5) | [무효: 묶음 소진 10500회] (rc=0)
+- 09-25 21:39 스윕 종료 `20260925-213245`, 백엔드 기준 설정으로 복원
+- 09-25 21:39 풀 30 탐색 1차 무효: packing.js 수정이 포매터로 바뀐 줄과 맞지 않아 일부만 적용돼 `ReferenceError: now is not defined` 로 모든 반복이 실패(도구는 '묶음 소진'으로 표시). 스크립트 고치고 로컬 건조 실행으로 확인 후 재실행.
+- 09-25 21:40 스윕 시작 `sat` pools=[30] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 21:46 `sat-p30-t30000-th200-r1` pool  30 | VU  100 | pacing      0 | TPS    56.7 | Queue-ms p95  1420.9 | Run-ms p95   783.9 | http p95  3379.1 | pending max   71 | top wait Lock:tuple(24.5) (rc=99)
+- 09-25 21:46 스윕 종료 `20260925-213958`, 백엔드 기준 설정으로 복원
+- 09-25 21:47 풀 30 탐색: 56.7건/s, Lock:tuple 24.5세션. 20(120)과 30 사이에서 무너짐. 2단계 결정: 풀 10(PLAN 변경 기록의 보완 규칙). 다음: connectionTimeout 30000·3000·1000, 풀 10, peak3x, 판독 60초 뒤 박스 행 20초 잠금, 클라이언트 10초.

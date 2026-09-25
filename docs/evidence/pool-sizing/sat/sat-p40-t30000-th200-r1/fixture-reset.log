@@ -1,0 +1,24 @@
+Time: 13.822 ms
+Time: 1436.856 ms (00:01.437)
+Time: 74.637 ms
+Time: 106054.321 ms (01:46.054)
+Time: 391.342 ms
+Time: 444.162 ms
+Time: 504.040 ms
+Time: 4.895 ms
+    k    | shipments 
+---------+-----------
+ fixture |     35092
+(1 row)
+
+Time: 12.656 ms
+Time: 42.967 ms
+Time: 710.534 ms
+    status     | count 
+---------------+-------
+ PACKED        |   908
+ TOTE_ASSIGNED | 35092
+(2 rows)
+
+Time: 53.790 ms
+[20:52:31] 실험 묶음 토트 35092개

@@ -73,6 +73,12 @@ def server_metrics(prom: str, start: float, end: float) -> dict:
     m["rds_commits_per_s"] = q(f'sum(rate(pg_stat_database_xact_commit{{datname="app"}}[{w}]))')
     m["rds_rollbacks_per_s"] = q(f'sum(rate(pg_stat_database_xact_rollback{{datname="app"}}[{w}]))')
     m["pg_deadlocks"] = q(f'sum(increase(pg_stat_database_deadlocks{{datname="app"}}[{w}]))')
+    # 상태·예외별 서버 응답 건수(타임아웃 실험에서 어떤 예외로 끝났는지)
+    q2 = urllib.parse.urlencode({"query": f'sum by (uri, status, exception) (increase(http_server_requests_seconds_count{{uri!~"/actuator.*"}}[{w}]))', "time": end})
+    with urllib.request.urlopen(f"{prom}/api/v1/query?{q2}", timeout=60) as r:
+        res = json.load(r)["data"]["result"]
+    m["http_by_status"] = {f"{x['metric'].get('uri')} {x['metric'].get('status')} {x['metric'].get('exception')}": round(float(x["value"][1]))
+                           for x in res if float(x["value"][1]) >= 0.5}
     return m
 
 
@@ -90,6 +96,14 @@ def k6_metrics(summary_path: Path, measure_s: float) -> dict:
             v = g(name, key)
             if v is not None:
                 m[f"k6_{name.replace('measured_', '')}_{key.strip('p()')}"] = v
+    for name in ("lockwin_scan", "lockwin_detail", "lockwin_complete"):
+        for key in ("p(50)", "p(95)", "max", "count"):
+            v = g(name, key)
+            if v is not None:
+                m[f"{name}_{key.strip('p()')}"] = v
+    for name in ("measured_fail_timeout", "measured_fail_5xx", "measured_fail_4xx",
+                 "lockwin_fail_timeout", "lockwin_fail_5xx", "lockwin_ok"):
+        m[name] = g(name, "count") or 0
     ok = g("measured_complete_ok", "count") or 0
     m["k6_complete_ok"] = ok
     m["tps"] = ok / measure_s if measure_s else None
@@ -163,7 +177,8 @@ def console_row(meta: dict, r: dict) -> str:
     return (f"pool {meta['pool']:>3} | VU {meta['vus']:>4} | pacing {meta['pacing_ms']:>6} | "
             f"TPS {r.get('tps') or 0:7.1f} | Queue-ms p95 {fmt_ms(r.get('acquire_p95')):>7} | "
             f"Run-ms p95 {fmt_ms(r.get('usage_p95')):>7} | http p95 {fmt_ms(r.get('http_complete_p95')):>7} | "
-            f"pending max {r.get('hikari_pending_max') or 0:4.0f} | top wait {top_s}")
+            f"pending max {r.get('hikari_pending_max') or 0:4.0f} | top wait {top_s}"
+            + (f" | [무효: 묶음 소진 {r['k6_exhausted']:.0f}회]" if r.get("k6_exhausted") else ""))
 
 
 def main() -> None:

@@ -129,6 +129,11 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   apply_config "$3" "$4" "$5"
   if [ "$SCENARIO" = packing ]; then
     psql_file fixture-reset.sql "--set=prefix=$FIXTURE_PREFIX --set=box_stock=$FIXTURE_BOX_STOCK" > "$d/fixture-reset.log" 2>&1
+    # 토트 목록은 원복 뒤에 뽑는다. 원복 전에 뽑으면 앞 조건이 포장한 배송단위가 빠져 목록이 짧아진다.
+    psql_file fixture-totes.sql "-At --set=prefix=$FIXTURE_PREFIX" \
+      | "$PY" -c 'import json,sys; print(json.dumps([{"barcode": l.strip()} for l in sys.stdin if l.strip()]))' > "$STATE_DIR/totes.json"
+    log "실험 묶음 토트 $("$PY" -c "import json;print(len(json.load(open('$STATE_DIR/totes.json'))))")개" 2>&1 | tee -a "$d/fixture-reset.log"
+    scp -q "${SSH_OPTS[@]}" "$STATE_DIR/totes.json" "$SSH_USER@$LOADGEN_HOST:pool-sweep/totes.json"
   fi
   sleep "$SETTLE_S"
   on_backend "sudo docker rm -f pool-sweep-waits >/dev/null 2>&1; cd $BACKEND_DIR && sudo docker run -d --name pool-sweep-waits --network host --env-file .env -v \$HOME/pool-sweep:/sql:ro $PSQL_IMAGE \
@@ -140,6 +145,9 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   fi
   local rdir="pool-sweep/runs/$(basename "$dir")/$id" t0 k6args
   k6args="-e WARMUP_S=$warm -e MEASURE_S=$MEASURE_S -e TIMEOUT=$CLIENT_TIMEOUT"
+  if [ -n "$LOCK_INJECT" ]; then  # k6 가 락 구간에 시작한 요청을 따로 센다(psql 기동 지연 2초 포함)
+    k6args="$k6args -e LOCK_FROM_S=$((warm + at + 2)) -e LOCK_TO_S=$((warm + at + 2 + hold))"
+  fi
   if [ "$SCENARIO" = packing ]; then
     k6args="$k6args -e VUS=$vus -e DURATION=$((warm + MEASURE_S))s -e PACING_MS=$pacing -e THINK_MS=$think -e SLEEP_AFTER_MS=$after -e TOTES_FILE=/home/$SSH_USER/pool-sweep/totes.json"
   else
@@ -179,12 +187,6 @@ cmd_sweep() {
   capture_baseline
   sync_tools
   DEMO_KEY_VALUE=$(demo_key)
-  if [ "$SCENARIO" = packing ]; then
-    psql_file fixture-totes.sql "-At --set=prefix=$FIXTURE_PREFIX" \
-      | "$PY" -c 'import json,sys; print(json.dumps([{"barcode": l.strip()} for l in sys.stdin if l.strip()]))' > "$STATE_DIR/totes.json"
-    log "실험 묶음 토트 $("$PY" -c "import json;print(len(json.load(open('$STATE_DIR/totes.json'))))")개"
-    scp -q "${SSH_OPTS[@]}" "$STATE_DIR/totes.json" "$SSH_USER@$LOADGEN_HOST:pool-sweep/totes.json"
-  fi
   # shellcheck disable=SC1090
   source "$BASELINE"
   printf '{"started":"%s","pool_sizes":"%s","conn_timeouts_ms":"%s","tomcat_threads":"%s","loads":"%s","repeat":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","image":"%s","rds_max_connections":"%s","portfolio_sha":"%s"}\n' \

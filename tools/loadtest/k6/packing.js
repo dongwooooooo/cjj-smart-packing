@@ -27,6 +27,22 @@ const mDetail = new Trend("measured_detail", true);
 const mOk = new Counter("measured_complete_ok");
 const mFail = new Counter("measured_req_fail");
 const mReqs = new Counter("measured_reqs");
+const mTimeout = new Counter("measured_fail_timeout"); // 클라이언트 타임아웃(status 0)
+const m5xx = new Counter("measured_fail_5xx");
+const m4xx = new Counter("measured_fail_4xx");
+// 락 주입 구간(LOCK_FROM_S ~ LOCK_TO_S, 시험 시작 기준 초)에 시작한 요청만 따로 담는다.
+const LOCK_FROM_MS = parseFloat(__ENV.LOCK_FROM_S || "-1") * 1000;
+const LOCK_TO_MS = parseFloat(__ENV.LOCK_TO_S || "-1") * 1000;
+const lockTrends = {
+  scan: new Trend("lockwin_scan", true),
+  detail: new Trend("lockwin_detail", true),
+  complete: new Trend("lockwin_complete", true),
+};
+const lockFail = {
+  timeout: new Counter("lockwin_fail_timeout"),
+  s5xx: new Counter("lockwin_fail_5xx"),
+  ok: new Counter("lockwin_ok"),
+};
 
 const THINK_MS = parseInt(__ENV.THINK_MS || "0", 10);
 const SLEEP_AFTER_MS = parseInt(__ENV.SLEEP_AFTER_MS || "1000", 10);
@@ -42,12 +58,26 @@ function inWindow() {
 }
 
 // 판독 구간이면 요청 하나를 기록한다. 실패는 상태 코드 기준(2xx 아님, 타임아웃은 status 0).
-function record(trend, res) {
+function record(trend, res, name, startedAt) {
   if (!inWindow()) return;
   trend.add(res.timings.duration);
   mReqs.add(1);
-  if (res.status < 200 || res.status >= 300)
-    mFail.add(1, { status: String(res.status) });
+  const bad = res.status < 200 || res.status >= 300;
+  if (bad) mFail.add(1, { status: String(res.status) });
+  if (res.status === 0) mTimeout.add(1);
+  else if (res.status >= 500) m5xx.add(1);
+  else if (res.status >= 400) m4xx.add(1);
+  // startedAt 은 요청을 보낸 시각(시험 시작 기준 ms). 락 구간에 시작한 요청만 따로 센다.
+  if (LOCK_FROM_MS >= 0 && startedAt >= LOCK_FROM_MS && startedAt < LOCK_TO_MS) {
+    lockTrends[name].add(res.timings.duration, { outcome: bad ? String(res.status) : "ok" });
+    if (res.status === 0) lockFail.timeout.add(1);
+    else if (res.status >= 500) lockFail.s5xx.add(1);
+    else if (!bad) lockFail.ok.add(1);
+  }
+}
+
+function now() {
+  return exec.instance.currentTestRunDuration;
 }
 
 export const options = {
@@ -90,23 +120,26 @@ export default function () {
     sleep(2);
     return;
   }
+  let t0 = now();
   const scan = post("/api/v1/totes/scan", { barcode }, { name: "tote-scan" });
-  record(mScan, scan);
+  record(mScan, scan, "scan", t0);
   if (!ok(scan, "tote-scan")) {
     sleep(1);
     return;
   }
   const shipmentId =
     scan.json("shipmentId") || scan.json("shipment.shipmentId");
+  t0 = now();
   const detail = get(`/api/v1/shipments/${shipmentId}`, {
     name: "shipment-detail",
   });
-  record(mDetail, detail);
+  record(mDetail, detail, "detail", t0);
   const expected =
     (detail.status === 200 &&
       (detail.json("expectedWeightKg") || detail.json("weight.expectedKg"))) ||
     1.0;
   if (THINK_MS > 0) sleep(THINK_MS / 1000);
+  t0 = now();
   const done = post(
     `/api/v1/shipments/${shipmentId}/complete`,
     { measuredWeightKg: expected },
@@ -114,7 +147,7 @@ export default function () {
   );
   if (ok(done, "complete") && inWindow()) mOk.add(1);
   completeMs.add(done.timings.duration);
-  record(mComplete, done);
+  record(mComplete, done, "complete", t0);
   if (SLEEP_AFTER_MS > 0) sleep(SLEEP_AFTER_MS / 1000);
   if (PACING_MS > 0) {
     const left = PACING_MS - (Date.now() - cycleStart);
