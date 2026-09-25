@@ -172,3 +172,20 @@
 - 09-26 00:03 `sat-p10-t3000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    55.1 | Queue-ms p95  1835.6 | Run-ms p95   111.4 | http p95  2132.2 | pending max   91 | top wait IdleInTx:app(6.0) (rc=99)
 - 09-26 00:03 스윕 종료 `20260925-235658`, 백엔드 기준 설정으로 복원
 - 09-26 00:05 3초 재검증 ABBA 완료(`verify/`): 23:39 결정 82.5건/s·실패 0.26%·획득 타임아웃 93 / 23:46 기본 77.4·0·0(획득 max 13.7초) / 23:53 기본 66.4·0·0(9.0초) / 23:59 결정 55.1·2.82%·578. 표류가 더 커져(RDS CPU 크레딧 56, 원장 105만 행) 3초의 전제(과부하 획득 max 2.6초)가 이 시점엔 성립하지 않음. 실패율의 409 는 상세 500 뒤 k6 가 무게 1.0 으로 완료를 보낸 연쇄(WEIGHT_MISMATCH). 00:05 복원 확인: 설정 흔적 0, 덮어쓰기 파일 없음, 이미지 cd6222eefbf2.
+- 09-26 00:07 표류 통제 재검증 착수. 예측(먼저 기록): (a) 원장 크기가 원인이면 원장을 조건마다 고정했을 때 ABBA 네 조건의 기본값끼리 처리량 차이가 5% 안으로 줄어든다. (b) CPU 크레딧이 원인이면(= unlimited 가 아니어서 스로틀) 원장을 고정해도 시간 순 하락이 남고, CPUUtilization 이 기준선(t4g.micro 20%) 근처에 붙는다.
+- 09-26 00:07 표류 원인 (b) 판정: RDS db.t4g 는 문서상 Unlimited 모드(https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.Types.html, describe-db-instances 응답에는 해당 필드 없음). 20:40~23:53 CPUSurplusCreditBalance 0, 크레딧 잔고 221 → 68(0 미도달), CPUUtilization 판독 평균 68.6~75.6% 로 기준선(20%)이 아니라 그 위에 머묾. 같은 CPU 로 처리량만 113.4 → 66.4 로 줄어 완료 1건당 DB CPU 가 늘어난 것 — 크레딧 스로틀 아님. 표는 README 6절.
+- 09-26 00:09 원장 첫 원복 수동 실행: 105만 행 → 20,317행(실험 전 id 21674 까지), 3.1MB, 3.6초. 상품 잔고 약 9.4만으로 복귀(실험 전 기록과 같음). 표류 통제 재검증 `verify-controlled/` 시작, 기준 크레딧 52.3, 절반 아래면 중단. 조건마다 원장 원복 + 묶음 원복 + 90초 대기.
+- 09-26 00:09 스윕 시작 `verify-controlled` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 00:17 `sat-p10-t3000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   120.4 | Queue-ms p95   397.2 | Run-ms p95    65.7 | http p95   463.0 | pending max   91 | top wait IdleInTx:app(7.2) (rc=99)
+- 09-26 00:17 스윕 종료 `20260926-000944`, 백엔드 기준 설정으로 복원
+- 09-26 00:17 스윕 시작 `verify-controlled` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 00:25 `sat-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   125.4 | Queue-ms p95   374.2 | Run-ms p95    62.9 | http p95   441.0 | pending max   91 | top wait IdleInTx:app(6.9) (rc=99)
+- 09-26 00:25 스윕 종료 `20260926-001748`, 백엔드 기준 설정으로 복원
+- 09-26 00:25 스윕 시작 `verify-controlled` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 00:33 `sat-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   122.7 | Queue-ms p95   382.4 | Run-ms p95    65.0 | http p95   448.4 | pending max   91 | top wait IdleInTx:app(7.3) (rc=99)
+- 09-26 00:33 스윕 종료 `20260926-002540`, 백엔드 기준 설정으로 복원
+- 09-26 00:33 스윕 시작 `verify-controlled` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 00:40 `sat-p10-t3000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   124.9 | Queue-ms p95   374.7 | Run-ms p95    63.6 | http p95   443.5 | pending max   91 | top wait IdleInTx:app(7.1) (rc=99)
+- 09-26 00:41 스윕 종료 `20260926-003330`, 백엔드 기준 설정으로 복원
+- 09-26 00:1x~00:41 표류 통제 재검증 `verify-controlled/`(조건마다 원장 원복 + 묶음 원복 + VACUUM FULL + 90초 대기). 원복 직후 `count(*) FROM inventory_tx` 네 조건 모두 20,317. 00:13 결정 10/3000 120.4건/s·실패 0·획득 max 2.83초·크레딧 52.3 / 00:22 기본 125.4·0·2.71초·46.7 / 00:29 기본 122.7·0·2.02초·43.6 / 00:37 결정 124.9·0·**3.00초(2.996)**·36.8. 크레딧 중단 조건(26.2 미만)에 걸리지 않음. 예측 판정: (a) 원장 크기 — 맞음(처리량 범위 4%, 시간 순 하락 없음). (b) 크레딧 — 틀림(크레딧은 52 → 37 로 줄었지만 처리량 유지, RDS CPU 38~58%).
+- 09-26 00:4x 3초 판정: 과부하 실패 0. 다만 획득 max 2.996초로 한도와 4ms 차이. 그 전후 70초 DB 락 대기 평균 0.5세션, 일하는 세션 대부분은 트랜잭션 중 앱 대기(8.1) → 락이 아니라 커넥션 10개를 두고 작업자 100명이 선 대기열(pending 91)의 꼬리. 00:42 복원 확인(설정 흔적 0, 덮어쓰기 파일 없음, 이미지 cd6222eefbf2) 뒤 원장·묶음을 한 번 더 원복: 원장 20,317행, TOTE_ASSIGNED 35,092.
