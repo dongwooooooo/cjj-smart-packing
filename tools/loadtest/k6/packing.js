@@ -134,10 +134,14 @@ export default function () {
     name: "shipment-detail",
   });
   record(mDetail, detail, "detail", t0);
+  // 상세를 못 받으면 작업자는 예상 무게를 모른 채 완료를 누르지 않는다. 이 사이클은 상세 실패로만 센다.
+  // (전에는 무게 1.0kg 으로 완료를 보내 무게 검수 409 가 실패율에 섞였다, 2026-09-26 수정)
+  if (!ok(detail, "shipment-detail")) {
+    sleep(1);
+    return;
+  }
   const expected =
-    (detail.status === 200 &&
-      (detail.json("expectedWeightKg") || detail.json("weight.expectedKg"))) ||
-    1.0;
+    detail.json("expectedWeightKg") || detail.json("weight.expectedKg") || 1.0;
   if (THINK_MS > 0) sleep(THINK_MS / 1000);
   t0 = now();
   const done = post(

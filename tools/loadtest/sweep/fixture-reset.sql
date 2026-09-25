@@ -38,7 +38,7 @@ FROM fx WHERE s.id = fx.shipment_id AND s.status <> 'TOTE_ASSIGNED';
 UPDATE box_type SET stock_qty = :box_stock WHERE stock_qty <> :box_stock;
 SELECT 'fixture' AS k, count(*) AS shipments FROM fx;
 COMMIT;
--- 갱신으로 생긴 죽은 행을 조건마다 같은 수준으로 치운다.
-VACUUM (ANALYZE) shipment, tote_assignment, tote, box_type;
+-- 갱신으로 생긴 죽은 행과 인덱스 부풀음을 조건마다 치운다(FULL: 표와 인덱스를 새로 써서 크기를 매번 같게).
+VACUUM (FULL, ANALYZE) shipment, tote_assignment, tote, box_type;
 SELECT s.status, count(*) FROM shipment s JOIN orders o ON o.id = s.order_id
 WHERE o.receipt_no LIKE :'prefix' || '%' GROUP BY 1;

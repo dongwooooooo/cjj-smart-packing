@@ -78,6 +78,17 @@ restore_backend() {
   metrics_grep '^(hikaricp_connections_max|tomcat_threads_config_max_threads)' >&2
 }
 
+rds_credit() {  # 최근 10분의 CPUCreditBalance 마지막 값(5분 주기). 조회 실패면 빈 값
+  "$PY" - "$RDS_ID" "$AWS_REGION" <<'PYEOF' 2>/dev/null || true
+import sys, datetime as dt, boto3
+cw = boto3.client("cloudwatch", region_name=sys.argv[2]); now = dt.datetime.now(dt.timezone.utc)
+r = cw.get_metric_statistics(Namespace="AWS/RDS", MetricName="CPUCreditBalance", Statistics=["Average"], Period=300,
+    Dimensions=[{"Name": "DBInstanceIdentifier", "Value": sys.argv[1]}], StartTime=now - dt.timedelta(minutes=15), EndTime=now)
+pts = sorted(r["Datapoints"], key=lambda p: p["Timestamp"])
+print(round(pts[-1]["Average"], 1) if pts else "")
+PYEOF
+}
+
 # ── 조건 반영 ─────────────────────────────────────────────────────────────
 apply_config() {  # $1 pool $2 conn_timeout_ms $3 tomcat_threads
   # shellcheck disable=SC1090
@@ -128,7 +139,17 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   printf '{"id":"%s","load":"%s","vus":%s,"pacing_ms":%s,"think_ms":%s,"sleep_after_ms":%s,"pool":%s,"conn_timeout_ms":%s,"tomcat_threads":%s,"rep":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","jvm_opts_extra":"%s"}\n' \
     "$id" "$name" "$vus" "$pacing" "$think" "$after" "$3" "$4" "$5" "$6" "$warm" "$MEASURE_S" "$SCENARIO" "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${JVM_OPTS_EXTRA:-}" > "$d/meta.json"
   log "── 조건 $id"
+  local credit; credit=$(rds_credit)
+  log "RDS CPU 크레딧 잔고 $credit (기준 $CREDIT_BASE)"; echo "$credit" > "$d/rds-credit-before.txt"
+  if [ -n "$CREDIT_BASE" ] && [ -n "$credit" ] && "$PY" -c "import sys; sys.exit(0 if $credit < $CREDIT_BASE * $CREDIT_STOP_RATIO else 1)"; then
+    echo "- $(date '+%m-%d %H:%M') \`$id\` 시작 전 중단: RDS CPU 크레딧 $credit < 기준 $CREDIT_BASE × $CREDIT_STOP_RATIO" >> "$OUT_ROOT/progress.md"
+    log "크레딧 부족으로 중단"; exit 3
+  fi
   apply_config "$3" "$4" "$5"
+  if [ "$SCENARIO" = packing ] && [ -n "$LEDGER_CUTOFF_ID" ]; then
+    psql_file ledger-reset.sql "--set=prefix=$FIXTURE_PREFIX --set=cutoff=$LEDGER_CUTOFF_ID" > "$d/ledger-reset.log" 2>&1
+    log "원장 원복: $(grep -m1 ledger_rows "$d/ledger-reset.log" | tr -s ' ')"
+  fi
   if [ "$SCENARIO" = packing ]; then
     psql_file fixture-reset.sql "--set=prefix=$FIXTURE_PREFIX --set=box_stock=$FIXTURE_BOX_STOCK" > "$d/fixture-reset.log" 2>&1
     # 토트 목록은 원복 뒤에 뽑는다. 원복 전에 뽑으면 앞 조건이 포장한 배송단위가 빠져 목록이 짧아진다.
