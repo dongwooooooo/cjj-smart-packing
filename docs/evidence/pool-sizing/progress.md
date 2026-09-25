@@ -158,3 +158,17 @@
 - 09-25 23:07 `peak3x-p10-t30000-th200-r2` pool  10 | VU  300 | pacing  60000 | TPS     4.7 | Queue-ms p95  3372.3 | Run-ms p95    88.9 | http p95  8117.5 | pending max  190 | top wait CPU(0.6) (rc=99)
 - 09-25 23:08 스윕 종료 `20260925-225932`, 백엔드 기준 설정으로 복원
 - 09-25 23:13 락 주입 2회차: 1000 → 스캔 1.0초에 500(530건), 30000 → 스캔 p95 10.0초·클라이언트 타임아웃 95건·Tomcat busy 200. 1회차와 같은 결과. 결정값(풀 10, connectionTimeout 1000)을 backend 브랜치 4a1b10c 로 커밋(전체 테스트 55개 클래스 실패 0). 마지막 check: SPRING_APPLICATION_JSON 0, hikari max 10, tomcat max 200. 실험 종료. README.md(전 조건 비교·판독) 작성.
+- 09-25 23:36 사용자 결정: connectionTimeout 3초(1초는 과부하 실패율 때문에 제외). backend 브랜치 d70e3f7 커밋(전체 테스트 실패 0), backend 체크아웃은 main 으로 되돌림. 기존 10/1000 재검증은 `verify-1s-candidate/` 로 이름 변경. 3초 재검증을 ABBA(결정 10/3000 → 기본 10/30000 → 기본 → 결정)로 `verify/` 에 새로 돈다.
+- 09-25 23:36 스윕 시작 `verify` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 23:42 `sat-p10-t3000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    82.5 | Queue-ms p95   934.2 | Run-ms p95    86.5 | http p95  1179.7 | pending max   91 | top wait IdleInTx:app(5.8) (rc=99)
+- 09-25 23:43 스윕 종료 `20260925-233633`, 백엔드 기준 설정으로 복원
+- 09-25 23:43 스윕 시작 `verify` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 23:49 `sat-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    77.4 | Queue-ms p95  1134.6 | Run-ms p95    88.9 | http p95  1387.4 | pending max   91 | top wait IdleInTx:app(7.1) (rc=99)
+- 09-25 23:50 스윕 종료 `20260925-234318`, 백엔드 기준 설정으로 복원
+- 09-25 23:50 스윕 시작 `verify` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-25 23:56 `sat-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    66.4 | Queue-ms p95  1360.2 | Run-ms p95    99.1 | http p95  1630.3 | pending max   91 | top wait IdleInTx:app(6.2) (rc=99)
+- 09-25 23:56 스윕 종료 `20260925-235008`, 백엔드 기준 설정으로 복원
+- 09-25 23:57 스윕 시작 `verify` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 00:03 `sat-p10-t3000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    55.1 | Queue-ms p95  1835.6 | Run-ms p95   111.4 | http p95  2132.2 | pending max   91 | top wait IdleInTx:app(6.0) (rc=99)
+- 09-26 00:03 스윕 종료 `20260925-235658`, 백엔드 기준 설정으로 복원
+- 09-26 00:05 3초 재검증 ABBA 완료(`verify/`): 23:39 결정 82.5건/s·실패 0.26%·획득 타임아웃 93 / 23:46 기본 77.4·0·0(획득 max 13.7초) / 23:53 기본 66.4·0·0(9.0초) / 23:59 결정 55.1·2.82%·578. 표류가 더 커져(RDS CPU 크레딧 56, 원장 105만 행) 3초의 전제(과부하 획득 max 2.6초)가 이 시점엔 성립하지 않음. 실패율의 409 는 상세 500 뒤 k6 가 무게 1.0 으로 완료를 보낸 연쇄(WEIGHT_MISMATCH). 00:05 복원 확인: 설정 흔적 0, 덮어쓰기 파일 없음, 이미지 cd6222eefbf2.
