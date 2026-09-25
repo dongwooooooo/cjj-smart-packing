@@ -152,7 +152,8 @@ def rds_cpu(rds_id: str, region: str, start: float, end: float) -> dict:
         cw = boto3.client("cloudwatch", region_name=region)
         out = {}
         for metric, stat in (("CPUUtilization", "Average"), ("CPUUtilization", "Maximum"),
-                             ("CPUCreditBalance", "Minimum"), ("DatabaseConnections", "Maximum")):
+                             ("CPUCreditBalance", "Minimum"), ("DatabaseConnections", "Maximum"),
+                             ("CPUSurplusCreditBalance", "Maximum"), ("CPUSurplusCreditsCharged", "Sum")):
             r = cw.get_metric_statistics(
                 Namespace="AWS/RDS", MetricName=metric, Statistics=[stat], Period=60,
                 Dimensions=[{"Name": "DBInstanceIdentifier", "Value": rds_id}],
@@ -161,7 +162,8 @@ def rds_cpu(rds_id: str, region: str, start: float, end: float) -> dict:
             pts = [p[stat] for p in r["Datapoints"]]
             key = f"rds_{metric}_{stat}".lower()
             if pts:
-                out[key] = sum(pts) / len(pts) if stat == "Average" else (max(pts) if stat == "Maximum" else min(pts))
+                out[key] = (sum(pts) / len(pts) if stat == "Average" else max(pts) if stat == "Maximum"
+                            else sum(pts) if stat == "Sum" else min(pts))
         return out
     except Exception as e:  # CloudWatch 는 보조 지표다. 없으면 표에서 비운다
         return {"rds_cloudwatch_error": str(e)[:200]}

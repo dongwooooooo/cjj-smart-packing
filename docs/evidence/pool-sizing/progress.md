@@ -207,3 +207,23 @@
 - 09-26 01:21 스윕 시작 `sat-fixed` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
 - 09-26 01:21 `sat-p40-t30000-th200-r1` 시작 전 중단: RDS CPU 크레딧 11.2 < 기준 27.5 × 0.5
 - 09-26 01:24 원장 고정 포화 스윕 오름차순: 풀 5 78.4 / 10 125.2 / 20 136.6 / **30 137.6** 건/s, 실패 0. 락·IO 대기 비중 8% / 19% / 47% / 63%. 풀 30 은 원장 고정 전(56.7)과 달리 무너지지 않았다(Lock:tuple 15.5세션, 서버 완료 p95 882ms). 풀 40 은 시작 전 크레딧 11.2 < 기준 27.5 의 절반(13.75)이라 규칙대로 중단. 내림차순 5조건과 풀 40 은 미실행. 01:22 복원 확인(설정 흔적 0, 덮어쓰기 파일 없음, 이미지 cd6222eefbf2) 후 원장 20,317행·묶음 35,092건 원복.
+- 09-26 01:26 사용자 결정: 크레딧 중단 규칙 완화(Unlimited 모드, 초과 크레딧 요금 감수). 조건마다 CPUCreditBalance·CPUSurplusCreditBalance·CPUSurplusCreditsCharged 를 기록. 원장 고정 포화 스윕 나머지 풀 40(r1) → 내림차순 40·30·20·10·5(r2). 중단으로 비어 있던 풀 40 r1 디렉터리는 지우고 다시 잰다.
+- 09-26 01:26 스윕 시작 `sat-fixed` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 01:33 `sat-p40-t30000-th200-r1` pool  40 | VU  100 | pacing      0 | TPS   132.1 | Queue-ms p95   273.6 | Run-ms p95   484.5 | http p95  1356.7 | pending max   61 | top wait Lock:tuple(31.7) (rc=99)
+- 09-26 01:34 스윕 종료 `20260926-012632`, 백엔드 기준 설정으로 복원
+- 09-26 01:34 스윕 시작 `sat-fixed` pools=[40] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 01:41 `sat-p40-t30000-th200-r2` pool  40 | VU  100 | pacing      0 | TPS   131.9 | Queue-ms p95   267.7 | Run-ms p95   519.3 | http p95  1304.1 | pending max   62 | top wait Lock:tuple(25.5) (rc=99)
+- 09-26 01:42 스윕 종료 `20260926-013428`, 백엔드 기준 설정으로 복원
+- 09-26 01:42 스윕 시작 `sat-fixed` pools=[30] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 01:49 `sat-p30-t30000-th200-r2` pool  30 | VU  100 | pacing      0 | TPS   139.4 | Queue-ms p95   312.0 | Run-ms p95   352.5 | http p95   881.2 | pending max   71 | top wait Lock:tuple(15.8) (rc=99)
+- 09-26 01:50 스윕 종료 `20260926-014223`, 백엔드 기준 설정으로 복원
+- 09-26 01:50 스윕 시작 `sat-fixed` pools=[20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 01:57 `sat-p20-t30000-th200-r2` pool  20 | VU  100 | pacing      0 | TPS   138.3 | Queue-ms p95   366.5 | Run-ms p95   183.7 | http p95   560.9 | pending max   81 | top wait IdleInTx:app(9.3) (rc=99)
+- 09-26 01:58 스윕 종료 `20260926-015016`, 백엔드 기준 설정으로 복원
+- 09-26 01:58 스윕 시작 `sat-fixed` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 02:05 `sat-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   122.3 | Queue-ms p95   410.5 | Run-ms p95    64.7 | http p95   470.0 | pending max   91 | top wait IdleInTx:app(7.4) (rc=99)
+- 09-26 02:06 스윕 종료 `20260926-015809`, 백엔드 기준 설정으로 복원
+- 09-26 02:06 스윕 시작 `sat-fixed` pools=[5] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 02:13 `sat-p5-t30000-th200-r2` pool   5 | VU  100 | pacing      0 | TPS    75.0 | Queue-ms p95   579.5 | Run-ms p95    44.6 | http p95   620.6 | pending max   96 | top wait IdleInTx:app(4.1) (rc=99)
+- 09-26 02:13 스윕 종료 `20260926-020604`, 백엔드 기준 설정으로 복원
+- 09-26 01:26~02:14 원장 고정 포화 스윕 완료. 오름차순 r1 풀 40 132.1건/s, 내림차순 r2 40 131.9 / 30 139.4 / 20 138.3 / 10 122.3 / 5 75.0. 실패 0. 풀 40 도 원장 고정에서는 무너지지 않음(서버 완료 p95 1.3초, Lock:tuple 25.5~31.7세션). RDS CPU 크레딧 잔고는 01:35 에 0 도달(5분 지표), 이후 초과 크레딧 잔고 27.1(02:10)까지 누적, 청구된 초과 크레딧(CPUSurplusCreditsCharged) 0. 잔고 0 이후 조건(30·20·10·5)의 처리량이 r1 과 ±3% 안 — 스로틀 없음. 02:14 복원 확인(설정 흔적 0, 덮어쓰기 파일 없음, 이미지 cd6222eefbf2) 후 원장 20,317행·묶음 35,092건 원복.
