@@ -9,7 +9,7 @@ resource "aws_security_group_rule" "monitoring_from_me" {
   from_port         = each.value
   to_port           = each.value
   protocol          = "tcp"
-  cidr_blocks       = ["${var.my_ip}/32"]
+  cidr_blocks       = local.my_cidrs
   description       = "${each.key} from my ip"
 }
 
@@ -22,7 +22,7 @@ resource "aws_security_group" "loadgen" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.my_ip}/32"]
+    cidr_blocks = local.my_cidrs
   }
   egress {
     from_port   = 0

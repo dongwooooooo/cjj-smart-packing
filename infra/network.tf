@@ -48,13 +48,17 @@ resource "aws_security_group_rule" "backend_api_public" {
   description       = "api"
 }
 
+locals {
+  my_cidrs = concat(["${var.my_ip}/32"], [for ip in var.my_extra_ips : "${ip}/32"])
+}
+
 resource "aws_security_group_rule" "backend_ssh_me" {
   type              = "ingress"
   security_group_id = aws_security_group.backend.id
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["${var.my_ip}/32"]
+  cidr_blocks       = local.my_cidrs
   description       = "ssh from my ip"
 }
 

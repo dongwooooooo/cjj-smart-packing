@@ -8,6 +8,12 @@ variable "my_ip" {
   type        = string
 }
 
+variable "my_extra_ips" {
+  description = "추가 허용 IP 목록(CIDR 없이). 공인 IP가 둘 사이를 오갈 때 둘 다 넣는다."
+  type        = list(string)
+  default     = []
+}
+
 variable "key_name" {
   description = "EC2 키페어 이름. SSH 는 비상용이고 배포는 SSM 으로 한다."
   type        = string
