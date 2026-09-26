@@ -201,7 +201,7 @@ DB 연결 풀은 프레임워크 기본값(연결 10개, 연결을 얻기까지 
 
 주문 50배에 주문당 시간 1.16배. 첫 벤치마크는 예외로 멈췄습니다. 상품 하나를 다른 박스로 옮길 때 받는 쪽만 검사하고 뺀 쪽은 검사하지 않아, 17개는 담기는데 16개는 못 담긴다고 판정되는 조합이 나왔습니다. 접수 API였다면 500 응답이었을 경로를 고치고 그 주문을 회귀 테스트로 고정했습니다.
 
-`[캡처 필요] 벤치마크 실행 콘솔`
+`[캡처] docs/evidence/benchmark/screens/bench-console.png — ./gradlew benchmark 콘솔: 100·1,000·5,000주문 p50/p95/최대와 가장 오래 걸린 주문 10건`
 
 ---
 
@@ -262,7 +262,9 @@ DB 연결 풀은 프레임워크 기본값(연결 10개, 연결을 얻기까지 
 
 8비트 양자화는 1.48배 빠르고 평균 오차 악화는 1.5cm뿐이라 평균만 봤다면 통과했을 후보입니다. 3축 정답률이 62.5%에서 22.6%로 떨어져 검증이 막았습니다. 재학습 없이 통과하는 속도 후보는 없다는 결론을 얻었습니다.
 
-`[캡처 필요] 검증 파이프라인 실행 결과(GitHub Actions)`
+`[캡처] docs/evidence/eval/screens/gate-run-jobs.png — GitHub Actions run 35104097754: build → accuracy gate → update lambda 3잡 모두 통과`
+
+`[캡처] docs/evidence/eval/screens/gate-run-eval-log.png — accuracy gate 잡 로그: MAE 2.06/2.17/1.62, ±3cm 62.5%, 판정 pass: true`
 
 ---
 

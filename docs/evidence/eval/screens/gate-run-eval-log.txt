@@ -1,0 +1,119 @@
+$ gh run view --job 104821416649 --repo dongwooooooo/cjj-smart-packing-ai
+
+✓ main build-deploy · 35104097754
+Triggered via workflow_dispatch about 10 days ago
+
+✓ accuracy gate on fixed set in 7m4s (ID 104821416649)
+  ✓ Set up job
+  ✓ Checkout
+  ✓ Configure AWS credentials (OIDC)
+  ✓ Log in to Amazon ECR
+  ✓ Extract model from the pushed image
+  ✓ Set up Python
+  ✓ Install runtime dependencies
+  ✓ Download fixed evaluation set
+  ✓ Evaluate candidate (FP32, serving preprocessing)
+  ✓ Judge against baseline
+  ✓ Keep results
+  ✓ Upload artifact
+  ✓ Post Set up Python
+  ✓ Post Log in to Amazon ECR
+  ✓ Post Configure AWS credentials (OIDC)
+  ✓ Post Checkout
+  ✓ Complete job
+
+To see the full job log, try: gh run view --log --job=104821416649
+View this run on GitHub: https://github.com/dongwooooooo/cjj-smart-packing-ai/actions/runs/35104097754
+
+$ gh run view --job 104821416649 --repo dongwooooooo/cjj-smart-packing-ai --log \
+    | grep -E $'\t(Evaluate candidate[^\t]*|Judge against baseline)\t' | cut -f2- \
+    | sed -E "s/$AWS_ACCOUNT_ID/************/; s/\^\[\[[0-9;]*m//g" | perl -CS -pe 's/^(.{200}).*/$1/'
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8887533Z ##[group]Run python eval/eval_variants.py --vs data/VS --items data/index/items.csv \
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8888278Z python eval/eval_variants.py --vs data/VS --items data/index/items.csv \
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8888709Z   --model-dir inference --out results --threads 2 --variants fp32
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8921068Z shell: /usr/bin/bash -e {0}
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8921297Z env:
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8921498Z   AWS_REGION: ap-northeast-2
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8921740Z   ECR_REPO: logistics-dimension-api
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8921994Z   EVAL_BUCKET: cjj-eval-data-************
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8922246Z   EVAL_PREFIX: vs2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8922481Z   AWS_DEFAULT_REGION: ap-northeast-2
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8922798Z   AWS_ACCESS_KEY_ID: ***
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8923096Z   AWS_SECRET_ACCESS_KEY: ***
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8926787Z   AWS_SESSION_TOKEN: ***
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8927059Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8927434Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8927988Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8928325Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8928645Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8928965Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:16.8929246Z ##[endgroup]
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:17.0862784Z 2026-09-16 13:51:17.085918587 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI pat
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:17.2360731Z VS items with 3 views: 2024, with GT: 2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:17.5298523Z   fp32: 0/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:51:42.7087866Z   fp32: 200/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:52:08.0355061Z   fp32: 400/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:52:33.4533727Z   fp32: 600/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:52:58.7216174Z   fp32: 800/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:53:23.8851403Z   fp32: 1000/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:53:49.1054767Z   fp32: 1200/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:54:14.5458612Z   fp32: 1400/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:54:39.8189670Z   fp32: 1600/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:55:04.8391584Z   fp32: 1800/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:55:29.8009955Z   fp32: 2000/2024
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:55:32.6835183Z [fp32] size=52.7MB MAE L/W/H=2.06/2.17/1.62 ±3cm(3축)=62.5% ±2cm=46.8% latency p50=118 p95=121ms
+Evaluate candidate (FP32, serving preprocessing)	2026-09-16T13:55:32.7080609Z saved results/summary.json
+Judge against baseline	2026-09-16T13:55:32.7392197Z ##[group]Run set -euo pipefail
+Judge against baseline	2026-09-16T13:55:32.7392695Z set -euo pipefail
+Judge against baseline	2026-09-16T13:55:32.7393129Z key="baselines/${EVAL_PREFIX}/summary.json"
+Judge against baseline	2026-09-16T13:55:32.7393789Z if aws s3 cp "s3://${EVAL_BUCKET}/${key}" baseline.json --only-show-errors 2>/dev/null; then
+Judge against baseline	2026-09-16T13:55:32.7394365Z   set +e
+Judge against baseline	2026-09-16T13:55:32.7394986Z   python eval/gate.py --baseline baseline.json:fp32 --candidate results/summary.json:fp32 | tee verdict.json
+Judge against baseline	2026-09-16T13:55:32.7395686Z   rc=${PIPESTATUS[0]}
+Judge against baseline	2026-09-16T13:55:32.7396032Z   set -e
+Judge against baseline	2026-09-16T13:55:32.7396315Z else
+Judge against baseline	2026-09-16T13:55:32.7396660Z   # 기준선이 없으면 비열화 비교는 할 수 없지만 절대 상한(축별 MAE 3cm)은 그대로 적용한다.
+Judge against baseline	2026-09-16T13:55:32.7397141Z   # 후보를 자기 자신과 비교하면 비열화 항목은 0 이 되고 절대 상한만 남는다.
+Judge against baseline	2026-09-16T13:55:32.7397625Z   echo "기준선 없음 — 절대 상한만 판정하고, 통과하면 이 후보를 기준선으로 등록한다."
+Judge against baseline	2026-09-16T13:55:32.7398128Z   set +e
+Judge against baseline	2026-09-16T13:55:32.7398537Z   python eval/gate.py --baseline results/summary.json:fp32 --candidate results/summary.json:fp32 | tee verdict.json
+Judge against baseline	2026-09-16T13:55:32.7399025Z   rc=${PIPESTATUS[0]}
+Judge against baseline	2026-09-16T13:55:32.7399241Z   set -e
+Judge against baseline	2026-09-16T13:55:32.7399418Z fi
+Judge against baseline	2026-09-16T13:55:32.7399614Z echo "rc=${rc}" >> "$GITHUB_OUTPUT"
+Judge against baseline	2026-09-16T13:55:32.7399858Z {
+Judge against baseline	2026-09-16T13:55:32.7400052Z   echo "### 정확도 게이트 (${EVAL_PREFIX})"
+Judge against baseline	2026-09-16T13:55:32.7400289Z   echo ""
+Judge against baseline	2026-09-16T13:55:32.7400518Z   echo '```json'; cat verdict.json; echo '```'
+Judge against baseline	2026-09-16T13:55:32.7400770Z   echo ""
+Judge against baseline	2026-09-16T13:55:32.7400963Z   echo '후보 요약:'; echo '```json'
+Judge against baseline	2026-09-16T13:55:32.7401392Z   python -c "import json;print(json.dumps(json.load(open('results/summary.json'))['summary']['fp32'],indent=1))"
+Judge against baseline	2026-09-16T13:55:32.7401817Z   echo '```'
+Judge against baseline	2026-09-16T13:55:32.7402019Z } >> "$GITHUB_STEP_SUMMARY"
+Judge against baseline	2026-09-16T13:55:32.7402246Z exit "$rc"
+Judge against baseline	2026-09-16T13:55:32.7436419Z shell: /usr/bin/bash -e {0}
+Judge against baseline	2026-09-16T13:55:32.7436658Z env:
+Judge against baseline	2026-09-16T13:55:32.7436849Z   AWS_REGION: ap-northeast-2
+Judge against baseline	2026-09-16T13:55:32.7437087Z   ECR_REPO: logistics-dimension-api
+Judge against baseline	2026-09-16T13:55:32.7437337Z   EVAL_BUCKET: cjj-eval-data-************
+Judge against baseline	2026-09-16T13:55:32.7437580Z   EVAL_PREFIX: vs2024
+Judge against baseline	2026-09-16T13:55:32.7437980Z   AWS_DEFAULT_REGION: ap-northeast-2
+Judge against baseline	2026-09-16T13:55:32.7438289Z   AWS_ACCESS_KEY_ID: ***
+Judge against baseline	2026-09-16T13:55:32.7438581Z   AWS_SECRET_ACCESS_KEY: ***
+Judge against baseline	2026-09-16T13:55:32.7442260Z   AWS_SESSION_TOKEN: ***
+Judge against baseline	2026-09-16T13:55:32.7442529Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+Judge against baseline	2026-09-16T13:55:32.7442887Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+Judge against baseline	2026-09-16T13:55:32.7443236Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Judge against baseline	2026-09-16T13:55:32.7443556Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Judge against baseline	2026-09-16T13:55:32.7443914Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+Judge against baseline	2026-09-16T13:55:32.7444403Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+Judge against baseline	2026-09-16T13:55:32.7444680Z ##[endgroup]
+Judge against baseline	2026-09-16T13:55:34.2629871Z {
+Judge against baseline	2026-09-16T13:55:34.2630279Z  "pass": true,
+Judge against baseline	2026-09-16T13:55:34.2630590Z  "reasons": [],
+Judge against baseline	2026-09-16T13:55:34.2630877Z  "latency_ms": {
+Judge against baseline	2026-09-16T13:55:34.2631193Z   "baseline_p50": 89.11039599996684,
+Judge against baseline	2026-09-16T13:55:34.2631593Z   "candidate_p50": 118.14185399998678
+Judge against baseline	2026-09-16T13:55:34.2631942Z  },
+Judge against baseline	2026-09-16T13:55:34.2632193Z  "speedup": 0.75
+Judge against baseline	2026-09-16T13:55:34.2632469Z }
