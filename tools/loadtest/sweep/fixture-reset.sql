@@ -2,6 +2,9 @@
 -- 되돌리는 것: 배송단위 상태(PACKING/PACKED → TOTE_ASSIGNED), 처음 배정된 토트 할당(해제 취소), 토트 상태, 박스 재고.
 -- 되돌리지 않는 것: 재고 원장(inventory_tx)과 스냅샷. 원장은 지우지 않는 기록이라 포장 완료 행이 조건마다 쌓인다.
 -- 시연 리셋(POST /admin/demo/reset)은 박스 재고를 100 으로 되돌려 수천 건 포장에서 OUT_OF_STOCK 이 나므로 쓰지 않는다.
+-- 데모 리셋은 실험 데이터를 지운다 — 풀 실험 묶음이 있는 EC2 에서는 쓰지 않는다. 09-26 18:32~22:10 촬영 업로드 A/C 측정
+-- (tools/loadtest/upload-ab.sh)이 조건마다 데모 리셋을 불러 이 묶음(PSFIX- 배송단위 36,000건)과 재고 원장 20,317행이
+-- 지워졌고, 같은 시드로 묶음을 다시 접수했다(docs/evidence/pool-sizing/progress.md 09-26 22:1x).
 \set ON_ERROR_STOP on
 \timing on
 BEGIN;

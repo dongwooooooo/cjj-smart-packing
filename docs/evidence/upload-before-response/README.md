@@ -49,6 +49,8 @@ A 30명에서 업로드 작업 하나가 9,918ms 걸렸다(`upload.timing` max).
 | C | 같음 | 1,270 | 120 (전부 연결 실패) | STORED 3,450 | 0 |
 | A | `docker compose kill -s SIGKILL` 뒤 `start`, 작업자 30명 (보조) | 3,803 | 390 (전부 연결 실패) | STORED 10,239 | 0 |
 | C | 같음 (보조) | 3,801 | 413 (전부 연결 실패) | STORED 10,164 | 0 |
+| A (2회차, `m3-A-r2`) | SIGTERM, 작업자 10명 | 1,270 | 130 (전부 연결 실패) | STORED 3,420 | 0 |
+| C (2회차, `m3-C-r2`) | 같음 | 1,289 | 129 (전부 연결 실패) | STORED 3,480 | 0 |
 
 재시작으로는 A 에서도 유실이 재현되지 않았다. SIGTERM 에서는 Spring Boot 정상 종료가 A 2ms, C 356ms 만에 진행 중 요청을 마쳤다. 그 사이 업로드 큐(최대 4·13)도 비었다. SIGKILL 시행에서 A 는 kill 직전 0.7초 동안 새 촬영 완료 없이 대기 중이던 업로드 15세션(32082~32096)을 마저 올린 뒤 종료됐다. 두 방식 모두 1회 시행이다. kill 시점에 커밋 뒤 업로드 전인 세션이 있으면 A 에 PENDING 이 남을 수 있지만, 이번 시행에서는 생기지 않았다. 실패 응답은 모두 재기동 13초 동안의 연결 실패(k6 `http_0`)다.
 
@@ -59,6 +61,11 @@ A 30명에서 업로드 작업 하나가 9,918ms 걸렸다(`upload.timing` max).
 | A | 7,529 | 417 | 540 | 575 | 806 | - | PENDING 2,116 / STORED 20,471 | PENDING 18 / STORED 22,569 | 6 · 1,974 | 6건 | - |
 | C | 6,032 | 788 | 946 | 1,052 | 1,976 | 340 · 512 | STORED 18,096 | STORED 18,096 | 3 · 75 | 0 | 0 |
 | C6 | 7,540 | 414 | 540 | 571 | 1,059 | 0 · 0 | STORED 22,620 | STORED 22,620 | 6 · 53 | 0 | 0 |
+| A 2회차 (`m4-A-r2`) | 7,590 | 416 | 531 | 555 | 778 | - | PENDING 2,309 / STORED 20,461 | PENDING 27 / STORED 22,743 | 6 · 1,980 | 9건 | - |
+| C6 2회차 (`m4-C6-r2`) | 7,564 | 416 | 532 | 555 | 1,058 | 0 · 0 | STORED 22,692 | STORED 22,692 | 6 · 57 | 0 | 0 |
+| C6S (`m4-C6S-r2`, 후속 1 수정) | 7,559 | 414 | 534 | 571 | 2,372 | 0 · 0 | STORED 22,677 | STORED 22,677 | 6 · 39 | 0 | 0 |
+
+2회차의 PENDING 패널(`screens/m4-dashboard-A-vs-C6.png`)에서 A 는 부하 중 보관소에 없는 사진이 최대 약 5,700장까지 쌓였다가 종료 뒤 줄었다. C6S 의 max 2,372ms 는 추론 한 건(2,162ms)이고 업로드와 무관하다.
 
 A 는 큐가 1,974까지 자랐다. 그 사이 6건이 거절돼(`TaskRejectedException`, 로그 12줄 = 예외와 원인) 18장이 PENDING 으로 남았다. 종료 직후에는 2,116장(약 705세션분)이 보관소에 없었다. 촬영 응답은 성공이었고, 응답에 실린 사진 주소는 그 시점에 없는 객체를 가리켰다.
 
@@ -83,18 +90,47 @@ C 는 유실이 없었다. 대신 업로드 풀이 병목이 됐다. 큐가 최�
 | M3 C PENDING 0 | 충족. 단 A 도 0이라 재시작 유실 방지 효과는 이번 측정으로 드러나지 않음 |
 | M4 C 유실 0 | 충족. 코어 3 설정은 응답 p95 +406ms. 코어 6에서는 A 와 같음 |
 
-## 포폴 캡처
+## 포폴용 도구 화면 (`screens/`)
 
-| 용도 | 파일 | 비고 |
+손으로 그린 그래프는 쓰지 않는다. 모두 도구가 낸 화면 그대로다. 텍스트(`.txt`)가 원문이고 PNG 는 그 원문을 터미널 모양으로 찍은 것이다(`tools/loadtest/term2png.py`). Grafana 는 대시보드 `cjj-upload-ab` 를 조건 구간으로 연 캡처이고, `*-grafana-top.png` 는 첫 줄(응답 p50/p95/p99 · PENDING · 업로드 풀)만 잘라 낸 것이다. 나란히 붙인 그림은 캡처 위에 조건 이름 한 줄만 덧붙였다(`tools/loadtest/stitch.py`).
+
+| 용도 | 파일 |
+| --- | --- |
+| M4 대시보드 A vs C6 vs C6S (같은 레이아웃, 작업자 60명) | `screens/m4-dashboard-A-vs-C6.png` |
+| M4 PENDING 잔존 psql 출력 (A 종료 직후 · 120초 뒤, C6 120초 뒤) | `screens/m4-psql-pending-A-vs-C6.png` |
+| M3 PENDING 잔존 psql 출력 A vs C (재시작 60초 뒤) | `screens/m3-psql-pending-A-vs-C.png` |
+| M2 응답 p95 A vs C (작업자 30명, 1회차 대시보드의 응답 패널) | `screens/m2-response-p95-A-vs-C.png` — 두 패널의 세로축 범위가 다르다(Grafana 자동). C 는 시작 직후 k6 누적 p95 가 1초 근처에서 내려온다 |
+| k6 실행 종료 콘솔 | `screens/<조건>-k6.txt` / `.png` (M2~M4 전 조건) |
+| psql 상태별 사진 행 수 | `screens/<조건>-psql-at-end.*`, `-psql-settled.*` (2회차·후속 조건) |
+| 대시보드 첫 줄 | `screens/<조건>-grafana-top.png` (PENDING 패널이 생긴 뒤의 조건: `m2-C6*-v30`, `m3-*-r2`, `m4-*-r2`) |
+
+PENDING 패널은 postgres-exporter 사용자 질의(`cjj_measurement_image_rows`, 21:2x 추가)라 1회차 조건 캡처에는 없다. 1회차 psql 출력은 `-At -F,` 형식의 `db-counts-*.csv` 로만 남아 있다.
+
+## 후속 — 업로드 9.9초의 원인과 S3 클라이언트 수정
+
+A 작업자 30명 조건(`m2-A-v30`)의 업로드 1건(sessionId 18761, 사진 3장 합계 9,918ms)을 추적했다. 11개 조건 전체에서 2초를 넘은 업로드·사진 읽기·저장은 이 한 건뿐이다. 같은 시각 다른 두 업로드 스레드는 94~143ms 였고, 사진 읽기 p99 97ms, GC 최대 27ms, 요청률 21 req/s 로 전역 지연은 없었다. 우리 코드의 재시도 로그와 SDK 예외·WARN 도 없었다. 호출은 결국 성공했고 늦어진 시간은 SDK 안에서 쓰였다. 기존 로그는 세 장 합계만 있어 SDK 재시도·커넥션 획득 대기·멈춘 연결 중 무엇인지 가를 수 없었다. 원인은 미확정이다.
+
+SDK 기본값(시도 상한 없음, 소켓 30초, 커넥션 획득 대기 10초)에서는 멈춘 연결 하나가 그 시간을 그대로 쓴다. backend `feat/upload-before-response` 0bed710 에서 S3 클라이언트에 커넥션 128·획득 대기 1초·연결 1초·소켓 2초·시도 상한 2초·호출 상한 6초·SDK 시도 3회를 명시했다. SDK 지표(`s3.call`, `s3.connection.acquire`)와 느린 호출의 시도별 로그(`s3.slow_call`)도 추가했다. C 의 대기 상한 8초와 `IMAGE_STORE_FAILED` 는 그대로다.
+
+| 확인 | 수정 전 | 수정 후 |
 | --- | --- | --- |
-| M2 응답 p95 나란히 | `m2-response-p95.png` | 조건별 Grafana 원본은 `m2-*/grafana.png` |
-| M3 PENDING 잔존 건수 나란히 | `m3-pending.png` | A·C 모두 0이라 차이가 보이지 않는다. 유실 차이를 보여 줄 그림은 `m4-pending.png`(A 종료 직후 2,116장·120초 뒤 18장 vs C·C6 0장) |
+| 로컬 재현(S3ClientStallTest): 첫 요청 10초 멈춤 | 10,085ms 대기 후 성공 | 2,083ms(첫 시도 `ConfiguredTimeout`, 두 번째 시도 29ms) |
+| 로컬 재현: 계속 멈춤 | - | 6,026ms 에 실패 |
+| EC2 작업자 30명 3분(업로드 풀 코어 6): 업로드 p99 / max | 302 / 401ms (`m2-C6-v30`) | 303 / 492ms (`m2-C6S-v30`) |
+| 응답 p95 · `IMAGE_STORE_FAILED` · PENDING | 541ms · 0 · 0 | 538ms · 0 · 0 |
+| S3 호출 22,813회: 재시도 · PutObject p99 / max · 커넥션 획득 max | - | 0회 · 54 / 104ms · 21ms |
+
+EC2 두 실행에서 9.9초 같은 멈춤은 다시 나오지 않았다(1회차 빈도 1/3,809 작업). 실측으로 확인한 것은 수정 뒤에도 정상 구간 성능이 같다는 데까지다. 꼬리를 자르는 효과는 로컬 재현으로 확인했다.
+
+## 사고 기록 — 데모 리셋이 풀 실험 데이터를 지움
+
+`upload-ab.sh` 가 조건마다 부른 데모 리셋이 EC2 의 풀 크기 실험 묶음(PSFIX- 36,000건)과 재고 원장 20,317행을 지웠다(18:32~22:10). 이 문서의 측정은 촬영 경로만 쓰므로 결과에는 영향이 없다. 경과와 조치는 `progress.md` 의 사고 절과 `docs/evidence/pool-sizing/progress.md` 에 있다. 지금 `upload-ab.sh` 는 `measurement_*` 만 SQL 로 정리한다.
 
 ## 파일
 
-- 조건 디렉터리 `m1-*`, `m2-*`, `m3-*`, `m3k-*`, `m4-*`: `meta.json`(이미지·RDS 크레딧), `summary.json`·`k6.log`(k6), `db-counts-*.csv`(상태별 건수), `pool.json`(Prometheus 업로드 풀 최대), `log-counts.json`, `backend.log`(M1 전체, 부하 조건은 구간 로그·경고만 `backend.log.gz`), `grafana.png`(대시보드 `cjj-upload-ab`), `result.json`·`summary.txt`(요약).
+- 조건 디렉터리 `m1-*`, `m2-*`, `m3-*`, `m3k-*`, `m4-*`: `meta.json`(이미지·RDS 크레딧), `summary.json`·`k6.log`(k6), `db-counts-*.csv`(상태별 건수), `pool.json`(Prometheus 업로드 풀 최대), `log-counts.json`, `psql-*.txt`(2회차·후속), `backend.log`(M1 전체, 부하 조건은 구간 로그·경고만 `backend.log.gz`), `grafana.png`(대시보드 `cjj-upload-ab`), `result.json`·`summary.txt`(요약).
 - `tables.md`: `tools/loadtest/upload-ab-report.py` 가 만든 전체 표.
-- 재현: `bash tools/loadtest/upload-ab.sh m1|m2|m3|m3k|m4 A|C|C6 [작업자 수]`, 정리는 `restore`.
+- 재현: `bash tools/loadtest/upload-ab.sh m1|m2|m3|m3k|m4 A|C|C6|C6S [작업자 수]`, 같은 조건 재측정은 `REP=2`, 정리는 `restore`.
 
 ## 미확인
 

@@ -1,0 +1,66 @@
+$ k6 run --out experimental-prometheus-rw --tag run=m2-A-v10 -e VUS=10 -e DURATION=3m k6/capture.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/capture.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 3m30s max duration (incl. graceful stop):
+              * capture: 10 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+
+  ... (진행 표시 줄 생략) ...
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:measure}
+    ✓ 'rate<0.01' rate=0.00%
+
+    measure_duration
+    ✓ 'p(95)<1000' p(95)=534.8ms
+
+    measure_inferred
+    ✓ 'rate>0.99' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1259    6.927824/s
+    checks_succeeded...: 100.00% 1259 out of 1259
+    checks_failed......: 0.00%   0 out of 1259
+
+    ✓ measure 2xx
+
+    CUSTOM
+    measure_duration...............: avg=435.02ms min=381.21ms med=422.6ms  max=584.51ms p(95)=534.8ms  p(99)=556.58ms
+    measure_inferred...............: 100.00% 1259 out of 1259
+
+    HTTP
+    http_req_duration..............: avg=431.62ms min=36.34ms  med=422.43ms max=584.51ms p(95)=534.66ms p(99)=556.55ms
+      { expected_response:true }...: avg=431.62ms min=36.34ms  med=422.43ms max=584.51ms p(95)=534.66ms p(99)=556.55ms
+    http_req_failed................: 0.00%   0 out of 1270
+      { name:measure }.............: 0.00%   0 out of 1259
+    http_reqs......................: 1270    6.988353/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.43s    min=1.38s    med=1.42s    max=1.58s    p(95)=1.53s    p(99)=1.55s   
+    iterations.....................: 1259    6.927824/s
+    vus............................: 10      min=10           max=10
+    vus_max........................: 10      min=10           max=10
+
+    NETWORK
+    data_received..................: 7.5 MB  41 kB/s
+    data_sent......................: 282 kB  1.5 kB/s
+
+
+
+
+running (3m01.7s), 00/10 VUs, 1259 complete and 0 interrupted iterations
+capture ✓ [ 100% ] 10 VUs  3m0s

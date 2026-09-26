@@ -18,7 +18,7 @@ _spec = importlib.util.spec_from_file_location("term2png", Path(__file__).with_n
 term2png = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(term2png)
 
-GRAFANA_TOP_PX = 440  # 대시보드 첫 줄(높이 9칸) + 상단 조건 토글. 1600px 폭 캡처 기준
+GRAFANA_TOP_PX = 402  # 대시보드 첫 줄(높이 9칸) + 상단 조건 토글. 1600px 폭 캡처 기준
 
 
 def k6_console(cond: Path) -> str | None:

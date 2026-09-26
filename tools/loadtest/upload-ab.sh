@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # 촬영 사진 업로드 A/C 실측 (specs/2026-09-26-upload-before-response-design.md 5절 M1~M4).
 #   A = 실험 전 이미지(세션 커밋 뒤 비동기 업로드), C = cj-ai-backend:upload-c(추론과 병렬, 응답 전 업로드).
-# 조건마다: 이미지 반영 → 데모 리셋(추론 워밍 포함) → [부하 조건은 같은 작업자 수로 30초 예열] → 측정 → 수집.
+# 조건마다: 이미지 반영 → 촬영 데이터 정리(measurement_* 만) + 추론 워밍 → [부하 조건은 같은 작업자 수로 30초 예열]
+# → 측정 → 수집.
+#
+# 주의: 데모 리셋(POST /admin/demo/reset)은 실험 데이터를 지운다 — 풀 실험 묶음(PSFIX-)이 있는 EC2 에서는 쓰지 않는다.
+# 09-26 18:32~22:10 이 스크립트가 조건마다 데모 리셋을 불러 PSFIX- 배송단위 36,000건과 재고 원장 20,317행이
+# 지워졌다(docs/evidence/pool-sizing/progress.md). 지금은 measurement_session·measurement_image 만 SQL 로 정리한다.
 # 접속 값은 pool-sweep.env 를 그대로 쓴다. 결과는 docs/evidence/upload-before-response/<조건>/ 에 쌓인다.
 #
 #   bash tools/loadtest/upload-ab.sh check                 접속·현재 이미지 확인
@@ -11,7 +16,7 @@
 #   bash tools/loadtest/upload-ab.sh m3 A|C                작업자 10명 부하 중 60초 시점 backend 재시작
 #   bash tools/loadtest/upload-ab.sh m3k A|C <작업자 수>     부하 중 60초 시점 SIGKILL(크래시) 뒤 재기동 — M3 보조
 #   bash tools/loadtest/upload-ab.sh m4 A|C                작업자 60명 3분(포화)
-#   bash tools/loadtest/upload-ab.sh restore               실험 전 이미지로 되돌리고 리셋·사진 행 정리
+#   bash tools/loadtest/upload-ab.sh restore               실험 전 이미지로 되돌리고 촬영 세션·사진 행 정리
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 HERE="$REPO_ROOT/tools/loadtest"
@@ -91,8 +96,16 @@ use_image() {  # $1 A|C. 이미 그 이미지로 떠 있어도 새로 띄운다 
   CUR_IMAGE_ID=$(on_backend "sudo docker inspect --format '{{.Image}}' $BACKEND_CONTAINER")
   log "이미지 $1 = ${ref##*/} (${CUR_IMAGE_ID:7:12})"
 }
-demo_reset() {  # 리셋은 측정 세션·사진 행을 지우고 끝에 추론을 한 번 깨운다(콜드 스타트 제외)
-  on_backend "K=\$(grep '^DEMO_API_KEY=' $BACKEND_DIR/.env | cut -d= -f2-); curl -s --max-time 300 -X POST -H \"X-Demo-Key: \$K\" localhost:8000/api/v1/admin/demo/reset"
+measurement_reset() {  # 측정 대상 테이블만 정리하고 추론을 한 번 깨운다(Lambda 콜드 스타트를 측정에서 뺀다)
+  psql_cmd "delete from measurement_image where session_id in
+              (select id from measurement_session where status in ('INFERRED','MEASURE_FAILED','DISCARDED'));
+            delete from measurement_session where status in ('INFERRED','MEASURE_FAILED','DISCARDED');
+            select 'measurement_session', count(*) from measurement_session
+            union all select 'measurement_image', count(*) from measurement_image;"
+  local pid; pid=$(psql_cmd "select p.id from product p join demo_product d on d.gtin = p.gtin
+                               where d.image_dir is not null order by p.id limit 1")
+  on_backend "K=\$(grep '^DEMO_API_KEY=' $BACKEND_DIR/.env | cut -d= -f2-); for i in 1 2; do curl -s -o /dev/null -w 'warm %{http_code} %{time_total}s\n' \
+    --max-time 30 -X POST -H \"X-Demo-Key: \$K\" -H 'Content-Type: application/json' -d '{\"productId\": $pid}' localhost:8000/api/v1/inbound/measurements; done"
 }
 sync_tools() {
   on_loadgen "mkdir -p \$HOME/upload-ab/k6" && scp -q "${SSH_OPTS[@]}" "$HERE"/k6/*.js "$HERE"/k6/*.json "$SSH_USER@$LOADGEN_HOST:upload-ab/k6/"
@@ -109,8 +122,8 @@ begin_condition() {  # $1 조건 id, $2 A|C → COND_DIR, DEMO_KEY_VALUE 설정
   local credit; credit=$(rds_credit); echo "$credit" > "$COND_DIR/rds-credit-before.txt"
   log "── 조건 $1 (RDS CPU 크레딧 $credit)"
   use_image "$2"
-  demo_reset > "$COND_DIR/reset.json"
-  log "리셋: $(head -c 300 "$COND_DIR/reset.json")"
+  measurement_reset > "$COND_DIR/reset.txt"
+  log "촬영 데이터 정리·워밍: $(tr '\n' ' ' < "$COND_DIR/reset.txt")"
   printf '{"id":"%s","image":"%s","image_id":"%s","rds_credit_before":"%s","started":"%s","portfolio_sha":"%s"}\n' \
     "$1" "$2" "${CUR_IMAGE_ID:7:12}" "$credit" "$(date -u +%FT%TZ)" "$(git -C "$REPO_ROOT" rev-parse --short HEAD)" > "$COND_DIR/meta.json"
 }
@@ -234,11 +247,14 @@ cmd_restore() {
   on_backend "cd $BACKEND_DIR && sudo env BACKEND_IMAGE='$BASE_IMAGE_REF' docker compose up -d --no-build --force-recreate backend >/dev/null 2>&1"
   wait_health || log "경고: 복원 후 헬스 UP 확인 실패"
   local id; id=$(on_backend "sudo docker inspect --format '{{.Image}}' $BACKEND_CONTAINER")
-  demo_reset > "$STATE_DIR/restore-reset.json"
+  measurement_reset > "$STATE_DIR/restore-reset.txt"
+  psql_cmd "delete from measurement_image where session_id in
+              (select id from measurement_session where status in ('INFERRED','MEASURE_FAILED','DISCARDED'));
+            delete from measurement_session where status in ('INFERRED','MEASURE_FAILED','DISCARDED');" >/dev/null
   local left; left=$(psql_cmd "select count(*) from measurement_image")
   if [ "$id" = "$BASE_IMAGE_ID" ]; then log "복원 확인: 이미지 ${id:7:12} 일치, 남은 measurement_image $left행"
   else log "경고: 복원 불일치 (image=${id:7:12} 기준=${BASE_IMAGE_ID:7:12})"; fi
-  progress "복원: 이미지 ${id:7:12}(기준 ${BASE_IMAGE_ID:7:12}), 데모 리셋, measurement_image ${left}행"
+  progress "복원: 이미지 ${id:7:12}(기준 ${BASE_IMAGE_ID:7:12}), 촬영 데이터 정리, measurement_image ${left}행"
 }
 
 cmd_build() {  # $1 backend 커밋 [$2 태그]. 소스는 git archive 로 보내 EC2 에서 빌드한다(ECR·GitHub push 없음)
@@ -255,10 +271,11 @@ case "${1:-}" in
          metrics_grep '^executor_(active_threads|queued_tasks|pool_max_threads)' >&2 ;;
   build) shift; cmd_build "$@" ;;
   m1) cmd_m1 "${2:?A|C}" ;;
-  m2) cmd_load "m2-$2-v${3:?작업자 수}" "$2" "$3" ;;
-  m3) cmd_load "m3-$2" "${2:?A|C}" 10 restart ;;
-  m3k) cmd_load "m3k-$2-v${3:?작업자 수}" "$2" "$3" kill ;;
-  m4) cmd_load "m4-$2" "${2:?A|C}" 60 ;;
+  # REP=n 을 주면 조건 id 끝에 -rn 을 붙인다(같은 조건을 다시 잴 때 앞 결과를 덮지 않게)
+  m2) cmd_load "m2-$2-v${3:?작업자 수}${REP:+-r$REP}" "$2" "$3" ;;
+  m3) cmd_load "m3-$2${REP:+-r$REP}" "${2:?A|C}" 10 restart ;;
+  m3k) cmd_load "m3k-$2-v${3:?작업자 수}${REP:+-r$REP}" "$2" "$3" kill ;;
+  m4) cmd_load "m4-$2${REP:+-r$REP}" "${2:?A|C}" 60 ;;
   restore) cmd_restore ;;
   sh) shift; on_backend "$@" ;;
   *) sed -n '2,15p' "$0"; exit 1 ;;

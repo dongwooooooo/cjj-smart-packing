@@ -1,0 +1,8 @@
+-- 2026-09-26 21:43:52 KST k6 종료 직후
+select upload_status, count(*) as images from measurement_image where created_at >= '2026-09-26 12:40:47.331402' group by upload_status order by 1;
+ upload_status | images 
+---------------+--------
+ PENDING       |   2215
+ STORED        |  20555
+(2 rows)
+

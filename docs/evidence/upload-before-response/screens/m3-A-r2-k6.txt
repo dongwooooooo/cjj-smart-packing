@@ -1,0 +1,70 @@
+$ k6 run --out experimental-prometheus-rw --tag run=m3-A-r2 -e VUS=10 -e DURATION=3m k6/capture.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/capture.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 3m30s max duration (incl. graceful stop):
+              * capture: 10 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+
+  ... console.warn not_inferred 130줄(k6.log 참조) ...
+  ... (진행 표시 줄 생략) ...
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:measure}
+    ✗ 'rate<0.01' rate=10.23%
+
+    measure_duration
+    ✓ 'p(95)<1000' p(95)=548.12ms
+
+    measure_inferred
+    ✗ 'rate>0.99' rate=89.76%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1270   7.028623/s
+    checks_succeeded...: 89.76% 1140 out of 1270
+    checks_failed......: 10.23% 130 out of 1270
+
+    ✗ measure 2xx
+      ↳  89% — ✓ 1140 / ✗ 130
+
+    CUSTOM
+    measure_duration...............: avg=417.77ms min=0s      med=428.06ms max=2.14s p(95)=548.12ms p(99)=593.03ms
+    measure_inferred...............: 89.76% 1140 out of 1270
+    measure_not_inferred...........: 130    0.719465/s
+
+    HTTP
+    http_req_duration..............: avg=414.52ms min=0s      med=427.83ms max=2.14s p(95)=548.1ms  p(99)=591.92ms
+      { expected_response:true }...: avg=461.34ms min=31.71ms med=430.45ms max=2.14s p(95)=548.99ms p(99)=601.99ms
+    http_req_failed................: 10.14% 130 out of 1281
+      { name:measure }.............: 10.23% 130 out of 1270
+    http_reqs......................: 1281   7.089501/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.41s    min=1s      med=1.42s    max=3.14s p(95)=1.54s    p(99)=1.59s   
+    iterations.....................: 1270   7.028623/s
+    vus............................: 10     min=10           max=10
+    vus_max........................: 10     min=10           max=10
+
+    NETWORK
+    data_received..................: 6.7 MB 37 kB/s
+    data_sent......................: 255 kB 1.4 kB/s
+
+
+
+
+running (3m00.7s), 00/10 VUs, 1270 complete and 0 interrupted iterations
+capture ✓ [ 100% ] 10 VUs  3m0s
+time="2026-09-26T13:03:34Z" level=error msg="thresholds on metrics 'http_req_failed{name:measure}, measure_inferred' have been crossed"

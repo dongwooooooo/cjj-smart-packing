@@ -57,3 +57,23 @@
   | `s3.slow_call`·`upload.slow_put` 로그 | - | 0 · 0 | - |
 
   9.9초 같은 멈춤은 두 실행 모두 다시 나오지 않았다(예측 (1)대로 재현 보장 없음). 실측으로는 "수정 뒤에도 정상 구간 성능이 같다"까지만 확인됐고, 꼬리를 자르는 효과는 로컬 S3ClientStallTest(10초 멈춤 → 2,083ms 성공, 기본값 10,085ms)로 확인했다. 운영에서 다시 멈추면 `s3.slow_call` 줄이 커넥션 획득·서버 응답·오류 종류를 남긴다.
+
+## 후속 2 — 포폴용 도구 화면 (09-26 21:39~)
+
+- 대시보드 첫 줄(응답 p50/p95/p99 · PENDING · 업로드 풀)이 한 화면에 들어가도록 바꿨고 PENDING 은 새 exporter 지표라 과거 조건에는 없다. 같은 레이아웃으로 M4(작업자 60명 3분)를 A → C6 → C6S, M3(작업자 10명, 60초 시점 재시작)를 A → C 로 다시 돈다. 조건마다 k6 콘솔 요약·psql 출력(종료 직후·정착 뒤)·Grafana 캡처를 screens/ 에 남긴다.
+- 09-26 21:46 `m4-A` 요청 7590 (INFERRED 아님 0 ) p50/p95/p99/max 416/531/555/778ms, 사진 종료 직후 {'PENDING': 2309, 'STORED': 20461} → 정착 뒤 {'PENDING': 27, 'STORED': 22743}, 업로드 풀 활성 최대 6 큐 최대 1980 CallerRuns , 로그 {'rejected': 18, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 37.1→37.3
+- 09-26 21:46 `m4-A` 재실행이 기존 `m4-A` 디렉터리를 덮어 `m4-A-r2` 로 옮기고 기존 결과를 git 에서 되살렸다. 이후 재실행은 REP 접미사를 붙인다. m4-A-r2: 요청 7,590, p95 531ms, 큐 최대 1,980, 거절 로그 18줄(9건), PENDING 종료 직후 2,309 → 120초 뒤 27장.
+- 09-26 21:52 `m4-C6-r2` 요청 7564 (INFERRED 아님 0 ) p50/p95/p99/max 416/532/555/1058ms, 사진 종료 직후 {'STORED': 22692} → 정착 뒤 {'STORED': 22692}, 업로드 풀 활성 최대 6 큐 최대 57 CallerRuns 0, 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 36.9→36.8
+- 09-26 21:59 `m4-C6S-r2` 요청 7559 (INFERRED 아님 0 ) p50/p95/p99/max 414/534/571/2372ms, 사진 종료 직후 {'STORED': 22677} → 정착 뒤 {'STORED': 22677}, 업로드 풀 활성 최대 6 큐 최대 39 CallerRuns 0, 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 36.8→36.8
+- 09-26 22:05 `m3-A-r2` 요청 1270 (INFERRED 아님 130 {'http_0': 130}) p50/p95/p99/max 428/548/593/2148ms, 사진 종료 직후 {'STORED': 3420} → 정착 뒤 {'STORED': 3420}, 업로드 풀 활성 최대 3 큐 최대 4 CallerRuns , 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 36.8→37.0
+- 09-26 22:10 `m3-C-r2` 요청 1289 (INFERRED 아님 129 {'http_0': 129}) p50/p95/p99/max 421/541/583/2007ms, 사진 종료 직후 {'STORED': 3480} → 정착 뒤 {'STORED': 3480}, 업로드 풀 활성 최대 3 큐 최대 13 CallerRuns 0, 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 37.0→37.3
+- 22:1x M3 재실행(REP=2, 새 레이아웃·psql 화면): A 요청 1,270·실패 응답 130(http_0)·PENDING 0, C 요청 1,289·실패 응답 129(http_0)·PENDING 0. 1회차와 같다. M4 재실행: A-r2 요청 7,590·p95 531ms·PENDING 종료 직후 2,309(csv)/2,215(psql, 수십 초 뒤) → 120초 뒤 27장·거절 9건, C6-r2 p95 532ms·PENDING 0, C6S-r2 p95 534ms·PENDING 0(max 2,372ms 는 추론 2,162ms, 업로드 무관). 기존 `m4-A` 디렉터리를 덮은 실수는 18:41 행 참조.
+
+## 사고 — 데모 리셋이 풀 실험 데이터를 지움 (09-26)
+
+| 항목 | 내용 |
+| --- | --- |
+| 시각 | 18:32(m1-A 첫 리셋)부터 22:10(m3-C-r2)까지 조건마다. 22:1x 풀 스윕 준비 중 발견 |
+| 원인 | `upload-ab.sh` 가 조건마다 `POST /api/v1/admin/demo/reset` 을 불렀다. 데모 리셋은 주문·배송단위·토트 할당·재고 원장을 시연 초기 상태로 다시 만든다. `fixture-reset.sql` 주석의 "시연 리셋은 쓰지 않는다" 를 확인하지 않았다 |
+| 영향 | 풀 크기 실험 묶음(PSFIX- 배송단위 36,000건) 0건, 재고 원장 20,317행 → 21행(max id 3,131,664), 출고 상품 잔고 약 9.4만 → 101~119. 지운 원장 행은 백업이 없어 되살릴 수 없다. 기존 pool-sizing 결과 파일·판정은 영향 없음. upload-ab 측정 자체는 촬영 경로만 쓰므로 결과 영향 없음 |
+| 조치 | `upload-ab.sh` 의 리셋을 `measurement_*` 만 지우는 SQL + 추론 워밍 2회로 교체, `upload-ab.sh`·`fixture-reset.sql` 상단에 경고 주석. 출고 상품 8종에 재고 조정 +100,000(멱등 키 `psfix-restock-20260926-<gtin>`, 원장 txId 3131665~3131672), 같은 시드로 묶음 재접수. 원장 컷오프는 재접수 뒤 max(id) 로 새로 잡아 `ledger-reset.sql`·`pool-sweep.env` 에 남김. 자세한 경과는 `docs/evidence/pool-sizing/progress.md` |

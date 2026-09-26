@@ -1,0 +1,66 @@
+$ k6 run --out experimental-prometheus-rw --tag run=m4-C6S-r2 -e VUS=60 -e DURATION=3m k6/capture.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/capture.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 60 max VUs, 3m30s max duration (incl. graceful stop):
+              * capture: 60 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+
+  ... (진행 표시 줄 생략) ...
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:measure}
+    ✓ 'rate<0.01' rate=0.00%
+
+    measure_duration
+    ✓ 'p(95)<1000' p(95)=533.77ms
+
+    measure_inferred
+    ✓ 'rate>0.99' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 7559    41.567536/s
+    checks_succeeded...: 100.00% 7559 out of 7559
+    checks_failed......: 0.00%   0 out of 7559
+
+    ✓ measure 2xx
+
+    CUSTOM
+    measure_duration...............: avg=432.25ms min=367.12ms med=413.6ms  max=2.37s p(95)=533.77ms p(99)=571.24ms
+    measure_inferred...............: 100.00% 7559 out of 7559
+
+    HTTP
+    http_req_duration..............: avg=431.69ms min=31.29ms  med=413.55ms max=2.37s p(95)=533.76ms p(99)=571.21ms
+      { expected_response:true }...: avg=431.69ms min=31.29ms  med=413.55ms max=2.37s p(95)=533.76ms p(99)=571.21ms
+    http_req_failed................: 0.00%   0 out of 7570
+      { name:measure }.............: 0.00%   0 out of 7559
+    http_reqs......................: 7570    41.628026/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.43s    min=1.36s    med=1.41s    max=3.37s p(95)=1.53s    p(99)=1.57s   
+    iterations.....................: 7559    41.567536/s
+    vus............................: 28      min=28           max=60
+    vus_max........................: 60      min=60           max=60
+
+    NETWORK
+    data_received..................: 45 MB   247 kB/s
+    data_sent......................: 1.7 MB  9.2 kB/s
+
+
+
+
+running (3m01.8s), 00/60 VUs, 7559 complete and 0 interrupted iterations
+capture ✓ [ 100% ] 60 VUs  3m0s

@@ -4,6 +4,7 @@ k6 요약·psql 출력·실시간 콘솔 프레임을 포폴에 "도구 화면" 
 지원하는 것(굵게·기본 8색)만 살리고 나머지는 지운다. 브라우저는 playwright(chromium).
 
 사용: python3 term2png.py --in k6-summary.txt --out k6-summary.png [--title 'ubuntu@loadgen: k6 run'] [--cols 120]
+     python3 term2png.py --in-dir frames/ [--title ...]   디렉터리의 *.txt 를 같은 이름 .png 로
 """
 import argparse
 import html
@@ -64,15 +65,20 @@ def render(text: str, out: Path, title: str, cols: int, page=None) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--in", dest="src", required=True)
-    ap.add_argument("--out", required=True)
+    ap.add_argument("--in", dest="src")
+    ap.add_argument("--out")
+    ap.add_argument("--in-dir")
     ap.add_argument("--title", default="terminal")
     ap.add_argument("--cols", type=int, default=110)
     a = ap.parse_args()
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1800, "height": 1200}, device_scale_factor=2)
-        render(Path(a.src).read_text(errors="replace"), Path(a.out), a.title, a.cols, page)
+        if a.in_dir:
+            for txt in sorted(Path(a.in_dir).glob("*.txt")):
+                render(txt.read_text(errors="replace"), txt.with_suffix(".png"), a.title, a.cols, page)
+        else:
+            render(Path(a.src).read_text(errors="replace"), Path(a.out), a.title, a.cols, page)
         browser.close()
 
 

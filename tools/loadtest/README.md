@@ -80,8 +80,44 @@ POOL_SIZES="10 <결정값>" REPEAT=2 LOADS="peak3x:300:60000:50000:0 sat:<VU>:0:
 
 `docs/evidence/pool-sizing/<시각>/` 아래에 `sweep.json`(실행 조건), `console.txt`(화면 출력 행), `README.md`(비교표), 조건별 디렉터리(`meta.json`, `summary.json`·`k6.log`(k6), `waits.csv`(대기 이벤트 1초 표본), `fixture-reset.log`, `lock-inject.log`, `result.json`, `grafana.png`). 조건마다 `docs/evidence/pool-sizing/progress.md` 에 한 줄이 쌓인다.
 
+### 실시간 콘솔 (`sweep/live_console.py`)
+
+스윕이 도는 동안 다른 터미널에서 띄운다. 1~5초마다 Prometheus 를 읽어 한 화면을 다시 그린다. 위에 지금 조건(풀 크기·작업자·pacing·connectionTimeout·Tomcat·단계), 가운데 최근 15초 값(포장 완료 TPS, Queue-ms p95, Run-ms p95, http p95, HikariCP active/pending, Tomcat busy, PostgreSQL 대기 이벤트 상위 3, EC2·RDS CPU), 아래 끝난 조건의 결과 행(`console.txt`)이 쌓인다. 스윕 디렉터리에 `README.md` 가 생기면(스윕 종료) 마지막 화면을 남기고 끝난다.
+
+```bash
+# 터미널 1 — 스윕 디렉터리를 미리 정해 두 프로세스가 같은 곳을 본다
+SWEEP_DIR=docs/evidence/pool-sizing/live-console POOL_SIZES="10 20 40" LOADS="sat:100:0:0:0" \
+  WARMUP_S=30 MEASURE_S=60 LEDGER_CUTOFF_ID=21674 bash tools/loadtest/pool-sweep.sh sweep
+
+# 터미널 2 — 콘솔. --cast 는 asciinema v2 녹화 파일(asciinema play 로 재생), --frames 는 N 번째 화면마다 텍스트 프레임
+python3 tools/loadtest/sweep/live_console.py --prom http://<백엔드 공인 IP>:9090 \
+  --dir docs/evidence/pool-sizing/live-console --interval 2 --rds-id <RDS 식별자> \
+  --cast docs/evidence/pool-sizing/live-console/console.cast \
+  --frames docs/evidence/pool-sizing/live-console/frames --frame-every 5
+
+# 텍스트 프레임을 터미널 모양 PNG 로
+python3 tools/loadtest/term2png.py --in <프레임.txt> --out <프레임.png> --title 'pool sweep — live console' --cols 120
+```
+
 ### 블로그로 옮기기
 
 - 표: 비교표에서 부하 수준 하나를 골라 pool·TPS·Queue-ms·Run-ms·상위 대기 열만 남긴다. 영상의 표와 같은 순서다.
 - 캡처: 조건별 `grafana.png` 를 그대로 쓰거나, 표의 "보기" 링크(판독 구간 ±30초)를 열어 패널 하나를 잘라 쓴다.
 - 캡션: `README.md` 의 캡션 초안(조건·수치 한 줄)에 "무엇이 왜 문제인지"를 사람이 덧붙인다. 판정 규칙 초안은 기계 적용이라 수치를 확인한 뒤 옮긴다.
+
+## 촬영 사진 업로드 A/C 실측 (`upload-ab.sh`)
+
+설계안 `docs/superpowers/specs/2026-09-26-upload-before-response-design.md` 5절(M1~M4)을 조건 단위로 돌린다. 접속 값은 `pool-sweep.env` 를 쓴다. 조건마다 이미지 반영 → 데모 리셋(추론 워밍) → 같은 작업자 수 30초 예열 → 측정 → 상태별 사진 행 수(종료 직후·정착 뒤) → 업로드 풀 지표 → 로그 요약 → Grafana(`cjj-upload-ab`) 캡처 → 도구 화면(`screens/`) 순서다.
+
+```bash
+bash tools/loadtest/upload-ab.sh build <backend 커밋> [태그]   # EC2 에서 git archive 소스로 이미지 빌드(push 없음)
+bash tools/loadtest/upload-ab.sh m1 A|C                        # 단일 클라이언트 11종 × 5회
+bash tools/loadtest/upload-ab.sh m2 A|C|C6|C6S <작업자 수>       # 고정 작업자 3분
+bash tools/loadtest/upload-ab.sh m3 A|C                        # 작업자 10명 중 60초 시점 재시작(SIGTERM)
+bash tools/loadtest/upload-ab.sh m3k A|C <작업자 수>             # 60초 시점 SIGKILL 뒤 재기동
+AB_SETTLE_S=120 bash tools/loadtest/upload-ab.sh m4 A|C|C6|C6S # 작업자 60명 3분
+REP=2 ...                                                      # 같은 조건을 다시 잴 때 id 에 -r2
+bash tools/loadtest/upload-ab.sh restore                       # 기준 이미지·데모 리셋·사진 행 확인
+```
+
+`upload-ab-screens.py` 가 조건 디렉터리에서 k6 콘솔 요약·psql 출력·Grafana 첫 줄을 `screens/` 에 텍스트와 PNG(`term2png.py`)로 뽑는다. 표·그림은 `upload-ab-report.py`.
