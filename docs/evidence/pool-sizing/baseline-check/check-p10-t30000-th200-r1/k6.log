@@ -1,0 +1,138 @@
+K6START=1790433477
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/packing.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 55s max duration (incl. graceful stop):
+              * packers: 20 looping VUs for 25s (gracefulStop: 30s)
+
+
+running (01.0s), 20/20 VUs, 4 complete and 0 interrupted iterations
+packers   [   4% ] 20 VUs  01.0s/25s
+
+running (02.0s), 20/20 VUs, 43 complete and 0 interrupted iterations
+packers   [   8% ] 20 VUs  02.0s/25s
+
+running (03.0s), 20/20 VUs, 83 complete and 0 interrupted iterations
+packers   [  12% ] 20 VUs  03.0s/25s
+
+running (04.0s), 20/20 VUs, 138 complete and 0 interrupted iterations
+packers   [  16% ] 20 VUs  04.0s/25s
+
+running (05.0s), 20/20 VUs, 202 complete and 0 interrupted iterations
+packers   [  20% ] 20 VUs  05.0s/25s
+
+running (06.0s), 20/20 VUs, 267 complete and 0 interrupted iterations
+packers   [  24% ] 20 VUs  06.0s/25s
+
+running (07.0s), 20/20 VUs, 334 complete and 0 interrupted iterations
+packers   [  28% ] 20 VUs  07.0s/25s
+
+running (08.0s), 20/20 VUs, 404 complete and 0 interrupted iterations
+packers   [  32% ] 20 VUs  08.0s/25s
+
+running (09.0s), 20/20 VUs, 488 complete and 0 interrupted iterations
+packers   [  36% ] 20 VUs  09.0s/25s
+
+running (10.0s), 20/20 VUs, 565 complete and 0 interrupted iterations
+packers   [  40% ] 20 VUs  10.0s/25s
+
+running (11.0s), 20/20 VUs, 651 complete and 0 interrupted iterations
+packers   [  44% ] 20 VUs  11.0s/25s
+
+running (12.0s), 20/20 VUs, 724 complete and 0 interrupted iterations
+packers   [  48% ] 20 VUs  12.0s/25s
+
+running (13.0s), 20/20 VUs, 811 complete and 0 interrupted iterations
+packers   [  52% ] 20 VUs  13.0s/25s
+
+running (14.0s), 20/20 VUs, 906 complete and 0 interrupted iterations
+packers   [  56% ] 20 VUs  14.0s/25s
+
+running (15.0s), 20/20 VUs, 997 complete and 0 interrupted iterations
+packers   [  60% ] 20 VUs  15.0s/25s
+
+running (16.0s), 20/20 VUs, 1088 complete and 0 interrupted iterations
+packers   [  64% ] 20 VUs  16.0s/25s
+
+running (17.0s), 20/20 VUs, 1188 complete and 0 interrupted iterations
+packers   [  68% ] 20 VUs  17.0s/25s
+
+running (18.0s), 20/20 VUs, 1292 complete and 0 interrupted iterations
+packers   [  72% ] 20 VUs  18.0s/25s
+
+running (19.0s), 20/20 VUs, 1403 complete and 0 interrupted iterations
+packers   [  76% ] 20 VUs  19.0s/25s
+
+running (20.0s), 20/20 VUs, 1523 complete and 0 interrupted iterations
+packers   [  80% ] 20 VUs  20.0s/25s
+
+running (21.0s), 20/20 VUs, 1640 complete and 0 interrupted iterations
+packers   [  84% ] 20 VUs  21.0s/25s
+
+running (22.0s), 20/20 VUs, 1760 complete and 0 interrupted iterations
+packers   [  88% ] 20 VUs  22.0s/25s
+
+running (23.0s), 20/20 VUs, 1875 complete and 0 interrupted iterations
+packers   [  92% ] 20 VUs  23.0s/25s
+
+running (24.0s), 20/20 VUs, 2001 complete and 0 interrupted iterations
+packers   [  96% ] 20 VUs  24.0s/25s
+
+running (25.0s), 20/20 VUs, 2129 complete and 0 interrupted iterations
+packers   [ 100% ] 20 VUs  25.0s/25s
+
+
+  █ THRESHOLDS 
+
+    complete_duration
+    ✓ 'p(95)<500' p(95)=192.62ms
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 6453    256.947835/s
+    checks_succeeded...: 100.00% 6453 out of 6453
+    checks_failed......: 0.00%   0 out of 6453
+
+    ✓ tote-scan 2xx
+    ✓ shipment-detail 2xx
+    ✓ complete 2xx
+
+    CUSTOM
+    complete_duration..............: avg=99.86ms p(50)=87.13ms  p(95)=192.62ms p(99)=302.74ms max=548.94ms count=2151
+    measured_complete..............: avg=91.23ms p(50)=84.63ms  p(95)=157.69ms p(99)=212.07ms max=347.61ms count=1929
+    measured_complete_ok...........: 1929   76.809604/s
+    measured_detail................: avg=55.03ms p(50)=49.31ms  p(95)=108.72ms p(99)=140.46ms max=242.44ms count=1926
+    measured_reqs..................: 5780   230.150083/s
+    measured_scan..................: avg=61.12ms p(50)=54.95ms  p(95)=117.22ms p(99)=153.4ms  max=225.46ms count=1925
+
+    HTTP
+    http_req_duration..............: avg=77.51ms p(50)=65.13ms  p(95)=160.2ms  p(99)=264.75ms max=625.31ms count=6453
+      { expected_response:true }...: avg=77.51ms p(50)=65.13ms  p(95)=160.2ms  p(99)=264.75ms max=625.31ms count=6453
+    http_req_failed................: 0.00%  0 out of 6453
+    http_reqs......................: 6453   256.947835/s
+
+    EXECUTION
+    iteration_duration.............: avg=233ms   p(50)=201.55ms p(95)=436.39ms p(99)=690.66ms max=1.29s    count=2151
+    iterations.....................: 2151   85.649278/s
+    vus............................: 20     min=20        max=20
+    vus_max........................: 20     min=20        max=20
+
+    NETWORK
+    data_received..................: 3.6 MB 143 kB/s
+    data_sent......................: 1.4 MB 54 kB/s
+
+
+
+
+running (25.1s), 00/20 VUs, 2151 complete and 0 interrupted iterations
+packers ✓ [ 100% ] 20 VUs  25s

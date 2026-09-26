@@ -79,3 +79,10 @@
 | 조치 | `upload-ab.sh` 의 리셋을 `measurement_*` 만 지우는 SQL + 추론 워밍 2회로 교체, `upload-ab.sh`·`fixture-reset.sql` 상단에 경고 주석. 출고 상품 8종에 재고 조정 +100,000(멱등 키 `psfix-restock-20260926-<gtin>`, 원장 txId 3131665~3131672), 같은 시드로 묶음 재접수. 원장 컷오프는 재접수 뒤 max(id) 로 새로 잡아 `ledger-reset.sql`·`pool-sweep.env` 에 남김. 자세한 경과는 `docs/evidence/pool-sizing/progress.md` |
 - 09-26 22:31 복원: 이미지 cd6222eefbf2(기준 cd6222eefbf2), 촬영 데이터 정리, measurement_image 0행
 - 22:5x 종료 상태: 백엔드 이미지 cd6222eefbf2(기준), 실험 설정 흔적 없음, measurement_session 은 촬영 테이블 정리 뒤 남은 행 없음·measurement_image 0행. EC2 에 이미지 `upload-c`·`upload-c6`·`upload-c6s` 와 소스 `~/upload-c-src` 가 남아 있다. 모니터링 스택에 postgres-exporter 사용자 질의(`cjj_measurement_image_rows`)를 추가한 상태로 둔다.
+
+## 결정과 병합 (09-26 23:xx)
+
+- 사용자 승인: C 채택, 업로드 풀 코어 6, S3 상한값 유지.
+- backend `feat/upload-before-response` 7db40b0: `ImageUploadExecutorConfig` 코어 3 → 6(최대 6, 큐 200·CallerRuns 유지, 근거 주석 "60명 포화 p95 946ms → 540ms"). 브랜치에서 전체 테스트 270건, 실패 0, 스킵 1. `exp/upload-c-core6` 삭제.
+- backend main 병합: merge commit 093978f(부모 f87a37e, 7db40b0). 병합 뒤 main 에서 전체 테스트 270건, 실패 0, 스킵 1(LambdaInferenceLiveTest). 포폴 서브모듈 포인터 f87a37e → 093978f(5719749). GitHub push 하지 않음(사용자가 직접). `feat/hikari-pool-sizing`·`fix/collector-advance-cost` 는 건드리지 않음.
+- EC2 는 기준 이미지 cd6222eefbf2 그대로(배포는 push 뒤 CI).
