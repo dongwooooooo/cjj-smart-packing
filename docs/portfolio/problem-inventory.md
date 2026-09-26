@@ -19,7 +19,7 @@
 | P4 | 커넥션 풀 설정이 기본값. 실행 4에서 락 대기 트랜잭션이 커넥션 10개를 붙들어 무관한 요청이 획득 대기 최대 10.5초. 30초 상한은 작업자 화면(10초)이 포기한 요청을 서버가 20초 더 붙듦 | 풀 크기·타임아웃을 잰 적 없음 | 비즈니스 트래픽 산정(Little's law, 6개면 충분) → 부하 고정·풀만 변경 스윕 → 락 주입 실험 → 사전 규칙으로 결정 | 피크 1·3배: 풀 5~40 동일. 포화: 20까지 상승(125→137건/s), 30·40은 p95만 571ms→1.3초. 타임아웃 3초: 락 구간에서 화면보다 먼저 500, 포화 실패 0(획득 max 2.996초). 결정 풀 10·3초 | 브랜치 `feat/hikari-pool-sizing`, 병합 전. 글 G 완료 | `docs/evidence/pool-sizing/README.md`, `docs/blog/drafts/g-pool-sizing.md` |
 | P5 | 박스 추천이 안 들어가는 박스를 추천(30³에 25×25×20 두 개). 무게를 넣자 요금 구간을 올리는 편성이 최적해 | 부피 비교(liquid cubing). 목적함수가 박스 수→부피뿐 | extreme point 적재 + FFD + 국소 탐색. 목적함수를 (총 요금, 박스 수, 부피) 사전식으로. 새 배송단위 이동 후보 추가. `OVERWEIGHT_ITEM`·`WEIGHT_MISMATCH` 검수 | 편성 테스트 21→39. 벤치마크 5,000주문 21.0초, 주문당 p95 13.8ms, 주문 50배에 주문당 1.16배. 벤치마크가 국소 탐색 NPE 발견→수정 | main | `docs/blog/drafts/b-cartonization.md`, `docs/evidence/benchmark/README.md`, `backend/docs/decisions-weight.md`, V13 |
 | P6 | 촬영 응답 안에 S3 업로드 3회가 동기로 들어가 있고 그동안 커넥션 점유 | 트랜잭션 안 동기 업로드 | `AFTER_COMMIT` + `@Async` 전용 executor, 3회 재시도 후 `FAILED`(V20 `upload_status`) | 저장 p95 36→12ms, 백엔드 total p95 243→192ms(MinIO). 운영 E2E p95 796ms→실제 3뷰 611ms | main | `backend/docs/decisions-async-image-store.md`, `docs/evidence/measurement/prod-2026-09-16*.md` |
-| P7 | 위 비동기화가 실패를 숨김: 작업자 100명 동시 촬영에서 응답 p95 0.54초·실패 0인데 사진 1,155장(385세션)이 PENDING으로 남음 | executor 큐 2,000 초과 시 거절이 로그 한 줄로 끝남. 재처리 경로 없음. 프로세스 재시작 시 큐 유실 | 없음(과제). Outbox+스케줄러 또는 CallerRuns 역압, 큐 알람 | 45명(30 req/s)부터 큐 적체, 18:18 2,000 도달 | 미해결. 사업 근거는 부하가 아니라 배포 재시작 유실 | `docs/evidence/loadtest/README.md` 실행 1·2 |
+| P7 | 위 비동기화가 실패를 숨김: 촬영 부하 상한 탐색(작업자 100명 연타)에서 응답 p95 0.54초·실패 0인데 사진 1,155장(385세션)이 PENDING으로 남음 | executor 큐 2,000 초과 시 거절이 로그 한 줄로 끝남. 재처리 경로 없음 | 업로드와 추론을 동시에 시작해 둘 다 끝나면 응답(응답 전 병렬 업로드). 업로드 실패는 촬영 실패로 응답. S3 SDK 시간 상한 명시 | 같은 환경 A/C: E2E p95 467→482ms, 30명 p95 524→544ms, 60명 포화 후 미보관 사진 27장→0, 60명 p95 540ms(스레드 6) | 해결·검증됨(backend `feat/upload-before-response` a73311e·0bed710, main 병합 진행 중) | `docs/superpowers/specs/2026-09-26-upload-before-response-design.md`, `docs/evidence/upload-before-response/README.md` |
 | P8 | 모델 정확도를 배포 전에 검사하지 않음. 학습 리포트 MAE 1.31cm vs 서빙 코드 재측정 2.06cm | 평가 프로토콜(분할·촬영 슬롯)이 달랐음 | 고정셋 2,024품목 게이트, 비열화 기준 + 절대 상한(3cm), 통과 시 alias 승격·기준선 승격 | INT8 정적 PTQ 1.48배 빠르지만 ±3cm 정답률 62.5%→22.6%로 차단(평균 MAE만 봤으면 통과). 게이트 첫 실행 통과, live→버전 5 | ai main | `docs/portfolio/section-full.md` 문제 3, `docs/evidence/eval/` |
 | P9 | GPU 파드 전제의 8초 계약을 CPU Lambda로 옮기니 콜드스타트(초기화 최대 9.5초)가 계약을 넘김 | 비용 문제로 GPU 상시 점유 불가 | ONNX Runtime 전환(빌드 시 변환 + max diff 게이트), 시연 시간대 Provisioned Concurrency 예약, 리셋·배포 뒤 워밍 호출 | 추론 1,070→185ms, 로드 3.10→0.22초. 시연 기간 웜 246건 p50 325/p95 609ms, 콜드 2건, 8초 초과 0 | 완료(시연 한정) | `docs/blog/drafts/c-serving.md`, `ai` 154ff44 |
 | P10 | 배치 접수 1,000주문 52.5초, 5,000주문 272초(커넥션 1개 전유). 동시 5,000배치 2건은 같은 토트 선택→3분 32초 대기 후 전체 롤백 | `ToteAllocator`가 배송단위마다 IDLE 토트 33,226행을 엔티티로 적재해 첫 행만 씀(주문당 53ms, DB는 12ms·LIMIT 1이면 2.3ms). READ COMMITTED에서 미커밋 배정 안 보임 | 없음(과제). `LIMIT 1 FOR UPDATE SKIP LOCKED` + 500주문 청크. 사전 배정은 피킹 지시 LPN 모사로 가정 명시 | 실행 5 후 IDLE 토트 39,100개 → 58.2초로 더 느려짐(비례 확인) | 미해결 | `docs/evidence/loadtest/README.md` 실행 3 |
@@ -46,7 +46,7 @@
 | # | 항목 | 근거 수치 | 방향 |
 | --- | --- | --- | --- |
 | R1 | 토트 전체 적재·동시 배치 롤백(P10) | 주문당 53→58ms, 5,000건 롤백 | SKIP LOCKED + 청크 |
-| R2 | 업로드 큐 유실(P7) | PENDING 1,155장 | Outbox 재처리, 배포 재시작 유실이 사업 근거 |
+| R2 | S3 업로드 SDK 내부 멈춤(9.9초 1건)의 단계 미확정 | 11,427장 중 1건, 재현 안 됨 | 상한·호출별 지표 배치 완료, 다음 발생 시 단계 확정 |
 | R3 | 박스 재고 행 락이 포화 처리량 상한 | 풀 20 이후 처리량 정체, `Lock:tuple` 6→32세션, 묶음 77%가 박스 2종 | `countByLineIdAndStatus`를 트랜잭션 밖으로, `lock_timeout` 실험 |
 | R4 | 정착 60초 전제를 강제할 수단 없음 | — | `transaction_timeout`을 원장 쓰기 트랜잭션에만(앱 롤 전체면 272초 배치가 끊김) |
 | R5 | 수정 전 빌드에서 커서 누락 실제 빈도 미측정 | 산식 상한 3분 54행(0.9%) | 부하 환경에서 mismatch 게이지 집계 |
@@ -100,4 +100,4 @@
 - 문제 4 "동시 포장과 재고 정합성": P1 → S1·S2(발견 경로) → P2 → P3. 부하 테스트 → 원장 전환 → 코드 검토 결함 → 실험 부산물 결함까지 한 사건 사슬. 글 F가 본문.
 - 문제 5 "커넥션 풀을 실측으로 정하기": P4 + M1~M6. 글 G가 본문. 결과보다 방법이 내용.
 - 문제 2 속도 절에 P6·P7 추가(비동기화가 숨긴 실패), 문제 1에 P5의 벤치마크 NPE(S9).
-- 남은 과제 절: R1~R7을 수치와 함께. 특히 R1(토트)·R2(업로드 큐)는 부하 테스트에서 찾고도 못 고친 것이라 감추지 않는다.
+- 남은 과제 절: R1~R7을 수치와 함께. 특히 R1(토트)은 부하 테스트에서 찾고도 못 고친 것이라 감추지 않는다.
