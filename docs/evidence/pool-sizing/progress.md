@@ -245,3 +245,19 @@
 | verify 풀 10/30000 r2 | 11.8 → 9.4 | 0.5 → 0.4 | 6.2 → 4.9 | 16% 그대로 | 186 / 148 |
 
 락·IO 비중은 분자·분모가 같이 부풀어 바뀌지 않았고, 규칙 3 판정(10)도 그대로다. 나머지 40개 실행은 차이 0.05 이하.
+- 09-26 03:xx ADVANCE 수정 RDS A/B 착수(backend `fix/collector-advance-cost` 01d8107). 먼저 적는 예측: (1) 원장 약 105만 행 무부하 RDS CPU — 이전 이미지 약 16~18%(추정치 기반), 이후 이미지 기준선(약 5~6%) 근처. (2) RDS EXPLAIN ADVANCE — 이전 수 초(로컬 1.4초의 약 2배), 이후 수십 ms 이하. (3) 포화 부하(작업자 100명·풀 10·3초) — 이후 이미지는 원장 되돌림 스윕의 풀 10 값(122~125건/s) 근처, 이전 이미지는 60~70건/s 대.
+- 09-26 13:04 advance-fix 이미지 EC2 빌드(`git archive 01d8107` → `~/advance-fix-src`, `docker build -t cj-ai-backend:advance-fix`, 80초, id c19a0be8c8f5). 기존 이미지 cd6222eefbf2 유지. RDS 합성 원장 삽입(ref_type SYNTH, tx_type ADJUST, 1,031,137행, 32초): 20,317 → 1,051,454행. 주의: qty ±1 이 상품 짝홀과 겹쳐 상품 10·12·14·16 은 +12.9만, 11·13·15·17 은 −12.9만(잔고 음수) — 포장 완료는 상품 잔고를 검사하지 않아 실험에는 영향 없음. RDS EXPLAIN ADVANCE(RDS 기본 jit=off): 이전 3,393ms(버퍼 498,555), 이후 0.66ms(버퍼 105). jit=on 이면 이전 6,348ms, 이후 9,215ms(JIT 컴파일). 무부하 RDS CPU(1분 평균): 합성 전 12:40~12:50 5.0~6.0%, 이전 이미지 12:53~12:57 25.6~29.7%, 이후 이미지 12:59~13:02 5.4~6.6%. 예측(이전 16~18%)보다 이전이 높았다.
+- 09-26 13:04 스윕 시작 `ab` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 13:10 `sat-before-p10-t3000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    84.9 | Queue-ms p95   963.1 | Run-ms p95    83.5 | http p95  1106.6 | pending max   91 | top wait IdleInTx:app(6.2) (rc=99)
+- 09-26 13:11 스윕 종료 `20260926-130432`, 백엔드 기준 설정으로 복원
+- 09-26 13:11 스윕 시작 `ab` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 13:17 `sat-after-p10-t3000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   117.3 | Queue-ms p95   442.9 | Run-ms p95    65.1 | http p95   511.5 | pending max   91 | top wait IdleInTx:app(6.7) (rc=99)
+- 09-26 13:17 스윕 종료 `20260926-131120`, 백엔드 기준 설정으로 복원
+- 09-26 13:18 스윕 시작 `ab` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 13:24 `sat-after-p10-t3000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   118.0 | Queue-ms p95   434.6 | Run-ms p95    64.4 | http p95   498.6 | pending max   91 | top wait IdleInTx:app(6.7) (rc=99)
+- 09-26 13:24 스윕 종료 `20260926-131757`, 백엔드 기준 설정으로 복원
+- 09-26 13:24 스윕 시작 `ab` pools=[10] timeouts=[3000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-26 13:31 `sat-before-p10-t3000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS    42.9 | Queue-ms p95  2938.1 | Run-ms p95   134.0 | http p95  2653.8 | pending max   91 | top wait IdleInTx:app(4.1) (rc=99)
+- 09-26 13:31 스윕 종료 `20260926-132438`, 백엔드 기준 설정으로 복원
+- 09-26 13:07~13:31 포화 A/B(`advance-fix/rds/ab/`, 풀 10·3초, 원장 되돌림 없음): 이전 84.9건/s(원장 105만→109만, 실패 0.24%) / 이후 117.3(109만→115만, 0.03%) / 이후 118.0(115만→121만, 0.005%) / 이전 42.9(121만→123만, 5.55%). 예측 대비: 이후는 122~125 예측보다 4~6% 낮음, 이전은 60~70 예측의 양쪽(84.9, 42.9). 무부하 CPU 이전은 예측(16~18%)보다 높은 25.6~29.7%(EXPLAIN 3.39초 기준 계산치 약 20%). RDS 크레딧 13:30 0 도달, 청구 0.
+- 09-26 13:34 정리: 합성 행 삭제 → 원장 원복 → 묶음 원복. 원장 20,317행(SYNTH 0), 상품 10~17 잔고 실험 전 값. 백엔드 이미지 cd6222eefbf2, 설정 흔적 0, 덮어쓰기 파일 없음. advance-fix 이미지·소스는 EC2 에 남김. 도구에 COND_IMAGE·COND_LABEL(조건별 이미지 A/B) 추가, 합성 원장 SQL 2개 추가.

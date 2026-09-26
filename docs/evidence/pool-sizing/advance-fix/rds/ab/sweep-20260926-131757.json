@@ -1,0 +1,1 @@
+{"started":"20260926-131757","pool_sizes":"10","conn_timeouts_ms":"3000","tomcat_threads":"200","loads":"sat:100:0:0:0","repeat":1,"warmup_s":30,"measure_s":180,"scenario":"packing","client_timeout":"60s","lock_inject":"","image":"cd6222eefbf2","rds_max_connections":"79","portfolio_sha":"72d3480"}

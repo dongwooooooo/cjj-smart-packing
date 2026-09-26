@@ -100,7 +100,8 @@ apply_config() {  # $1 pool $2 conn_timeout_ms $3 tomcat_threads
   { printf "services:\n  backend:\n    environment:\n      SPRING_APPLICATION_JSON: '%s'\n" "$json"
     [ -n "${JVM_OPTS_EXTRA:-}" ] && printf "      JAVA_TOOL_OPTIONS: '%s'\n" "$JVM_OPTS_EXTRA"; true; } \
     | on_backend "cat > $BACKEND_DIR/$OVERRIDE"
-  on_backend "cd $BACKEND_DIR && sudo env BACKEND_IMAGE='$BASE_IMAGE_REF' COMPOSE_FILE=docker-compose.yml:$OVERRIDE \
+  # COND_IMAGE: 조건에 쓸 이미지(A/B 비교용). 비우면 실험 전 이미지. 복원은 늘 실험 전 이미지로 한다.
+  on_backend "cd $BACKEND_DIR && sudo env BACKEND_IMAGE='${COND_IMAGE:-$BASE_IMAGE_REF}' COMPOSE_FILE=docker-compose.yml:$OVERRIDE \
     docker compose up -d --no-build --force-recreate backend >/dev/null 2>&1"
   wait_health || { log "헬스 UP 실패 (pool=$1)"; return 1; }
   local got; got=$(metrics_grep '^(hikaricp_connections_max|tomcat_threads_config_max_threads)' | awk '{print $2}' | tr '\n' ' ')
@@ -135,9 +136,10 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   IFS=: read -r name vus pacing think after <<< "$2"
   local warm=$WARMUP_S
   if [ "$pacing" -gt 0 ] && [ $((pacing / 1000)) -gt "$warm" ]; then warm=$((pacing / 1000)); fi  # 흩어진 첫 사이클이 다 돈 뒤부터 판독
-  local id="${name}-p$3-t$4-th$5-r$6" d="$dir/${name}-p$3-t$4-th$5-r$6"; mkdir -p "$d"
-  printf '{"id":"%s","load":"%s","vus":%s,"pacing_ms":%s,"think_ms":%s,"sleep_after_ms":%s,"pool":%s,"conn_timeout_ms":%s,"tomcat_threads":%s,"rep":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","jvm_opts_extra":"%s"}\n' \
-    "$id" "$name" "$vus" "$pacing" "$think" "$after" "$3" "$4" "$5" "$6" "$warm" "$MEASURE_S" "$SCENARIO" "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${JVM_OPTS_EXTRA:-}" > "$d/meta.json"
+  local tag="${COND_LABEL:+-$COND_LABEL}"  # A/B 라벨(예: before/after)을 조건 id 에 붙인다
+  local id="${name}${tag}-p$3-t$4-th$5-r$6" d="$dir/${name}${tag}-p$3-t$4-th$5-r$6"; mkdir -p "$d"
+  printf '{"id":"%s","load":"%s","vus":%s,"pacing_ms":%s,"think_ms":%s,"sleep_after_ms":%s,"pool":%s,"conn_timeout_ms":%s,"tomcat_threads":%s,"rep":%s,"warmup_s":%s,"measure_s":%s,"scenario":"%s","client_timeout":"%s","lock_inject":"%s","jvm_opts_extra":"%s","image":"%s"}\n' \
+    "$id" "$name" "$vus" "$pacing" "$think" "$after" "$3" "$4" "$5" "$6" "$warm" "$MEASURE_S" "$SCENARIO" "$CLIENT_TIMEOUT" "$LOCK_INJECT" "${JVM_OPTS_EXTRA:-}" "${COND_IMAGE:-baseline}" > "$d/meta.json"
   log "── 조건 $id"
   local credit; credit=$(rds_credit)
   log "RDS CPU 크레딧 잔고 $credit (기준 $CREDIT_BASE)"; echo "$credit" > "$d/rds-credit-before.txt"

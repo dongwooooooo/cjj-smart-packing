@@ -1,0 +1,4 @@
+idle-before start 12:52:12
+idle-before end 12:57:42
+idle-after start 12:58:11 (image c19a0be8c8f5, 기본 설정)
+idle-after end 13:03:41

@@ -1,0 +1,81 @@
+SET
+BEGIN
+                                                                                  QUERY PLAN                                                                                  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on stock_balance b  (cost=14195.29..657564.39 rows=0 width=0) (actual time=8742.023..8751.632 rows=0.00 loops=1)
+   Buffers: shared hit=105
+   ->  Hash Join  (cost=14195.29..657564.39 rows=6 width=64) (actual time=8740.914..8750.512 rows=0.00 loops=1)
+         Hash Cond: (b2.product_id = b.product_id)
+         Join Filter: (b.last_tx_id < (SubPlan 5))
+         Buffers: shared hit=105
+         ->  Nested Loop  (cost=14193.90..484463.06 rows=17 width=62) (actual time=30.809..30.811 rows=0.00 loops=1)
+               Buffers: shared hit=104
+               ->  Index Scan using stock_balance_pkey on stock_balance b2  (cost=0.14..12.39 rows=17 width=22) (actual time=10.573..10.584 rows=17.00 loops=1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Subquery Scan on y  (cost=14193.77..28497.09 rows=1 width=40) (actual time=0.992..0.992 rows=0.00 loops=17)
+                     Filter: ((SubPlan 4) IS NOT NULL)
+                     Rows Removed by Filter: 1
+                     Buffers: shared hit=102
+                     ->  Aggregate  (cost=14193.77..14193.78 rows=1 width=8) (actual time=0.647..0.647 rows=1.00 loops=17)
+                           Buffers: shared hit=51
+                           ->  Bitmap Heap Scan on inventory_tx t  (cost=1129.49..13755.66 rows=43811 width=16) (actual time=0.615..0.615 rows=0.00 loops=17)
+                                 Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                 Buffers: shared hit=51
+                                 ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..1118.54 rows=43811 width=0) (actual time=0.259..0.259 rows=0.00 loops=17)
+                                       Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                       Index Searches: 17
+                                       Buffers: shared hit=51
+                     SubPlan 4
+                       ->  Aggregate  (cost=14303.29..14303.30 rows=1 width=8) (actual time=0.119..0.119 rows=1.00 loops=17)
+                             Buffers: shared hit=51
+                             ->  Bitmap Heap Scan on inventory_tx t_4  (cost=1129.49..13755.66 rows=43811 width=16) (actual time=0.051..0.051 rows=0.00 loops=17)
+                                   Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                   Buffers: shared hit=51
+                                   ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..1118.54 rows=43811 width=0) (actual time=0.003..0.003 rows=0.00 loops=17)
+                                         Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                         Index Searches: 17
+                                         Buffers: shared hit=51
+         ->  Hash  (cost=1.17..1.17 rows=17 width=26) (actual time=8708.295..8708.300 rows=17.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 10kB
+               Buffers: shared hit=1
+               ->  Seq Scan on stock_balance b  (cost=0.00..1.17 rows=17 width=26) (actual time=8694.516..8699.848 rows=17.00 loops=1)
+                     Buffers: shared hit=1
+         SubPlan 2
+           ->  Aggregate  (cost=14546.66..14546.67 rows=1 width=8) (never executed)
+                 InitPlan 1
+                   ->  Aggregate  (cost=14303.29..14303.30 rows=1 width=8) (never executed)
+                         ->  Bitmap Heap Scan on inventory_tx t_1  (cost=1129.49..13755.66 rows=43811 width=16) (never executed)
+                               Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                               ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..1118.54 rows=43811 width=0) (never executed)
+                                     Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                     Index Searches: 0
+                 ->  Index Scan using inventory_tx_pkey on inventory_tx t_2  (cost=0.43..241.72 rows=657 width=4) (never executed)
+                       Index Cond: ((id > b.last_tx_id) AND (id <= (InitPlan 1).col1))
+                       Filter: (product_id = b.product_id)
+                       Index Searches: 0
+         SubPlan 3
+           ->  Aggregate  (cost=14303.29..14303.30 rows=1 width=8) (never executed)
+                 ->  Bitmap Heap Scan on inventory_tx t_3  (cost=1129.49..13755.66 rows=43811 width=16) (never executed)
+                       Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                       ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..1118.54 rows=43811 width=0) (never executed)
+                             Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                             Index Searches: 0
+         SubPlan 5
+           ->  Aggregate  (cost=14303.29..14303.30 rows=1 width=8) (never executed)
+                 ->  Bitmap Heap Scan on inventory_tx t_5  (cost=1129.49..13755.66 rows=43811 width=16) (never executed)
+                       Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                       ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..1118.54 rows=43811 width=0) (never executed)
+                             Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                             Index Searches: 0
+ Planning:
+   Buffers: shared hit=250
+ Planning Time: 4.563 ms
+ JIT:
+   Functions: 59
+   Options: Inlining true, Optimization true, Expressions true, Deforming true
+   Timing: Generation 18.971 ms (Deform 3.331 ms), Inlining 305.351 ms, Optimization 7262.552 ms, Emission 1112.148 ms, Total 8699.022 ms
+ Execution Time: 9215.068 ms
+(74 rows)
+
+ROLLBACK
