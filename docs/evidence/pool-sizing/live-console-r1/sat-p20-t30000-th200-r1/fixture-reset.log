@@ -1,0 +1,23 @@
+Time: 1.455 ms
+Time: 160.717 ms
+Time: 10.201 ms
+Time: 23623.596 ms (00:23.624)
+Time: 121.854 ms
+Time: 174.333 ms
+Time: 165.426 ms
+Time: 1.577 ms
+    k    | shipments 
+---------+-----------
+ fixture |     19649
+(1 row)
+
+Time: 2.712 ms
+Time: 12.870 ms
+Time: 521.738 ms
+    status     | count 
+---------------+-------
+ TOTE_ASSIGNED | 19649
+(1 row)
+
+Time: 15.315 ms
+[22:35:28] 실험 묶음 토트 19649개

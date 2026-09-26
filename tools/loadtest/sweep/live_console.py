@@ -79,21 +79,22 @@ def current_condition(sweep: Path):
     return None, None
 
 
-def phase(cond: Path, meta: dict):
-    log = cond / "k6.log"
-    if not log.exists():
-        return "준비 — 설정 반영·재시작·원장/묶음 원복", None
-    start = next((int(l.split("=")[1]) for l in log.read_text(errors="replace").splitlines()
-                  if l.startswith("K6START=")), None)
-    if start is None:
-        return "k6 시작 중", None
-    el = int(time.time()) - start
-    warm, total = meta.get("warmup_s", 30), meta.get("warmup_s", 30) + meta.get("measure_s", 0)
+LOAD_SEEN: dict[str, float] = {}  # 조건 id → 콘솔이 처음 k6 VU > 0 을 본 시각
+
+
+def phase(meta: dict, vus):
+    """k6 결과 파일은 부하 발생기에 있다가 조건이 끝나야 넘어오므로, 단계는 Prometheus 의 k6 VU 로 가른다."""
+    cid = meta["id"]
+    if not vus:
+        if cid in LOAD_SEEN:
+            return "집계 중 — 지표 수집·캡처"
+        return "준비 — 설정 반영·재시작·원장/묶음 원복"
+    start = LOAD_SEEN.setdefault(cid, time.time())
+    el = int(time.time() - start)
+    warm = meta.get("warmup_s", 30)
     if el < warm:
-        return f"예열 {el:3d}/{warm}s (판독 제외)", el
-    if el <= total:
-        return f"판독 {el - warm:3d}/{meta.get('measure_s')}s", el
-    return "집계 중 — 지표 수집·캡처", el
+        return f"예열 {el:3d}/{warm}s (판독 제외)"
+    return f"판독 {el - warm:3d}/{meta.get('measure_s')}s"
 
 
 def fmt(v, spec="7.1f", none="      -"):
@@ -115,7 +116,8 @@ def live_values(p: Prom) -> dict:
         "busy": p.scalar("sum(tomcat_threads_busy_threads)"),
         "tomcat_max": p.scalar("sum(tomcat_threads_config_max_threads)"),
         "ec2": p.scalar('(1 - avg(rate(node_cpu_seconds_total{mode="idle"}[15s]))) * 100'),
-        "k6_vus": p.scalar("sum(k6_vus)"),
+        # 끝난 조건의 k6 시계열이 5분 동안 남아 있어서, 최근 10초 안에 들어온 표본만 센다
+        "k6_vus": p.scalar("sum(max_over_time(k6_vus[10s]))"),
     }
     waits = p.query(f'topk(3, sum by (wait_event_type, wait_event) (pg_stat_activity_count{{datname="app",'
                     f'application_name="{APP}",state="active"}}))') or []
@@ -138,17 +140,16 @@ def bar(value, full, width=24):
 def draw(sweep: Path, p: Prom, rds: RdsCpu, started: float) -> str:
     now = datetime.now().strftime("%H:%M:%S")
     cond, meta = current_condition(sweep)
+    v = live_values(p)
     lines = [f" 커넥션 풀 스윕 — 실시간 콘솔   {sweep.name}   {now}   경과 {int(time.time() - started)}s",
              "═" * WIDTH]
     if meta:
-        ph, _ = phase(cond, meta)
         lines += [f" 조건  {meta['id']}",
                   f"   풀 크기 {meta['pool']:>3}   작업자(VU) {meta['vus']:>3}   pacing {meta['pacing_ms']}ms   "
                   f"connectionTimeout {meta['conn_timeout_ms']}ms   Tomcat {meta['tomcat_threads']}   반복 r{meta['rep']}",
-                  f"   단계  {ph}"]
+                  f"   단계  {phase(meta, v['k6_vus'])}"]
     else:
         lines += [" 조건  (대기 — 다음 조건 준비 전이거나 스윕이 끝났다)", "", ""]
-    v = live_values(p)
     cpu, cpu_at = rds.get()
     lines += ["─" * WIDTH,
               " 실시간 (최근 15초)",

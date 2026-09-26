@@ -77,3 +77,5 @@
 | 원인 | `upload-ab.sh` 가 조건마다 `POST /api/v1/admin/demo/reset` 을 불렀다. 데모 리셋은 주문·배송단위·토트 할당·재고 원장을 시연 초기 상태로 다시 만든다. `fixture-reset.sql` 주석의 "시연 리셋은 쓰지 않는다" 를 확인하지 않았다 |
 | 영향 | 풀 크기 실험 묶음(PSFIX- 배송단위 36,000건) 0건, 재고 원장 20,317행 → 21행(max id 3,131,664), 출고 상품 잔고 약 9.4만 → 101~119. 지운 원장 행은 백업이 없어 되살릴 수 없다. 기존 pool-sizing 결과 파일·판정은 영향 없음. upload-ab 측정 자체는 촬영 경로만 쓰므로 결과 영향 없음 |
 | 조치 | `upload-ab.sh` 의 리셋을 `measurement_*` 만 지우는 SQL + 추론 워밍 2회로 교체, `upload-ab.sh`·`fixture-reset.sql` 상단에 경고 주석. 출고 상품 8종에 재고 조정 +100,000(멱등 키 `psfix-restock-20260926-<gtin>`, 원장 txId 3131665~3131672), 같은 시드로 묶음 재접수. 원장 컷오프는 재접수 뒤 max(id) 로 새로 잡아 `ledger-reset.sql`·`pool-sweep.env` 에 남김. 자세한 경과는 `docs/evidence/pool-sizing/progress.md` |
+- 09-26 22:31 복원: 이미지 cd6222eefbf2(기준 cd6222eefbf2), 촬영 데이터 정리, measurement_image 0행
+- 22:5x 종료 상태: 백엔드 이미지 cd6222eefbf2(기준), 실험 설정 흔적 없음, measurement_session 은 촬영 테이블 정리 뒤 남은 행 없음·measurement_image 0행. EC2 에 이미지 `upload-c`·`upload-c6`·`upload-c6s` 와 소스 `~/upload-c-src` 가 남아 있다. 모니터링 스택에 postgres-exporter 사용자 질의(`cjj_measurement_image_rows`)를 추가한 상태로 둔다.
