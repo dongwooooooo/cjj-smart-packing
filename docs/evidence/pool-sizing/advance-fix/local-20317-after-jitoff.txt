@@ -1,0 +1,94 @@
+SET
+BEGIN
+                                                                                 QUERY PLAN                                                                                 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on stock_balance b  (cost=298.66..13814.47 rows=0 width=0) (actual time=6.067..6.074 rows=0.00 loops=1)
+   Buffers: shared hit=3298
+   ->  Hash Join  (cost=298.66..13814.47 rows=6 width=64) (actual time=1.030..5.987 rows=8.00 loops=1)
+         Hash Cond: (b2.product_id = b.product_id)
+         Join Filter: (b.last_tx_id < (SubPlan 5))
+         Buffers: shared hit=3271
+         ->  Nested Loop  (cost=297.28..10151.97 rows=17 width=62) (actual time=0.533..2.617 rows=8.00 loops=1)
+               Buffers: shared hit=1318
+               ->  Index Scan using stock_balance_pkey on stock_balance b2  (cost=0.14..12.39 rows=17 width=22) (actual time=0.004..0.007 rows=17.00 loops=1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Subquery Scan on y  (cost=297.14..596.44 rows=1 width=40) (actual time=0.153..0.153 rows=0.47 loops=17)
+                     Filter: ((SubPlan 4) IS NOT NULL)
+                     Rows Removed by Filter: 1
+                     Buffers: shared hit=1316
+                     ->  Aggregate  (cost=297.14..297.15 rows=1 width=8) (actual time=0.079..0.079 rows=1.00 loops=17)
+                           Buffers: shared hit=658
+                           ->  Bitmap Heap Scan on inventory_tx t  (cost=24.97..288.67 rows=847 width=16) (actual time=0.011..0.046 rows=352.53 loops=17)
+                                 Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                 Heap Blocks: exact=600
+                                 Buffers: shared hit=658
+                                 ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..24.76 rows=847 width=0) (actual time=0.009..0.009 rows=352.53 loops=17)
+                                       Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                       Index Searches: 17
+                                       Buffers: shared hit=58
+                     SubPlan 4
+                       ->  Aggregate  (cost=299.26..299.27 rows=1 width=8) (actual time=0.072..0.072 rows=1.00 loops=17)
+                             Buffers: shared hit=658
+                             ->  Bitmap Heap Scan on inventory_tx t_4  (cost=24.97..288.67 rows=847 width=16) (actual time=0.008..0.036 rows=352.53 loops=17)
+                                   Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                   Heap Blocks: exact=600
+                                   Buffers: shared hit=658
+                                   ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..24.76 rows=847 width=0) (actual time=0.007..0.007 rows=352.53 loops=17)
+                                         Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                         Index Searches: 17
+                                         Buffers: shared hit=58
+         ->  Hash  (cost=1.17..1.17 rows=17 width=26) (actual time=0.012..0.013 rows=17.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 10kB
+               Buffers: shared hit=1
+               ->  Seq Scan on stock_balance b  (cost=0.00..1.17 rows=17 width=26) (actual time=0.005..0.006 rows=17.00 loops=1)
+                     Buffers: shared hit=1
+         SubPlan 2
+           ->  Aggregate  (cost=310.89..310.90 rows=1 width=8) (actual time=0.135..0.135 rows=1.00 loops=8)
+                 Buffers: shared hit=672
+                 InitPlan 1
+                   ->  Aggregate  (cost=299.26..299.27 rows=1 width=8) (actual time=0.128..0.128 rows=1.00 loops=8)
+                         Buffers: shared hit=640
+                         ->  Bitmap Heap Scan on inventory_tx t_1  (cost=24.97..288.67 rows=847 width=16) (actual time=0.016..0.064 rows=749.12 loops=8)
+                               Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                               Heap Blocks: exact=600
+                               Buffers: shared hit=640
+                               ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..24.76 rows=847 width=0) (actual time=0.014..0.014 rows=749.12 loops=8)
+                                     Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                                     Index Searches: 8
+                                     Buffers: shared hit=40
+                 ->  Index Scan using inventory_tx_pkey on inventory_tx t_2  (cost=0.29..11.58 rows=13 width=4) (actual time=0.003..0.006 rows=5.00 loops=8)
+                       Index Cond: ((id > b.last_tx_id) AND (id <= (InitPlan 1).col1))
+                       Filter: (product_id = b.product_id)
+                       Rows Removed by Filter: 35
+                       Index Searches: 8
+                       Buffers: shared hit=32
+         SubPlan 3
+           ->  Aggregate  (cost=299.26..299.27 rows=1 width=8) (actual time=0.131..0.131 rows=1.00 loops=8)
+                 Buffers: shared hit=640
+                 ->  Bitmap Heap Scan on inventory_tx t_3  (cost=24.97..288.67 rows=847 width=16) (actual time=0.016..0.064 rows=749.12 loops=8)
+                       Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                       Heap Blocks: exact=600
+                       Buffers: shared hit=640
+                       ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..24.76 rows=847 width=0) (actual time=0.014..0.014 rows=749.12 loops=8)
+                             Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                             Index Searches: 8
+                             Buffers: shared hit=40
+         SubPlan 5
+           ->  Aggregate  (cost=299.26..299.27 rows=1 width=8) (actual time=0.149..0.149 rows=1.00 loops=8)
+                 Buffers: shared hit=640
+                 ->  Bitmap Heap Scan on inventory_tx t_5  (cost=24.97..288.67 rows=847 width=16) (actual time=0.022..0.079 rows=749.12 loops=8)
+                       Recheck Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                       Heap Blocks: exact=600
+                       Buffers: shared hit=640
+                       ->  Bitmap Index Scan on ix_inventory_tx_product_id  (cost=0.00..24.76 rows=847 width=0) (actual time=0.017..0.017 rows=749.12 loops=8)
+                             Index Cond: ((product_id = b2.product_id) AND (id > b2.last_tx_id))
+                             Index Searches: 8
+                             Buffers: shared hit=40
+ Planning:
+   Buffers: shared hit=251
+ Planning Time: 0.666 ms
+ Execution Time: 6.254 ms
+(87 rows)
+
+ROLLBACK

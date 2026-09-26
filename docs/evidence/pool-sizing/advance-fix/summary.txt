@@ -1,0 +1,8 @@
+20317    before jit=on   Execution Time: 24.984 ms
+20317    before jit=off  Execution Time: 27.710 ms
+20317    after  jit=on   Execution Time: 5.986 ms
+20317    after  jit=off  Execution Time: 6.254 ms
+1051454  before jit=on   Execution Time: 1412.384 ms
+1051454  before jit=off  Execution Time: 1370.911 ms
+1051454  after  jit=on   Execution Time: 287.920 ms
+1051454  after  jit=off  Execution Time: 6.603 ms

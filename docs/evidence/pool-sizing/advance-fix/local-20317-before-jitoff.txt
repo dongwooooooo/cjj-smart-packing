@@ -1,0 +1,153 @@
+SET
+BEGIN
+                                                                                      QUERY PLAN                                                                                      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on stock_balance b  (cost=1.38..169.66 rows=0 width=0) (actual time=27.546..27.551 rows=0.00 loops=1)
+   Buffers: shared hit=5829
+   ->  Hash Join  (cost=1.38..169.66 rows=6 width=32) (actual time=27.222..27.484 rows=8.00 loops=1)
+         Hash Cond: (b2.product_id = b.product_id)
+         Join Filter: (b.last_tx_id < (SubPlan 17))
+         Buffers: shared hit=5802
+         ->  Seq Scan on stock_balance b2  (cost=0.00..58.18 rows=17 width=22) (actual time=27.136..27.196 rows=8.00 loops=1)
+               Filter: ((SubPlan 13) IS NOT NULL)
+               Rows Removed by Filter: 9
+               Buffers: shared hit=5601
+               SubPlan 13
+                 ->  Result  (cost=3.34..3.35 rows=1 width=8) (actual time=1.598..1.598 rows=1.00 loops=17)
+                       Buffers: shared hit=5600
+                       InitPlan 11
+                         ->  Result  (cost=1.71..1.72 rows=1 width=8) (actual time=0.803..0.803 rows=1.00 loops=17)
+                               Buffers: shared hit=2804
+                               InitPlan 10
+                                 ->  Limit  (cost=0.29..1.71 rows=1 width=8) (actual time=0.803..0.803 rows=0.47 loops=17)
+                                       Buffers: shared hit=2804
+                                       ->  Index Scan using inventory_tx_pkey on inventory_tx y_2  (cost=0.29..353.52 rows=249 width=8) (actual time=0.802..0.802 rows=0.47 loops=17)
+                                             Index Cond: (id > b2.last_tx_id)
+                                             Filter: ((product_id = b2.product_id) AND (created_at >= (statement_timestamp() - '00:01:00'::interval)))
+                                             Rows Removed by Filter: 10770
+                                             Index Searches: 17
+                                             Buffers: shared hit=2804
+                       InitPlan 12
+                         ->  Limit  (cost=0.29..1.63 rows=1 width=8) (actual time=1.598..1.598 rows=0.47 loops=17)
+                               Buffers: shared hit=5600
+                               ->  Index Scan Backward using inventory_tx_pkey on inventory_tx t_3  (cost=0.29..12.35 rows=9 width=8) (actual time=0.794..0.794 rows=0.47 loops=17)
+                                     Index Cond: ((id > b2.last_tx_id) AND (id < COALESCE((InitPlan 11).col1, '9223372036854775807'::bigint)))
+                                     Filter: ((product_id = b2.product_id) AND (created_at < (statement_timestamp() - '00:01:00'::interval)))
+                                     Rows Removed by Filter: 10759
+                                     Index Searches: 17
+                                     Buffers: shared hit=2796
+         ->  Hash  (cost=1.17..1.17 rows=17 width=26) (actual time=0.012..0.012 rows=17.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 10kB
+               Buffers: shared hit=1
+               ->  Seq Scan on stock_balance b  (cost=0.00..1.17 rows=17 width=26) (actual time=0.005..0.006 rows=17.00 loops=1)
+                     Buffers: shared hit=1
+         SubPlan 5
+           ->  Aggregate  (cost=14.97..14.98 rows=1 width=8) (actual time=0.013..0.013 rows=1.00 loops=8)
+                 Buffers: shared hit=88
+                 InitPlan 4
+                   ->  Result  (cost=3.34..3.35 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=8)
+                         Buffers: shared hit=56
+                         InitPlan 2
+                           ->  Result  (cost=1.71..1.72 rows=1 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                                 Buffers: shared hit=32
+                                 InitPlan 1
+                                   ->  Limit  (cost=0.29..1.71 rows=1 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                                         Buffers: shared hit=32
+                                         ->  Index Scan using inventory_tx_pkey on inventory_tx y  (cost=0.29..353.52 rows=249 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                                               Index Cond: (id > b2.last_tx_id)
+                                               Filter: ((product_id = b2.product_id) AND (created_at >= (statement_timestamp() - '00:01:00'::interval)))
+                                               Rows Removed by Filter: 30
+                                               Index Searches: 8
+                                               Buffers: shared hit=32
+                         InitPlan 3
+                           ->  Limit  (cost=0.29..1.63 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=8)
+                                 Buffers: shared hit=56
+                                 ->  Index Scan Backward using inventory_tx_pkey on inventory_tx t  (cost=0.29..12.35 rows=9 width=8) (actual time=0.002..0.002 rows=1.00 loops=8)
+                                       Index Cond: ((id > b2.last_tx_id) AND (id < COALESCE((InitPlan 2).col1, '9223372036854775807'::bigint)))
+                                       Filter: ((product_id = b2.product_id) AND (created_at < (statement_timestamp() - '00:01:00'::interval)))
+                                       Rows Removed by Filter: 7
+                                       Index Searches: 8
+                                       Buffers: shared hit=24
+                 ->  Index Scan using inventory_tx_pkey on inventory_tx t_1  (cost=0.29..11.58 rows=13 width=4) (actual time=0.001..0.002 rows=2.88 loops=8)
+                       Index Cond: ((id > b.last_tx_id) AND (id <= (InitPlan 4).col1))
+                       Filter: (product_id = b.product_id)
+                       Rows Removed by Filter: 20
+                       Index Searches: 8
+                       Buffers: shared hit=32
+         SubPlan 9
+           ->  Result  (cost=3.34..3.35 rows=1 width=8) (actual time=0.010..0.010 rows=1.00 loops=8)
+                 Buffers: shared hit=56
+                 InitPlan 7
+                   ->  Result  (cost=1.71..1.72 rows=1 width=8) (actual time=0.007..0.008 rows=1.00 loops=8)
+                         Buffers: shared hit=32
+                         InitPlan 6
+                           ->  Limit  (cost=0.29..1.71 rows=1 width=8) (actual time=0.007..0.007 rows=1.00 loops=8)
+                                 Buffers: shared hit=32
+                                 ->  Index Scan using inventory_tx_pkey on inventory_tx y_1  (cost=0.29..353.52 rows=249 width=8) (actual time=0.007..0.007 rows=1.00 loops=8)
+                                       Index Cond: (id > b2.last_tx_id)
+                                       Filter: ((product_id = b2.product_id) AND (created_at >= (statement_timestamp() - '00:01:00'::interval)))
+                                       Rows Removed by Filter: 30
+                                       Index Searches: 8
+                                       Buffers: shared hit=32
+                 InitPlan 8
+                   ->  Limit  (cost=0.29..1.63 rows=1 width=8) (actual time=0.010..0.010 rows=1.00 loops=8)
+                         Buffers: shared hit=56
+                         ->  Index Scan Backward using inventory_tx_pkey on inventory_tx t_2  (cost=0.29..12.35 rows=9 width=8) (actual time=0.002..0.002 rows=1.00 loops=8)
+                               Index Cond: ((id > b2.last_tx_id) AND (id < COALESCE((InitPlan 7).col1, '9223372036854775807'::bigint)))
+                               Filter: ((product_id = b2.product_id) AND (created_at < (statement_timestamp() - '00:01:00'::interval)))
+                               Rows Removed by Filter: 7
+                               Index Searches: 8
+                               Buffers: shared hit=24
+         SubPlan 17
+           ->  Result  (cost=3.34..3.35 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=8)
+                 Buffers: shared hit=56
+                 InitPlan 15
+                   ->  Result  (cost=1.71..1.72 rows=1 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                         Buffers: shared hit=32
+                         InitPlan 14
+                           ->  Limit  (cost=0.29..1.71 rows=1 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                                 Buffers: shared hit=32
+                                 ->  Index Scan using inventory_tx_pkey on inventory_tx y_3  (cost=0.29..353.52 rows=249 width=8) (actual time=0.006..0.006 rows=1.00 loops=8)
+                                       Index Cond: (id > b2.last_tx_id)
+                                       Filter: ((product_id = b2.product_id) AND (created_at >= (statement_timestamp() - '00:01:00'::interval)))
+                                       Rows Removed by Filter: 30
+                                       Index Searches: 8
+                                       Buffers: shared hit=32
+                 InitPlan 16
+                   ->  Limit  (cost=0.29..1.63 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=8)
+                         Buffers: shared hit=56
+                         ->  Index Scan Backward using inventory_tx_pkey on inventory_tx t_4  (cost=0.29..12.35 rows=9 width=8) (actual time=0.002..0.002 rows=1.00 loops=8)
+                               Index Cond: ((id > b2.last_tx_id) AND (id < COALESCE((InitPlan 15).col1, '9223372036854775807'::bigint)))
+                               Filter: ((product_id = b2.product_id) AND (created_at < (statement_timestamp() - '00:01:00'::interval)))
+                               Rows Removed by Filter: 7
+                               Index Searches: 8
+                               Buffers: shared hit=24
+ Planning:
+   Buffers: shared hit=276
+ Planning Time: 0.893 ms
+ Execution Time: 27.710 ms
+(124 rows)
+
+ROLLBACK
+                                                            QUERY PLAN                                                            
+----------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=548.17..548.19 rows=1 width=16) (actual time=2.780..2.781 rows=1.00 loops=1)
+   Buffers: shared hit=252
+   ->  Hash Join  (cost=1.38..514.31 rows=6772 width=8) (actual time=1.632..2.544 rows=5993.00 loops=1)
+         Hash Cond: (t.product_id = b.product_id)
+         Join Filter: (t.id > b.last_tx_id)
+         Rows Removed by Join Filter: 14324
+         Buffers: shared hit=252
+         ->  Seq Scan on inventory_tx t  (cost=0.00..454.17 rows=20317 width=24) (actual time=0.002..0.719 rows=20317.00 loops=1)
+               Buffers: shared hit=251
+         ->  Hash  (cost=1.17..1.17 rows=17 width=16) (actual time=0.005..0.005 rows=17.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=1
+               ->  Seq Scan on stock_balance b  (cost=0.00..1.17 rows=17 width=16) (actual time=0.002..0.003 rows=17.00 loops=1)
+                     Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=13
+ Planning Time: 0.091 ms
+ Execution Time: 2.798 ms
+(18 rows)
+
