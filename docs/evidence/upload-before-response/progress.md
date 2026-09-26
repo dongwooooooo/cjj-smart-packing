@@ -32,3 +32,28 @@
 - 09-26 19:44 `m4-C6` 응답 p50/p95 414/540ms(A 417/540), upload.wait p95 0ms, 활성 6·큐 최대 53, 유실 0. 예측(600ms 이하) 일치.
 - 09-26 19:45 복원 확인: 백엔드 이미지 cd6222eefbf2(기준과 일치), SPRING_APPLICATION_JSON 흔적 0, 데모 리셋, measurement_image 0행. EC2 에 `cj-ai-backend:upload-c`·`upload-c6` 이미지와 `~/upload-c-src`, 부하 발생기에 `~/upload-ab` 를 남겼다. S3 `measurements/` 객체 186,936개(C 형식 80,964)는 삭제하지 않았다.
 - 09-26 19:5x 부하 조건 backend.log 를 구간 로그·경고만 남겨 gzip(전체 29MB → 증거 디렉터리 5MB). 표·그림은 `tools/loadtest/upload-ab-report.py` 로 생성(`tables.md`, `m2-response-p95.png`, `m3-pending.png`, `m4-pending.png`).
+
+## 후속 1 — 업로드 9.9초의 원인과 수정 (09-26 20:0x~)
+
+- 20:0x 원인 분리(기존 증거): `m2-A-v30` 에서 `upload.timing uploadMs` > 2초는 11,427장(3,809작업) 중 1건(sessionId=18761, 09:43:32.462Z 종료, 9,918ms)뿐. 나머지 10개 조건(A·C, M2~M4)에서 load·upload·save 어느 구간도 2초를 넘은 적이 없다. 같은 시각 다른 두 업로드 스레드는 94~143ms 로 정상이고, 사진 읽기(S3 GET, 요청 스레드) p99 97ms, GC 일시정지 최대 27ms, 요청률 21 req/s 일정 → 전역 지연이 아니라 그 1건만 멈췄다. 우리 코드 재시도 로그(`사진 업로드 재시도`)·SDK 예외·WARN 은 0줄 → 호출은 결국 성공했고, 늦어진 시간은 SDK 안(재시도·커넥션 획득 대기·멈춘 연결)에서 쓰였다. 기존 로그는 세 장 합계만 있어 어느 put 이 몇 번 시도했는지, 커넥션 획득 대기인지 네트워크·S3 응답인지는 가를 수 없다(노드 익스포터에 TCP 재전송 지표 없음). 원인은 미확정.
+- 판단: SDK 기본값(Apache 커넥션 50, 획득 대기 10초, 소켓 30초, 시도·호출 상한 없음)에서는 멈춘 연결 한 번이 수 초~30초를 그대로 쓴다. 원인이 어느 쪽이든 한 시도를 짧게 끊고 새 연결로 다시 하면 꼬리가 상한 근처로 잘린다.
+- 수정(backend `feat/upload-before-response`): S3 클라이언트에 커넥션 128·획득 대기 1초·연결 1초·소켓 2초·시도 상한 2초·호출 상한 6초·SDK 시도 3회를 명시(설정 `storage.s3.*`). SDK 지표 발행기(`S3CallMetrics`)로 호출마다 `s3.call`(연산·결과·재시도 여부)·`s3.connection.acquire` 히스토그램을 내보내고, 500ms 이상·재시도·실패 호출은 시도별(커넥션 획득·서버 응답·첫 바이트·상태 코드·오류·재시도 전 대기)로 `s3.slow_call` 로그를 남긴다. 업로드 쪽은 500ms 넘는 put 을 키와 함께 `upload.slow_put` 으로 남긴다. C 의 대기 상한 8초·`IMAGE_STORE_FAILED` 는 그대로.
+- 재측정 전 예측(작업자 30명 3분, 업로드 풀 코어 6): (1) 수정 전 C6 이미지는 3분 동안 2초 넘는 업로드가 나올 수도, 안 나올 수도 있다(1/3,809 작업 빈도라 3분 1회로는 재현 보장 없음). (2) 수정 후 업로드(병렬 3장) max ≤ 2.2초(멈춘 시도가 2초에서 끊기고 재시도), p99 는 수정 전과 같은 300~350ms. (3) `IMAGE_STORE_FAILED` 0. (4) `s3.connection.acquire` max < 10ms(커넥션 128 이 동시 사용 약 36개보다 넉넉). (5) 재현 보장이 없으므로 멈춘 연결을 흉내 낸 로컬 테스트로 "첫 시도 10초 멈춤 → 2초에서 끊고 재시도해 성공"을 따로 확인한다.
+- 09-26 21:27 C 이미지 빌드: git archive b732e51 → `cj-ai-backend:upload-c6s` (96f68e1f81ed, 42초). 소스 EC2 ~/upload-c-src
+- 09-26 21:27 backend 0bed710(S3 수정) 커밋, exp/upload-c-core6 를 그 위로 옮김(b732e51). C6S 이미지 `cj-ai-backend:upload-c6s`(96f68e1f81ed) 빌드. postgres-exporter 에 사용자 질의(cjj_measurement_image_rows) 추가·EC2 모니터링 스택 반영, 대시보드 첫 줄을 응답 p95·PENDING·업로드 풀로 재배치. 로컬 S3ClientStallTest: 첫 시도 10초 멈춤 → 수정 설정 2,083ms(시도 2회, 첫 시도 ConfiguredTimeout), SDK 기본값 10,085ms. 이어서 작업자 30명 3분을 C6(수정 전) → C6S(수정 후) 순으로 잰다.
+- 09-26 21:33 `m2-C6-v30` 요청 3776 (INFERRED 아님 0 ) p50/p95/p99/max 420/541/561/677ms, 사진 종료 직후 {'STORED': 11328} → 정착 뒤 {'STORED': 11328}, 업로드 풀 활성 최대 6 큐 최대 50 CallerRuns 0, 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 36.6→36.8
+- 09-26 21:38 `m2-C6S-v30` 요청 3779 (INFERRED 아님 0 ) p50/p95/p99/max 418/538/557/619ms, 사진 종료 직후 {'STORED': 11337} → 정착 뒤 {'STORED': 11337}, 업로드 풀 활성 최대 6 큐 최대 43 CallerRuns 0, 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0, 's3_slow_call_log': 0, 'slow_put_log': 0}, RDS 크레딧 36.8→37.1
+- 21:39 재측정 결과(작업자 30명 3분, 같은 순서 C6 → C6S):
+
+  | 지표 | C6 수정 전 | C6S 수정 후 | 예측 |
+  | --- | ---: | ---: | --- |
+  | 촬영 요청 / INFERRED 아님 | 3,776 / 0 | 3,779 / 0 | - |
+  | 응답 p50 / p95 / p99 / max (k6) | 420 / 541 / 561 / 677ms | 418 / 538 / 557 / 619ms | - |
+  | 업로드(병렬 3장) p50 / p95 / p99 / max | 99 / 239 / 302 / 401ms | 126 / 232 / 303 / 492ms | max ≤ 2.2초, p99 300~350ms — 일치 |
+  | 업로드 대기 max | 68ms | 175ms | - |
+  | `IMAGE_STORE_FAILED` · PENDING · FAILED | 0 · 0 · 0 | 0 · 0 · 0 | 0 — 일치 |
+  | S3 호출 22,813회: 재시도 · p99 · max(PutObject) | - | 0회 · 54ms · 104ms | - |
+  | S3 커넥션 획득 max | - | 21ms | < 10ms — 불일치(21ms, 획득 상한 1초 대비 여유) |
+  | `s3.slow_call`·`upload.slow_put` 로그 | - | 0 · 0 | - |
+
+  9.9초 같은 멈춤은 두 실행 모두 다시 나오지 않았다(예측 (1)대로 재현 보장 없음). 실측으로는 "수정 뒤에도 정상 구간 성능이 같다"까지만 확인됐고, 꼬리를 자르는 효과는 로컬 S3ClientStallTest(10초 멈춤 → 2,083ms 성공, 기본값 10,085ms)로 확인했다. 운영에서 다시 멈추면 `s3.slow_call` 줄이 커넥션 획득·서버 응답·오류 종류를 남긴다.

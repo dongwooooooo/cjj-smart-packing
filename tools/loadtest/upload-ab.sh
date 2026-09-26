@@ -22,6 +22,7 @@ STATE_DIR="$REPO_ROOT/local/upload-ab"; mkdir -p "$STATE_DIR" "$OUT_ROOT"
 BASELINE="$STATE_DIR/baseline.env"
 C_IMAGE="cj-ai-backend:upload-c"
 C6_IMAGE="cj-ai-backend:upload-c6"
+C6S_IMAGE="cj-ai-backend:upload-c6s"
 PY="${PY:-python3}"
 # AB_SETTLE_S: 종료 뒤 상태를 다시 셀 때까지 기다리는 초. pool-sweep.env 의 SETTLE_S 와 이름을 나눴다
 DURATION="${DURATION:-3m}"; WARM="${WARM:-30s}"; AB_SETTLE_S="${AB_SETTLE_S:-60}"; RESTART_AT_S="${RESTART_AT_S:-60}"
@@ -78,8 +79,10 @@ capture_baseline() {
 image_ref() {  # $1 A|C
   # shellcheck disable=SC1090
   source "$BASELINE"
-  # C6 = C 에서 업로드 풀 코어만 3 → 6 (backend exp/upload-c-core6, M4 보조)
-  case "$1" in A) echo "$BASE_IMAGE_REF" ;; C) echo "$C_IMAGE" ;; C6) echo "$C6_IMAGE" ;; *) log "이미지는 A, C, C6"; exit 1 ;; esac
+  # C6 = C 에서 업로드 풀 코어만 3 → 6 (backend exp/upload-c-core6 b837925, M4 보조)
+  # C6S = C6 + S3 클라이언트 상한·커넥션 풀 명시 (backend exp/upload-c-core6 b732e51, 후속 1)
+  case "$1" in A) echo "$BASE_IMAGE_REF" ;; C) echo "$C_IMAGE" ;; C6) echo "$C6_IMAGE" ;; C6S) echo "$C6S_IMAGE" ;;
+    *) log "이미지는 A, C, C6, C6S"; exit 1 ;; esac
 }
 use_image() {  # $1 A|C. 이미 그 이미지로 떠 있어도 새로 띄운다 — 조건마다 같은 JVM 상태에서 시작하려고
   local ref; ref=$(image_ref "$1")
@@ -112,6 +115,11 @@ begin_condition() {  # $1 조건 id, $2 A|C → COND_DIR, DEMO_KEY_VALUE 설정
     "$1" "$2" "${CUR_IMAGE_ID:7:12}" "$credit" "$(date -u +%FT%TZ)" "$(git -C "$REPO_ROOT" rev-parse --short HEAD)" > "$COND_DIR/meta.json"
 }
 db_now() { psql_cmd "select to_char(clock_timestamp(), 'YYYY-MM-DD HH24:MI:SS.US')"; }
+psql_screen() {  # $1 이후 생성된 사진 행을 상태별로 — psql 기본(정렬) 출력 그대로, 질의도 함께 찍는다
+  printf '%s\n' "select upload_status, count(*) as images from measurement_image where created_at >= '$1' group by upload_status order by 1;" \
+    | on_backend "cd $BACKEND_DIR && sudo docker run --rm -i --network host --env-file .env $PSQL_IMAGE \
+      sh -c 'PGPASSWORD=\$POSTGRES_PASSWORD exec psql -h \$POSTGRES_HOST -U \$POSTGRES_USER -d \$POSTGRES_DB -X -e -P pager=off'"
+}
 db_counts() {  # $1 이후 생성된 사진 행·세션을 상태별로. 결과 파일 한 줄씩
   psql_cmd "select 'image', upload_status, count(*) from measurement_image where created_at >= '$1' group by 2
             union all select 'session', status, count(*) from measurement_session where created_at >= '$1' group by 2
@@ -147,25 +155,30 @@ capture_grafana() {  # $1 시작 $2 끝(epoch 초)
 }
 finish_condition() {  # $1 측정 시작 $2 측정 끝 $3 DB 시작 시각
   db_counts "$3" > "$COND_DIR/db-counts-at-end.csv"
+  { echo "-- $(date '+%F %T %Z') k6 종료 직후"; psql_screen "$3"; } > "$COND_DIR/psql-at-end.txt" 2>&1
   sleep 12  # 마지막 스크레이프(5초 주기)가 들어올 때까지
   pool_stats "$1" "$2" > "$COND_DIR/pool.json"
   log "종료 직후 상태별: $(tr '\n' ' ' < "$COND_DIR/db-counts-at-end.csv")"
   log "업로드 풀: $(cat "$COND_DIR/pool.json")"
   sleep "$AB_SETTLE_S"  # A 는 커밋 뒤 대기 줄이 마저 빠질 시간. 이 뒤에도 PENDING 이면 유실이다
   db_counts "$3" > "$COND_DIR/db-counts-settled.csv"
+  { echo "-- $(date '+%F %T %Z') 종료 ${AB_SETTLE_S}초 뒤"; psql_screen "$3"; } > "$COND_DIR/psql-settled.txt" 2>&1
   log "${AB_SETTLE_S}초 뒤 상태별: $(tr '\n' ' ' < "$COND_DIR/db-counts-settled.csv")"
   backend_logs "$1" "$COND_DIR/backend.log"
-  printf '{"rejected":%s,"caller_runs_log":%s,"upload_failed_log":%s,"image_store_failed_log":%s}\n' \
+  printf '{"rejected":%s,"caller_runs_log":%s,"upload_failed_log":%s,"image_store_failed_log":%s,"s3_slow_call_log":%s,"slow_put_log":%s}\n' \
     "$(grep -c 'RejectedExecution\|TaskRejected' "$COND_DIR/backend.log" || true)" \
     "$(grep -c 'upload.caller_runs' "$COND_DIR/backend.log" || true)" \
     "$(grep -c '사진 업로드 실패\|사진 업로드가 .*실패' "$COND_DIR/backend.log" || true)" \
-    "$(grep -c '촬영을 실패로 처리한다' "$COND_DIR/backend.log" || true)" > "$COND_DIR/log-counts.json"
+    "$(grep -c '촬영을 실패로 처리한다' "$COND_DIR/backend.log" || true)" \
+    "$(grep -c 's3.slow_call' "$COND_DIR/backend.log" || true)" \
+    "$(grep -c 'upload.slow_put' "$COND_DIR/backend.log" || true)" > "$COND_DIR/log-counts.json"
   log "로그: $(cat "$COND_DIR/log-counts.json")"
   # 증거로 남길 줄만 두고 압축한다(구간 로그·경고·종료 과정). 전체 로그는 조건당 수 MB 다
-  grep -E "timing|WARN|ERROR|Exception|GracefulShutdown|Started BackendApplication|Closing JPA|caller_runs|업로드|촬영을 실패" \
+  grep -E "timing|slow_call|slow_put|WARN|ERROR|Exception|GracefulShutdown|Started BackendApplication|Closing JPA|caller_runs|업로드|촬영을 실패" \
     "$COND_DIR/backend.log" | gzip -9 > "$COND_DIR/backend.log.gz" && rm -f "$COND_DIR/backend.log"
   echo "$(rds_credit)" > "$COND_DIR/rds-credit-after.txt"
   capture_grafana "$1" "$2"
+  "$PY" "$HERE/upload-ab-screens.py" --dir "$COND_DIR" >&2 || log "화면 생성 실패(무시)"
   "$PY" "$HERE/upload-ab-summary.py" --dir "$COND_DIR" | tee "$COND_DIR/summary.txt"
   progress "\`$COND_ID\` $(cat "$COND_DIR/summary.txt")"
 }

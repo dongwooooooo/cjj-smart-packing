@@ -1,0 +1,16 @@
+# postgres-exporter 사용자 정의 질의(--extend.query-path). 촬영 사진 업로드 A/C 실측에서
+# "보관소에 아직 없는 사진(PENDING)" 을 Grafana 에 시계열로 그리려고 둔다. 상태가 0건이어도
+# 시계열이 끊기지 않게 세 상태를 모두 돌려준다. 결과 지표: cjj_measurement_image_rows{status}
+cjj_measurement_image:
+  query: |
+    select s.status, count(i.id) as rows
+    from (values ('PENDING'), ('STORED'), ('FAILED')) as s(status)
+    left join measurement_image i on i.upload_status = s.status
+    group by s.status
+  metrics:
+    - status:
+        usage: "LABEL"
+        description: "measurement_image.upload_status"
+    - rows:
+        usage: "GAUGE"
+        description: "상태별 measurement_image 행 수"

@@ -25,7 +25,7 @@
   ]
  },
  "schemaVersion": 39,
- "version": 1,
+ "version": 2,
  "editable": true,
  "panels": [
   {
@@ -38,10 +38,10 @@
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
     "x": 0,
-    "y": 0
+    "y": 0,
+    "w": 8,
+    "h": 9
    },
    "fieldConfig": {
     "defaults": {
@@ -83,38 +83,38 @@
     {
      "refId": "A",
      "expr": "k6_measure_duration_p95{run!~\".*-warm\"}",
-     "legendFormat": "p95 {{run}}"
+     "legendFormat": "p95"
     },
     {
      "refId": "B",
      "expr": "k6_measure_duration_p50{run!~\".*-warm\"}",
-     "legendFormat": "p50 {{run}}"
+     "legendFormat": "p50"
     },
     {
      "refId": "C",
      "expr": "k6_measure_duration_p99{run!~\".*-warm\"}",
-     "legendFormat": "p99 {{run}}"
+     "legendFormat": "p99"
     }
    ]
   },
   {
-   "id": 2,
+   "id": 9,
    "type": "timeseries",
-   "title": "촬영 서버 구간 p95 — load / infer / upload / save / total (measure.stage)",
-   "description": "C 는 upload 가 추론과 겹친다. A 에는 upload 단계가 없다(응답 밖)",
+   "title": "보관소에 아직 없는 사진 — measurement_image 상태별 행 수 (PENDING · FAILED)",
+   "description": "postgres-exporter 사용자 질의 cjj_measurement_image_rows. 리셋 뒤 0 에서 시작한다",
    "datasource": {
     "type": "prometheus",
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 0
+    "x": 8,
+    "y": 0,
+    "w": 8,
+    "h": 9
    },
    "fieldConfig": {
     "defaults": {
-     "unit": "s",
+     "unit": "short",
      "custom": {
       "lineWidth": 1,
       "fillOpacity": 8
@@ -135,78 +135,30 @@
    "targets": [
     {
      "refId": "A",
-     "expr": "histogram_quantile(0.95, sum by (le, stage) (rate(measure_stage_seconds_bucket[30s])))",
-     "legendFormat": "{{stage}}"
-    }
-   ]
-  },
-  {
-   "id": 3,
-   "type": "timeseries",
-   "title": "업로드 대기 — 응답에 더해진 시간 p95·p99 (upload.wait, C) · 응답 밖 업로드 p95 (upload.duration, A)",
-   "description": "upload.wait 는 추론이 끝난 뒤 업로드를 기다린 시간",
-   "datasource": {
-    "type": "prometheus",
-    "uid": "prometheus"
-   },
-   "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 8
-   },
-   "fieldConfig": {
-    "defaults": {
-     "unit": "s",
-     "custom": {
-      "lineWidth": 1,
-      "fillOpacity": 8
-     }
-    },
-    "overrides": []
-   },
-   "options": {
-    "legend": {
-     "displayMode": "list",
-     "placement": "bottom"
-    },
-    "tooltip": {
-     "mode": "multi",
-     "sort": "desc"
-    }
-   },
-   "targets": [
-    {
-     "refId": "A",
-     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
-     "legendFormat": "C upload.wait p95"
+     "expr": "cjj_measurement_image_rows{status=\"PENDING\"}",
+     "legendFormat": "PENDING"
     },
     {
      "refId": "B",
-     "expr": "histogram_quantile(0.99, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
-     "legendFormat": "C upload.wait p99"
-    },
-    {
-     "refId": "C",
-     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_duration_seconds_bucket[30s])))",
-     "legendFormat": "A 응답 밖 업로드 p95"
+     "expr": "cjj_measurement_image_rows{status=\"FAILED\"}",
+     "legendFormat": "FAILED"
     }
    ]
   },
   {
    "id": 4,
    "type": "timeseries",
-   "title": "업로드 풀 — 활성 스레드 · 큐 깊이 · 최대 스레드 (executor.*)",
+   "title": "업로드 풀 — 활성 스레드 · 큐 깊이 (executor.*)",
    "description": "A 큐 용량 2,000(차면 거절), C 큐 용량 200(차면 요청 스레드가 직접 올림)",
    "datasource": {
     "type": "prometheus",
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 8
+    "x": 16,
+    "y": 0,
+    "w": 8,
+    "h": 9
    },
    "fieldConfig": {
     "defaults": {
@@ -247,6 +199,155 @@
    ]
   },
   {
+   "id": 2,
+   "type": "timeseries",
+   "title": "촬영 서버 구간 p95 — load / infer / upload / save / total (measure.stage)",
+   "description": "C 는 upload 가 추론과 겹친다. A 에는 upload 단계가 없다(응답 밖)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 9,
+    "w": 8,
+    "h": 8
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.95, sum by (le, stage) (rate(measure_stage_seconds_bucket[30s])))",
+     "legendFormat": "{{stage}}"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "type": "timeseries",
+   "title": "업로드 대기 — 응답에 더해진 시간 p95·p99 (upload.wait, C) · 응답 밖 업로드 p95 (upload.duration, A)",
+   "description": "upload.wait 는 추론이 끝난 뒤 업로드를 기다린 시간",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 9,
+    "w": 8,
+    "h": 8
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
+     "legendFormat": "C upload.wait p95"
+    },
+    {
+     "refId": "B",
+     "expr": "histogram_quantile(0.99, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
+     "legendFormat": "C upload.wait p99"
+    },
+    {
+     "refId": "C",
+     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_duration_seconds_bucket[30s])))",
+     "legendFormat": "A 응답 밖 업로드 p95"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "type": "timeseries",
+   "title": "S3 호출 시간 p99 · max (s3.call, SDK 재시도 포함)",
+   "description": "수정 이미지에서만 나온다. max 는 스크레이프 사이 최댓값",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 9,
+    "w": 8,
+    "h": 8
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.99, sum by (le, operation) (rate(s3_call_seconds_bucket[30s])))",
+     "legendFormat": "p99 {{operation}}"
+    },
+    {
+     "refId": "B",
+     "expr": "max by (operation) (s3_call_seconds_max)",
+     "legendFormat": "max {{operation}}"
+    },
+    {
+     "refId": "C",
+     "expr": "max(s3_connection_acquire_seconds_max)",
+     "legendFormat": "커넥션 획득 max"
+    }
+   ]
+  },
+  {
    "id": 5,
    "type": "timeseries",
    "title": "촬영 요청/초 (서버, 상태코드별) · CallerRuns 발동/초 (C)",
@@ -256,10 +357,10 @@
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
     "x": 0,
-    "y": 16
+    "y": 17,
+    "w": 8,
+    "h": 8
    },
    "fieldConfig": {
     "defaults": {
@@ -304,10 +405,10 @@
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 16
+    "x": 8,
+    "y": 17,
+    "w": 8,
+    "h": 8
    },
    "fieldConfig": {
     "defaults": {
@@ -347,10 +448,10 @@
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 0,
-    "y": 24
+    "x": 16,
+    "y": 17,
+    "w": 8,
+    "h": 8
    },
    "fieldConfig": {
     "defaults": {
@@ -400,10 +501,10 @@
     "uid": "prometheus"
    },
    "gridPos": {
-    "h": 8,
-    "w": 12,
-    "x": 12,
-    "y": 24
+    "x": 0,
+    "y": 25,
+    "w": 8,
+    "h": 8
    },
    "fieldConfig": {
     "defaults": {

@@ -58,6 +58,10 @@ services:
     restart: unless-stopped
     environment:
       DATA_SOURCE_NAME: ${POSTGRES_EXPORTER_DSN:?postgresql://user:pass@host:5432/db?sslmode=require}
+    # 사진 업로드 상태별 행 수(cjj_measurement_image_rows) — upload-ab 대시보드의 PENDING 패널
+    command: ["--extend.query-path=/etc/postgres-exporter/queries.yaml"]
+    volumes:
+      - ./postgres-exporter/queries.yaml:/etc/postgres-exporter/queries.yaml:ro
     networks: [monitoring]
 
 networks:
