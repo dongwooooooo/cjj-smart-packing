@@ -1,0 +1,850 @@
+K6START=1790417167
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/capture.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 3m30s max duration (incl. graceful stop):
+              * capture: 10 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+running (0m01.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+capture   [   0% ] 10 VUs  0m00.5s/3m0s
+
+running (0m02.0s), 10/10 VUs, 6 complete and 0 interrupted iterations
+capture   [   1% ] 10 VUs  0m01.5s/3m0s
+
+running (0m03.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+capture   [   1% ] 10 VUs  0m02.5s/3m0s
+
+running (0m04.0s), 10/10 VUs, 20 complete and 0 interrupted iterations
+capture   [   2% ] 10 VUs  0m03.5s/3m0s
+
+running (0m05.0s), 10/10 VUs, 30 complete and 0 interrupted iterations
+capture   [   2% ] 10 VUs  0m04.5s/3m0s
+
+running (0m06.0s), 10/10 VUs, 30 complete and 0 interrupted iterations
+capture   [   3% ] 10 VUs  0m05.5s/3m0s
+
+running (0m07.0s), 10/10 VUs, 40 complete and 0 interrupted iterations
+capture   [   4% ] 10 VUs  0m06.5s/3m0s
+
+running (0m08.0s), 10/10 VUs, 50 complete and 0 interrupted iterations
+capture   [   4% ] 10 VUs  0m07.5s/3m0s
+
+running (0m09.0s), 10/10 VUs, 50 complete and 0 interrupted iterations
+capture   [   5% ] 10 VUs  0m08.5s/3m0s
+
+running (0m10.0s), 10/10 VUs, 60 complete and 0 interrupted iterations
+capture   [   5% ] 10 VUs  0m09.5s/3m0s
+
+running (0m11.0s), 10/10 VUs, 70 complete and 0 interrupted iterations
+capture   [   6% ] 10 VUs  0m10.5s/3m0s
+
+running (0m12.0s), 10/10 VUs, 70 complete and 0 interrupted iterations
+capture   [   6% ] 10 VUs  0m11.5s/3m0s
+
+running (0m13.0s), 10/10 VUs, 80 complete and 0 interrupted iterations
+capture   [   7% ] 10 VUs  0m12.5s/3m0s
+
+running (0m14.0s), 10/10 VUs, 90 complete and 0 interrupted iterations
+capture   [   7% ] 10 VUs  0m13.5s/3m0s
+
+running (0m15.0s), 10/10 VUs, 90 complete and 0 interrupted iterations
+capture   [   8% ] 10 VUs  0m14.5s/3m0s
+
+running (0m16.0s), 10/10 VUs, 100 complete and 0 interrupted iterations
+capture   [   9% ] 10 VUs  0m15.5s/3m0s
+
+running (0m17.0s), 10/10 VUs, 110 complete and 0 interrupted iterations
+capture   [   9% ] 10 VUs  0m16.5s/3m0s
+
+running (0m18.0s), 10/10 VUs, 117 complete and 0 interrupted iterations
+capture   [  10% ] 10 VUs  0m17.5s/3m0s
+
+running (0m19.0s), 10/10 VUs, 120 complete and 0 interrupted iterations
+capture   [  10% ] 10 VUs  0m18.5s/3m0s
+
+running (0m20.0s), 10/10 VUs, 130 complete and 0 interrupted iterations
+capture   [  11% ] 10 VUs  0m19.5s/3m0s
+
+running (0m21.0s), 10/10 VUs, 140 complete and 0 interrupted iterations
+capture   [  11% ] 10 VUs  0m20.5s/3m0s
+
+running (0m22.0s), 10/10 VUs, 140 complete and 0 interrupted iterations
+capture   [  12% ] 10 VUs  0m21.5s/3m0s
+
+running (0m23.0s), 10/10 VUs, 150 complete and 0 interrupted iterations
+capture   [  12% ] 10 VUs  0m22.5s/3m0s
+
+running (0m24.0s), 10/10 VUs, 160 complete and 0 interrupted iterations
+capture   [  13% ] 10 VUs  0m23.5s/3m0s
+
+running (0m25.0s), 10/10 VUs, 160 complete and 0 interrupted iterations
+capture   [  14% ] 10 VUs  0m24.5s/3m0s
+
+running (0m26.0s), 10/10 VUs, 170 complete and 0 interrupted iterations
+capture   [  14% ] 10 VUs  0m25.5s/3m0s
+
+running (0m27.0s), 10/10 VUs, 180 complete and 0 interrupted iterations
+capture   [  15% ] 10 VUs  0m26.5s/3m0s
+
+running (0m28.0s), 10/10 VUs, 180 complete and 0 interrupted iterations
+capture   [  15% ] 10 VUs  0m27.5s/3m0s
+
+running (0m29.0s), 10/10 VUs, 190 complete and 0 interrupted iterations
+capture   [  16% ] 10 VUs  0m28.5s/3m0s
+
+running (0m30.0s), 10/10 VUs, 200 complete and 0 interrupted iterations
+capture   [  16% ] 10 VUs  0m29.5s/3m0s
+
+running (0m31.0s), 10/10 VUs, 205 complete and 0 interrupted iterations
+capture   [  17% ] 10 VUs  0m30.5s/3m0s
+
+running (0m32.0s), 10/10 VUs, 210 complete and 0 interrupted iterations
+capture   [  17% ] 10 VUs  0m31.5s/3m0s
+
+running (0m33.0s), 10/10 VUs, 220 complete and 0 interrupted iterations
+capture   [  18% ] 10 VUs  0m32.5s/3m0s
+
+running (0m34.0s), 10/10 VUs, 230 complete and 0 interrupted iterations
+capture   [  19% ] 10 VUs  0m33.5s/3m0s
+
+running (0m35.0s), 10/10 VUs, 230 complete and 0 interrupted iterations
+capture   [  19% ] 10 VUs  0m34.5s/3m0s
+
+running (0m36.0s), 10/10 VUs, 240 complete and 0 interrupted iterations
+capture   [  20% ] 10 VUs  0m35.5s/3m0s
+
+running (0m37.0s), 10/10 VUs, 250 complete and 0 interrupted iterations
+capture   [  20% ] 10 VUs  0m36.5s/3m0s
+
+running (0m38.0s), 10/10 VUs, 250 complete and 0 interrupted iterations
+capture   [  21% ] 10 VUs  0m37.5s/3m0s
+
+running (0m39.0s), 10/10 VUs, 260 complete and 0 interrupted iterations
+capture   [  21% ] 10 VUs  0m38.5s/3m0s
+
+running (0m40.0s), 10/10 VUs, 270 complete and 0 interrupted iterations
+capture   [  22% ] 10 VUs  0m39.5s/3m0s
+
+running (0m41.0s), 10/10 VUs, 270 complete and 0 interrupted iterations
+capture   [  22% ] 10 VUs  0m40.5s/3m0s
+
+running (0m42.0s), 10/10 VUs, 280 complete and 0 interrupted iterations
+capture   [  23% ] 10 VUs  0m41.5s/3m0s
+
+running (0m43.0s), 10/10 VUs, 290 complete and 0 interrupted iterations
+capture   [  24% ] 10 VUs  0m42.5s/3m0s
+
+running (0m44.0s), 10/10 VUs, 292 complete and 0 interrupted iterations
+capture   [  24% ] 10 VUs  0m43.5s/3m0s
+
+running (0m45.0s), 10/10 VUs, 300 complete and 0 interrupted iterations
+capture   [  25% ] 10 VUs  0m44.5s/3m0s
+
+running (0m46.0s), 10/10 VUs, 310 complete and 0 interrupted iterations
+capture   [  25% ] 10 VUs  0m45.5s/3m0s
+
+running (0m47.0s), 10/10 VUs, 319 complete and 0 interrupted iterations
+capture   [  26% ] 10 VUs  0m46.5s/3m0s
+
+running (0m48.0s), 10/10 VUs, 320 complete and 0 interrupted iterations
+capture   [  26% ] 10 VUs  0m47.5s/3m0s
+
+running (0m49.0s), 10/10 VUs, 330 complete and 0 interrupted iterations
+capture   [  27% ] 10 VUs  0m48.5s/3m0s
+
+running (0m50.0s), 10/10 VUs, 340 complete and 0 interrupted iterations
+capture   [  27% ] 10 VUs  0m49.5s/3m0s
+
+running (0m51.0s), 10/10 VUs, 340 complete and 0 interrupted iterations
+capture   [  28% ] 10 VUs  0m50.5s/3m0s
+
+running (0m52.0s), 10/10 VUs, 350 complete and 0 interrupted iterations
+capture   [  29% ] 10 VUs  0m51.5s/3m0s
+
+running (0m53.0s), 10/10 VUs, 360 complete and 0 interrupted iterations
+capture   [  29% ] 10 VUs  0m52.5s/3m0s
+
+running (0m54.0s), 10/10 VUs, 361 complete and 0 interrupted iterations
+capture   [  30% ] 10 VUs  0m53.5s/3m0s
+
+running (0m55.0s), 10/10 VUs, 370 complete and 0 interrupted iterations
+capture   [  30% ] 10 VUs  0m54.5s/3m0s
+
+running (0m56.0s), 10/10 VUs, 380 complete and 0 interrupted iterations
+capture   [  31% ] 10 VUs  0m55.5s/3m0s
+
+running (0m57.0s), 10/10 VUs, 383 complete and 0 interrupted iterations
+capture   [  31% ] 10 VUs  0m56.5s/3m0s
+
+running (0m58.0s), 10/10 VUs, 390 complete and 0 interrupted iterations
+capture   [  32% ] 10 VUs  0m57.5s/3m0s
+
+running (0m59.0s), 10/10 VUs, 400 complete and 0 interrupted iterations
+capture   [  32% ] 10 VUs  0m58.5s/3m0s
+
+running (1m00.0s), 10/10 VUs, 409 complete and 0 interrupted iterations
+capture   [  33% ] 10 VUs  0m59.5s/3m0s
+
+running (1m01.0s), 10/10 VUs, 410 complete and 0 interrupted iterations
+capture   [  34% ] 10 VUs  1m00.5s/3m0s
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:09Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:09Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m02.0s), 10/10 VUs, 420 complete and 0 interrupted iterations
+capture   [  34% ] 10 VUs  1m01.5s/3m0s
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:10Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:10Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m03.0s), 10/10 VUs, 430 complete and 0 interrupted iterations
+capture   [  35% ] 10 VUs  1m02.5s/3m0s
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:11Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:11Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m04.0s), 10/10 VUs, 440 complete and 0 interrupted iterations
+capture   [  35% ] 10 VUs  1m03.5s/3m0s
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:12Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:12Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m05.0s), 10/10 VUs, 450 complete and 0 interrupted iterations
+capture   [  36% ] 10 VUs  1m04.5s/3m0s
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:13Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:13Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m06.0s), 10/10 VUs, 460 complete and 0 interrupted iterations
+capture   [  36% ] 10 VUs  1m05.5s/3m0s
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:14Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:14Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m07.0s), 10/10 VUs, 470 complete and 0 interrupted iterations
+capture   [  37% ] 10 VUs  1m06.5s/3m0s
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:15Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:15Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m08.0s), 10/10 VUs, 480 complete and 0 interrupted iterations
+capture   [  37% ] 10 VUs  1m07.5s/3m0s
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:16Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:16Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m09.0s), 10/10 VUs, 490 complete and 0 interrupted iterations
+capture   [  38% ] 10 VUs  1m08.5s/3m0s
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:17Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:17Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m10.0s), 10/10 VUs, 500 complete and 0 interrupted iterations
+capture   [  39% ] 10 VUs  1m09.5s/3m0s
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:18Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:18Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m11.0s), 10/10 VUs, 510 complete and 0 interrupted iterations
+capture   [  39% ] 10 VUs  1m10.5s/3m0s
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:19Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:19Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m12.0s), 10/10 VUs, 520 complete and 0 interrupted iterations
+capture   [  40% ] 10 VUs  1m11.5s/3m0s
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:07:20Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:07:20Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m13.0s), 10/10 VUs, 530 complete and 0 interrupted iterations
+capture   [  40% ] 10 VUs  1m12.5s/3m0s
+
+running (1m14.0s), 10/10 VUs, 540 complete and 0 interrupted iterations
+capture   [  41% ] 10 VUs  1m13.5s/3m0s
+
+running (1m15.0s), 10/10 VUs, 540 complete and 0 interrupted iterations
+capture   [  41% ] 10 VUs  1m14.5s/3m0s
+
+running (1m16.0s), 10/10 VUs, 540 complete and 0 interrupted iterations
+capture   [  42% ] 10 VUs  1m15.5s/3m0s
+
+running (1m17.0s), 10/10 VUs, 550 complete and 0 interrupted iterations
+capture   [  42% ] 10 VUs  1m16.5s/3m0s
+
+running (1m18.0s), 10/10 VUs, 560 complete and 0 interrupted iterations
+capture   [  43% ] 10 VUs  1m17.5s/3m0s
+
+running (1m19.0s), 10/10 VUs, 560 complete and 0 interrupted iterations
+capture   [  44% ] 10 VUs  1m18.5s/3m0s
+
+running (1m20.0s), 10/10 VUs, 570 complete and 0 interrupted iterations
+capture   [  44% ] 10 VUs  1m19.5s/3m0s
+
+running (1m21.0s), 10/10 VUs, 580 complete and 0 interrupted iterations
+capture   [  45% ] 10 VUs  1m20.5s/3m0s
+
+running (1m22.0s), 10/10 VUs, 580 complete and 0 interrupted iterations
+capture   [  45% ] 10 VUs  1m21.5s/3m0s
+
+running (1m23.0s), 10/10 VUs, 590 complete and 0 interrupted iterations
+capture   [  46% ] 10 VUs  1m22.5s/3m0s
+
+running (1m24.0s), 10/10 VUs, 600 complete and 0 interrupted iterations
+capture   [  46% ] 10 VUs  1m23.5s/3m0s
+
+running (1m25.0s), 10/10 VUs, 600 complete and 0 interrupted iterations
+capture   [  47% ] 10 VUs  1m24.5s/3m0s
+
+running (1m26.0s), 10/10 VUs, 610 complete and 0 interrupted iterations
+capture   [  47% ] 10 VUs  1m25.5s/3m0s
+
+running (1m27.0s), 10/10 VUs, 620 complete and 0 interrupted iterations
+capture   [  48% ] 10 VUs  1m26.5s/3m0s
+
+running (1m28.0s), 10/10 VUs, 620 complete and 0 interrupted iterations
+capture   [  49% ] 10 VUs  1m27.5s/3m0s
+
+running (1m29.0s), 10/10 VUs, 630 complete and 0 interrupted iterations
+capture   [  49% ] 10 VUs  1m28.5s/3m0s
+
+running (1m30.0s), 10/10 VUs, 640 complete and 0 interrupted iterations
+capture   [  50% ] 10 VUs  1m29.5s/3m0s
+
+running (1m31.0s), 10/10 VUs, 640 complete and 0 interrupted iterations
+capture   [  50% ] 10 VUs  1m30.5s/3m0s
+
+running (1m32.0s), 10/10 VUs, 650 complete and 0 interrupted iterations
+capture   [  51% ] 10 VUs  1m31.5s/3m0s
+
+running (1m33.0s), 10/10 VUs, 660 complete and 0 interrupted iterations
+capture   [  51% ] 10 VUs  1m32.5s/3m0s
+
+running (1m34.0s), 10/10 VUs, 660 complete and 0 interrupted iterations
+capture   [  52% ] 10 VUs  1m33.5s/3m0s
+
+running (1m35.0s), 10/10 VUs, 670 complete and 0 interrupted iterations
+capture   [  52% ] 10 VUs  1m34.5s/3m0s
+
+running (1m36.0s), 10/10 VUs, 680 complete and 0 interrupted iterations
+capture   [  53% ] 10 VUs  1m35.5s/3m0s
+
+running (1m37.0s), 10/10 VUs, 687 complete and 0 interrupted iterations
+capture   [  54% ] 10 VUs  1m36.5s/3m0s
+
+running (1m38.0s), 10/10 VUs, 690 complete and 0 interrupted iterations
+capture   [  54% ] 10 VUs  1m37.5s/3m0s
+
+running (1m39.0s), 10/10 VUs, 700 complete and 0 interrupted iterations
+capture   [  55% ] 10 VUs  1m38.5s/3m0s
+
+running (1m40.0s), 10/10 VUs, 707 complete and 0 interrupted iterations
+capture   [  55% ] 10 VUs  1m39.5s/3m0s
+
+running (1m41.0s), 10/10 VUs, 710 complete and 0 interrupted iterations
+capture   [  56% ] 10 VUs  1m40.5s/3m0s
+
+running (1m42.0s), 10/10 VUs, 720 complete and 0 interrupted iterations
+capture   [  56% ] 10 VUs  1m41.5s/3m0s
+
+running (1m43.0s), 10/10 VUs, 730 complete and 0 interrupted iterations
+capture   [  57% ] 10 VUs  1m42.5s/3m0s
+
+running (1m44.0s), 10/10 VUs, 730 complete and 0 interrupted iterations
+capture   [  57% ] 10 VUs  1m43.5s/3m0s
+
+running (1m45.0s), 10/10 VUs, 740 complete and 0 interrupted iterations
+capture   [  58% ] 10 VUs  1m44.5s/3m0s
+
+running (1m46.0s), 10/10 VUs, 750 complete and 0 interrupted iterations
+capture   [  59% ] 10 VUs  1m45.5s/3m0s
+
+running (1m47.0s), 10/10 VUs, 750 complete and 0 interrupted iterations
+capture   [  59% ] 10 VUs  1m46.5s/3m0s
+
+running (1m48.0s), 10/10 VUs, 760 complete and 0 interrupted iterations
+capture   [  60% ] 10 VUs  1m47.5s/3m0s
+
+running (1m49.0s), 10/10 VUs, 770 complete and 0 interrupted iterations
+capture   [  60% ] 10 VUs  1m48.5s/3m0s
+
+running (1m50.0s), 10/10 VUs, 770 complete and 0 interrupted iterations
+capture   [  61% ] 10 VUs  1m49.5s/3m0s
+
+running (1m51.0s), 10/10 VUs, 780 complete and 0 interrupted iterations
+capture   [  61% ] 10 VUs  1m50.5s/3m0s
+
+running (1m52.0s), 10/10 VUs, 790 complete and 0 interrupted iterations
+capture   [  62% ] 10 VUs  1m51.5s/3m0s
+
+running (1m53.0s), 10/10 VUs, 794 complete and 0 interrupted iterations
+capture   [  62% ] 10 VUs  1m52.5s/3m0s
+
+running (1m54.0s), 10/10 VUs, 800 complete and 0 interrupted iterations
+capture   [  63% ] 10 VUs  1m53.5s/3m0s
+
+running (1m55.0s), 10/10 VUs, 810 complete and 0 interrupted iterations
+capture   [  64% ] 10 VUs  1m54.5s/3m0s
+
+running (1m56.0s), 10/10 VUs, 816 complete and 0 interrupted iterations
+capture   [  64% ] 10 VUs  1m55.5s/3m0s
+
+running (1m57.0s), 10/10 VUs, 820 complete and 0 interrupted iterations
+capture   [  65% ] 10 VUs  1m56.5s/3m0s
+
+running (1m58.0s), 10/10 VUs, 830 complete and 0 interrupted iterations
+capture   [  65% ] 10 VUs  1m57.5s/3m0s
+
+running (1m59.0s), 10/10 VUs, 839 complete and 0 interrupted iterations
+capture   [  66% ] 10 VUs  1m58.5s/3m0s
+
+running (2m00.0s), 10/10 VUs, 840 complete and 0 interrupted iterations
+capture   [  66% ] 10 VUs  1m59.5s/3m0s
+
+running (2m01.0s), 10/10 VUs, 850 complete and 0 interrupted iterations
+capture   [  67% ] 10 VUs  2m00.5s/3m0s
+
+running (2m02.0s), 10/10 VUs, 860 complete and 0 interrupted iterations
+capture   [  67% ] 10 VUs  2m01.5s/3m0s
+
+running (2m03.0s), 10/10 VUs, 861 complete and 0 interrupted iterations
+capture   [  68% ] 10 VUs  2m02.5s/3m0s
+
+running (2m04.0s), 10/10 VUs, 870 complete and 0 interrupted iterations
+capture   [  69% ] 10 VUs  2m03.5s/3m0s
+
+running (2m05.0s), 10/10 VUs, 880 complete and 0 interrupted iterations
+capture   [  69% ] 10 VUs  2m04.5s/3m0s
+
+running (2m06.0s), 10/10 VUs, 882 complete and 0 interrupted iterations
+capture   [  70% ] 10 VUs  2m05.5s/3m0s
+
+running (2m07.0s), 10/10 VUs, 890 complete and 0 interrupted iterations
+capture   [  70% ] 10 VUs  2m06.5s/3m0s
+
+running (2m08.0s), 10/10 VUs, 900 complete and 0 interrupted iterations
+capture   [  71% ] 10 VUs  2m07.5s/3m0s
+
+running (2m09.0s), 10/10 VUs, 906 complete and 0 interrupted iterations
+capture   [  71% ] 10 VUs  2m08.5s/3m0s
+
+running (2m10.0s), 10/10 VUs, 910 complete and 0 interrupted iterations
+capture   [  72% ] 10 VUs  2m09.5s/3m0s
+
+running (2m11.0s), 10/10 VUs, 920 complete and 0 interrupted iterations
+capture   [  72% ] 10 VUs  2m10.5s/3m0s
+
+running (2m12.0s), 10/10 VUs, 929 complete and 0 interrupted iterations
+capture   [  73% ] 10 VUs  2m11.5s/3m0s
+
+running (2m13.0s), 10/10 VUs, 930 complete and 0 interrupted iterations
+capture   [  74% ] 10 VUs  2m12.5s/3m0s
+
+running (2m14.0s), 10/10 VUs, 940 complete and 0 interrupted iterations
+capture   [  74% ] 10 VUs  2m13.5s/3m0s
+
+running (2m15.0s), 10/10 VUs, 950 complete and 0 interrupted iterations
+capture   [  75% ] 10 VUs  2m14.5s/3m0s
+
+running (2m16.0s), 10/10 VUs, 951 complete and 0 interrupted iterations
+capture   [  75% ] 10 VUs  2m15.5s/3m0s
+
+running (2m17.0s), 10/10 VUs, 960 complete and 0 interrupted iterations
+capture   [  76% ] 10 VUs  2m16.5s/3m0s
+
+running (2m18.0s), 10/10 VUs, 970 complete and 0 interrupted iterations
+capture   [  76% ] 10 VUs  2m17.5s/3m0s
+
+running (2m19.0s), 10/10 VUs, 972 complete and 0 interrupted iterations
+capture   [  77% ] 10 VUs  2m18.5s/3m0s
+
+running (2m20.0s), 10/10 VUs, 980 complete and 0 interrupted iterations
+capture   [  77% ] 10 VUs  2m19.5s/3m0s
+
+running (2m21.0s), 10/10 VUs, 990 complete and 0 interrupted iterations
+capture   [  78% ] 10 VUs  2m20.5s/3m0s
+
+running (2m22.0s), 10/10 VUs, 995 complete and 0 interrupted iterations
+capture   [  79% ] 10 VUs  2m21.5s/3m0s
+
+running (2m23.0s), 10/10 VUs, 1000 complete and 0 interrupted iterations
+capture   [  79% ] 10 VUs  2m22.5s/3m0s
+
+running (2m24.0s), 10/10 VUs, 1010 complete and 0 interrupted iterations
+capture   [  80% ] 10 VUs  2m23.5s/3m0s
+
+running (2m25.0s), 10/10 VUs, 1018 complete and 0 interrupted iterations
+capture   [  80% ] 10 VUs  2m24.5s/3m0s
+
+running (2m26.0s), 10/10 VUs, 1020 complete and 0 interrupted iterations
+capture   [  81% ] 10 VUs  2m25.5s/3m0s
+
+running (2m27.0s), 10/10 VUs, 1030 complete and 0 interrupted iterations
+capture   [  81% ] 10 VUs  2m26.5s/3m0s
+
+running (2m28.0s), 10/10 VUs, 1039 complete and 0 interrupted iterations
+capture   [  82% ] 10 VUs  2m27.5s/3m0s
+
+running (2m29.0s), 10/10 VUs, 1040 complete and 0 interrupted iterations
+capture   [  82% ] 10 VUs  2m28.5s/3m0s
+
+running (2m30.0s), 10/10 VUs, 1050 complete and 0 interrupted iterations
+capture   [  83% ] 10 VUs  2m29.5s/3m0s
+
+running (2m31.0s), 10/10 VUs, 1060 complete and 0 interrupted iterations
+capture   [  84% ] 10 VUs  2m30.5s/3m0s
+
+running (2m32.0s), 10/10 VUs, 1061 complete and 0 interrupted iterations
+capture   [  84% ] 10 VUs  2m31.5s/3m0s
+
+running (2m33.0s), 10/10 VUs, 1070 complete and 0 interrupted iterations
+capture   [  85% ] 10 VUs  2m32.5s/3m0s
+
+running (2m34.0s), 10/10 VUs, 1080 complete and 0 interrupted iterations
+capture   [  85% ] 10 VUs  2m33.5s/3m0s
+
+running (2m35.0s), 10/10 VUs, 1083 complete and 0 interrupted iterations
+capture   [  86% ] 10 VUs  2m34.5s/3m0s
+
+running (2m36.0s), 10/10 VUs, 1090 complete and 0 interrupted iterations
+capture   [  86% ] 10 VUs  2m35.5s/3m0s
+
+running (2m37.0s), 10/10 VUs, 1100 complete and 0 interrupted iterations
+capture   [  87% ] 10 VUs  2m36.5s/3m0s
+
+running (2m38.0s), 10/10 VUs, 1106 complete and 0 interrupted iterations
+capture   [  87% ] 10 VUs  2m37.5s/3m0s
+
+running (2m39.0s), 10/10 VUs, 1111 complete and 0 interrupted iterations
+capture   [  88% ] 10 VUs  2m38.5s/3m0s
+
+running (2m40.0s), 10/10 VUs, 1120 complete and 0 interrupted iterations
+capture   [  89% ] 10 VUs  2m39.5s/3m0s
+
+running (2m41.0s), 10/10 VUs, 1128 complete and 0 interrupted iterations
+capture   [  89% ] 10 VUs  2m40.5s/3m0s
+
+running (2m42.0s), 10/10 VUs, 1131 complete and 0 interrupted iterations
+capture   [  90% ] 10 VUs  2m41.5s/3m0s
+
+running (2m43.0s), 10/10 VUs, 1140 complete and 0 interrupted iterations
+capture   [  90% ] 10 VUs  2m42.5s/3m0s
+
+running (2m44.0s), 10/10 VUs, 1150 complete and 0 interrupted iterations
+capture   [  91% ] 10 VUs  2m43.5s/3m0s
+
+running (2m45.0s), 10/10 VUs, 1152 complete and 0 interrupted iterations
+capture   [  91% ] 10 VUs  2m44.5s/3m0s
+
+running (2m46.0s), 10/10 VUs, 1160 complete and 0 interrupted iterations
+capture   [  92% ] 10 VUs  2m45.5s/3m0s
+
+running (2m47.0s), 10/10 VUs, 1170 complete and 0 interrupted iterations
+capture   [  92% ] 10 VUs  2m46.5s/3m0s
+
+running (2m48.0s), 10/10 VUs, 1173 complete and 0 interrupted iterations
+capture   [  93% ] 10 VUs  2m47.5s/3m0s
+
+running (2m49.0s), 10/10 VUs, 1180 complete and 0 interrupted iterations
+capture   [  94% ] 10 VUs  2m48.5s/3m0s
+
+running (2m50.0s), 10/10 VUs, 1190 complete and 0 interrupted iterations
+capture   [  94% ] 10 VUs  2m49.5s/3m0s
+
+running (2m51.0s), 10/10 VUs, 1196 complete and 0 interrupted iterations
+capture   [  95% ] 10 VUs  2m50.5s/3m0s
+
+running (2m52.0s), 10/10 VUs, 1200 complete and 0 interrupted iterations
+capture   [  95% ] 10 VUs  2m51.5s/3m0s
+
+running (2m53.0s), 10/10 VUs, 1210 complete and 0 interrupted iterations
+capture   [  96% ] 10 VUs  2m52.5s/3m0s
+
+running (2m54.0s), 10/10 VUs, 1218 complete and 0 interrupted iterations
+capture   [  96% ] 10 VUs  2m53.5s/3m0s
+
+running (2m55.0s), 10/10 VUs, 1220 complete and 0 interrupted iterations
+capture   [  97% ] 10 VUs  2m54.5s/3m0s
+
+running (2m56.0s), 10/10 VUs, 1230 complete and 0 interrupted iterations
+capture   [  97% ] 10 VUs  2m55.5s/3m0s
+
+running (2m57.0s), 10/10 VUs, 1238 complete and 0 interrupted iterations
+capture   [  98% ] 10 VUs  2m56.5s/3m0s
+
+running (2m58.0s), 10/10 VUs, 1240 complete and 0 interrupted iterations
+capture   [  99% ] 10 VUs  2m57.5s/3m0s
+
+running (2m59.0s), 10/10 VUs, 1250 complete and 0 interrupted iterations
+capture   [  99% ] 10 VUs  2m58.5s/3m0s
+
+running (3m00.0s), 10/10 VUs, 1259 complete and 0 interrupted iterations
+capture   [ 100% ] 10 VUs  2m59.5s/3m0s
+
+running (3m01.0s), 07/10 VUs, 1263 complete and 0 interrupted iterations
+capture ↓ [ 100% ] 10 VUs  3m0s
+
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:measure}
+    ✗ 'rate<0.01' rate=9.44%
+
+    measure_duration
+    ✓ 'p(95)<1000' p(95)=552.36ms
+
+    measure_inferred
+    ✗ 'rate>0.99' rate=90.55%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1270   6.994334/s
+    checks_succeeded...: 90.55% 1150 out of 1270
+    checks_failed......: 9.44%  120 out of 1270
+
+    ✗ measure 2xx
+      ↳  90% — ✓ 1150 / ✗ 120
+
+    CUSTOM
+    measure_duration...............: avg=420.87ms min=0s      med=427.59ms max=2.06s p(95)=552.36ms p(99)=616.9ms 
+    measure_inferred...............: 90.55% 1150 out of 1270
+    measure_not_inferred...........: 120    0.660882/s
+
+    HTTP
+    http_req_duration..............: avg=417.67ms min=0s      med=427.4ms  max=2.06s p(95)=552.36ms p(99)=616.73ms
+      { expected_response:true }...: avg=460.84ms min=42.02ms med=429.92ms max=2.06s p(95)=553.6ms  p(99)=619.53ms
+    http_req_failed................: 9.36%  120 out of 1281
+      { name:measure }.............: 9.44%  120 out of 1270
+    http_reqs......................: 1281   7.054915/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.42s    min=1s      med=1.42s    max=3.06s p(95)=1.55s    p(99)=1.61s   
+    iterations.....................: 1270   6.994334/s
+    vus............................: 7      min=7            max=10
+    vus_max........................: 10     min=10           max=10
+
+    NETWORK
+    data_received..................: 6.9 MB 38 kB/s
+    data_sent......................: 258 kB 1.4 kB/s
+
+
+
+
+running (3m01.6s), 00/10 VUs, 1270 complete and 0 interrupted iterations
+capture ✓ [ 100% ] 10 VUs  3m0s
+time="2026-09-26T10:09:09Z" level=error msg="thresholds on metrics 'http_req_failed{name:measure}, measure_inferred' have been crossed"

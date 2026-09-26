@@ -1,0 +1,454 @@
+{
+ "summary": {
+  "n": 55,
+  "failed": 0,
+  "p50": 437.4,
+  "p95": 490.5,
+  "p99": 528.0,
+  "max": 528.0,
+  "mean": 439.3,
+  "failReasons": {}
+ },
+ "samples": [
+  {
+   "round": 0,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 506.5,
+   "sessionId": 15820,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 490.5,
+   "sessionId": 15821,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 441.3,
+   "sessionId": 15822,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 439.0,
+   "sessionId": 15823,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 455.7,
+   "sessionId": 15824,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 441.5,
+   "sessionId": 15825,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 421.9,
+   "sessionId": 15826,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 436.4,
+   "sessionId": 15827,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 438.2,
+   "sessionId": 15828,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 438.6,
+   "sessionId": 15829,
+   "failReason": null
+  },
+  {
+   "round": 0,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 437.5,
+   "sessionId": 15830,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 440.1,
+   "sessionId": 15831,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 448.7,
+   "sessionId": 15832,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 424.8,
+   "sessionId": 15833,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 437.7,
+   "sessionId": 15834,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 421.0,
+   "sessionId": 15835,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 442.4,
+   "sessionId": 15836,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 446.5,
+   "sessionId": 15837,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 447.4,
+   "sessionId": 15838,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 437.4,
+   "sessionId": 15839,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 439.9,
+   "sessionId": 15840,
+   "failReason": null
+  },
+  {
+   "round": 1,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 427.8,
+   "sessionId": 15841,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 445.5,
+   "sessionId": 15842,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 437.7,
+   "sessionId": 15843,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 432.3,
+   "sessionId": 15844,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 418.9,
+   "sessionId": 15845,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 433.7,
+   "sessionId": 15846,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 419.9,
+   "sessionId": 15847,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 446.0,
+   "sessionId": 15848,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 446.8,
+   "sessionId": 15849,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 436.9,
+   "sessionId": 15850,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 430.4,
+   "sessionId": 15851,
+   "failReason": null
+  },
+  {
+   "round": 2,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 437.4,
+   "sessionId": 15852,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 430.6,
+   "sessionId": 15853,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 434.8,
+   "sessionId": 15854,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 528.0,
+   "sessionId": 15855,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 460.7,
+   "sessionId": 15856,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 439.1,
+   "sessionId": 15857,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 436.0,
+   "sessionId": 15858,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 441.8,
+   "sessionId": 15859,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 437.5,
+   "sessionId": 15860,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 433.8,
+   "sessionId": 15861,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 428.2,
+   "sessionId": 15862,
+   "failReason": null
+  },
+  {
+   "round": 3,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 438.9,
+   "sessionId": 15863,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007442488",
+   "status": "INFERRED",
+   "e2eMs": 419.9,
+   "sessionId": 15864,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007526492",
+   "status": "INFERRED",
+   "e2eMs": 431.6,
+   "sessionId": 15865,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007139265",
+   "status": "INFERRED",
+   "e2eMs": 426.5,
+   "sessionId": 15866,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007038780",
+   "status": "INFERRED",
+   "e2eMs": 435.0,
+   "sessionId": 15867,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007065946",
+   "status": "INFERRED",
+   "e2eMs": 422.0,
+   "sessionId": 15868,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801392094194",
+   "status": "INFERRED",
+   "e2eMs": 426.5,
+   "sessionId": 15869,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007512259",
+   "status": "INFERRED",
+   "e2eMs": 427.8,
+   "sessionId": 15870,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007029658",
+   "status": "INFERRED",
+   "e2eMs": 432.8,
+   "sessionId": 15871,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007810966",
+   "status": "INFERRED",
+   "e2eMs": 431.6,
+   "sessionId": 15872,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007556376",
+   "status": "INFERRED",
+   "e2eMs": 426.0,
+   "sessionId": 15873,
+   "failReason": null
+  },
+  {
+   "round": 4,
+   "gtin": "8801007971339",
+   "status": "INFERRED",
+   "e2eMs": 424.2,
+   "sessionId": 15874,
+   "failReason": null
+  }
+ ]
+}

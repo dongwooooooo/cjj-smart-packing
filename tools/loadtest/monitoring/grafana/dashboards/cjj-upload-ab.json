@@ -1,0 +1,442 @@
+{
+ "uid": "cjj-upload-ab",
+ "title": "cjj 촬영 사진 업로드 A/C — 응답 시간 · 업로드 풀 · 유실",
+ "timezone": "Asia/Seoul",
+ "refresh": "5s",
+ "time": {
+  "from": "now-30m",
+  "to": "now"
+ },
+ "annotations": {
+  "list": [
+   {
+    "name": "조건 구간",
+    "datasource": {
+     "type": "grafana",
+     "uid": "-- Grafana --"
+    },
+    "enable": true,
+    "iconColor": "orange",
+    "type": "tags",
+    "tags": [
+     "upload-ab"
+    ]
+   }
+  ]
+ },
+ "schemaVersion": 39,
+ "version": 1,
+ "editable": true,
+ "panels": [
+  {
+   "id": 1,
+   "type": "timeseries",
+   "title": "촬영 응답 p50·p95·p99 (k6 measure_duration)",
+   "description": "부하 발생기가 본 촬영 응답. 선은 SLO 1초. run 태그로 조건이 갈린다",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8,
+      "thresholdsStyle": {
+       "mode": "line"
+      }
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "green",
+        "value": null
+       },
+       {
+        "color": "red",
+        "value": 1
+       }
+      ]
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "k6_measure_duration_p95{run!~\".*-warm\"}",
+     "legendFormat": "p95 {{run}}"
+    },
+    {
+     "refId": "B",
+     "expr": "k6_measure_duration_p50{run!~\".*-warm\"}",
+     "legendFormat": "p50 {{run}}"
+    },
+    {
+     "refId": "C",
+     "expr": "k6_measure_duration_p99{run!~\".*-warm\"}",
+     "legendFormat": "p99 {{run}}"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "type": "timeseries",
+   "title": "촬영 서버 구간 p95 — load / infer / upload / save / total (measure.stage)",
+   "description": "C 는 upload 가 추론과 겹친다. A 에는 upload 단계가 없다(응답 밖)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 0
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.95, sum by (le, stage) (rate(measure_stage_seconds_bucket[30s])))",
+     "legendFormat": "{{stage}}"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "type": "timeseries",
+   "title": "업로드 대기 — 응답에 더해진 시간 p95·p99 (upload.wait, C) · 응답 밖 업로드 p95 (upload.duration, A)",
+   "description": "upload.wait 는 추론이 끝난 뒤 업로드를 기다린 시간",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 8
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
+     "legendFormat": "C upload.wait p95"
+    },
+    {
+     "refId": "B",
+     "expr": "histogram_quantile(0.99, sum by (le) (rate(upload_wait_seconds_bucket[30s])))",
+     "legendFormat": "C upload.wait p99"
+    },
+    {
+     "refId": "C",
+     "expr": "histogram_quantile(0.95, sum by (le) (rate(upload_duration_seconds_bucket[30s])))",
+     "legendFormat": "A 응답 밖 업로드 p95"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "type": "timeseries",
+   "title": "업로드 풀 — 활성 스레드 · 큐 깊이 · 최대 스레드 (executor.*)",
+   "description": "A 큐 용량 2,000(차면 거절), C 큐 용량 200(차면 요청 스레드가 직접 올림)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 8
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "executor_active_threads{name=\"imageUploadExecutor\"}",
+     "legendFormat": "활성"
+    },
+    {
+     "refId": "B",
+     "expr": "executor_queued_tasks{name=\"imageUploadExecutor\"}",
+     "legendFormat": "큐 깊이"
+    },
+    {
+     "refId": "C",
+     "expr": "executor_pool_max_threads{name=\"imageUploadExecutor\"}",
+     "legendFormat": "최대 스레드"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "type": "timeseries",
+   "title": "촬영 요청/초 (서버, 상태코드별) · CallerRuns 발동/초 (C)",
+   "description": "CallerRuns 는 업로드 풀이 차서 요청 스레드가 직접 올린 횟수",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 16
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum by (status) (rate(http_server_requests_seconds_count{uri=\"/api/v1/inbound/measurements\"}[30s]))",
+     "legendFormat": "촬영 {{status}}"
+    },
+    {
+     "refId": "B",
+     "expr": "sum(rate(upload_caller_runs_total[30s]))",
+     "legendFormat": "CallerRuns/초"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "type": "timeseries",
+   "title": "INFERRED 가 아닌 촬영 응답/초 (k6, 사유별)",
+   "description": "http_0 은 연결 실패(재시작 중), IMAGE_STORE_FAILED 는 C 의 업로드 실패",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 16
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum by (reason) (rate(k6_measure_not_inferred_total[30s]))",
+     "legendFormat": "{{reason}}"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "type": "timeseries",
+   "title": "Tomcat busy · HikariCP active / pending",
+   "description": "",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 24
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "sum(tomcat_threads_busy_threads)",
+     "legendFormat": "Tomcat busy"
+    },
+    {
+     "refId": "B",
+     "expr": "sum(hikaricp_connections_active)",
+     "legendFormat": "Hikari active"
+    },
+    {
+     "refId": "C",
+     "expr": "sum(hikaricp_connections_pending)",
+     "legendFormat": "Hikari pending"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "type": "timeseries",
+   "title": "EC2 CPU · JVM 힙",
+   "description": "",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+   },
+   "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 12,
+    "y": 24
+   },
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "lineWidth": 1,
+      "fillOpacity": 8
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi",
+     "sort": "desc"
+    }
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "1 - avg(rate(node_cpu_seconds_total{mode='idle'}[30s]))",
+     "legendFormat": "EC2 CPU"
+    },
+    {
+     "refId": "B",
+     "expr": "sum(jvm_memory_used_bytes{area='heap'}) / sum(jvm_memory_max_bytes{area='heap'})",
+     "legendFormat": "JVM 힙"
+    }
+   ]
+  }
+ ]
+}

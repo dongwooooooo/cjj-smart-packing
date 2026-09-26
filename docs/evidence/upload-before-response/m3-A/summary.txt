@@ -1,0 +1,1 @@
+요청 1262 (INFERRED 아님 130 {'http_0': 130}) p50/p95/p99/max 431/571/676/1955ms, 사진 종료 직후 {'STORED': 3396} → 정착 뒤 {'STORED': 3396}, 업로드 풀 활성 최대 3 큐 최대 4 CallerRuns , 로그 {'rejected': 0, 'caller_runs_log': 0, 'upload_failed_log': 0, 'image_store_failed_log': 0}, RDS 크레딧 24.1→24.4

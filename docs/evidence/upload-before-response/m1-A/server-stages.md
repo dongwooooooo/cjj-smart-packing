@@ -1,0 +1,10 @@
+| 구간 | n | p50 | p95 | p99 | max |
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| inference.buildMs | 56 | 0 | 1 | 11 | 11 |
+| inference.invokeMs | 56 | 314 | 345 | 3389 | 3389 |
+| inference.parseMs | 56 | 0 | 0 | 1 | 1 |
+| measure.loadMs | 55 | 82 | 104 | 129 | 129 |
+| measure.inferMs | 55 | 315 | 329 | 480 | 480 |
+| measure.saveMs | 55 | 28 | 36 | 66 | 66 |
+| measure.totalMs | 55 | 428 | 457 | 633 | 633 |
+| upload.uploadMs | 55 | 116 | 158 | 196 | 196 |

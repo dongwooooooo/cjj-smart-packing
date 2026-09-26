@@ -2,8 +2,9 @@
 measure.timing / inference.timing / upload.timing 줄을 parse_timing.py 로 집계한다.
 
 사용: python3 measure_prod.py --base http://<ip>:8000 --key <DEMO_API_KEY> --rounds 5 --out measure-prod.json
+     (--key 를 생략하면 환경 변수 DEMO_KEY 를 쓴다 — 명령줄에 키를 남기지 않으려고)
 """
-import argparse, json, statistics, time, urllib.request
+import argparse, json, os, statistics, time, urllib.request
 from pathlib import Path
 
 def call(base, key, method, path, body=None):
@@ -18,10 +19,12 @@ def pct(v, p):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--base", required=True); ap.add_argument("--key", required=True)
+    ap.add_argument("--base", required=True); ap.add_argument("--key", default=os.environ.get("DEMO_KEY"))
     ap.add_argument("--rounds", type=int, default=5); ap.add_argument("--out", default="measure-prod.json")
     ap.add_argument("--products", default=str(Path(__file__).resolve().parents[2] / "backend/demo/data/products.json"))
     a = ap.parse_args()
+    if not a.key:
+        ap.error("--key 또는 DEMO_KEY 가 필요하다")
     prods = json.load(open(a.products))
     ids = []
     for p in prods:
@@ -36,10 +39,15 @@ def main():
             r = call(a.base, a.key, "POST", "/api/v1/inbound/measurements", {"productId": pid})
             ms = (time.perf_counter() - t0) * 1000
             samples.append({"round": rnd, "gtin": gtin, "status": r.get("status"), "e2eMs": round(ms, 1),
-                            "sessionId": r.get("sessionId")})
+                            "sessionId": r.get("sessionId"), "failReason": r.get("failReason")})
     e2e = [s["e2eMs"] for s in samples if s["status"] == "INFERRED"]
     summary = {"n": len(e2e), "failed": len(samples) - len(e2e), "p50": pct(e2e, 50), "p95": pct(e2e, 95),
                "p99": pct(e2e, 99), "max": max(e2e), "mean": round(statistics.mean(e2e), 1)}
+    reasons = {}
+    for s in samples:
+        if s["status"] != "INFERRED":
+            reasons[s["failReason"]] = reasons.get(s["failReason"], 0) + 1
+    summary["failReasons"] = reasons
     print("client e2e (ms):", summary)
     json.dump({"summary": summary, "samples": samples}, open(a.out, "w"), indent=1)
 

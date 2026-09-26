@@ -1,0 +1,66 @@
+{
+ "id": "m3k-A-v30",
+ "meta": {
+  "id": "m3k-A-v30",
+  "image": "A",
+  "image_id": "cd6222eefbf2",
+  "rds_credit_before": "24.8",
+  "started": "2026-09-26T10:11:49Z",
+  "portfolio_sha": "3069b5c"
+ },
+ "window": {
+  "t0": 1790417543,
+  "t1": 1790417726,
+  "vus": 30,
+  "duration": "3m",
+  "warm": "30s",
+  "restart": "kill"
+ },
+ "k6": {
+  "p50": 424.548321,
+  "p95": 564.1230770999999,
+  "p99": 738.1513139000002,
+  "max": 2619.928925,
+  "requests": 3803,
+  "inferred": 3413,
+  "not_inferred": 390
+ },
+ "not_inferred_reasons": {
+  "http_0": 390
+ },
+ "db_at_end": {
+  "image": {
+   "STORED": 10239
+  },
+  "session": {
+   "DISCARDED": 3401,
+   "INFERRED": 12
+  }
+ },
+ "db_settled": {
+  "image": {
+   "STORED": 10239
+  },
+  "session": {
+   "DISCARDED": 3401,
+   "INFERRED": 12
+  }
+ },
+ "pool": {
+  "queue_max": "30",
+  "active_max": "3",
+  "caller_runs": "",
+  "window_s": 183
+ },
+ "log_counts": {
+  "rejected": 0,
+  "caller_runs_log": 0,
+  "upload_failed_log": 0,
+  "image_store_failed_log": 0
+ },
+ "rds_credit_after": "25.3",
+ "restart_at": [
+  "1790417603",
+  "1790417605"
+ ]
+}

@@ -1,0 +1,1 @@
+{"products":{"inbound":3,"outbound":8},"queuedBatches":44,"totes":{"idle":40075,"assigned":25},"boxTypes":{"count":6,"stockQty":100},"summary":"상품 11종 — 입고 풀 3(치수 미확정) / 출고 풀 8(치수 확정, 재고 세팅)\n대기 배치 44개 중 30개 투입\n토트 40075/40100 유휴\n박스 6종 각 100개\n접수된 주문 30건, 배송단위 31개\n추론 워밍: 성공(857ms)"}

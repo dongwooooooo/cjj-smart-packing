@@ -1,0 +1,2 @@
+products: 11
+client e2e (ms): {'n': 55, 'failed': 0, 'p50': 444.2, 'p95': 482.4, 'p99': 494.2, 'max': 494.2, 'mean': 446.9, 'failReasons': {}}

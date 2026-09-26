@@ -1,0 +1,61 @@
+{
+ "id": "m2-C-v10",
+ "meta": {
+  "id": "m2-C-v10",
+  "image": "C",
+  "image_id": "4d64567427fc",
+  "rds_credit_before": "23.5",
+  "started": "2026-09-26T09:47:54Z",
+  "portfolio_sha": "3069b5c"
+ },
+ "window": {
+  "t0": 1790416108,
+  "t1": 1790416290,
+  "vus": 10,
+  "duration": "3m",
+  "warm": "30s",
+  "restart": ""
+ },
+ "k6": {
+  "p50": 420.3057765,
+  "p95": 535.8056531999999,
+  "p99": 550.1866396300001,
+  "max": 616.563046,
+  "requests": 1260,
+  "inferred": 1260,
+  "not_inferred": 0
+ },
+ "not_inferred_reasons": {},
+ "db_at_end": {
+  "image": {
+   "STORED": 3780
+  },
+  "session": {
+   "DISCARDED": 1249,
+   "INFERRED": 11
+  }
+ },
+ "db_settled": {
+  "image": {
+   "STORED": 3780
+  },
+  "session": {
+   "DISCARDED": 1249,
+   "INFERRED": 11
+  }
+ },
+ "pool": {
+  "queue_max": "4",
+  "active_max": "3",
+  "caller_runs": "0",
+  "window_s": 182
+ },
+ "log_counts": {
+  "rejected": 0,
+  "caller_runs_log": 0,
+  "upload_failed_log": 0,
+  "image_store_failed_log": 0
+ },
+ "rds_credit_after": "23.9",
+ "restart_at": []
+}

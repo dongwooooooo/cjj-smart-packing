@@ -1,0 +1,1436 @@
+K6START=1790417917
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/capture.js
+        output: Prometheus remote write (http://172.31.64.6:9090/api/v1/write)
+
+     scenarios: (100.00%) 1 scenario, 30 max VUs, 3m30s max duration (incl. graceful stop):
+              * capture: 30 looping VUs for 3m0s (gracefulStop: 30s)
+
+
+running (0m01.0s), 30/30 VUs, 0 complete and 0 interrupted iterations
+capture   [   0% ] 30 VUs  0m00.6s/3m0s
+
+running (0m02.0s), 30/30 VUs, 13 complete and 0 interrupted iterations
+capture   [   1% ] 30 VUs  0m01.6s/3m0s
+
+running (0m03.0s), 30/30 VUs, 30 complete and 0 interrupted iterations
+capture   [   1% ] 30 VUs  0m02.6s/3m0s
+
+running (0m04.0s), 30/30 VUs, 60 complete and 0 interrupted iterations
+capture   [   2% ] 30 VUs  0m03.6s/3m0s
+
+running (0m05.0s), 30/30 VUs, 77 complete and 0 interrupted iterations
+capture   [   3% ] 30 VUs  0m04.6s/3m0s
+
+running (0m06.0s), 30/30 VUs, 90 complete and 0 interrupted iterations
+capture   [   3% ] 30 VUs  0m05.6s/3m0s
+
+running (0m07.0s), 30/30 VUs, 120 complete and 0 interrupted iterations
+capture   [   4% ] 30 VUs  0m06.6s/3m0s
+
+running (0m08.0s), 30/30 VUs, 141 complete and 0 interrupted iterations
+capture   [   4% ] 30 VUs  0m07.6s/3m0s
+
+running (0m09.0s), 30/30 VUs, 150 complete and 0 interrupted iterations
+capture   [   5% ] 30 VUs  0m08.6s/3m0s
+
+running (0m10.0s), 30/30 VUs, 180 complete and 0 interrupted iterations
+capture   [   5% ] 30 VUs  0m09.6s/3m0s
+
+running (0m11.0s), 30/30 VUs, 204 complete and 0 interrupted iterations
+capture   [   6% ] 30 VUs  0m10.6s/3m0s
+
+running (0m12.0s), 30/30 VUs, 210 complete and 0 interrupted iterations
+capture   [   6% ] 30 VUs  0m11.6s/3m0s
+
+running (0m13.0s), 30/30 VUs, 240 complete and 0 interrupted iterations
+capture   [   7% ] 30 VUs  0m12.6s/3m0s
+
+running (0m14.0s), 30/30 VUs, 266 complete and 0 interrupted iterations
+capture   [   8% ] 30 VUs  0m13.6s/3m0s
+
+running (0m15.0s), 30/30 VUs, 274 complete and 0 interrupted iterations
+capture   [   8% ] 30 VUs  0m14.6s/3m0s
+
+running (0m16.0s), 30/30 VUs, 300 complete and 0 interrupted iterations
+capture   [   9% ] 30 VUs  0m15.6s/3m0s
+
+running (0m17.0s), 30/30 VUs, 329 complete and 0 interrupted iterations
+capture   [   9% ] 30 VUs  0m16.6s/3m0s
+
+running (0m18.0s), 30/30 VUs, 338 complete and 0 interrupted iterations
+capture   [  10% ] 30 VUs  0m17.6s/3m0s
+
+running (0m19.0s), 30/30 VUs, 360 complete and 0 interrupted iterations
+capture   [  10% ] 30 VUs  0m18.6s/3m0s
+
+running (0m20.0s), 30/30 VUs, 390 complete and 0 interrupted iterations
+capture   [  11% ] 30 VUs  0m19.6s/3m0s
+
+running (0m21.0s), 30/30 VUs, 405 complete and 0 interrupted iterations
+capture   [  11% ] 30 VUs  0m20.6s/3m0s
+
+running (0m22.0s), 30/30 VUs, 420 complete and 0 interrupted iterations
+capture   [  12% ] 30 VUs  0m21.6s/3m0s
+
+running (0m23.0s), 30/30 VUs, 450 complete and 0 interrupted iterations
+capture   [  13% ] 30 VUs  0m22.6s/3m0s
+
+running (0m24.0s), 30/30 VUs, 468 complete and 0 interrupted iterations
+capture   [  13% ] 30 VUs  0m23.6s/3m0s
+
+running (0m25.0s), 30/30 VUs, 481 complete and 0 interrupted iterations
+capture   [  14% ] 30 VUs  0m24.6s/3m0s
+
+running (0m26.0s), 30/30 VUs, 510 complete and 0 interrupted iterations
+capture   [  14% ] 30 VUs  0m25.6s/3m0s
+
+running (0m27.0s), 30/30 VUs, 533 complete and 0 interrupted iterations
+capture   [  15% ] 30 VUs  0m26.6s/3m0s
+
+running (0m28.0s), 30/30 VUs, 542 complete and 0 interrupted iterations
+capture   [  15% ] 30 VUs  0m27.6s/3m0s
+
+running (0m29.0s), 30/30 VUs, 570 complete and 0 interrupted iterations
+capture   [  16% ] 30 VUs  0m28.6s/3m0s
+
+running (0m30.0s), 30/30 VUs, 597 complete and 0 interrupted iterations
+capture   [  16% ] 30 VUs  0m29.6s/3m0s
+
+running (0m31.0s), 30/30 VUs, 606 complete and 0 interrupted iterations
+capture   [  17% ] 30 VUs  0m30.6s/3m0s
+
+running (0m32.0s), 30/30 VUs, 630 complete and 0 interrupted iterations
+capture   [  18% ] 30 VUs  0m31.6s/3m0s
+
+running (0m33.0s), 30/30 VUs, 659 complete and 0 interrupted iterations
+capture   [  18% ] 30 VUs  0m32.6s/3m0s
+
+running (0m34.0s), 30/30 VUs, 669 complete and 0 interrupted iterations
+capture   [  19% ] 30 VUs  0m33.6s/3m0s
+
+running (0m35.0s), 30/30 VUs, 690 complete and 0 interrupted iterations
+capture   [  19% ] 30 VUs  0m34.6s/3m0s
+
+running (0m36.0s), 30/30 VUs, 720 complete and 0 interrupted iterations
+capture   [  20% ] 30 VUs  0m35.6s/3m0s
+
+running (0m37.0s), 30/30 VUs, 736 complete and 0 interrupted iterations
+capture   [  20% ] 30 VUs  0m36.6s/3m0s
+
+running (0m38.0s), 30/30 VUs, 750 complete and 0 interrupted iterations
+capture   [  21% ] 30 VUs  0m37.6s/3m0s
+
+running (0m39.0s), 30/30 VUs, 780 complete and 0 interrupted iterations
+capture   [  21% ] 30 VUs  0m38.6s/3m0s
+
+running (0m40.0s), 30/30 VUs, 798 complete and 0 interrupted iterations
+capture   [  22% ] 30 VUs  0m39.6s/3m0s
+
+running (0m41.0s), 30/30 VUs, 811 complete and 0 interrupted iterations
+capture   [  23% ] 30 VUs  0m40.6s/3m0s
+
+running (0m42.0s), 30/30 VUs, 840 complete and 0 interrupted iterations
+capture   [  23% ] 30 VUs  0m41.6s/3m0s
+
+running (0m43.0s), 30/30 VUs, 867 complete and 0 interrupted iterations
+capture   [  24% ] 30 VUs  0m42.6s/3m0s
+
+running (0m44.0s), 30/30 VUs, 872 complete and 0 interrupted iterations
+capture   [  24% ] 30 VUs  0m43.6s/3m0s
+
+running (0m45.0s), 30/30 VUs, 900 complete and 0 interrupted iterations
+capture   [  25% ] 30 VUs  0m44.6s/3m0s
+
+running (0m46.0s), 30/30 VUs, 927 complete and 0 interrupted iterations
+capture   [  25% ] 30 VUs  0m45.6s/3m0s
+
+running (0m47.0s), 30/30 VUs, 941 complete and 0 interrupted iterations
+capture   [  26% ] 30 VUs  0m46.6s/3m0s
+
+running (0m48.0s), 30/30 VUs, 960 complete and 0 interrupted iterations
+capture   [  26% ] 30 VUs  0m47.6s/3m0s
+
+running (0m49.0s), 30/30 VUs, 990 complete and 0 interrupted iterations
+capture   [  27% ] 30 VUs  0m48.6s/3m0s
+
+running (0m50.0s), 30/30 VUs, 1007 complete and 0 interrupted iterations
+capture   [  28% ] 30 VUs  0m49.6s/3m0s
+
+running (0m51.0s), 30/30 VUs, 1020 complete and 0 interrupted iterations
+capture   [  28% ] 30 VUs  0m50.6s/3m0s
+
+running (0m52.0s), 30/30 VUs, 1050 complete and 0 interrupted iterations
+capture   [  29% ] 30 VUs  0m51.6s/3m0s
+
+running (0m53.0s), 30/30 VUs, 1070 complete and 0 interrupted iterations
+capture   [  29% ] 30 VUs  0m52.6s/3m0s
+
+running (0m54.0s), 30/30 VUs, 1080 complete and 0 interrupted iterations
+capture   [  30% ] 30 VUs  0m53.6s/3m0s
+
+running (0m55.0s), 30/30 VUs, 1110 complete and 0 interrupted iterations
+capture   [  30% ] 30 VUs  0m54.6s/3m0s
+
+running (0m56.0s), 30/30 VUs, 1135 complete and 0 interrupted iterations
+capture   [  31% ] 30 VUs  0m55.6s/3m0s
+
+running (0m57.0s), 30/30 VUs, 1141 complete and 0 interrupted iterations
+capture   [  31% ] 30 VUs  0m56.6s/3m0s
+
+running (0m58.0s), 30/30 VUs, 1170 complete and 0 interrupted iterations
+capture   [  32% ] 30 VUs  0m57.6s/3m0s
+
+running (0m59.0s), 30/30 VUs, 1195 complete and 0 interrupted iterations
+capture   [  33% ] 30 VUs  0m58.6s/3m0s
+
+running (1m00.0s), 30/30 VUs, 1208 complete and 0 interrupted iterations
+capture   [  33% ] 30 VUs  0m59.6s/3m0s
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": read tcp 172.31.64.38:53080->172.31.64.6:8000: read: connection reset by peer"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": EOF"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:37Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:37Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m01.0s), 30/30 VUs, 1230 complete and 0 interrupted iterations
+capture   [  34% ] 30 VUs  1m00.6s/3m0s
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": read tcp 172.31.64.38:51172->172.31.64.6:8000: read: connection reset by peer"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:38Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:38Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m02.0s), 30/30 VUs, 1259 complete and 0 interrupted iterations
+capture   [  34% ] 30 VUs  1m01.6s/3m0s
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:39Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:39Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m03.0s), 30/30 VUs, 1289 complete and 0 interrupted iterations
+capture   [  35% ] 30 VUs  1m02.6s/3m0s
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:40Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:40Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m04.0s), 30/30 VUs, 1319 complete and 0 interrupted iterations
+capture   [  35% ] 30 VUs  1m03.6s/3m0s
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:41Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:41Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m05.0s), 30/30 VUs, 1349 complete and 0 interrupted iterations
+capture   [  36% ] 30 VUs  1m04.6s/3m0s
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:42Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:42Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m06.0s), 30/30 VUs, 1379 complete and 0 interrupted iterations
+capture   [  36% ] 30 VUs  1m05.6s/3m0s
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:43Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:43Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m07.0s), 30/30 VUs, 1409 complete and 0 interrupted iterations
+capture   [  37% ] 30 VUs  1m06.6s/3m0s
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:44Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:44Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m08.0s), 30/30 VUs, 1439 complete and 0 interrupted iterations
+capture   [  38% ] 30 VUs  1m07.6s/3m0s
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:45Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:45Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m09.0s), 30/30 VUs, 1469 complete and 0 interrupted iterations
+capture   [  38% ] 30 VUs  1m08.6s/3m0s
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:46Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:46Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m10.0s), 30/30 VUs, 1499 complete and 0 interrupted iterations
+capture   [  39% ] 30 VUs  1m09.6s/3m0s
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:47Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:47Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m11.0s), 30/30 VUs, 1529 complete and 0 interrupted iterations
+capture   [  39% ] 30 VUs  1m10.6s/3m0s
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:48Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:48Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m12.0s), 30/30 VUs, 1559 complete and 0 interrupted iterations
+capture   [  40% ] 30 VUs  1m11.6s/3m0s
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:49Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:49Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m13.0s), 30/30 VUs, 1589 complete and 0 interrupted iterations
+capture   [  40% ] 30 VUs  1m12.6s/3m0s
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+time="2026-09-26T10:19:50Z" level=warning msg="Request Failed" error="Post \"http://172.31.64.6:8000/api/v1/inbound/measurements\": dial tcp 172.31.64.6:8000: connect: connection refused"
+time="2026-09-26T10:19:50Z" level=warning msg="not_inferred reason=http_0" source=console
+
+running (1m14.0s), 30/30 VUs, 1619 complete and 0 interrupted iterations
+capture   [  41% ] 30 VUs  1m13.6s/3m0s
+
+running (1m15.0s), 30/30 VUs, 1643 complete and 0 interrupted iterations
+capture   [  41% ] 30 VUs  1m14.6s/3m0s
+
+running (1m16.0s), 30/30 VUs, 1643 complete and 0 interrupted iterations
+capture   [  42% ] 30 VUs  1m15.6s/3m0s
+
+running (1m17.0s), 30/30 VUs, 1672 complete and 0 interrupted iterations
+capture   [  43% ] 30 VUs  1m16.6s/3m0s
+
+running (1m18.0s), 30/30 VUs, 1673 complete and 0 interrupted iterations
+capture   [  43% ] 30 VUs  1m17.6s/3m0s
+
+running (1m19.0s), 30/30 VUs, 1696 complete and 0 interrupted iterations
+capture   [  44% ] 30 VUs  1m18.6s/3m0s
+
+running (1m20.0s), 30/30 VUs, 1703 complete and 0 interrupted iterations
+capture   [  44% ] 30 VUs  1m19.6s/3m0s
+
+running (1m21.0s), 30/30 VUs, 1733 complete and 0 interrupted iterations
+capture   [  45% ] 30 VUs  1m20.6s/3m0s
+
+running (1m22.0s), 30/30 VUs, 1754 complete and 0 interrupted iterations
+capture   [  45% ] 30 VUs  1m21.6s/3m0s
+
+running (1m23.0s), 30/30 VUs, 1763 complete and 0 interrupted iterations
+capture   [  46% ] 30 VUs  1m22.6s/3m0s
+
+running (1m24.0s), 30/30 VUs, 1793 complete and 0 interrupted iterations
+capture   [  46% ] 30 VUs  1m23.6s/3m0s
+
+running (1m25.0s), 30/30 VUs, 1813 complete and 0 interrupted iterations
+capture   [  47% ] 30 VUs  1m24.6s/3m0s
+
+running (1m26.0s), 30/30 VUs, 1823 complete and 0 interrupted iterations
+capture   [  48% ] 30 VUs  1m25.6s/3m0s
+
+running (1m27.0s), 30/30 VUs, 1853 complete and 0 interrupted iterations
+capture   [  48% ] 30 VUs  1m26.6s/3m0s
+
+running (1m28.0s), 30/30 VUs, 1875 complete and 0 interrupted iterations
+capture   [  49% ] 30 VUs  1m27.6s/3m0s
+
+running (1m29.0s), 30/30 VUs, 1884 complete and 0 interrupted iterations
+capture   [  49% ] 30 VUs  1m28.6s/3m0s
+
+running (1m30.0s), 30/30 VUs, 1913 complete and 0 interrupted iterations
+capture   [  50% ] 30 VUs  1m29.6s/3m0s
+
+running (1m31.0s), 30/30 VUs, 1938 complete and 0 interrupted iterations
+capture   [  50% ] 30 VUs  1m30.6s/3m0s
+
+running (1m32.0s), 30/30 VUs, 1947 complete and 0 interrupted iterations
+capture   [  51% ] 30 VUs  1m31.6s/3m0s
+
+running (1m33.0s), 30/30 VUs, 1973 complete and 0 interrupted iterations
+capture   [  51% ] 30 VUs  1m32.6s/3m0s
+
+running (1m34.0s), 30/30 VUs, 1999 complete and 0 interrupted iterations
+capture   [  52% ] 30 VUs  1m33.6s/3m0s
+
+running (1m35.0s), 30/30 VUs, 2012 complete and 0 interrupted iterations
+capture   [  53% ] 30 VUs  1m34.6s/3m0s
+
+running (1m36.0s), 30/30 VUs, 2033 complete and 0 interrupted iterations
+capture   [  53% ] 30 VUs  1m35.6s/3m0s
+
+running (1m37.0s), 30/30 VUs, 2060 complete and 0 interrupted iterations
+capture   [  54% ] 30 VUs  1m36.6s/3m0s
+
+running (1m38.0s), 30/30 VUs, 2073 complete and 0 interrupted iterations
+capture   [  54% ] 30 VUs  1m37.6s/3m0s
+
+running (1m39.0s), 30/30 VUs, 2093 complete and 0 interrupted iterations
+capture   [  55% ] 30 VUs  1m38.6s/3m0s
+
+running (1m40.0s), 30/30 VUs, 2121 complete and 0 interrupted iterations
+capture   [  55% ] 30 VUs  1m39.6s/3m0s
+
+running (1m41.0s), 30/30 VUs, 2139 complete and 0 interrupted iterations
+capture   [  56% ] 30 VUs  1m40.6s/3m0s
+
+running (1m42.0s), 30/30 VUs, 2153 complete and 0 interrupted iterations
+capture   [  56% ] 30 VUs  1m41.6s/3m0s
+
+running (1m43.0s), 30/30 VUs, 2182 complete and 0 interrupted iterations
+capture   [  57% ] 30 VUs  1m42.6s/3m0s
+
+running (1m44.0s), 30/30 VUs, 2204 complete and 0 interrupted iterations
+capture   [  58% ] 30 VUs  1m43.6s/3m0s
+
+running (1m45.0s), 30/30 VUs, 2213 complete and 0 interrupted iterations
+capture   [  58% ] 30 VUs  1m44.6s/3m0s
+
+running (1m46.0s), 30/30 VUs, 2242 complete and 0 interrupted iterations
+capture   [  59% ] 30 VUs  1m45.6s/3m0s
+
+running (1m47.0s), 30/30 VUs, 2265 complete and 0 interrupted iterations
+capture   [  59% ] 30 VUs  1m46.6s/3m0s
+
+running (1m48.0s), 30/30 VUs, 2275 complete and 0 interrupted iterations
+capture   [  60% ] 30 VUs  1m47.6s/3m0s
+
+running (1m49.0s), 30/30 VUs, 2302 complete and 0 interrupted iterations
+capture   [  60% ] 30 VUs  1m48.6s/3m0s
+
+running (1m50.0s), 30/30 VUs, 2327 complete and 0 interrupted iterations
+capture   [  61% ] 30 VUs  1m49.6s/3m0s
+
+running (1m51.0s), 30/30 VUs, 2337 complete and 0 interrupted iterations
+capture   [  61% ] 30 VUs  1m50.6s/3m0s
+
+running (1m52.0s), 30/30 VUs, 2362 complete and 0 interrupted iterations
+capture   [  62% ] 30 VUs  1m51.6s/3m0s
+
+running (1m53.0s), 30/30 VUs, 2389 complete and 0 interrupted iterations
+capture   [  63% ] 30 VUs  1m52.6s/3m0s
+
+running (1m54.0s), 30/30 VUs, 2401 complete and 0 interrupted iterations
+capture   [  63% ] 30 VUs  1m53.6s/3m0s
+
+running (1m55.0s), 30/30 VUs, 2422 complete and 0 interrupted iterations
+capture   [  64% ] 30 VUs  1m54.6s/3m0s
+
+running (1m56.0s), 30/30 VUs, 2450 complete and 0 interrupted iterations
+capture   [  64% ] 30 VUs  1m55.6s/3m0s
+
+running (1m57.0s), 30/30 VUs, 2468 complete and 0 interrupted iterations
+capture   [  65% ] 30 VUs  1m56.6s/3m0s
+
+running (1m58.0s), 30/30 VUs, 2482 complete and 0 interrupted iterations
+capture   [  65% ] 30 VUs  1m57.6s/3m0s
+
+running (1m59.0s), 30/30 VUs, 2510 complete and 0 interrupted iterations
+capture   [  66% ] 30 VUs  1m58.6s/3m0s
+
+running (2m00.0s), 30/30 VUs, 2532 complete and 0 interrupted iterations
+capture   [  66% ] 30 VUs  1m59.6s/3m0s
+
+running (2m01.0s), 30/30 VUs, 2542 complete and 0 interrupted iterations
+capture   [  67% ] 30 VUs  2m00.6s/3m0s
+
+running (2m02.0s), 30/30 VUs, 2572 complete and 0 interrupted iterations
+capture   [  68% ] 30 VUs  2m01.6s/3m0s
+
+running (2m03.0s), 30/30 VUs, 2596 complete and 0 interrupted iterations
+capture   [  68% ] 30 VUs  2m02.6s/3m0s
+
+running (2m04.0s), 30/30 VUs, 2605 complete and 0 interrupted iterations
+capture   [  69% ] 30 VUs  2m03.6s/3m0s
+
+running (2m05.0s), 30/30 VUs, 2631 complete and 0 interrupted iterations
+capture   [  69% ] 30 VUs  2m04.6s/3m0s
+
+running (2m06.0s), 30/30 VUs, 2658 complete and 0 interrupted iterations
+capture   [  70% ] 30 VUs  2m05.6s/3m0s
+
+running (2m07.0s), 30/30 VUs, 2670 complete and 0 interrupted iterations
+capture   [  70% ] 30 VUs  2m06.6s/3m0s
+
+running (2m08.0s), 30/30 VUs, 2692 complete and 0 interrupted iterations
+capture   [  71% ] 30 VUs  2m07.6s/3m0s
+
+running (2m09.0s), 30/30 VUs, 2719 complete and 0 interrupted iterations
+capture   [  71% ] 30 VUs  2m08.6s/3m0s
+
+running (2m10.0s), 30/30 VUs, 2732 complete and 0 interrupted iterations
+capture   [  72% ] 30 VUs  2m09.6s/3m0s
+
+running (2m11.0s), 30/30 VUs, 2752 complete and 0 interrupted iterations
+capture   [  73% ] 30 VUs  2m10.6s/3m0s
+
+running (2m12.0s), 30/30 VUs, 2779 complete and 0 interrupted iterations
+capture   [  73% ] 30 VUs  2m11.6s/3m0s
+
+running (2m13.0s), 30/30 VUs, 2797 complete and 0 interrupted iterations
+capture   [  74% ] 30 VUs  2m12.6s/3m0s
+
+running (2m14.0s), 30/30 VUs, 2812 complete and 0 interrupted iterations
+capture   [  74% ] 30 VUs  2m13.6s/3m0s
+
+running (2m15.0s), 30/30 VUs, 2839 complete and 0 interrupted iterations
+capture   [  75% ] 30 VUs  2m14.6s/3m0s
+
+running (2m16.0s), 30/30 VUs, 2858 complete and 0 interrupted iterations
+capture   [  75% ] 30 VUs  2m15.6s/3m0s
+
+running (2m17.0s), 30/30 VUs, 2873 complete and 0 interrupted iterations
+capture   [  76% ] 30 VUs  2m16.6s/3m0s
+
+running (2m18.0s), 30/30 VUs, 2899 complete and 0 interrupted iterations
+capture   [  76% ] 30 VUs  2m17.6s/3m0s
+
+running (2m19.0s), 30/30 VUs, 2921 complete and 0 interrupted iterations
+capture   [  77% ] 30 VUs  2m18.6s/3m0s
+
+running (2m20.0s), 30/30 VUs, 2936 complete and 0 interrupted iterations
+capture   [  78% ] 30 VUs  2m19.6s/3m0s
+
+running (2m21.0s), 30/30 VUs, 2959 complete and 0 interrupted iterations
+capture   [  78% ] 30 VUs  2m20.6s/3m0s
+
+running (2m22.0s), 30/30 VUs, 2987 complete and 0 interrupted iterations
+capture   [  79% ] 30 VUs  2m21.6s/3m0s
+
+running (2m23.0s), 30/30 VUs, 3001 complete and 0 interrupted iterations
+capture   [  79% ] 30 VUs  2m22.6s/3m0s
+
+running (2m24.0s), 30/30 VUs, 3020 complete and 0 interrupted iterations
+capture   [  80% ] 30 VUs  2m23.6s/3m0s
+
+running (2m25.0s), 30/30 VUs, 3049 complete and 0 interrupted iterations
+capture   [  80% ] 30 VUs  2m24.6s/3m0s
+
+running (2m26.0s), 30/30 VUs, 3064 complete and 0 interrupted iterations
+capture   [  81% ] 30 VUs  2m25.6s/3m0s
+
+running (2m27.0s), 30/30 VUs, 3080 complete and 0 interrupted iterations
+capture   [  81% ] 30 VUs  2m26.6s/3m0s
+
+running (2m28.0s), 30/30 VUs, 3109 complete and 0 interrupted iterations
+capture   [  82% ] 30 VUs  2m27.6s/3m0s
+
+running (2m29.0s), 30/30 VUs, 3128 complete and 0 interrupted iterations
+capture   [  83% ] 30 VUs  2m28.6s/3m0s
+
+running (2m30.0s), 30/30 VUs, 3142 complete and 0 interrupted iterations
+capture   [  83% ] 30 VUs  2m29.6s/3m0s
+
+running (2m31.0s), 30/30 VUs, 3169 complete and 0 interrupted iterations
+capture   [  84% ] 30 VUs  2m30.6s/3m0s
+
+running (2m32.0s), 30/30 VUs, 3193 complete and 0 interrupted iterations
+capture   [  84% ] 30 VUs  2m31.6s/3m0s
+
+running (2m33.0s), 30/30 VUs, 3206 complete and 0 interrupted iterations
+capture   [  85% ] 30 VUs  2m32.6s/3m0s
+
+running (2m34.0s), 30/30 VUs, 3229 complete and 0 interrupted iterations
+capture   [  85% ] 30 VUs  2m33.6s/3m0s
+
+running (2m35.0s), 30/30 VUs, 3256 complete and 0 interrupted iterations
+capture   [  86% ] 30 VUs  2m34.6s/3m0s
+
+running (2m36.0s), 30/30 VUs, 3271 complete and 0 interrupted iterations
+capture   [  86% ] 30 VUs  2m35.6s/3m0s
+
+running (2m37.0s), 30/30 VUs, 3289 complete and 0 interrupted iterations
+capture   [  87% ] 30 VUs  2m36.6s/3m0s
+
+running (2m38.0s), 30/30 VUs, 3318 complete and 0 interrupted iterations
+capture   [  88% ] 30 VUs  2m37.6s/3m0s
+
+running (2m39.0s), 30/30 VUs, 3333 complete and 0 interrupted iterations
+capture   [  88% ] 30 VUs  2m38.6s/3m0s
+
+running (2m40.0s), 30/30 VUs, 3350 complete and 0 interrupted iterations
+capture   [  89% ] 30 VUs  2m39.6s/3m0s
+
+running (2m41.0s), 30/30 VUs, 3379 complete and 0 interrupted iterations
+capture   [  89% ] 30 VUs  2m40.6s/3m0s
+
+running (2m42.0s), 30/30 VUs, 3400 complete and 0 interrupted iterations
+capture   [  90% ] 30 VUs  2m41.6s/3m0s
+
+running (2m43.0s), 30/30 VUs, 3412 complete and 0 interrupted iterations
+capture   [  90% ] 30 VUs  2m42.6s/3m0s
+
+running (2m44.0s), 30/30 VUs, 3439 complete and 0 interrupted iterations
+capture   [  91% ] 30 VUs  2m43.6s/3m0s
+
+running (2m45.0s), 30/30 VUs, 3464 complete and 0 interrupted iterations
+capture   [  91% ] 30 VUs  2m44.6s/3m0s
+
+running (2m46.0s), 30/30 VUs, 3475 complete and 0 interrupted iterations
+capture   [  92% ] 30 VUs  2m45.6s/3m0s
+
+running (2m47.0s), 30/30 VUs, 3499 complete and 0 interrupted iterations
+capture   [  93% ] 30 VUs  2m46.6s/3m0s
+
+running (2m48.0s), 30/30 VUs, 3525 complete and 0 interrupted iterations
+capture   [  93% ] 30 VUs  2m47.6s/3m0s
+
+running (2m49.0s), 30/30 VUs, 3538 complete and 0 interrupted iterations
+capture   [  94% ] 30 VUs  2m48.6s/3m0s
+
+running (2m50.0s), 30/30 VUs, 3559 complete and 0 interrupted iterations
+capture   [  94% ] 30 VUs  2m49.6s/3m0s
+
+running (2m51.0s), 30/30 VUs, 3588 complete and 0 interrupted iterations
+capture   [  95% ] 30 VUs  2m50.6s/3m0s
+
+running (2m52.0s), 30/30 VUs, 3601 complete and 0 interrupted iterations
+capture   [  95% ] 30 VUs  2m51.6s/3m0s
+
+running (2m53.0s), 30/30 VUs, 3619 complete and 0 interrupted iterations
+capture   [  96% ] 30 VUs  2m52.6s/3m0s
+
+running (2m54.0s), 30/30 VUs, 3649 complete and 0 interrupted iterations
+capture   [  96% ] 30 VUs  2m53.6s/3m0s
+
+running (2m55.0s), 30/30 VUs, 3669 complete and 0 interrupted iterations
+capture   [  97% ] 30 VUs  2m54.6s/3m0s
+
+running (2m56.0s), 30/30 VUs, 3681 complete and 0 interrupted iterations
+capture   [  98% ] 30 VUs  2m55.6s/3m0s
+
+running (2m57.0s), 30/30 VUs, 3708 complete and 0 interrupted iterations
+capture   [  98% ] 30 VUs  2m56.6s/3m0s
+
+running (2m58.0s), 30/30 VUs, 3731 complete and 0 interrupted iterations
+capture   [  99% ] 30 VUs  2m57.6s/3m0s
+
+running (2m59.0s), 30/30 VUs, 3742 complete and 0 interrupted iterations
+capture   [  99% ] 30 VUs  2m58.6s/3m0s
+
+running (3m00.0s), 30/30 VUs, 3769 complete and 0 interrupted iterations
+capture   [ 100% ] 30 VUs  2m59.6s/3m0s
+
+running (3m01.0s), 07/30 VUs, 3794 complete and 0 interrupted iterations
+capture ↓ [ 100% ] 30 VUs  3m0s
+
+
+  █ THRESHOLDS 
+
+    http_req_failed{name:measure}
+    ✗ 'rate<0.01' rate=10.86%
+
+    measure_duration
+    ✓ 'p(95)<1000' p(95)=562.08ms
+
+    measure_inferred
+    ✗ 'rate>0.99' rate=89.13%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3801   20.900147/s
+    checks_succeeded...: 89.13% 3388 out of 3801
+    checks_failed......: 10.86% 413 out of 3801
+
+    ✗ measure 2xx
+      ↳  89% — ✓ 3388 / ✗ 413
+
+    CUSTOM
+    measure_duration...............: avg=422.46ms min=0s      med=421.97ms max=2.6s p(95)=562.08ms p(99)=1.01s
+    measure_inferred...............: 89.13% 3388 out of 3801
+    measure_not_inferred...........: 413    2.270918/s
+
+    HTTP
+    http_req_duration..............: avg=421.36ms min=0s      med=421.83ms max=2.6s p(95)=561.97ms p(99)=1.01s
+      { expected_response:true }...: avg=471.32ms min=31.01ms med=426.02ms max=2.6s p(95)=566.38ms p(99)=1.13s
+    http_req_failed................: 10.83% 413 out of 3812
+      { name:measure }.............: 10.86% 413 out of 3801
+    http_reqs......................: 3812   20.960631/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.42s    min=1s      med=1.42s    max=3.6s p(95)=1.56s    p(99)=2.04s
+    iterations.....................: 3801   20.900147/s
+    vus............................: 7      min=7            max=30
+    vus_max........................: 30     min=30           max=30
+
+    NETWORK
+    data_received..................: 20 MB  112 kB/s
+    data_sent......................: 759 kB 4.2 kB/s
+
+
+
+
+running (3m01.9s), 00/30 VUs, 3801 complete and 0 interrupted iterations
+capture ✓ [ 100% ] 30 VUs  3m0s
+time="2026-09-26T10:21:39Z" level=error msg="thresholds on metrics 'http_req_failed{name:measure}, measure_inferred' have been crossed"
