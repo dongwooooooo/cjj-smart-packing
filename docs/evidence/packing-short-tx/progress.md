@@ -1,0 +1,14 @@
+- 09-28 23:03 스윕 시작 `sat` pools=[10 20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-28 23:10 `sat-before-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   145.6 | Queue-ms p95   341.0 | Run-ms p95    54.0 | http p95   378.6 | pending max   91 | top wait IdleInTx:app(7.2) (rc=0)
+- 09-28 23:17 `sat-before-p20-t30000-th200-r1` pool  20 | VU  100 | pacing      0 | TPS   167.0 | Queue-ms p95   305.7 | Run-ms p95   139.0 | http p95   447.1 | pending max   81 | top wait IdleInTx:app(10.0) (rc=99)
+- 09-28 23:17 스윕 종료 `20260928-230316`, 백엔드 기준 설정으로 복원
+- 09-28 23:17 스윕 시작 `sat` pools=[10 20] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-28 23:24 `sat-after-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS   170.5 | Queue-ms p95   294.4 | Run-ms p95    30.3 | http p95   330.7 | pending max   91 | top wait IdleInTx:app(7.7) (rc=0)
+- 09-28 23:31 `sat-after-p20-t30000-th200-r1` pool  20 | VU  100 | pacing      0 | TPS   189.4 | Queue-ms p95   417.7 | Run-ms p95    64.8 | http p95   480.7 | pending max   81 | top wait IdleInTx:app(16.5) (rc=99)
+- 09-28 23:32 스윕 종료 `20260928-231741`, 백엔드 기준 설정으로 복원
+- 09-28 23:32 스윕 시작 `sat` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-28 23:39 `sat-after-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   168.8 | Queue-ms p95   303.5 | Run-ms p95    30.8 | http p95   340.1 | pending max   91 | top wait IdleInTx:app(8.0) (rc=0)
+- 09-28 23:39 스윕 종료 `20260928-233204`, 백엔드 기준 설정으로 복원
+- 09-28 23:39 스윕 시작 `sat` pools=[10] timeouts=[30000] threads=[200] loads=[sat:100:0:0:0] repeat=1 lock=[]
+- 09-28 23:46 `sat-before-p10-t30000-th200-r2` pool  10 | VU  100 | pacing      0 | TPS   140.9 | Queue-ms p95   349.8 | Run-ms p95    55.6 | http p95   388.5 | pending max   91 | top wait IdleInTx:app(7.3) (rc=0)
+- 09-28 23:46 스윕 종료 `20260928-233924`, 백엔드 기준 설정으로 복원

@@ -192,6 +192,10 @@ run_condition() {  # $1 dir $2 load-spec $3 pool $4 timeout $5 threads $6 rep
   annotate "$id" "$((t0 * 1000))" "$((t1 * 1000))"
   [ -n "$lock_pid" ] && wait "$lock_pid" || true
   on_backend "sudo docker logs pool-sweep-waits 2>/dev/null; sudo docker rm -f pool-sweep-waits >/dev/null 2>&1" > "$d/waits.csv" || true
+  if [ "$SCENARIO" = packing ]; then  # 박스 재고 갱신 손실 확인: 원복 값에서 줄어든 수 = 이 조건에서 포장한 수여야 한다
+    psql_cmd "select b.id, $FIXTURE_BOX_STOCK - b.stock_qty, count(s.id) from box_type b left join shipment s on coalesce(s.final_box_id, s.recommended_box_id) = b.id and s.status = 'PACKED' and s.order_id in (select id from orders where receipt_no like '${FIXTURE_PREFIX}%') group by b.id order by b.id" \
+      | awk -F'|' 'BEGIN{print "box_id,decreased,packed"} {print $1","$2","$3; d+=$2; p+=$3} END{printf "total,%d,%d\n", d, p}' > "$d/box-check.csv" || true
+  fi
   scp -q "${SSH_OPTS[@]}" "$SSH_USER@$LOADGEN_HOST:$rdir/summary.json" "$SSH_USER@$LOADGEN_HOST:$rdir/k6.log" "$d/" || log "k6 결과 회수 실패"
   local k6start; k6start=$(grep -m1 '^K6START=' "$d/k6.log" | cut -d= -f2)
   local ws=$((k6start + warm)) we=$((k6start + warm + MEASURE_S))

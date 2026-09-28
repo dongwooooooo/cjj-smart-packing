@@ -1,0 +1,720 @@
+1790605288,,idle,Client,ClientRead,1
+1790605288,PostgreSQL JDBC Driver,idle,Client,ClientRead,10
+1790605288,,idle,Client,ClientRead,1
+1790605288,PostgreSQL JDBC Driver,idle,Client,ClientRead,10
+1790605289,,idle,Client,ClientRead,1
+1790605289,PostgreSQL JDBC Driver,idle,Client,ClientRead,10
+1790605290,,idle,Client,ClientRead,1
+1790605290,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605290,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605291,,idle,Client,ClientRead,1
+1790605291,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605292,,idle,Client,ClientRead,1
+1790605292,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605292,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605293,,idle,Client,ClientRead,1
+1790605293,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605293,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605294,,idle,Client,ClientRead,1
+1790605294,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605294,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605295,,idle,Client,ClientRead,1
+1790605295,PostgreSQL JDBC Driver,idle,CPU,CPU,1
+1790605295,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605296,,idle,Client,ClientRead,1
+1790605296,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605296,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605297,,idle,Client,ClientRead,1
+1790605297,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605297,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605298,,idle,Client,ClientRead,1
+1790605298,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605298,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605298,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605299,,idle,Client,ClientRead,1
+1790605299,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605299,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605300,,idle,Client,ClientRead,1
+1790605300,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605300,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605300,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605300,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605301,,idle,Client,ClientRead,1
+1790605301,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605302,,idle,Client,ClientRead,1
+1790605302,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605302,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605302,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605303,,idle,Client,ClientRead,1
+1790605303,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605303,PostgreSQL JDBC Driver,idle,Client,ClientRead,4
+1790605303,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605304,,idle,Client,ClientRead,1
+1790605304,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605305,,idle,Client,ClientRead,1
+1790605305,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605305,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605305,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,2
+1790605306,,idle,Client,ClientRead,1
+1790605306,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605306,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605307,,idle,Client,ClientRead,1
+1790605307,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605307,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605308,,idle,Client,ClientRead,1
+1790605308,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605308,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605308,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605309,,idle,Client,ClientRead,1
+1790605309,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605309,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605309,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605310,,idle,Client,ClientRead,1
+1790605310,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605310,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605310,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605311,,idle,Client,ClientRead,1
+1790605311,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605311,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605312,,idle,Client,ClientRead,1
+1790605312,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605312,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605313,,idle,Client,ClientRead,1
+1790605313,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605314,,idle,Client,ClientRead,1
+1790605314,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605314,PostgreSQL JDBC Driver,active,IO,DataFileExtend,1
+1790605314,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605315,,idle,Client,ClientRead,1
+1790605315,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605315,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605315,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605315,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605316,,idle,Client,ClientRead,1
+1790605316,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605316,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605317,,idle,Client,ClientRead,1
+1790605317,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605318,,idle,Client,ClientRead,1
+1790605318,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605318,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605319,,idle,Client,ClientRead,1
+1790605319,PostgreSQL JDBC Driver,active,LWLock,BufferContent,4
+1790605319,PostgreSQL JDBC Driver,active,LWLock,WALInsert,1
+1790605319,PostgreSQL JDBC Driver,active,LWLock,WALWrite,4
+1790605319,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605320,,idle,Client,ClientRead,1
+1790605320,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605320,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605320,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605320,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605321,,idle,Client,ClientRead,1
+1790605321,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605321,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605322,,idle,Client,ClientRead,1
+1790605322,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605322,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605323,,idle,Client,ClientRead,1
+1790605323,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605323,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605323,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605324,,idle,Client,ClientRead,1
+1790605324,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605325,,idle,Client,ClientRead,1
+1790605325,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605325,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605326,,idle,Client,ClientRead,1
+1790605326,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605326,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605326,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605326,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605327,,idle,Client,ClientRead,1
+1790605327,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605327,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605327,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605327,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605328,,idle,Client,ClientRead,1
+1790605328,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605328,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605329,,idle,Client,ClientRead,1
+1790605329,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605329,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605329,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605329,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605330,,idle,Client,ClientRead,1
+1790605330,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605330,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605330,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605330,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605331,,idle,Client,ClientRead,1
+1790605331,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605331,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605331,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605332,,idle,Client,ClientRead,1
+1790605332,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605332,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605332,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605332,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605333,,idle,Client,ClientRead,1
+1790605333,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605333,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605333,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605333,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605334,,idle,Client,ClientRead,1
+1790605334,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605334,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605334,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605335,,idle,Client,ClientRead,1
+1790605335,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605335,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605335,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605336,,idle,Client,ClientRead,1
+1790605336,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605336,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605336,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605337,,idle,Client,ClientRead,1
+1790605337,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605337,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605337,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605337,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605338,,idle,Client,ClientRead,1
+1790605338,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605338,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605338,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605338,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605339,,idle,Client,ClientRead,1
+1790605339,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605339,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605339,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,2
+1790605340,,idle,Client,ClientRead,1
+1790605340,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605340,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605340,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605340,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605341,,idle,Client,ClientRead,1
+1790605341,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605341,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605341,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605342,,idle,Client,ClientRead,1
+1790605342,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605342,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605342,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605343,,idle,Client,ClientRead,1
+1790605343,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605343,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605343,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605344,,idle,Client,ClientRead,1
+1790605344,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605345,,idle,Client,ClientRead,1
+1790605345,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605345,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605345,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605346,,idle,Client,ClientRead,1
+1790605346,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605347,,idle,Client,ClientRead,1
+1790605347,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605348,,idle,Client,ClientRead,1
+1790605348,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605348,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605348,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605348,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605349,,idle,Client,ClientRead,1
+1790605349,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605349,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605350,,idle,Client,ClientRead,1
+1790605350,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605350,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605350,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605351,,idle,Client,ClientRead,1
+1790605351,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605351,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605351,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605352,,idle,Client,ClientRead,1
+1790605352,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605352,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605353,,idle,Client,ClientRead,1
+1790605353,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605353,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605353,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605354,,idle,Client,ClientRead,1
+1790605354,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605354,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605354,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605354,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605355,,idle,Client,ClientRead,1
+1790605355,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605356,,idle,Client,ClientRead,1
+1790605356,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605356,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605356,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605357,,idle,Client,ClientRead,1
+1790605357,PostgreSQL JDBC Driver,active,CPU,CPU,3
+1790605357,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605358,,idle,Client,ClientRead,1
+1790605358,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605358,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605358,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605359,,idle,Client,ClientRead,1
+1790605359,PostgreSQL JDBC Driver,active,Client,ClientRead,2
+1790605359,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605359,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605360,,idle,Client,ClientRead,1
+1790605360,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605360,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605360,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605361,,idle,Client,ClientRead,1
+1790605361,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605361,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605361,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605362,,idle,Client,ClientRead,1
+1790605362,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605362,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605362,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605363,,idle,Client,ClientRead,1
+1790605363,PostgreSQL JDBC Driver,active,CPU,CPU,3
+1790605363,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605363,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605363,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605363,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,4
+1790605364,,idle,Client,ClientRead,1
+1790605364,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605364,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605364,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605365,,idle,Client,ClientRead,1
+1790605365,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605365,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605366,,idle,Client,ClientRead,1
+1790605366,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605366,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605366,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605366,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605367,,idle,Client,ClientRead,1
+1790605367,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605367,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605367,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605367,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605368,,idle,Client,ClientRead,1
+1790605368,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605368,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605368,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605369,,idle,Client,ClientRead,1
+1790605369,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605369,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605369,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605369,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605369,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605369,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605370,,idle,Client,ClientRead,1
+1790605370,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605370,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605370,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605370,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605371,,idle,Client,ClientRead,1
+1790605371,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605371,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605371,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605371,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605372,,idle,Client,ClientRead,1
+1790605372,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605372,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605372,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605373,,idle,Client,ClientRead,1
+1790605373,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605373,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605373,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605374,,idle,Client,ClientRead,1
+1790605374,PostgreSQL JDBC Driver,active,CPU,CPU,4
+1790605374,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605374,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605374,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,4
+1790605375,,idle,Client,ClientRead,1
+1790605375,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605375,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605375,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,2
+1790605376,,idle,Client,ClientRead,1
+1790605376,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605376,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605376,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605376,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605377,,idle,Client,ClientRead,1
+1790605377,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605377,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605377,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605378,,idle,Client,ClientRead,1
+1790605378,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605378,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605378,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605379,,idle,Client,ClientRead,1
+1790605379,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605379,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605380,,idle,Client,ClientRead,1
+1790605380,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605380,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605381,,idle,Client,ClientRead,1
+1790605381,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605381,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605381,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605382,,idle,Client,ClientRead,1
+1790605382,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605382,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605382,PostgreSQL JDBC Driver,idle in transaction,IO,WalSync,1
+1790605383,,idle,Client,ClientRead,1
+1790605383,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605383,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605383,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605384,,idle,Client,ClientRead,1
+1790605384,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605384,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605384,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605384,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605384,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605385,,idle,Client,ClientRead,1
+1790605385,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605385,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605385,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605386,,idle,Client,ClientRead,1
+1790605386,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605386,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605386,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605386,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605387,,idle,Client,ClientRead,1
+1790605387,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605387,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605387,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605388,,idle,Client,ClientRead,1
+1790605388,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605388,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605388,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605388,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605389,,idle,Client,ClientRead,1
+1790605389,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605389,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605389,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605390,,idle,Client,ClientRead,1
+1790605390,PostgreSQL JDBC Driver,active,CPU,CPU,4
+1790605390,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605390,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605391,,idle,Client,ClientRead,1
+1790605391,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605391,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605391,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605392,,idle,Client,ClientRead,1
+1790605392,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605392,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605393,,idle,Client,ClientRead,1
+1790605393,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605393,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605393,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605394,,idle,Client,ClientRead,1
+1790605394,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605394,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605394,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605394,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605395,,idle,Client,ClientRead,1
+1790605395,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605395,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605396,,idle,Client,ClientRead,1
+1790605396,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605396,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605396,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605397,,idle,Client,ClientRead,1
+1790605397,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605397,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605397,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605398,,idle,Client,ClientRead,1
+1790605398,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605398,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605399,,idle,Client,ClientRead,1
+1790605399,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605399,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605399,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605399,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605399,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605400,,idle,Client,ClientRead,1
+1790605400,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605400,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605400,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605400,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,2
+1790605401,,idle,Client,ClientRead,1
+1790605401,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605401,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605401,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605402,,idle,Client,ClientRead,1
+1790605402,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605402,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605403,,idle,Client,ClientRead,1
+1790605403,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605403,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605404,,idle,Client,ClientRead,1
+1790605404,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605404,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605404,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605404,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605405,,idle,Client,ClientRead,1
+1790605405,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605405,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605405,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605406,,idle,Client,ClientRead,1
+1790605406,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605406,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605407,,idle,Client,ClientRead,1
+1790605407,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605407,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605407,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605407,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605407,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605408,,idle,Client,ClientRead,1
+1790605408,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605408,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605408,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605409,,idle,Client,ClientRead,1
+1790605409,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605409,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605409,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605409,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605410,,idle,Client,ClientRead,1
+1790605410,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605410,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605411,,idle,Client,ClientRead,1
+1790605411,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605411,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605411,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605412,,idle,Client,ClientRead,1
+1790605412,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605412,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605412,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605413,,idle,Client,ClientRead,1
+1790605413,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605413,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605414,,idle,Client,ClientRead,1
+1790605414,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605414,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605414,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605414,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605415,,idle,Client,ClientRead,1
+1790605415,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605415,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605416,,idle,Client,ClientRead,1
+1790605416,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605416,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605417,,idle,Client,ClientRead,1
+1790605417,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605417,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605417,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605417,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605418,,idle,Client,ClientRead,1
+1790605418,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605418,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605418,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605418,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605419,,idle,Client,ClientRead,1
+1790605419,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605419,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605419,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605419,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605419,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605420,,idle,Client,ClientRead,1
+1790605420,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605420,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605420,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605420,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605420,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605421,,idle,Client,ClientRead,1
+1790605421,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605421,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605421,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605422,,idle,Client,ClientRead,1
+1790605422,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605422,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605422,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605422,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605423,,idle,Client,ClientRead,1
+1790605423,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605423,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605423,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605423,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605424,,idle,Client,ClientRead,1
+1790605424,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605424,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605424,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605425,,idle,Client,ClientRead,1
+1790605425,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605425,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605425,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605426,,idle,Client,ClientRead,1
+1790605426,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605426,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605426,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605426,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605427,,idle,Client,ClientRead,1
+1790605427,PostgreSQL JDBC Driver,idle,CPU,CPU,1
+1790605427,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605428,,idle,Client,ClientRead,1
+1790605428,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605428,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605428,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605429,,idle,Client,ClientRead,1
+1790605429,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605429,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605429,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605429,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605430,,idle,Client,ClientRead,1
+1790605430,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605430,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605431,,idle,Client,ClientRead,1
+1790605431,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605431,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605431,PostgreSQL JDBC Driver,idle,CPU,CPU,1
+1790605431,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605431,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,2
+1790605432,,idle,Client,ClientRead,1
+1790605432,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605432,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605432,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605433,,idle,Client,ClientRead,1
+1790605433,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605433,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605434,,idle,Client,ClientRead,1
+1790605434,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605434,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605434,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605434,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605435,,idle,Client,ClientRead,1
+1790605435,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605435,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605436,,idle,Client,ClientRead,1
+1790605436,PostgreSQL JDBC Driver,active,CPU,CPU,3
+1790605436,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605437,,idle,Client,ClientRead,1
+1790605437,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605437,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605437,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605437,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605438,,idle,Client,ClientRead,1
+1790605438,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605438,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605439,,idle,Client,ClientRead,1
+1790605439,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605439,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605439,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605440,,idle,Client,ClientRead,1
+1790605440,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605441,,idle,Client,ClientRead,1
+1790605441,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605441,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605441,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605441,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605442,,idle,Client,ClientRead,1
+1790605442,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605442,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605442,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605443,,idle,Client,ClientRead,1
+1790605443,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605443,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605443,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605444,,idle,Client,ClientRead,1
+1790605444,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605444,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605444,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605445,,idle,Client,ClientRead,1
+1790605445,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605445,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605445,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605446,,idle,Client,ClientRead,1
+1790605446,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605446,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605447,,idle,Client,ClientRead,1
+1790605447,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605447,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605448,,idle,Client,ClientRead,1
+1790605448,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605448,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605448,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605448,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605449,,idle,Client,ClientRead,1
+1790605449,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605449,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605450,,idle,Client,ClientRead,1
+1790605450,PostgreSQL JDBC Driver,active,CPU,CPU,4
+1790605450,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605451,,idle,Client,ClientRead,1
+1790605451,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605451,PostgreSQL JDBC Driver,active,LWLock,WALWrite,1
+1790605451,PostgreSQL JDBC Driver,idle,Client,ClientRead,3
+1790605451,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,4
+1790605451,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605452,,idle,Client,ClientRead,1
+1790605452,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605453,,idle,Client,ClientRead,1
+1790605453,PostgreSQL JDBC Driver,idle,Client,ClientRead,2
+1790605453,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605454,,idle,Client,ClientRead,1
+1790605454,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605454,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605454,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605455,,idle,Client,ClientRead,1
+1790605455,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605455,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605455,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605455,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605455,PostgreSQL JDBC Driver,idle in transaction,LWLock,WALWrite,1
+1790605456,,idle,Client,ClientRead,1
+1790605456,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605456,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605456,PostgreSQL JDBC Driver,active,LWLock,WALWrite,2
+1790605456,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605456,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,5
+1790605457,,idle,Client,ClientRead,1
+1790605457,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605457,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605457,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605458,,idle,Client,ClientRead,1
+1790605458,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605458,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605458,PostgreSQL JDBC Driver,active,Lock,tuple,1
+1790605458,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605458,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605459,,idle,Client,ClientRead,1
+1790605459,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605459,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605460,,idle,Client,ClientRead,1
+1790605460,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605460,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605460,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605460,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605461,,idle,Client,ClientRead,1
+1790605461,PostgreSQL JDBC Driver,active,CPU,CPU,2
+1790605461,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605461,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605462,,idle,Client,ClientRead,1
+1790605462,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605462,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605463,,idle,Client,ClientRead,1
+1790605463,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605463,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605463,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605464,,idle,Client,ClientRead,1
+1790605464,PostgreSQL JDBC Driver,active,CPU,CPU,3
+1790605464,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605465,,idle,Client,ClientRead,1
+1790605465,PostgreSQL JDBC Driver,active,Client,ClientRead,1
+1790605465,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605465,PostgreSQL JDBC Driver,active,Lock,transactionid,1
+1790605465,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,6
+1790605465,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605466,,idle,Client,ClientRead,1
+1790605466,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605466,PostgreSQL JDBC Driver,active,IO,WalSync,1
+1790605466,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,7
+1790605466,PostgreSQL JDBC Driver,idle in transaction,CPU,CPU,1
+1790605467,,idle,Client,ClientRead,1
+1790605467,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,10
+1790605468,,idle,Client,ClientRead,1
+1790605468,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605468,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,9
+1790605469,,idle,Client,ClientRead,1
+1790605469,PostgreSQL JDBC Driver,active,CPU,CPU,1
+1790605469,PostgreSQL JDBC Driver,idle,Client,ClientRead,1
+1790605469,PostgreSQL JDBC Driver,idle in transaction,Client,ClientRead,8
+1790605470,,idle,Client,ClientRead,1
+1790605470,PostgreSQL JDBC Driver,idle,Client,ClientRead,10
