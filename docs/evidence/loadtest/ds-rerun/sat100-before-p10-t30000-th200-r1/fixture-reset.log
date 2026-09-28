@@ -1,0 +1,23 @@
+Time: 1.504 ms
+Time: 226.666 ms
+Time: 7.442 ms
+Time: 21.721 ms
+Time: 92.251 ms
+Time: 139.390 ms
+Time: 139.339 ms
+Time: 1.864 ms
+    k    | shipments 
+---------+-----------
+ fixture |     13555
+(1 row)
+
+Time: 2.288 ms
+Time: 12.515 ms
+Time: 619.673 ms
+    status     | count 
+---------------+-------
+ TOTE_ASSIGNED | 13555
+(1 row)
+
+Time: 14.025 ms
+[20:48:48] 실험 묶음 토트 13555개

@@ -1,0 +1,1 @@
+{"id":"ds50-before-p10-t30000-th200-r1","load":"ds50","vus":50,"pacing_ms":0,"think_ms":0,"sleep_after_ms":1000,"pool":10,"conn_timeout_ms":30000,"tomcat_threads":200,"rep":1,"warmup_s":0,"measure_s":180,"scenario":"packing","client_timeout":"60s","lock_inject":"","jvm_opts_extra":"","image":"cj-ai-backend:pre-ledger"}
