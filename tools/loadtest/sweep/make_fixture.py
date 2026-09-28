@@ -16,7 +16,7 @@ from datetime import datetime
 from pathlib import Path
 
 REGIONS = ["SEOUL", "GYEONGGI", "BUSAN"]
-CATALOG = json.loads((Path(__file__).parent.parent / "k6" / "outbound_catalog.json").read_text())
+CATALOG = json.loads(Path(os.environ.get("CATALOG_FILE") or (Path(__file__).parent.parent / "k6" / "outbound_catalog.json")).read_text())
 
 
 def make_batch(rng: random.Random, prefix: str, batch_no: int, size: int) -> dict:

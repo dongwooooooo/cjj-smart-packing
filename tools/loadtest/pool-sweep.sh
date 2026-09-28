@@ -98,7 +98,9 @@ apply_config() {  # $1 pool $2 conn_timeout_ms $3 tomcat_threads
   MODIFIED=1  # 파일을 쓰기 전에 표시해야 중간 실패에도 복원이 돈다
   # JVM_OPTS_EXTRA: 가설 확인용 JVM 시스템 속성(예: -Dcom.zaxxer.hikari.aliveBypassWindowMs=600000). 비우면 넣지 않는다.
   { printf "services:\n  backend:\n    environment:\n      SPRING_APPLICATION_JSON: '%s'\n" "$json"
-    [ -n "${JVM_OPTS_EXTRA:-}" ] && printf "      JAVA_TOOL_OPTIONS: '%s'\n" "$JVM_OPTS_EXTRA"; true; } \
+    [ -n "${JVM_OPTS_EXTRA:-}" ] && printf "      JAVA_TOOL_OPTIONS: '%s'\n" "$JVM_OPTS_EXTRA"
+    # EXTRA_ENV: 추가 환경변수(줄바꿈 구분 KEY=VALUE). 예: 옛 이미지에 새 마이그레이션이 적용된 DB 를 붙일 때 Flyway 검증 완화
+    [ -n "${EXTRA_ENV:-}" ] && printf '%s\n' "$EXTRA_ENV" | while IFS== read -r k v; do [ -n "$k" ] && printf "      %s: '%s'\n" "$k" "$v"; done; true; } \
     | on_backend "cat > $BACKEND_DIR/$OVERRIDE"
   # COND_IMAGE: 조건에 쓸 이미지(A/B 비교용). 비우면 실험 전 이미지. 복원은 늘 실험 전 이미지로 한다.
   on_backend "cd $BACKEND_DIR && sudo env BACKEND_IMAGE='${COND_IMAGE:-$BASE_IMAGE_REF}' COMPOSE_FILE=docker-compose.yml:$OVERRIDE \
