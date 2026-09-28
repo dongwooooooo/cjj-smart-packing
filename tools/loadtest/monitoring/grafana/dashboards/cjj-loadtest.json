@@ -117,17 +117,17 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "k6_http_req_duration_p50{name!=''}",
+          "expr": "max by (name) (k6_http_req_duration_p50{name!=''})",
           "legendFormat": "p50 {{name}}"
         },
         {
           "refId": "B",
-          "expr": "k6_http_req_duration_p95{name!=''}",
+          "expr": "max by (name) (k6_http_req_duration_p95{name!=''})",
           "legendFormat": "p95 {{name}}"
         },
         {
           "refId": "C",
-          "expr": "k6_http_req_duration_p99{name!=''}",
+          "expr": "max by (name) (k6_http_req_duration_p99{name!=''})",
           "legendFormat": "p99 {{name}}"
         }
       ],
