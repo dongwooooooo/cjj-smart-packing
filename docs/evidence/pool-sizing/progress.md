@@ -283,3 +283,15 @@
 - 09-26 23:38 스윕 종료 `20260926-233658`, 백엔드 기준 설정으로 복원
 - 09-26 23:35 합성 기준선(사용자 승인): `tools/loadtest/sweep/synth-baseline.sql` 로 출고 상품 10~17 에 ADJUST 20,288행(상품당 2,536행, qty −1·−2·−3 순환, ref_type SYNTH_BASELINE, 시각 2026-09-25 00:00 부터 10ms 간격 — 정착 창 밖)을 넣었다. 원장 29 → 20,317행, id 3310459~3330746(식별자 시퀀스가 이전 삭제분만큼 앞서 있어 max id 가 3131672 에서 3330746 으로 건너뜀), 4.3MB. 90초 뒤 확인: 상품 10~17 스냅샷 95,029~95,046 = 원장 합계와 일치, 음수 잔고 0, `inventory_reconcile_mismatch` 0, `inventory_collector_lag_rows` 0. 컷오프를 3330746 으로 갱신(`ledger-reset.sql` 주석 "2026-09-26 사고 후 합성 기준선, 이전 20,317행과 행 수만 같고 내용은 다름", `pool-sweep.env` 기본값).
 - 09-26 23:37 되돌림 확인(`baseline-check/`, 풀 10·작업자 20명·판독 20초, 확인용): 조건 시작 전 원장 원복 20,317행. 부하 뒤 원장 25,724행(컷오프 위 5,407행), 묶음 PACKED 2,151. `ledger-reset.sql`(컷오프 3330746)·`fixture-reset.sql` 실행 → 원장 20,317행(max id 3330746, 컷오프 위 0), 묶음 TOTE_ASSIGNED 19,649, 상품 잔고 95,029~95,046 으로 복귀. 백엔드 이미지 cd6222eefbf2, 설정 흔적 없음.
+- 09-28 20:38 스윕 시작 `ds-rerun` pools=[10] timeouts=[30000] threads=[200] loads=[ds50:50:0:0:1000] repeat=1 lock=[]
+- 09-28 20:42 `ds50-before-p10-t30000-th200-r1` pool  10 | VU   50 | pacing      0 | TPS    46.3 | Queue-ms p95     1.5 | Run-ms p95    51.2 | http p95    74.6 | pending max    5 | top wait IdleInTx:app(2.5) (rc=0)
+- 09-28 20:42 스윕 종료 `20260928-203832`, 백엔드 기준 설정으로 복원
+- 09-28 20:43 스윕 시작 `ds-rerun` pools=[10] timeouts=[30000] threads=[200] loads=[ds50:50:0:0:1000] repeat=1 lock=[]
+- 09-28 20:47 `ds50-after-p10-t30000-th200-r1` pool  10 | VU   50 | pacing      0 | TPS    46.3 | Queue-ms p95     0.1 | Run-ms p95    44.9 | http p95    63.5 | pending max    3 | top wait IdleInTx:app(2.4) (rc=0)
+- 09-28 20:47 스윕 종료 `20260928-204321`, 백엔드 기준 설정으로 복원
+- 09-28 20:48 스윕 시작 `ds-rerun` pools=[10] timeouts=[30000] threads=[200] loads=[sat100:100:0:0:0] repeat=1 lock=[]
+- 09-28 20:52 `sat100-before-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    75.3 | Queue-ms p95   479.7 | Run-ms p95    66.1 | http p95   532.0 | pending max   90 | top wait IdleInTx:app(4.5) | [무효: 묶음 소진 3674회] (rc=99)
+- 09-28 20:52 스윕 종료 `20260928-204824`, 백엔드 기준 설정으로 복원
+- 09-28 20:52 스윕 시작 `ds-rerun` pools=[10] timeouts=[30000] threads=[200] loads=[sat100:100:0:0:0] repeat=1 lock=[]
+- 09-28 20:56 `sat100-after-p10-t30000-th200-r1` pool  10 | VU  100 | pacing      0 | TPS    75.3 | Queue-ms p95   455.4 | Run-ms p95    59.5 | http p95   517.9 | pending max   91 | top wait IdleInTx:app(4.4) | [무효: 묶음 소진 3955회] (rc=99)
+- 09-28 20:56 스윕 종료 `20260928-205234`, 백엔드 기준 설정으로 복원
