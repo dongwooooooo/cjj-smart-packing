@@ -150,7 +150,9 @@
           "custom": {
             "lineWidth": 1,
             "fillOpacity": 8
-          }
+          },
+          "min": 0,
+          "max": 1
         },
         "overrides": []
       },
@@ -166,9 +168,9 @@
       },
       "targets": [
         {
-          "refId": "A",
-          "expr": "k6_http_req_failed_rate",
-          "legendFormat": "실패율 {{name}}"
+          "expr": "(sum by (name)(rate(k6_http_reqs_total{expected_response='false'}[30s])) or sum by (name)(rate(k6_http_reqs_total[30s])) * 0) / sum by (name)(rate(k6_http_reqs_total[30s]))",
+          "legendFormat": "실패율 {{name}}",
+          "refId": "A"
         }
       ]
     },
@@ -456,12 +458,12 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum(rate(http_server_requests_seconds_count{status=~'5..'}[30s])) / sum(rate(http_server_requests_seconds_count[30s]))",
+          "expr": "(sum(rate(http_server_requests_seconds_count{status=~'5..'}[30s])) or vector(0)) / sum(rate(http_server_requests_seconds_count[30s]))",
           "legendFormat": "5xx"
         },
         {
           "refId": "B",
-          "expr": "sum(rate(http_server_requests_seconds_count{status=~'4..'}[30s])) / sum(rate(http_server_requests_seconds_count[30s]))",
+          "expr": "(sum(rate(http_server_requests_seconds_count{status=~'4..'}[30s])) or vector(0)) / sum(rate(http_server_requests_seconds_count[30s]))",
           "legendFormat": "4xx"
         }
       ]
