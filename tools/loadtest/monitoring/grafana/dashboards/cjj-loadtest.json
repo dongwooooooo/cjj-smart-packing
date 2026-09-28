@@ -34,7 +34,8 @@
         "w": 24,
         "x": 0,
         "y": 0
-      }
+      },
+      "id": 1
     },
     {
       "type": "timeseries",
@@ -76,7 +77,8 @@
           "expr": "sum by (name) (rate(k6_http_reqs_total[30s]))",
           "legendFormat": "{{name}}"
         }
-      ]
+      ],
+      "id": 2
     },
     {
       "type": "timeseries",
@@ -128,7 +130,8 @@
           "expr": "k6_http_req_duration_p99{name!=''}",
           "legendFormat": "p99 {{name}}"
         }
-      ]
+      ],
+      "id": 3
     },
     {
       "type": "timeseries",
@@ -172,7 +175,8 @@
           "legendFormat": "실패율 {{name}}",
           "refId": "A"
         }
-      ]
+      ],
+      "id": 4
     },
     {
       "type": "timeseries",
@@ -214,7 +218,8 @@
           "expr": "k6_vus",
           "legendFormat": "VUs"
         }
-      ]
+      ],
+      "id": 5
     },
     {
       "type": "timeseries",
@@ -277,7 +282,8 @@
           "expr": "k6_measure_duration_p50",
           "legendFormat": "p50"
         }
-      ]
+      ],
+      "id": 6
     },
     {
       "type": "timeseries",
@@ -324,7 +330,8 @@
           "expr": "k6_import_per_order_ms_p50",
           "legendFormat": "주문당 p50 orders={{orders}}"
         }
-      ]
+      ],
+      "id": 7
     },
     {
       "type": "row",
@@ -335,7 +342,8 @@
         "w": 24,
         "x": 0,
         "y": 15
-      }
+      },
+      "id": 8
     },
     {
       "type": "timeseries",
@@ -377,7 +385,8 @@
           "expr": "sum by (uri) (rate(http_server_requests_seconds_count{uri!~'/actuator.*'}[30s]))",
           "legendFormat": "{{uri}}"
         }
-      ]
+      ],
+      "id": 9
     },
     {
       "type": "timeseries",
@@ -419,7 +428,8 @@
           "expr": "histogram_quantile(0.95, sum by (le, uri) (rate(http_server_requests_seconds_bucket{uri!~'/actuator.*'}[30s])))",
           "legendFormat": "p95 {{uri}}"
         }
-      ]
+      ],
+      "id": 10
     },
     {
       "type": "timeseries",
@@ -466,7 +476,8 @@
           "expr": "(sum(rate(http_server_requests_seconds_count{status=~'4..'}[30s])) or vector(0)) / sum(rate(http_server_requests_seconds_count[30s]))",
           "legendFormat": "4xx"
         }
-      ]
+      ],
+      "id": 11
     },
     {
       "type": "row",
@@ -477,7 +488,8 @@
         "w": 24,
         "x": 0,
         "y": 23
-      }
+      },
+      "id": 12
     },
     {
       "type": "timeseries",
@@ -519,7 +531,8 @@
           "expr": "histogram_quantile(0.95, sum by (le, stage) (rate(measure_stage_seconds_bucket[30s])))",
           "legendFormat": "{{stage}}"
         }
-      ]
+      ],
+      "id": 13
     },
     {
       "type": "timeseries",
@@ -566,7 +579,8 @@
           "expr": "histogram_quantile(0.50, sum by (le) (rate(inference_stage_seconds_bucket{stage='invoke'}[30s])))",
           "legendFormat": "p50 invoke"
         }
-      ]
+      ],
+      "id": 14
     },
     {
       "type": "timeseries",
@@ -613,7 +627,8 @@
           "expr": "sum by (reason) (rate(inference_failures_total[1m]))",
           "legendFormat": "inference 실패/s {{reason}}"
         }
-      ]
+      ],
+      "id": 15
     },
     {
       "type": "row",
@@ -624,7 +639,8 @@
         "w": 24,
         "x": 0,
         "y": 31
-      }
+      },
+      "id": 16
     },
     {
       "type": "timeseries",
@@ -671,7 +687,8 @@
           "expr": "tomcat_threads_config_max_threads",
           "legendFormat": "max"
         }
-      ]
+      ],
+      "id": 17
     },
     {
       "type": "timeseries",
@@ -723,7 +740,8 @@
           "expr": "hikaricp_connections_max",
           "legendFormat": "max"
         }
-      ]
+      ],
+      "id": 18
     },
     {
       "type": "timeseries",
@@ -775,7 +793,8 @@
           "expr": "executor_pool_max_threads",
           "legendFormat": "max {{name}}"
         }
-      ]
+      ],
+      "id": 19
     },
     {
       "type": "timeseries",
@@ -822,7 +841,8 @@
           "expr": "node_load1 / count(node_cpu_seconds_total{mode='idle'})",
           "legendFormat": "load1/코어"
         }
-      ]
+      ],
+      "id": 20
     },
     {
       "type": "timeseries",
@@ -869,7 +889,8 @@
           "expr": "sum(rate(jvm_gc_pause_seconds_sum[1m]))",
           "legendFormat": "GC pause s/s"
         }
-      ]
+      ],
+      "id": 21
     },
     {
       "type": "timeseries",
@@ -921,7 +942,8 @@
           "expr": "sum(pg_stat_activity_count{datname='app',state='active',wait_event_type='Lock'})",
           "legendFormat": "락 대기"
         }
-      ]
+      ],
+      "id": 22
     },
     {
       "type": "timeseries",
@@ -968,7 +990,8 @@
           "expr": "sum(rate(node_network_transmit_bytes_total{device!~'lo|docker.*|veth.*|br-.*'}[30s]))",
           "legendFormat": "tx"
         }
-      ]
+      ],
+      "id": 23
     },
     {
       "type": "timeseries",
@@ -1010,7 +1033,8 @@
           "expr": "1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes",
           "legendFormat": "사용률"
         }
-      ]
+      ],
+      "id": 24
     },
     {
       "type": "timeseries",
@@ -1057,7 +1081,8 @@
           "expr": "sum(rate(node_disk_written_bytes_total[30s]))",
           "legendFormat": "write"
         }
-      ]
+      ],
+      "id": 25
     },
     {
       "type": "timeseries",
@@ -1114,7 +1139,8 @@
           "expr": "inventory_collector_lag_seconds",
           "legendFormat": "가장 오래된 미집계 행 나이(s)"
         }
-      ]
+      ],
+      "id": 26
     }
   ],
   "schemaVersion": 39,
