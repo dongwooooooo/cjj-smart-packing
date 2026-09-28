@@ -26,11 +26,7 @@
 
 **테스트 환경**
 
-| 구성 | 사양 |
-| :-: | :-: |
-| API 서버 | EC2 2 vCPU, Spring Boot 1대 (Tomcat 스레드 200, 커넥션 풀 10) |
-| DB | RDS PostgreSQL 2 vCPU, 메모리 1GB |
-| 부하·관측 | 같은 VPC의 EC2에서 k6, Prometheus와 Grafana로 서버·커넥션 풀·DB 지표 수집 |
+EC2 2 vCPU 서버 1대(커넥션 풀 10)와 RDS PostgreSQL에 k6로 부하를 주고, Grafana로 서버·커넥션 풀·DB 지표를 확인했습니다.
 
 **테스트 시나리오**
 
