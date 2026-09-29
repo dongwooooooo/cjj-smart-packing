@@ -18,9 +18,7 @@
         "enable": true,
         "iconColor": "orange",
         "type": "tags",
-        "tags": [
-          "loadtest"
-        ]
+        "tags": ["loadtest"]
       }
     ]
   },
@@ -895,7 +893,7 @@
     {
       "type": "timeseries",
       "title": "RDS — 연결 수 · 커밋/초 · 락 대기",
-      "description": "",
+      "description": " 락 대기는 스크레이프 시점 순간값(exporter 가 대기 세션이 없으면 시계열을 내지 않아 0 으로 채움), 오른쪽 축.",
       "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
@@ -914,7 +912,35 @@
             "fillOpacity": 8
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "락 대기"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "락 대기 세션"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              },
+              {
+                "id": "custom.axisSoftMax",
+                "value": 10
+              }
+            ]
+          }
+        ]
       },
       "options": {
         "legend": {
@@ -939,7 +965,7 @@
         },
         {
           "refId": "C",
-          "expr": "sum(pg_stat_activity_count{datname='app',state='active',wait_event_type='Lock'})",
+          "expr": "sum(pg_stat_activity_count{datname='app',state='active',wait_event_type='Lock'}) or vector(0)",
           "legendFormat": "락 대기"
         }
       ],
